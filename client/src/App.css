@@ -1,5 +1,5 @@
 .parent-nav {
-  background-color: lightslategray;
+  background-color: #bd2130;
   padding: 30px;
 }
 
@@ -19,4 +19,8 @@
 
 .parent-nav .nav-item a {
   color: #ffffff;
+}
+
+.form-parent {
+  margin-top: 50px;
 }
