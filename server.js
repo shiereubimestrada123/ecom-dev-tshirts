@@ -19,7 +19,7 @@ db.once('error', (error) => console.log(error));
 // Init Middleware
 app.use(express.json({ extended: false }));
 
-// Define Routes
+// Routes
 app.use('/api/users', require('./routes/api/users'));
 
 const PORT = process.env.PORT || 5000;
