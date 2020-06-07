@@ -18,8 +18,8 @@ export const register = ({ name, email, password }) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
-  } catch (err) {
-    const errors = err.response.data.errors;
+  } catch (error) {
+    const errors = error.response.data.errors;
 
     if (errors) {
       // errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
