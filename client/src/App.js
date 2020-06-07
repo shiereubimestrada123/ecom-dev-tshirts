@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NavigationBar from './components/layout/NavigationBar';
+import AlertPrompt from './components/layout/AlertPrompt';
 
 import Register from './components/auth/Register';
 import './App.css';
@@ -16,6 +17,7 @@ const App = () => {
         <Fragment>
           <NavigationBar />
           <Container>
+            <AlertPrompt />
             <Switch>
               <Route exact path='/register' component={Register} />
             </Switch>

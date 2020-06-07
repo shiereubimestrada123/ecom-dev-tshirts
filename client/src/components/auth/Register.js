@@ -4,8 +4,9 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { register } from '../../actions/auth';
+import { setAlertPrompt } from '../../actions/alertPrompt';
 
-const Register = ({ register, isAuthenticated }) => {
+const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,14 +25,13 @@ const Register = ({ register, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      console.log('Password do not match');
+      setAlertPrompt('Password do not match', 'danger');
     } else {
-      console.log('Registered successfully');
       register({ name, email, password });
+      setAlertPrompt('Registered Successfully', 'success');
     }
   };
 
-  // Redirect if registered
   if (isAuthenticated) {
     return <Redirect to='/home' />;
   }
@@ -96,10 +96,11 @@ const Register = ({ register, isAuthenticated }) => {
 
 Register.propTypes = {
   register: PropTypes.func.isRequired,
+  setAlertPrompt: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { register, setAlertPrompt })(Register);
