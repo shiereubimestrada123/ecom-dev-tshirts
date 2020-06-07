@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setAlertPrompt } from './alertPrompt';
 import { REGISTER_SUCCESS, REGISTER_FAIL } from './constants';
 
 // Register user
@@ -22,8 +23,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
     const errors = error.response.data.errors;
 
     if (errors) {
-      // errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-      console.log(errors);
+      errors.forEach((error) => dispatch(setAlertPrompt(error.msg, 'danger')));
     }
 
     dispatch({
