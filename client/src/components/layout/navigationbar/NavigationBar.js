@@ -7,7 +7,7 @@ const NavigationBar = (props) => {
     <Nav
       activeKey='/home'
       onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-      className='parent-nav'
+      className='nav-parent'
     >
       <Nav.Item className='nav-left'>
         <Link to='/home'>Home</Link>

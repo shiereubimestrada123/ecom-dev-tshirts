@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
-import { register } from '../../actions/auth';
-import { setAlertPrompt } from '../../actions/alertPrompt';
+import { register } from '../../../actions/auth';
+import { setAlertPrompt } from '../../../actions/alertPrompt';
 
 const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
   const [formData, setFormData] = useState({

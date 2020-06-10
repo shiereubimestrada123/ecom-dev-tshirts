@@ -1,0 +1,24 @@
+.nav-parent {
+  background-color: #bd2130;
+  padding: 30px;
+
+  .nav-left {
+    margin-left: 50px;
+  }
+
+  .nav-right {
+    display: flex;
+    position: absolute;
+    right: 50px;
+  }
+
+  .register-nav {
+    margin-right: 50px;
+  }
+
+  .nav-item {
+    a {
+      color: #ffffff;
+    }
+  }
+}

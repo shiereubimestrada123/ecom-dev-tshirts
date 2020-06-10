@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import NavigationBar from './components/layout/NavigationBar';
-import AlertPrompt from './components/layout/AlertPrompt';
+import NavigationBar from './components/layout/navigationbar/NavigationBar';
+import AlertPrompt from './components/layout/alertprompt/AlertPrompt';
 
-import Register from './components/auth/Register';
-import './App.css';
+import Register from './components/auth/register/Register';
+import './App.scss';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
