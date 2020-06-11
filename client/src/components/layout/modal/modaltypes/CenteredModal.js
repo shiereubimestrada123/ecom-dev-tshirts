@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 
-const MyVerticallyCenteredModal = (props) => {
+const CenteredModal = (props) => {
   return (
     <Modal
       {...props}
@@ -30,4 +30,4 @@ const MyVerticallyCenteredModal = (props) => {
   );
 };
 
-export default MyVerticallyCenteredModal;
+export default CenteredModal;

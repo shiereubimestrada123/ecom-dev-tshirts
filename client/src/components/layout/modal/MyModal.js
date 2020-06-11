@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import MyVerticallyCenteredModal from '../../../utils/MyVerticallyCenteredModal';
+import MyVerticallyCenteredModal from './modaltypes/CenteredModal';
 
 const MyModal = (props) => {
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <>
-      <Button variant='primary' onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
+      <Button variant={props.variant} onClick={() => setModalShow(true)}>
+        Testing modal
       </Button>
 
       <MyVerticallyCenteredModal

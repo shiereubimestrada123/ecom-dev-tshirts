@@ -5,12 +5,18 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // Connect Database
-mongoose.connect(process.env.mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+try {
+  mongoose.connect(process.env.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  });
+} catch (error) {
+  console.log(error.message);
+
+  process.exit(1);
+}
 
 const db = mongoose.connection;
 db.on('error', (error) => console.log(error));
