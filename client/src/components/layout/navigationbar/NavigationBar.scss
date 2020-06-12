@@ -40,24 +40,45 @@
         }
 
         .holder-user-icon {
-          // height: 63px;
+          position: relative;
+          height: 63px;
           padding-left: 15px;
           padding-right: 15px;
-          position: relative;
+          padding-top: 18px;
 
           .fa-user-plus {
             font-size: 1.5rem;
           }
+
+          .hovered-user-icon {
+            position: absolute;
+            right: -15px;
+            top: 60px;
+            padding: 10px 20px 10px 20px;
+            background-color: #ffffff;
+            border: 1px solid #bebebe;
+            list-style: none;
+            box-shadow: 5px 10px 8px #888888;
+          }
+
+          .fa-user-plus:hover {
+            color: #5076a0;
+          }
         }
 
         .holder-cart-icon {
-          // height: 63px;
+          position: relative;
+          height: 63px;
           padding-left: 15px;
           padding-right: 15px;
-          position: relative;
+          padding-top: 18px;
 
           .fa-shopping-cart {
             font-size: 1.5rem;
+          }
+
+          .fa-shopping-cart:hover {
+            color: #5076a0;
           }
         }
       }

@@ -32,8 +32,23 @@ const NavigationBar = (props) => {
                 </Form.Group>
               </div>
 
-              <div className='holder-user-icon'>
+              <div
+                className='holder-user-icon'
+                onMouseEnter={() => setIsShown(true)}
+                onMouseLeave={() => setIsShown(false)}
+              >
                 <i className='fas fa-user-plus'></i>
+
+                {isShown && (
+                  <ul className='hovered-user-icon'>
+                    <li>
+                      <Link to='/register'>Register</Link>
+                    </li>
+                    <li>
+                      <Link to='/login'>Login</Link>
+                    </li>
+                  </ul>
+                )}
               </div>
 
               <div className='holder-cart-icon'>
@@ -54,7 +69,7 @@ const NavigationBar = (props) => {
                 <li>Register</li>
                 <li>Login</li>
               </ul>
-            )} */}
+            )} 
 
             {/* <div className='nav-checkout'>
             <i className='fas fa-shopping-cart'></i>
