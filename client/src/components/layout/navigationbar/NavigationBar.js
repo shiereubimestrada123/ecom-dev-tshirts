@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 import useHover from '../../../utils/useHover';
 
 const NavigationBar = (props) => {
   const [hoverRef, isHovered] = useHover();
+  const [count, setCount] = useState(0);
 
   return (
     <Fragment>
@@ -22,13 +23,17 @@ const NavigationBar = (props) => {
         <div className='nav-user' ref={hoverRef}>
           <i className='fas fa-user-plus'></i>
         </div>
+        <p>You clicked {count} times</p>
+        <button onClick={() => setCount(count + 1)}>Click me</button>
 
-        {isHovered ? (
+        {isHovered && (
           <ul className='hovered-register-login'>
-            <li>Register</li>
+            <li>
+              <button onClick={() => setCount(count + 1)}>Click me</button>
+            </li>
             <li>Login</li>
           </ul>
-        ) : null}
+        )}
 
         <div className='nav-checkout'>
           <i class='fas fa-shopping-cart'></i>
