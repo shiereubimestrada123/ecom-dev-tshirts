@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
-import { register } from '../../actions/auth';
-import { setAlertPrompt } from '../../actions/alertPrompt';
+import { register } from '../../../actions/auth';
+import { setAlertPrompt } from '../../../actions/alertPrompt';
+import MyModal from '../../layout/modal/MyModal';
 
 const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
   const [formData, setFormData] = useState({
@@ -28,7 +29,6 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
       setAlertPrompt('Password do not match', 'danger');
     } else {
       register({ name, email, password });
-      setAlertPrompt('Registered Successfully', 'success');
     }
   };
 
@@ -38,6 +38,7 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
 
   return (
     <Fragment>
+      <MyModal variant='info' />
       <Form className='form-parent' onSubmit={(e) => onSubmit(e)}>
         <Form.Group controlId='formBasicName'>
           <Form.Label>Name</Form.Label>
