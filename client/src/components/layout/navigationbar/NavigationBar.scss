@@ -1,69 +1,66 @@
-.nav-parent {
+.holder-main {
   background-color: #eaeaea;
-  padding: 30px;
 
-  .nav-left {
-    margin-left: 150px;
+  .holder-nav {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1030px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
 
-    .home {
-      color: #000000;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-  }
+    .nav-parent {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 65px;
 
-  .nav-user {
-    display: flex;
-    position: absolute;
-    right: 200px;
-    padding: 10px 10px 60px 10px;
+      .nav-site {
+        margin-left: 35px;
+        display: flex;
+        align-items: center;
 
-    .fa-user-plus {
-      font-size: 1.5rem;
-    }
-  }
+        .nav-search {
+          margin-right: 10px;
+          flex-basis: 1500px;
 
-  .nav-user:hover {
-    color: #5076a0
-  }
+          .search-form {
+            position: relative;
+            margin-top: 3%;
+            z-index: 50;
 
-  .nav-checkout {
-    display: flex;
-    position: absolute;
-    right: 150px;
-    padding: 10px;
+            .search-input {
+              color: #646464;
+              height: 32px;
+              background-color: #c8c8c8;
+              width: 500px;
+            }
+          }
+        }
 
-    .fa-shopping-cart {
-      font-size: 1.5rem;
-    }
-  }
+        .holder-user-icon {
+          // height: 63px;
+          padding-left: 15px;
+          padding-right: 15px;
+          position: relative;
 
-  .nav-checkout:hover {
-    color: #5076a0
-  }
+          .fa-user-plus {
+            font-size: 1.5rem;
+          }
+        }
 
-  .register-nav {
-    margin-right: 50px;
-  }
+        .holder-cart-icon {
+          // height: 63px;
+          padding-left: 15px;
+          padding-right: 15px;
+          position: relative;
 
-  .nav-item {
-    a {
-      color: #ffffff;
-    }
-  }
-
-  .hovered-register-login {
-    position: absolute;
-    right: 190px;
-    top: 70px;
-    padding: 10px 20px 10px 20px;
-    background-color: #ffffff;
-    border: 1px solid #BEBEBE;
-    list-style: none;
-    box-shadow: 5px 10px 8px #888888;
-
-    li {
-      color: #5076a0
+          .fa-shopping-cart {
+            font-size: 1.5rem;
+          }
+        }
+      }
     }
   }
 }

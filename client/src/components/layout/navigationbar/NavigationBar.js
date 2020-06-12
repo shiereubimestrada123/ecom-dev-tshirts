@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
+import { Nav, Form } from 'react-bootstrap';
 
 const NavigationBar = (props) => {
   const [count, setCount] = useState(0);
@@ -8,40 +8,60 @@ const NavigationBar = (props) => {
 
   return (
     <Fragment>
-      <Nav
-        activeKey='/home'
-        onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-        className='nav-parent'
-      >
-        <Nav.Item className='nav-left'>
-          <Link to='/home' className='home'>
-            Home
-          </Link>
-        </Nav.Item>
+      <div className='holder-main'>
+        <div className='holder-nav'>
+          <Nav
+            activeKey='/home'
+            onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+            className='nav-parent'
+          >
+            <div className='nav-home'>
+              <Nav.Item>
+                <Link to='/home'>Home</Link>
+              </Nav.Item>
+            </div>
 
-        <div
-          className='nav-user'
-          onMouseEnter={() => setIsShown(true)}
-          onMouseLeave={() => setIsShown(false)}
-        >
-          <i className='fas fa-user-plus'></i>
+            <div className='nav-site'>
+              <div className='nav-search'>
+                <Form.Group controlId='search' className='search-form'>
+                  <Form.Control
+                    type='text'
+                    placeholder='Search'
+                    className='search-input'
+                  />
+                </Form.Group>
+              </div>
+
+              <div className='holder-user-icon'>
+                <i className='fas fa-user-plus'></i>
+              </div>
+
+              <div className='holder-cart-icon'>
+                <i className='fas fa-shopping-cart'></i>
+              </div>
+            </div>
+
+            {/* <div>
+              <div
+                className='holder-user'
+                onMouseEnter={() => setIsShown(true)}
+                onMouseLeave={() => setIsShown(false)}
+              ></div>
+            </div>
+
+            {isShown && (
+              <ul className='hovered-register-login'>
+                <li>Register</li>
+                <li>Login</li>
+              </ul>
+            )} */}
+
+            {/* <div className='nav-checkout'>
+            <i className='fas fa-shopping-cart'></i>
+          </div> */}
+          </Nav>
         </div>
-        <p>You clicked {count} times</p>
-        <button onClick={() => setCount(count + 1)}>Click me</button>
-
-        {isShown && (
-          <ul className='hovered-register-login'>
-            <li>
-              <button onClick={() => setCount(count + 1)}>Click me</button>
-            </li>
-            <li>Login</li>
-          </ul>
-        )}
-
-        <div className='nav-checkout'>
-          <i class='fas fa-shopping-cart'></i>
-        </div>
-      </Nav>
+      </div>
     </Fragment>
   );
 };
