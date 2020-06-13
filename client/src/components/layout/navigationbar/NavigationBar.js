@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Nav, Form } from 'react-bootstrap';
 
 const NavigationBar = (props) => {
-  const [isShown, setIsShown] = useState(false);
+  const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
 
   return (
     <Fragment>
@@ -33,13 +33,16 @@ const NavigationBar = (props) => {
 
               <div
                 className='holder-user-icon'
-                onMouseEnter={() => setIsShown(true)}
-                onMouseLeave={() => setIsShown(false)}
+                onMouseEnter={() => setIsShownRegisterLogin(true)}
+                onMouseLeave={() => setIsShownRegisterLogin(false)}
               >
                 <i className='fas fa-user-plus'></i>
 
-                {isShown && (
-                  <ul className='hovered-user-icon'>
+                {isShownRegisterLogin && (
+                  <ul
+                    className='hovered-user-icon'
+                    onClick={() => setIsShownRegisterLogin(false)}
+                  >
                     <li>
                       <NavLink to='/register' exact activeClassName='current'>
                         Register
