@@ -38,7 +38,13 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
 
   return (
     <Fragment>
-      <MyModal variant='info' />
+      <MyModal
+        variant='info'
+        text='testing modal'
+        title='title'
+        body='body'
+        heading='heading'
+      />
       <Form className='form-parent' onSubmit={(e) => onSubmit(e)}>
         <Form.Group controlId='formBasicName'>
           <Form.Label>Name</Form.Label>
