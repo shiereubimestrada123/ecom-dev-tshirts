@@ -35,6 +35,8 @@
               height: 32px;
               background-color: #c8c8c8;
               width: 500px;
+              border: none;
+              box-shadow: none;
             }
           }
         }
@@ -59,6 +61,15 @@
             border: 1px solid #bebebe;
             list-style: none;
             box-shadow: 5px 10px 8px #888888;
+
+            a {
+              text-decoration: none;
+              color: #808080;
+
+              &.current {
+                color: #5076a0;
+              }
+            }
           }
 
           .fa-user-plus:hover {

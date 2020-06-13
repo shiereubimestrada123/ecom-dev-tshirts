@@ -1,9 +1,8 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Nav, Form } from 'react-bootstrap';
 
 const NavigationBar = (props) => {
-  const [count, setCount] = useState(0);
   const [isShown, setIsShown] = useState(false);
 
   return (
@@ -42,10 +41,14 @@ const NavigationBar = (props) => {
                 {isShown && (
                   <ul className='hovered-user-icon'>
                     <li>
-                      <Link to='/register'>Register</Link>
+                      <NavLink to='/register' exact activeClassName='current'>
+                        Register
+                      </NavLink>
                     </li>
                     <li>
-                      <Link to='/login'>Login</Link>
+                      <NavLink to='/login' exact activeClassName='current'>
+                        Login
+                      </NavLink>
                     </li>
                   </ul>
                 )}
@@ -55,25 +58,6 @@ const NavigationBar = (props) => {
                 <i className='fas fa-shopping-cart'></i>
               </div>
             </div>
-
-            {/* <div>
-              <div
-                className='holder-user'
-                onMouseEnter={() => setIsShown(true)}
-                onMouseLeave={() => setIsShown(false)}
-              ></div>
-            </div>
-
-            {isShown && (
-              <ul className='hovered-register-login'>
-                <li>Register</li>
-                <li>Login</li>
-              </ul>
-            )} 
-
-            {/* <div className='nav-checkout'>
-            <i className='fas fa-shopping-cart'></i>
-          </div> */}
           </Nav>
         </div>
       </div>
