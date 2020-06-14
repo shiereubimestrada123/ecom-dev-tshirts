@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { register } from '../../../actions/auth';
 import { setAlertPrompt } from '../../../actions/alertPrompt';
-import MyModal from '../../layout/modal/MyModal';
 
 const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
   const [formData, setFormData] = useState({
@@ -38,14 +37,7 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
 
   return (
     <Fragment>
-      <MyModal
-        variant='info'
-        text='testing modal'
-        title='title'
-        body='body'
-        heading='heading'
-      />
-      <Form className='form-parent' onSubmit={(e) => onSubmit(e)}>
+      <Form className='register-form-parent' onSubmit={(e) => onSubmit(e)}>
         <Form.Group controlId='formBasicName'>
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -90,11 +82,14 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
           />
         </Form.Group>
 
-        <Button variant='primary' type='submit'>
+        <Button variant='info' type='submit'>
           Submit
         </Button>
-        <p className='my-1'>
-          Already have an account? <Link to='/login'>Sign In</Link>
+        <p className='my-1 register-text'>
+          Already have an account?{' '}
+          <Link to='/login' variant='info'>
+            Sign In
+          </Link>
         </p>
       </Form>
     </Fragment>
