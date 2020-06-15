@@ -6,6 +6,10 @@ import { Form, Button } from 'react-bootstrap';
 import { register } from '../../../actions/auth';
 import { setAlertPrompt } from '../../../actions/alertPrompt';
 
+let linkSignIn = {
+  color: '#5076a0',
+};
+
 const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -37,7 +41,7 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
 
   return (
     <Fragment>
-      <Form className='register-form-parent' onSubmit={(e) => onSubmit(e)}>
+      <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
         <Form.Group controlId='formBasicName'>
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -87,7 +91,7 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
         </Button>
         <p className='my-1 register-text'>
           Already have an account?{' '}
-          <Link to='/login' variant='info'>
+          <Link to='/login' variant='info' style={linkSignIn}>
             Sign In
           </Link>
         </p>

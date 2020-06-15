@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 
+let linkSignUp = {
+  color: '#5076a0',
+};
+
 const Login = (props) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -23,7 +27,7 @@ const Login = (props) => {
 
   return (
     <Fragment>
-      <Form className='login-form-parent' onSubmit={(e) => onSubmit(e)}>
+      <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
         <Form.Group controlId='formBasicEmail'>
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -49,8 +53,11 @@ const Login = (props) => {
         <Button variant='info' type='submit'>
           Submit
         </Button>
-        <p className='my-1 login-text'>
-          Don't have an account? <Link to='/login'>Sign Up</Link>
+        <p className='my-1'>
+          Don't have an account?{' '}
+          <Link to='/login' style={linkSignUp}>
+            Sign Up
+          </Link>
         </p>
       </Form>
     </Fragment>
