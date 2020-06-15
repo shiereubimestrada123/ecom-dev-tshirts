@@ -1,13 +1,15 @@
 import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
+import { login } from '../../../actions/auth';
 
 let linkSignUp = {
   color: '#5076a0',
 };
 
-const Login = (props) => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,7 +25,12 @@ const Login = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    login(email, password);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/home' />;
+  }
 
   return (
     <Fragment>
@@ -64,6 +71,13 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = {};
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);

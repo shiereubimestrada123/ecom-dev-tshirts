@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { setAlertPrompt } from './alertPrompt';
-import { REGISTER_SUCCESS, REGISTER_FAIL } from './constants';
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+} from './constants';
+import { config } from 'dotenv';
 
 // Register user
 export const register = ({ name, email, password }) => async (dispatch) => {
@@ -30,6 +36,32 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
     dispatch({
       type: REGISTER_FAIL,
+    });
+  }
+};
+
+// Login user
+export const login = (email, password) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ email, password });
+
+  try {
+    const res = await axios.post('/api/auth', body, config);
+    console.log(res);
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+
+    dispatch({
+      type: LOGIN_FAIL,
     });
   }
 };
