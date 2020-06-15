@@ -53,10 +53,10 @@ const Login = (props) => {
         <Button variant='info' type='submit'>
           Submit
         </Button>
-        <p className='my-1'>
-          Don't have an account?{' '}
-          <Link to='/login' style={linkSignUp}>
-            Sign Up
+        <p className='my-1 register-text'>
+          Already have an account?{' '}
+          <Link to='/register' variant='info' style={linkSignUp}>
+            Sign In
           </Link>
         </p>
       </Form>
