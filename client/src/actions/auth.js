@@ -6,7 +6,6 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
 } from './constants';
-import { config } from 'dotenv';
 
 // Register user
 export const register = ({ name, email, password }) => async (dispatch) => {
@@ -52,7 +51,7 @@ export const login = (email, password) => async (dispatch) => {
 
   try {
     const res = await axios.post('/api/auth', body, config);
-    console.log(res);
+
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
