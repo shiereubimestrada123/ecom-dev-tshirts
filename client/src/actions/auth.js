@@ -7,6 +7,9 @@ import {
   LOGIN_FAIL,
 } from './constants';
 
+// Load user
+export const loadUser = () => async (dispatch) => {};
+
 // Register user
 export const register = ({ name, email, password }) => async (dispatch) => {
   const config = {
