@@ -8,6 +8,63 @@ import { logout } from '../../../actions/auth';
 const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
 
+  const isLogin = (
+    <div
+      className='holder-user-icon'
+      onMouseEnter={() => setIsShownRegisterLogin(true)}
+      onMouseLeave={() => setIsShownRegisterLogin(false)}
+    >
+      {isShownRegisterLogin ? (
+        <Fragment>
+          <i class='fas fa-id-card' style={{ color: '#5076a0' }}></i>
+          <ul
+            className='hovered-user-icon'
+            onClick={() => setIsShownRegisterLogin(false)}
+          >
+            <li onClick={logout}>
+              <NavLink to='/home' exact activeClassName='current'>
+                Logout
+              </NavLink>
+            </li>
+          </ul>
+        </Fragment>
+      ) : (
+        <i class='fas fa-id-card'></i>
+      )}
+    </div>
+  );
+
+  const isLogout = (
+    <div
+      className='holder-user-icon'
+      onMouseEnter={() => setIsShownRegisterLogin(true)}
+      onMouseLeave={() => setIsShownRegisterLogin(false)}
+    >
+      {isShownRegisterLogin ? (
+        <Fragment>
+          <i className='fas fa-user-plus' style={{ color: '#5076a0' }}></i>
+          <ul
+            className='hovered-user-icon'
+            onClick={() => setIsShownRegisterLogin(false)}
+          >
+            <li>
+              <NavLink to='/register' exact activeClassName='current'>
+                Register
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to='/login' exact activeClassName='current'>
+                Login
+              </NavLink>
+            </li>
+          </ul>
+        </Fragment>
+      ) : (
+        <i className='fas fa-user-plus'></i>
+      )}
+    </div>
+  );
+
   return (
     <Fragment>
       <div className='holder-main'>
@@ -34,65 +91,7 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 </Form.Group>
               </div>
 
-              {!isAuthenticated ? (
-                <div
-                  className='holder-user-icon'
-                  onMouseEnter={() => setIsShownRegisterLogin(true)}
-                  onMouseLeave={() => setIsShownRegisterLogin(false)}
-                >
-                  {!isShownRegisterLogin ? (
-                    <i className='fas fa-user-plus'></i>
-                  ) : (
-                    <i
-                      className='fas fa-user-plus'
-                      style={{ color: '#5076a0' }}
-                    ></i>
-                  )}
-
-                  {isShownRegisterLogin && (
-                    <ul
-                      className='hovered-user-icon'
-                      onClick={() => setIsShownRegisterLogin(false)}
-                    >
-                      <li>
-                        <NavLink to='/register' exact activeClassName='current'>
-                          Register
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink to='/login' exact activeClassName='current'>
-                          Login
-                        </NavLink>
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              ) : (
-                <div
-                  className='holder-user-icon'
-                  onMouseEnter={() => setIsShownRegisterLogin(true)}
-                  onMouseLeave={() => setIsShownRegisterLogin(false)}
-                >
-                  {!isShownRegisterLogin ? (
-                    <i class='fas fa-id-card'></i>
-                  ) : (
-                    <i class='fas fa-id-card' style={{ color: '#5076a0' }}></i>
-                  )}
-
-                  {isShownRegisterLogin && (
-                    <ul
-                      className='hovered-user-icon'
-                      onClick={() => setIsShownRegisterLogin(false)}
-                    >
-                      <li onClick={logout}>
-                        <NavLink to='/home' exact activeClassName='current'>
-                          Logout
-                        </NavLink>
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              )}
+              {isAuthenticated ? isLogin : isLogout}
 
               <div className='holder-cart-icon'>
                 <i className='fas fa-shopping-cart'></i>
