@@ -58,7 +58,8 @@
           padding-right: 15px;
           padding-top: 18px;
 
-          .fa-user-plus {
+          .fa-user-plus,
+          .fa-id-card {
             font-size: 1.5rem;
           }
 
@@ -82,7 +83,8 @@
             }
           }
 
-          .fa-user-plus:hover {
+          .fa-user-plus:hover,
+          .fa-id-card:hover {
             color: #5076a0;
           }
         }

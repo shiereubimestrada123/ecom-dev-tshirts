@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Nav, Form } from 'react-bootstrap';
+import { logout } from '../../../actions/auth';
 
-const NavigationBar = (props) => {
+const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
 
   return (
@@ -31,31 +34,54 @@ const NavigationBar = (props) => {
                 </Form.Group>
               </div>
 
-              <div
-                className='holder-user-icon'
-                onMouseEnter={() => setIsShownRegisterLogin(true)}
-                onMouseLeave={() => setIsShownRegisterLogin(false)}
-              >
-                <i className='fas fa-user-plus'></i>
+              {!isAuthenticated ? (
+                <div
+                  className='holder-user-icon'
+                  onMouseEnter={() => setIsShownRegisterLogin(true)}
+                  onMouseLeave={() => setIsShownRegisterLogin(false)}
+                >
+                  <i className='fas fa-user-plus'></i>
 
-                {isShownRegisterLogin && (
-                  <ul
-                    className='hovered-user-icon'
-                    onClick={() => setIsShownRegisterLogin(false)}
-                  >
-                    <li>
-                      <NavLink to='/register' exact activeClassName='current'>
-                        Register
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to='/login' exact activeClassName='current'>
-                        Login
-                      </NavLink>
-                    </li>
-                  </ul>
-                )}
-              </div>
+                  {isShownRegisterLogin && (
+                    <ul
+                      className='hovered-user-icon'
+                      onClick={() => setIsShownRegisterLogin(false)}
+                    >
+                      <li>
+                        <NavLink to='/register' exact activeClassName='current'>
+                          Register
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink to='/login' exact activeClassName='current'>
+                          Login
+                        </NavLink>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              ) : (
+                <div
+                  className='holder-user-icon'
+                  onMouseEnter={() => setIsShownRegisterLogin(true)}
+                  onMouseLeave={() => setIsShownRegisterLogin(false)}
+                >
+                  <i class='fas fa-id-card'></i>
+
+                  {isShownRegisterLogin && (
+                    <ul
+                      className='hovered-user-icon'
+                      onClick={() => setIsShownRegisterLogin(false)}
+                    >
+                      <li onClick={logout}>
+                        <NavLink to='/login' exact activeClassName='current'>
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              )}
 
               <div className='holder-cart-icon'>
                 <i className='fas fa-shopping-cart'></i>
@@ -68,4 +94,13 @@ const NavigationBar = (props) => {
   );
 };
 
-export default NavigationBar;
+NavigationBar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(NavigationBar);
