@@ -58,7 +58,9 @@ router.post(
 
       // Return jsonwebtoken
       const payload = {
-        id: user.id,
+        user: {
+          id: user.id,
+        },
       };
 
       jwt.sign(

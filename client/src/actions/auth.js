@@ -1,12 +1,34 @@
 import axios from 'axios';
 import { setAlertPrompt } from './alertPrompt';
+import setAuthToken from '../utils/setAuthToken';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
 } from './constants';
-import { config } from 'dotenv';
+
+// Load user
+export const loadUser = () => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.get('/api/auth');
+
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
 
 // Register user
 export const register = ({ name, email, password }) => async (dispatch) => {
@@ -26,7 +48,9 @@ export const register = ({ name, email, password }) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(setAlertPrompt('Registered Successfully', 'success'));
+    setAlertPrompt('Registered Successfully', 'success');
+
+    dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
 
@@ -52,13 +76,21 @@ export const login = (email, password) => async (dispatch) => {
 
   try {
     const res = await axios.post('/api/auth', body, config);
-    console.log(res);
+
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
+
+    setAlertPrompt('Login Successfully', 'success');
+
+    dispatch(loadUser());
   } catch (error) {
-    console.log(error);
+    const errors = error.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlertPrompt(error.msg, 'danger')));
+    }
 
     dispatch({
       type: LOGIN_FAIL,
