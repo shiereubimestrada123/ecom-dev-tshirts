@@ -40,7 +40,14 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
                   onMouseEnter={() => setIsShownRegisterLogin(true)}
                   onMouseLeave={() => setIsShownRegisterLogin(false)}
                 >
-                  <i className='fas fa-user-plus'></i>
+                  {!isShownRegisterLogin ? (
+                    <i className='fas fa-user-plus'></i>
+                  ) : (
+                    <i
+                      className='fas fa-user-plus'
+                      style={{ color: '#5076a0' }}
+                    ></i>
+                  )}
 
                   {isShownRegisterLogin && (
                     <ul
@@ -66,7 +73,11 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
                   onMouseEnter={() => setIsShownRegisterLogin(true)}
                   onMouseLeave={() => setIsShownRegisterLogin(false)}
                 >
-                  <i class='fas fa-id-card'></i>
+                  {!isShownRegisterLogin ? (
+                    <i class='fas fa-id-card'></i>
+                  ) : (
+                    <i class='fas fa-id-card' style={{ color: '#5076a0' }}></i>
+                  )}
 
                   {isShownRegisterLogin && (
                     <ul
@@ -74,7 +85,7 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
                       onClick={() => setIsShownRegisterLogin(false)}
                     >
                       <li onClick={logout}>
-                        <NavLink to='/login' exact activeClassName='current'>
+                        <NavLink to='/home' exact activeClassName='current'>
                           Logout
                         </NavLink>
                       </li>
