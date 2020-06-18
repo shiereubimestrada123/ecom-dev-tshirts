@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlertPrompt } from './alertPrompt';
-import setAuthToken from '../utils/setAuthToken';
+import setAuthToken from '../../utils/setAuthToken';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,

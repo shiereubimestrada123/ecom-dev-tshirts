@@ -3,12 +3,9 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
-import { register } from '../../../actions/auth';
-import { setAlertPrompt } from '../../../actions/alertPrompt';
-
-let linkSignIn = {
-  color: '#5076a0',
-};
+import { register } from '../../store/actions/auth';
+import { setAlertPrompt } from '../../store/actions/alertPrompt';
+import AlertPrompt from '../../components/layout/alertprompt/AlertPrompt';
 
 const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
   const [formData, setFormData] = useState({
@@ -41,7 +38,8 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
 
   return (
     <Fragment>
-      <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
+      <AlertPrompt />
+      <Form className='register-parent' onSubmit={(e) => onSubmit(e)}>
         <Form.Group controlId='formBasicName'>
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -91,7 +89,7 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
         </Button>
         <p className='my-1 register-text'>
           Already have an account?{' '}
-          <Link to='/login' variant='info' style={linkSignIn}>
+          <Link to='/login' variant='info' className='signup-text'>
             Sign In
           </Link>
         </p>

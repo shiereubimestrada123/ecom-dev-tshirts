@@ -72,6 +72,7 @@
             border: 1px solid #bebebe;
             list-style: none;
             box-shadow: 5px 10px 8px #888888;
+            z-index: 99;
 
             a {
               text-decoration: none;
@@ -86,7 +87,6 @@
           .fa-user-plus:hover,
           .fa-id-card:hover {
             cursor: pointer;
-            margin-bottom: 50px;
           }
         }
 
