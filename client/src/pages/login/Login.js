@@ -3,11 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
-import { login } from '../../../actions/auth';
-
-let linkSignUp = {
-  color: '#5076a0',
-};
+import { login } from '../../store/actions/auth';
+import AlertPrompt from '../../components/layout/alertprompt/AlertPrompt';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -34,7 +31,8 @@ const Login = ({ login, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
+      <AlertPrompt />
+      <Form className='login-parent' onSubmit={(e) => onSubmit(e)}>
         <Form.Group controlId='formBasicEmail'>
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -60,9 +58,9 @@ const Login = ({ login, isAuthenticated }) => {
         <Button variant='info' type='submit'>
           Submit
         </Button>
-        <p className='my-1 register-text'>
+        <p className='my-1'>
           Already have an account?{' '}
-          <Link to='/register' variant='info' style={linkSignUp}>
+          <Link to='/register' variant='info' className='signin-text'>
             Sign In
           </Link>
         </p>

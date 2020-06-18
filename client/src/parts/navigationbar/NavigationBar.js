@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Nav, Form } from 'react-bootstrap';
-import { logout } from '../../../actions/auth';
+import { logout } from '../../store/actions/auth';
 
 const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
