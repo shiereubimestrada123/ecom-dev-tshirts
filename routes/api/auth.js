@@ -4,12 +4,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
+const admin = require('../../middleware/admin');
 const User = require('../../models/User');
 
 // @route   GET api/auth
 // @desc    Test Route
 // @access  Public
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, admin, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
 
@@ -68,8 +69,9 @@ router.post(
         process.env.jwtSecret,
         { expiresIn: 360000 },
         (err, token) => {
+          const { _id, name, email, role } = user;
           if (err) throw err;
-          res.json({ token });
+          res.json({ token, user: { _id, name, email, role } });
         }
       );
     } catch (error) {
