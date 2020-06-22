@@ -5,6 +5,9 @@ import NavigationBar from './parts/navigationbar/NavigationBar';
 // import AlertPrompt from './components/layout/alertprompt/AlertPrompt';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
+import Home from './pages/home/Home';
+import UserDashboard from './pages/dashboard/UserDashboard';
+import AdminDashboard from './pages/dashboard/AdminDashboard';
 import './App.scss';
 // Redux
 import { Provider } from 'react-redux';
@@ -25,8 +28,11 @@ const App = () => {
           <NavigationBar />
           <Container>
             <Switch>
+              <Route exact path='/' component={Home} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
+              <Route exact path='/user/dashboard' component={UserDashboard} />
+              <Route exact path='/user/dashboard' component={AdminDashboard} />
             </Switch>
           </Container>
         </Fragment>

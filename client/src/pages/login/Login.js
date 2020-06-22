@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/actions/auth';
-import AlertPrompt from '../../components/layout/alertprompt/AlertPrompt';
+import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ const Login = ({ login, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/home' />;
+    return <Redirect to='/' />;
   }
 
   return (
