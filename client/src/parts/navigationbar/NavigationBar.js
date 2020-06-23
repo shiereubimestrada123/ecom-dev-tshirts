@@ -24,16 +24,19 @@ const NavigationBar = ({
             className='hovered-user-icon'
             onClick={() => setIsShownRegisterLogin(false)}
           >
-            <li>
-              <NavLink to='/user/dashboard' exact activeClassName='current'>
-                User Dashboard
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/admin/dashboard' exact activeClassName='current'>
-                Admin Dashboard
-              </NavLink>
-            </li>
+            {user && user.role === 0 ? (
+              <li>
+                <NavLink to='/user/dashboard' exact activeClassName='current'>
+                  User Dashboard
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink to='/admin/dashboard' exact activeClassName='current'>
+                  Admin Dashboard
+                </NavLink>
+              </li>
+            )}
             <li onClick={logout}>
               <NavLink to='/' exact>
                 Logout
