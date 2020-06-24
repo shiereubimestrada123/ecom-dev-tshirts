@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 import { Nav, Form } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
 
-const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const NavigationBar = ({
+  auth: { isAuthenticated, loading, user },
+  logout,
+}) => {
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
 
   const isLogin = (
@@ -16,20 +19,33 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout }) => {
     >
       {isShownRegisterLogin ? (
         <Fragment>
-          <i class='fas fa-id-card' style={{ color: '#5076a0' }}></i>
+          <i className='fas fa-id-card' style={{ color: '#5076a0' }}></i>
           <ul
             className='hovered-user-icon'
             onClick={() => setIsShownRegisterLogin(false)}
           >
+            {user && user.role === 0 ? (
+              <li>
+                <NavLink to='/user/dashboard' exact activeClassName='current'>
+                  User Dashboard
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink to='/admin/dashboard' exact activeClassName='current'>
+                  Admin Dashboard
+                </NavLink>
+              </li>
+            )}
             <li onClick={logout}>
-              <NavLink to='/home' exact activeClassName='current'>
+              <NavLink to='/' exact>
                 Logout
               </NavLink>
             </li>
           </ul>
         </Fragment>
       ) : (
-        <i class='fas fa-id-card'></i>
+        <i className='fas fa-id-card'></i>
       )}
     </div>
   );

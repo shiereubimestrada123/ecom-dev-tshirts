@@ -100,7 +100,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 // Logout
-export const logout = () => (dispatch) => {
+export const logout = () => async (dispatch) => {
   dispatch({
     type: LOGOUT,
   });

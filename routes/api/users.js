@@ -15,7 +15,7 @@ router.post(
     check(
       'password',
       'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 }),
+    ).isLength({ min: 5 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -69,7 +69,7 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ token, user: { role } });
         }
       );
     } catch (error) {

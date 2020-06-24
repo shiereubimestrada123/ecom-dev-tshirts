@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import { register } from '../../store/actions/auth';
 import { setAlertPrompt } from '../../store/actions/alertPrompt';
-import AlertPrompt from '../../components/layout/alertprompt/AlertPrompt';
+import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
 const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
   const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ const Register = ({ register, isAuthenticated, setAlertPrompt }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/home' />;
+    return <Redirect to='/' />;
   }
 
   return (
