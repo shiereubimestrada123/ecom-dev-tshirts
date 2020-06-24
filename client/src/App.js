@@ -1,5 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NavigationBar from './parts/navigationbar/NavigationBar';
 import Register from './pages/register/Register';
@@ -24,28 +29,23 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Fragment>
-        <Router>
-          <NavigationBar />
-          <Container>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-              <UserRoute
-                path='/user/dashboard'
-                exact
-                component={UserDashboard}
-              />
-              <AdminRoute
-                path='/admin/dashboard'
-                exact
-                component={AdminDashboard}
-              />
-            </Switch>
-          </Container>
-        </Router>
-      </Fragment>
+      <Router>
+        <NavigationBar />
+        <Container>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
+            <UserRoute path='/user/dashboard' exact component={UserDashboard} />
+            <AdminRoute
+              path='/admin/dashboard'
+              exact
+              component={AdminDashboard}
+            />
+            <Redirect to='/' />
+          </Switch>
+        </Container>
+      </Router>
     </Provider>
   );
 };
