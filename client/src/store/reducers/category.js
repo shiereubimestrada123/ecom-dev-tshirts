@@ -2,7 +2,8 @@ import { CATEGORY_SUCCESS, CATEGORY_FAIL } from '../actions/constants';
 
 const initialState = {
   category: null,
-  loading: false,
+  loading: true,
+  error: {},
 };
 
 export default function (state = initialState, action) {
@@ -13,6 +14,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         category: payload,
+        loading: false,
+      };
+    case CATEGORY_FAIL:
+      return {
+        ...state,
+        error: payload,
         loading: false,
       };
     default:

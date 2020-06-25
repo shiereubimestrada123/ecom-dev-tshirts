@@ -29,7 +29,6 @@ router.post(
 
       res.json(newCategory);
     } catch (error) {
-      console.error(error.message);
       res.status(500).send('Server Error');
     }
   }
