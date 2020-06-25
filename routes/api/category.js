@@ -20,7 +20,7 @@ router.post(
       const user = await User.findById(req.params.userId);
 
       if (user.id !== req.user.id) {
-        return res.status(401).json({ msg: 'Access denied' });
+        return res.status(403).json({ msg: 'Access denied' });
       }
 
       const newCategory = new Category({ name: req.body.name });

@@ -1,0 +1,25 @@
+.admin-row-header {
+  padding: 20px;
+  background-color: #EAEAEA;
+  border: 1px solid #CECECE;
+  border-bottom: none;
+
+  .fa-black-tie {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+}
+
+.admin-row-body {
+  min-height: 650px;
+  border: 1px solid #CECECE;
+
+  .left {
+    padding: 20px;
+    border-right: 1px solid #CECECE;
+  }
+
+  .right {
+    padding: 20px;
+  }
+}

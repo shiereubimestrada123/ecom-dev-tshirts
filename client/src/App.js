@@ -12,8 +12,9 @@ import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import UserRoute from './components/privaterouting/UserRoute';
 import AdminRoute from './components/privaterouting/AdminRoute';
-import UserDashboard from './pages/dashboard/UserDashboard';
-import AdminDashboard from './pages/dashboard/AdminDashboard';
+import UserDashboard from './pages/dashboard/user/UserDashboard';
+import AdminDashboard from './pages/dashboard/admin/AdminDashboard';
+import CreateCategory from './pages/dashboard/admin/CreateCategory';
 import './App.scss';
 // Redux
 import { Provider } from 'react-redux';
@@ -41,6 +42,11 @@ const App = () => {
               path='/admin/dashboard'
               exact
               component={AdminDashboard}
+            />
+            <AdminRoute
+              path='/create/category'
+              exact
+              component={CreateCategory}
             />
             <Redirect to='/' />
           </Switch>
