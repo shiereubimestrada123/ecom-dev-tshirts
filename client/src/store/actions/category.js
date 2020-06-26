@@ -22,21 +22,21 @@ export const createCategory = (name, userId) => async (dispatch) => {
       type: CATEGORY_SUCCESS,
       payload: res.data,
     });
+
+    dispatch(setAlertPrompt('Category name added successfully', 'success'));
   } catch (error) {
-    console.log(error.response);
-    dispatch({
-      type: CATEGORY_FAIL,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
+    const errors = error.response.data.errors;
 
-    // const errors = error.response.data.errors;
-    // console.log(errors);
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlertPrompt(error.msg, 'danger')));
+    }
 
-    // if (errors) {
-    //   errors.forEach((error) => dispatch(setAlertPrompt(error.msg, 'danger')));
-    // }
+    // dispatch({
+    //   type: CATEGORY_FAIL,
+    //   payload: {
+    //     msg: error.response.statusText,
+    //     status: error.response.status,
+    //   },
+    // });
   }
 };

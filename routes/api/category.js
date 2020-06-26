@@ -18,12 +18,18 @@ router.post(
 
     try {
       const user = await User.findById(req.params.userId);
+      // const category = await Category.findById(user);
+      // console.log(category);
 
       if (user.id !== req.user.id) {
         return res.status(403).json({ msg: 'Access denied' });
       }
 
       const newCategory = new Category({ name: req.body.name });
+
+      // if (!newCategory) {
+      //   console.log('duplicate');
+      // }
 
       await newCategory.save();
 
