@@ -18,23 +18,26 @@ router.post(
 
     try {
       const user = await User.findById(req.params.userId);
-      // const category = await Category.findById(user);
-      // console.log(category);
 
       if (user.id !== req.user.id) {
         return res.status(403).json({ msg: 'Access denied' });
       }
 
-      const newCategory = new Category({ name: req.body.name });
+      const category = await Category.findOne({ name: req.body.name });
 
-      // if (!newCategory) {
-      //   console.log('duplicate');
-      // }
+      if (category) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Category name already exists' }] });
+      }
+
+      const newCategory = new Category({ name: req.body.name });
 
       await newCategory.save();
 
       res.json(newCategory);
     } catch (error) {
+      console.log(error.message);
       res.status(500).send('Server Error');
     }
   }
