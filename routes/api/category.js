@@ -23,13 +23,21 @@ router.post(
         return res.status(403).json({ msg: 'Access denied' });
       }
 
+      const category = await Category.findOne({ name: req.body.name });
+
+      if (category) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Category name already exists' }] });
+      }
+
       const newCategory = new Category({ name: req.body.name });
 
       await newCategory.save();
 
       res.json(newCategory);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       res.status(500).send('Server Error');
     }
   }
