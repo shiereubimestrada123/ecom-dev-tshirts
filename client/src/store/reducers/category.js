@@ -1,7 +1,7 @@
 import { CATEGORY_SUCCESS, CATEGORY_FAIL } from '../actions/constants';
 
 const initialState = {
-  category: null,
+  categories: [],
   loading: true,
   error: {},
 };
