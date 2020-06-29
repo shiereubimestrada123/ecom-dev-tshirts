@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const formidable = require('formidable');
 const fs = require('fs');
-const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 const admin = require('../../middleware/admin');
 

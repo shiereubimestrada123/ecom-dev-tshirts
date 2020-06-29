@@ -17,6 +17,11 @@ const AdminDashboard = () => {
               Create Category
             </Link>
           </div>
+          <div>
+            <Link to='/create/product' variant='info' className=''>
+              Create Product
+            </Link>
+          </div>
         </Col>
         <Col className='right' md={9}>
           right

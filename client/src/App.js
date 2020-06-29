@@ -15,6 +15,7 @@ import AdminRoute from './components/privaterouting/AdminRoute';
 import UserDashboard from './pages/dashboard/user/UserDashboard';
 import AdminDashboard from './pages/dashboard/admin/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/CreateCategory';
+import CreateProduct from './pages/dashboard/admin/CreateProduct';
 import './App.scss';
 // Redux
 import { Provider } from 'react-redux';
@@ -47,6 +48,11 @@ const App = () => {
               path='/create/category'
               exact
               component={CreateCategory}
+            />
+            <AdminRoute
+              path='/create/product'
+              exact
+              component={CreateProduct}
             />
             <Redirect to='/' />
           </Switch>
