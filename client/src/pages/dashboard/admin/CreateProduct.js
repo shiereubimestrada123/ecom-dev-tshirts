@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { createProduct } from '../../../store/actions/product';
 import { getCategories } from '../../../store/actions/category';
+import AlertPrompt from '../../../components/alertprompt/AlertPrompt';
 
 const CreateProduct = ({
   createProduct,
@@ -11,52 +12,54 @@ const CreateProduct = ({
   category: { categories },
   user: { _id },
 }) => {
-  useEffect(() => {
-    getCategories();
-  }, [getCategories]);
-
-  const [formData, setFormData] = useState({
+  const [values, setValues] = useState({
     name: '',
     description: '',
     price: '',
-    // category: '',
     shipping: '',
     quantity: '',
     photo: '',
-    // formData: ''
+    formData: '',
   });
-
   const {
     name,
     description,
     price,
-    // category,
     shipping,
     quantity,
     photo,
-    // photo,
-  } = formData;
+    formData,
+  } = values;
+
+  useEffect(() => {
+    getCategories().then((data) => {
+      setValues({
+        ...values,
+        categories: data,
+        formData: new FormData(),
+      });
+    });
+  }, [getCategories]);
 
   const onChange = (e) => {
     const value =
       [e.target.name] === 'photo' ? e.target.files[0] : e.target.value;
-    // formData.set(name, value);
-    setFormData({ ...setFormData, [e.target.name]: value });
+    formData.set([e.target.name], value);
 
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+    setValues({
+      ...values,
+      [e.target.name]: value,
     });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    createProduct(name, description, price, quantity, photo, _id);
+    createProduct(formData, _id);
   };
 
   return (
     <Fragment>
-      {/* <AlertPrompt /> */}
+      <AlertPrompt />
       <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
         <Form.Group>
           <Form.File
@@ -110,7 +113,7 @@ const CreateProduct = ({
             <option>Please select category</option>
             {categories &&
               categories.map((cat, index) => (
-                <option key={index} value={cat.id}>
+                <option key={index} value={cat._id}>
                   {cat.name}
                 </option>
               ))}
@@ -125,8 +128,8 @@ const CreateProduct = ({
             onChange={(e) => onChange(e)}
           >
             <option>Please select</option>
-            <option>True</option>
-            <option>False</option>
+            <option value='1'>True</option>
+            <option value='0'>False</option>
           </Form.Control>
         </Form.Group>
 
@@ -159,6 +162,7 @@ const mapStateToProps = (state) => ({
   category: state.category,
 });
 
-export default connect(mapStateToProps, { createProduct, getCategories })(
-  CreateProduct
-);
+export default connect(mapStateToProps, {
+  createProduct,
+  getCategories,
+})(CreateProduct);

@@ -10,5 +10,6 @@ export const LOGOUT = 'LOGOUT';
 export const CATEGORY_SUCCESS = 'CATEGORY_SUCCESS';
 export const CATEGORY_FAIL = 'CATEGORY_FAIL';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_CATEGORY = 'GET_CATEGORY';
 export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
 export const PRODUCT_FAIL = 'PRODUCT_FAIL';

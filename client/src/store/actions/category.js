@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { setAlertPrompt } from './alertPrompt';
-import { CATEGORY_SUCCESS, CATEGORY_FAIL, GET_CATEGORIES } from './constants';
+import {
+  CATEGORY_SUCCESS,
+  CATEGORY_FAIL,
+  GET_CATEGORIES,
+  GET_CATEGORY,
+} from './constants';
 
 export const createCategory = (name, userId) => async (dispatch) => {
   const config = {
@@ -47,6 +52,19 @@ export const getCategories = () => async (dispatch) => {
 
     dispatch({
       type: GET_CATEGORIES,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCategoryById = (categoryId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/category/${categoryId}`);
+    console.log(res.data);
+    dispatch({
+      type: GET_CATEGORY,
       payload: res.data,
     });
   } catch (error) {
