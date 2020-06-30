@@ -5,7 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 import { createCategory } from '../../../store/actions/category';
 import AlertPrompt from '../../../components/alertprompt/AlertPrompt';
 
-const CreateCategory = ({ createCategory, match, user: { _id, email } }) => {
+const CreateCategory = ({ createCategory, user: { _id } }) => {
   const [formData, setFormData] = useState({
     name: '',
   });

@@ -1,7 +1,11 @@
-import { CATEGORY_SUCCESS, CATEGORY_FAIL } from '../actions/constants';
+import {
+  CATEGORY_SUCCESS,
+  CATEGORY_FAIL,
+  GET_CATEGORIES,
+} from '../actions/constants';
 
 const initialState = {
-  category: null,
+  categories: [],
   loading: true,
   error: {},
 };
@@ -14,6 +18,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         category: payload,
+        loading: false,
+      };
+    case GET_CATEGORIES:
+      return {
+        ...state,
+        categories: payload,
         loading: false,
       };
     case CATEGORY_FAIL:
