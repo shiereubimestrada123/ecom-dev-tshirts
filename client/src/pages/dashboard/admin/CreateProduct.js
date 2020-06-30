@@ -3,25 +3,33 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { createProduct } from '../../../store/actions/product';
+import { getCategories } from '../../../store/actions/category';
 
-const CreateProduct = ({ category, createProduct, user: { _id } }) => {
+const CreateProduct = ({
+  createProduct,
+  getCategories,
+  category: { categories },
+  user: { _id },
+}) => {
+  useEffect(() => {
+    getCategories();
+  }, [getCategories]);
+
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     price: '',
-    // categories: [],
     // category: '',
     shipping: '',
     quantity: '',
     photo: '',
     // formData: ''
   });
-  console.log(category);
+
   const {
     name,
     description,
     price,
-    // categories,
     // category,
     shipping,
     quantity,
@@ -99,11 +107,13 @@ const CreateProduct = ({ category, createProduct, user: { _id } }) => {
             name='category'
             onChange={(e) => onChange(e)}
           >
-            <option>Please select</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <option>Please select category</option>
+            {categories &&
+              categories.map((cat, index) => (
+                <option key={index} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
           </Form.Control>
         </Form.Group>
 
@@ -139,11 +149,16 @@ const CreateProduct = ({ category, createProduct, user: { _id } }) => {
   );
 };
 
-CreateProduct.propTypes = {};
+CreateProduct.propTypes = {
+  createProduct: PropTypes.func.isRequired,
+  getCategories: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   category: state.category,
 });
 
-export default connect(mapStateToProps, { createProduct })(CreateProduct);
+export default connect(mapStateToProps, { createProduct, getCategories })(
+  CreateProduct
+);
