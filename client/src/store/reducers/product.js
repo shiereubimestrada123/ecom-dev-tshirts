@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
     case PRODUCT_SUCCESS:
       return {
         ...state,
-        category: payload,
+        product: payload,
         loading: false,
       };
     default:

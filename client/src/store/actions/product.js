@@ -2,25 +2,8 @@ import axios from 'axios';
 import { setAlertPrompt } from './alertPrompt';
 import { PRODUCT_SUCCESS, PRODUCT_FAIL } from './constants';
 
-export const createProduct = (
-  name,
-  description,
-  price,
-  shipping,
-  quantity,
-  photo,
-  category,
-  userId
-) => async (dispatch) => {
-  const body = JSON.stringify({
-    name,
-    description,
-    price,
-    shipping,
-    quantity,
-    category,
-    photo,
-  });
+export const createProduct = (formData, userId) => async (dispatch) => {
+  const body = formData;
 
   try {
     const res = await axios.post(`/api/product/create/${userId}`, body);
@@ -32,10 +15,6 @@ export const createProduct = (
 
     dispatch(setAlertPrompt('Product added successfully', 'success'));
   } catch (error) {
-    const errors = error.response.data.errors;
-
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlertPrompt(error.msg, 'danger')));
-    }
+    dispatch(setAlertPrompt(error.response.data.error, 'danger'));
   }
 };
