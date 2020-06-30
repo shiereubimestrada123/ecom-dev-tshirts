@@ -2,21 +2,23 @@ import axios from 'axios';
 import { setAlertPrompt } from './alertPrompt';
 import { PRODUCT_SUCCESS, PRODUCT_FAIL } from './constants';
 
-export const createProduct = ({
+export const createProduct = (
   name,
   description,
   price,
   shipping,
   quantity,
   photo,
-  userId,
-}) => async (dispatch) => {
+  category,
+  userId
+) => async (dispatch) => {
   const body = JSON.stringify({
     name,
     description,
     price,
     shipping,
     quantity,
+    category,
     photo,
   });
 

@@ -5,6 +5,7 @@ import {
 } from '../actions/constants';
 
 const initialState = {
+  category: null,
   categories: [],
   loading: true,
   error: {},

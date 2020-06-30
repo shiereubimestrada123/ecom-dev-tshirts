@@ -46,7 +46,19 @@ router.post(
 router.get('/', async (req, res) => {
   try {
     const categories = await Category.find();
+
     res.json(categories);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.get('/:categoryId', async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.categoryId);
+
+    res.json(category);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

@@ -8,7 +8,7 @@ import { getCategories } from '../../../store/actions/category';
 const CreateProduct = ({
   createProduct,
   getCategories,
-  category: { categories },
+  category: { categories, category },
   user: { _id },
 }) => {
   useEffect(() => {
@@ -19,23 +19,13 @@ const CreateProduct = ({
     name: '',
     description: '',
     price: '',
-    // category: '',
     shipping: '',
     quantity: '',
     photo: '',
     // formData: ''
   });
 
-  const {
-    name,
-    description,
-    price,
-    // category,
-    shipping,
-    quantity,
-    photo,
-    // photo,
-  } = formData;
+  const { name, description, price, shipping, quantity, photo } = formData;
 
   const onChange = (e) => {
     const value =
@@ -51,7 +41,16 @@ const CreateProduct = ({
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    createProduct(name, description, price, quantity, photo, _id);
+    createProduct(
+      name,
+      description,
+      price,
+      quantity,
+      shipping,
+      photo,
+      category,
+      _id
+    );
   };
 
   return (
@@ -125,8 +124,8 @@ const CreateProduct = ({
             onChange={(e) => onChange(e)}
           >
             <option>Please select</option>
-            <option>True</option>
-            <option>False</option>
+            <option value='1'>True</option>
+            <option value='0'>False</option>
           </Form.Control>
         </Form.Group>
 
