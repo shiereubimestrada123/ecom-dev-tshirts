@@ -6,7 +6,13 @@ export const createProduct = (formData, userId) => async (dispatch) => {
   const body = formData;
 
   try {
-    const res = await axios.post(`/api/product/create/${userId}`, body);
+    const config = {
+      headers: {
+        Accept: 'application/json',
+      },
+    };
+
+    const res = await axios.post(`/api/product/create/${userId}`, body, config);
 
     dispatch({
       type: PRODUCT_SUCCESS,

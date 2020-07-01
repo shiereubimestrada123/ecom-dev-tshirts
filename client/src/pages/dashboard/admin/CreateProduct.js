@@ -30,7 +30,7 @@ const CreateProduct = ({
     price,
     shipping,
     quantity,
-    photo,
+    // photo,
     formData,
   } = values;
 
@@ -49,8 +49,8 @@ const CreateProduct = ({
 
   const onChange = (e) => {
     const value =
-      [e.target.name] === 'photo' ? e.target.files[0] : e.target.value;
-    formData.set([e.target.name], value);
+      e.target.name === 'photo' ? e.target.files[0] : e.target.value;
+    formData.set(e.target.name, value);
 
     setValues({
       ...values,
@@ -67,14 +67,22 @@ const CreateProduct = ({
     <Fragment>
       <AlertPrompt />
       <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
-        <Form.Group>
+        <div>
+          <input
+            type='file'
+            name='photo'
+            accept='image/*'
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        {/* <Form.Group>
           <Form.File
             id='photo'
             name='photo'
             label='Photo'
             onChange={(e) => onChange(e)}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>

@@ -24,7 +24,7 @@ router.post('/create/:userId', auth, admin, async (req, res) => {
           error: 'Image could not be uploaded',
         });
       }
-
+      console.log(files);
       const { name, description, price, category, quantity, shipping } = fields;
 
       if (
