@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
@@ -12,6 +13,8 @@ const CreateProduct = ({
   category: { categories },
   user: { _id },
 }) => {
+  let history = useHistory();
+
   const [values, setValues] = useState({
     name: '',
     description: '',
@@ -32,14 +35,17 @@ const CreateProduct = ({
   } = values;
 
   useEffect(() => {
-    getCategories().then((data) => {
+    getCategories().then(() => {
       setValues({
         ...values,
-        categories: data,
         formData: new FormData(),
       });
     });
   }, [getCategories]);
+
+  const handleClick = () => {
+    history.push('/admin/dashboard');
+  };
 
   const onChange = (e) => {
     const value =
@@ -144,6 +150,14 @@ const CreateProduct = ({
           />
         </Form.Group>
 
+        <Button
+          variant='light'
+          type='submit'
+          className='my-3 mr-2'
+          onClick={handleClick}
+        >
+          Cancel
+        </Button>
         <Button variant='info' type='submit' className='my-3'>
           Submit
         </Button>
