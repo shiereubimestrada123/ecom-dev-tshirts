@@ -80,11 +80,11 @@ router.get('/', async (req, res) => {
       .sort([[sortBy, order]])
       .limit(limit);
 
-    if (!products) {
-      return res.status(400).json({
-        error: 'Products not found',
-      });
-    }
+    // if (!products) {
+    //   return res.status(400).json({
+    //     error: 'Products not found',
+    //   });
+    // }
 
     res.json(products);
   } catch (err) {

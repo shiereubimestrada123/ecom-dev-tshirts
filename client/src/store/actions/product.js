@@ -31,14 +31,28 @@ export const createProduct = (formData, userId) => async (dispatch) => {
 };
 
 export const loadProductsBySell = (sortBy) => async (dispatch) => {
-  console.log('123123');
   try {
     const res = await axios.get(
       `/api/product?sortBy=${sortBy}&order=desc&limit=6`
     );
-    console.log(res);
+
     dispatch({
       type: PRODUCT_BY_SELL,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const loadProductsByArrival = (sortBy) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `/api/product?sortBy=${sortBy}&order=desc&limit=6`
+    );
+
+    dispatch({
+      type: PRODUCT_BY_ARRIVAL,
       payload: res.data,
     });
   } catch (error) {

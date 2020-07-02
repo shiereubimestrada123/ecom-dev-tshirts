@@ -7,7 +7,8 @@ import {
 
 const initialState = {
   product: null,
-  products: [],
+  productsSell: [],
+  productsArrival: [],
   loading: true,
   error: {},
 };
@@ -25,7 +26,13 @@ export default function (state = initialState, action) {
     case PRODUCT_BY_SELL:
       return {
         ...state,
-        products: payload,
+        productsSell: payload,
+        loading: false,
+      };
+    case PRODUCT_BY_ARRIVAL:
+      return {
+        ...state,
+        productsArrival: payload,
         loading: false,
       };
     default:
