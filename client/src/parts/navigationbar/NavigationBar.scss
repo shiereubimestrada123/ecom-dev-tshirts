@@ -17,8 +17,14 @@
       height: 65px;
 
       .nav-home {
+        a {
+          text-decoration: none;
+          font-size: 1.5rem;
+          color: #5076a0;
+        }
+      }
 
-
+      .nav-shop {
         a {
           text-decoration: none;
           font-size: 1.5rem;

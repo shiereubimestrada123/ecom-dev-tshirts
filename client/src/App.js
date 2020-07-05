@@ -16,6 +16,7 @@ import UserDashboard from './pages/dashboard/user/UserDashboard';
 import AdminDashboard from './pages/dashboard/admin/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/CreateCategory';
 import CreateProduct from './pages/dashboard/admin/CreateProduct';
+import Shop from './pages/shop/Shop';
 import './App.scss';
 // Redux
 import { Provider } from 'react-redux';
@@ -38,6 +39,7 @@ const App = () => {
             <Route exact path='/' component={Home} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/shop' component={Shop} />
             <UserRoute path='/user/dashboard' exact component={UserDashboard} />
             <AdminRoute
               path='/admin/dashboard'
