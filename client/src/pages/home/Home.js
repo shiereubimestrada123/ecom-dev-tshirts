@@ -2,6 +2,8 @@ import React, { Fragment, useEffect } from 'react';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Card } from 'react-bootstrap';
+import ProductCard from './ProductCard';
 import {
   loadProductsBySell,
   loadProductsByArrival,
@@ -20,7 +22,11 @@ const Home = ({
   return (
     <Fragment>
       <AlertPrompt />
-      <h1>home</h1>
+      <Card style={{ width: '18rem' }}>
+        {productsSell.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
+      </Card>
     </Fragment>
   );
 };

@@ -93,4 +93,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/photo/:productId', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId);
+
+    if (product.photo.data) {
+      res.set('Content-Type', product.photo.contentType);
+      return res.send(product.photo.data);
+    }
+    // next();
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
