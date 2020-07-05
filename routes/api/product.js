@@ -68,4 +68,44 @@ router.post('/create/:userId', auth, admin, async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    let order = req.query.order ? req.query.order : 'asc';
+    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+
+    const products = await Product.find()
+      .select('-photo')
+      .populate('category')
+      .sort([[sortBy, order]])
+      .limit(limit);
+
+    // if (!products) {
+    //   return res.status(400).json({
+    //     error: 'Products not found',
+    //   });
+    // }
+
+    res.json(products);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.get('/photo/:productId', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId);
+
+    if (product.photo.data) {
+      res.set('Content-Type', product.photo.contentType);
+      return res.send(product.photo.data);
+    }
+    // next();
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

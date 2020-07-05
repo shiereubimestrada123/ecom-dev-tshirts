@@ -62,7 +62,7 @@ export const getCategories = () => async (dispatch) => {
 export const getCategoryById = (categoryId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/category/${categoryId}`);
-    console.log(res.data);
+
     dispatch({
       type: GET_CATEGORY,
       payload: res.data,

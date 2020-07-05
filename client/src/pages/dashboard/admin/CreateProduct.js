@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
@@ -12,6 +13,8 @@ const CreateProduct = ({
   category: { categories },
   user: { _id },
 }) => {
+  let history = useHistory();
+
   const [values, setValues] = useState({
     name: '',
     description: '',
@@ -27,24 +30,27 @@ const CreateProduct = ({
     price,
     shipping,
     quantity,
-    photo,
+    // photo,
     formData,
   } = values;
 
   useEffect(() => {
-    getCategories().then((data) => {
+    getCategories().then(() => {
       setValues({
         ...values,
-        categories: data,
         formData: new FormData(),
       });
     });
   }, [getCategories]);
 
+  const handleClick = () => {
+    history.push('/admin/dashboard');
+  };
+
   const onChange = (e) => {
     const value =
-      [e.target.name] === 'photo' ? e.target.files[0] : e.target.value;
-    formData.set([e.target.name], value);
+      e.target.name === 'photo' ? e.target.files[0] : e.target.value;
+    formData.set(e.target.name, value);
 
     setValues({
       ...values,
@@ -61,14 +67,22 @@ const CreateProduct = ({
     <Fragment>
       <AlertPrompt />
       <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
-        <Form.Group>
+        <div>
+          <input
+            type='file'
+            name='photo'
+            accept='image/*'
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        {/* <Form.Group>
           <Form.File
             id='photo'
             name='photo'
             label='Photo'
             onChange={(e) => onChange(e)}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
@@ -144,6 +158,14 @@ const CreateProduct = ({
           />
         </Form.Group>
 
+        <Button
+          variant='light'
+          type='submit'
+          className='my-3 mr-2'
+          onClick={handleClick}
+        >
+          Cancel
+        </Button>
         <Button variant='info' type='submit' className='my-3'>
           Submit
         </Button>
