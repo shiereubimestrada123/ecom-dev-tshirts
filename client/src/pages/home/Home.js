@@ -2,8 +2,8 @@ import React, { Fragment, useEffect } from 'react';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card } from 'react-bootstrap';
-import ProductCard from './ProductCard';
+import { Row, Col } from 'react-bootstrap';
+import ProductCard from '../../parts/productcard/ProductCard';
 import {
   loadProductsBySell,
   loadProductsByArrival,
@@ -22,11 +22,11 @@ const Home = ({
   return (
     <Fragment>
       <AlertPrompt />
-      <Card style={{ width: '18rem' }}>
+      <div className='home-card mt-5'>
         {productsSell.map((product, index) => (
-          <ProductCard key={index} product={product} />
+          <ProductCard key={index} product={product} className='product-card' />
         ))}
-      </Card>
+      </div>
     </Fragment>
   );
 };

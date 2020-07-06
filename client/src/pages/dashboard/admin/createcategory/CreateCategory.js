@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-import { createCategory } from '../../../store/actions/category';
-import AlertPrompt from '../../../components/alertprompt/AlertPrompt';
+import { createCategory } from '../../../../store/actions/category';
+import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 
 const CreateCategory = ({ createCategory, user: { _id } }) => {
   let history = useHistory();

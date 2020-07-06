@@ -12,10 +12,10 @@ import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import UserRoute from './components/privaterouting/UserRoute';
 import AdminRoute from './components/privaterouting/AdminRoute';
-import UserDashboard from './pages/dashboard/user/UserDashboard';
-import AdminDashboard from './pages/dashboard/admin/AdminDashboard';
-import CreateCategory from './pages/dashboard/admin/CreateCategory';
-import CreateProduct from './pages/dashboard/admin/CreateProduct';
+import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
+import AdminDashboard from './pages/dashboard/admin/admindashboard/AdminDashboard';
+import CreateCategory from './pages/dashboard/admin/createcategory/CreateCategory';
+import CreateProduct from './pages/dashboard/admin/createproduct/CreateProduct';
 import Shop from './pages/shop/Shop';
 import './App.scss';
 // Redux

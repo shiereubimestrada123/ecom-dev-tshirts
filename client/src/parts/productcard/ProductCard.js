@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem', marginLeft: '20px', marginTop: '20px' }}>
       <Card.Img variant='top' src={`api/product/photo/${product._id}`} />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
@@ -22,7 +21,5 @@ const ProductCard = ({ product }) => {
     </Card>
   );
 };
-
-ProductCard.propTypes = {};
 
 export default ProductCard;

@@ -24,11 +24,6 @@ const NavigationBar = ({
             className='hovered-user-icon'
             onClick={() => setIsShownRegisterLogin(false)}
           >
-            <li>
-              <NavLink to='/shop' exact activeClassName='current'>
-                Shop
-              </NavLink>
-            </li>
             {user && user.role === 0 ? (
               <li>
                 <NavLink to='/user/dashboard' exact activeClassName='current'>
@@ -95,7 +90,7 @@ const NavigationBar = ({
             onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
             className='nav-parent'
           >
-            <div className='nav-home mr-4'>
+            <div className='nav-home'>
               <Nav.Item>
                 <Link to='/home'>
                   <i class='fas fa-home'></i>

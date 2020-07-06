@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-import { createProduct } from '../../../store/actions/product';
-import { getCategories } from '../../../store/actions/category';
-import AlertPrompt from '../../../components/alertprompt/AlertPrompt';
+import { createProduct } from '../../../../store/actions/product';
+import { getCategories } from '../../../../store/actions/category';
+import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 
 const CreateProduct = ({
   createProduct,
