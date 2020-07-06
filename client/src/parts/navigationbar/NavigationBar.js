@@ -93,7 +93,7 @@ const NavigationBar = ({
             <div className='nav-home'>
               <Nav.Item>
                 <Link to='/home'>
-                  <i class='fas fa-home'></i>
+                  <i className='fas fa-home'></i>
                 </Link>
               </Nav.Item>
             </div>
@@ -101,7 +101,7 @@ const NavigationBar = ({
             <div className='nav-shop'>
               <Nav.Item>
                 <Link to='/shop'>
-                  <i class='fas fa-store'></i>
+                  <i className='fas fa-store'></i>
                 </Link>
               </Nav.Item>
             </div>

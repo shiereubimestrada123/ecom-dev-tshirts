@@ -24,15 +24,8 @@ const CreateProduct = ({
     photo: '',
     formData: '',
   });
-  const {
-    name,
-    description,
-    price,
-    shipping,
-    quantity,
-    // photo,
-    formData,
-  } = values;
+
+  const { name, description, price, shipping, quantity, formData } = values;
 
   useEffect(() => {
     getCategories().then(() => {
