@@ -27,13 +27,13 @@ const NavigationBar = ({
             {user && user.role === 0 ? (
               <li>
                 <NavLink to='/user/dashboard' exact activeClassName='current'>
-                  User Dashboard
+                  User
                 </NavLink>
               </li>
             ) : (
               <li>
                 <NavLink to='/admin/dashboard' exact activeClassName='current'>
-                  Admin Dashboard
+                  Admin
                 </NavLink>
               </li>
             )}
@@ -92,7 +92,17 @@ const NavigationBar = ({
           >
             <div className='nav-home'>
               <Nav.Item>
-                <Link to='/home'>Home</Link>
+                <Link to='/home'>
+                  <i className='fas fa-home'></i>
+                </Link>
+              </Nav.Item>
+            </div>
+
+            <div className='nav-shop'>
+              <Nav.Item>
+                <Link to='/shop'>
+                  <i className='fas fa-store'></i>
+                </Link>
               </Nav.Item>
             </div>
 

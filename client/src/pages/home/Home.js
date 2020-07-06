@@ -1,46 +1,23 @@
-import React, { Fragment, useEffect } from 'react';
-import AlertPrompt from '../../components/alertprompt/AlertPrompt';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card } from 'react-bootstrap';
-import ProductCard from './ProductCard';
-import {
-  loadProductsBySell,
-  loadProductsByArrival,
-} from '../../store/actions/product';
+import { Row, Col } from 'react-bootstrap';
+import { getCategories } from '../../store/actions/category';
 
-const Home = ({
-  product: { productsSell, productsArrival },
-  loadProductsBySell,
-  loadProductsByArrival,
-}) => {
+const Home = ({ getCategories }) => {
   useEffect(() => {
-    loadProductsBySell('sold');
-    loadProductsByArrival('createdAt');
-  }, [loadProductsBySell, loadProductsByArrival]);
+    getCategories();
+  }, [getCategories]);
 
   return (
-    <Fragment>
-      <AlertPrompt />
-      <Card style={{ width: '18rem' }}>
-        {productsSell.map((product, index) => (
-          <ProductCard key={index} product={product} />
-        ))}
-      </Card>
-    </Fragment>
+    <Row>
+      <Col md={9}>Home</Col>
+    </Row>
   );
 };
 
-Home.propTypes = {
-  loadProductsBySell: PropTypes.func.isRequired,
-  loadProductsByArrival: PropTypes.func.isRequired,
-};
+Home.propTypes = {};
 
-const mapStateToProps = (state) => ({
-  product: state.product,
-});
+const mapStateToProps = (state) => ({});
 
-export default connect(mapStateToProps, {
-  loadProductsBySell,
-  loadProductsByArrival,
-})(Home);
+export default connect(mapStateToProps, { getCategories })(Home);
