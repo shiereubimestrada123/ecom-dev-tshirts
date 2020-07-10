@@ -68,6 +68,33 @@ router.post('/create/:userId', auth, admin, async (req, res) => {
   }
 });
 
+router.post('/by/search', async (req, res) => {
+  try {
+    let order = req.body.order ? req.body.order : 'desc';
+    let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
+    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+    let skip = req.body.skip;
+
+    const products = await Product.find()
+      .select('-photo')
+      .populate('category')
+      .sort([[sortBy, order]])
+      .skip(skip)
+      .limit(limit);
+
+    if (!products) {
+      return res.status(400).json({
+        error: 'Products not found',
+      });
+    }
+
+    res.json({ size: products.length, products });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 router.get('/', async (req, res) => {
   try {
     let order = req.query.order ? req.query.order : 'asc';
