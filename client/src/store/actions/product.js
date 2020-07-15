@@ -1,21 +1,34 @@
 import axios from 'axios';
+import queryString from 'query-string';
 import { setAlertPrompt } from './alertPrompt';
 import {
   PRODUCT_SUCCESS,
   PRODUCT_FAIL,
-  PRODUCT_BY_SELL,
-  PRODUCT_BY_ARRIVAL,
   FILTERED_PRODUCTS,
+  GET_PRODUCTS,
+  SEARCH_PRODUCTS,
 } from './constants';
 
-export const getFilteredProducts = (skip, limit, filters = {}) => async (
+export const getProducts = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/product');
+    dispatch({
+      type: GET_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getFilteredProducts = (skip, limit, selectedCategoryId) => async (
   dispatch
 ) => {
   try {
     const data = {
       limit,
       skip,
-      filters,
+      selectedCategoryId,
     };
 
     const config = {
@@ -61,32 +74,18 @@ export const createProduct = (formData, userId) => async (dispatch) => {
   }
 };
 
-// export const loadProductsBySell = (sortBy) => async (dispatch) => {
+// export const createSearch = (search) => async (dispatch) => {
 //   try {
-//     const res = await axios.get(
-//       `/api/product?sortBy=${sortBy}&order=desc&limit=7`
-//     );
+//     const query = queryString.stringify({ search: search });
+
+//     const res = await axios.get(`/api/product/search?${query}`);
 
 //     dispatch({
-//       type: PRODUCT_BY_SELL,
+//       type: SEARCH_PRODUCTS,
 //       payload: res.data,
 //     });
 //   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const loadProductsByArrival = (sortBy) => async (dispatch) => {
-//   try {
-//     const res = await axios.get(
-//       `/api/product?sortBy=${sortBy}&order=desc&limit=4`
-//     );
-
-//     dispatch({
-//       type: PRODUCT_BY_ARRIVAL,
-//       payload: res.data,
-//     });
-//   } catch (error) {
+//     console.log('search errorrrrrrrrrrr');
 //     console.log(error);
 //   }
 // };

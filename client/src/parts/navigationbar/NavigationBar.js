@@ -2,8 +2,9 @@ import React, { Fragment, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Nav, Form } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
+// import Search from '../search/Search';
 
 const NavigationBar = ({
   auth: { isAuthenticated, loading, user },
@@ -108,13 +109,14 @@ const NavigationBar = ({
 
             <div className='nav-site'>
               <div className='nav-search'>
-                <Form.Group controlId='search' className='search-form'>
+                {/* <Search /> */}
+                {/* <Form.Group controlId='search' className='search-form'>
                   <Form.Control
                     type='text'
                     placeholder='Search'
                     className='search-input'
                   />
-                </Form.Group>
+                </Form.Group> */}
               </div>
 
               {isAuthenticated ? isLogin : isLogout}
