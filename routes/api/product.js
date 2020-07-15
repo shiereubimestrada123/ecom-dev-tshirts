@@ -68,27 +68,29 @@ router.post('/create/:userId', auth, admin, async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.post('/by/search', async (req, res) => {
   try {
-    let order = req.query.order ? req.query.order : 'asc';
-    let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-    let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+    let order = req.body.order ? req.body.order : 'desc';
+    let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
+    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+    let skip = req.body.skip;
 
     const products = await Product.find()
       .select('-photo')
       .populate('category')
       .sort([[sortBy, order]])
+      .skip(skip)
       .limit(limit);
 
-    // if (!products) {
-    //   return res.status(400).json({
-    //     error: 'Products not found',
-    //   });
-    // }
+    if (!products) {
+      return res.status(400).json({
+        error: 'Products not found',
+      });
+    }
 
-    res.json(products);
-  } catch (err) {
-    console.error(err.message);
+    res.json({ size: products.length, products });
+  } catch (error) {
+    console.log(error.message);
     res.status(500).send('Server Error');
   }
 });
@@ -104,6 +106,48 @@ router.get('/photo/:productId', async (req, res) => {
     // next();
   } catch (error) {
     console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// router.get('/search', async (req, res) => {
+//   try {
+//     const query = {};
+//     if (req.query.search) {
+//       query.name = { $regex: req.query.search, $options: 'i' };
+
+//       const products = await Product.find(query).select('-photo');
+
+//       if (!products) {
+//         return res.status(400).json({
+//           error: 'Products not found',
+//         });
+//       }
+
+//       res.json(products);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+router.get('/', async (req, res) => {
+  try {
+    // let order = req.query.order ? req.query.order : 'asc';
+    // let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+    // let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+
+    const products = await Product.find().select('-photo').populate('category');
+
+    // if (!products) {
+    //   return res.status(400).json({
+    //     error: 'Products not found',
+    //   });
+    // }
+
+    res.json(products);
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
