@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ products, selectedCategoryId }) => {
+const ProductCard = ({ allProducts, selectedCategoryId }) => {
   // const showPerCategory =
   //   products &&
   //   products.map((product, index) => (
@@ -33,7 +33,7 @@ const ProductCard = ({ products, selectedCategoryId }) => {
   //     </div>
   //   ));
 
-  const showAll = products.map((product, index) => (
+  const showAll = allProducts.map((product, index) => (
     <div key={index}>
       <Card
         style={{
