@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import MyModal from '../../components/modal/MyModal';
 
 const ProductCard = ({ allProducts, selectedCategoryId }) => {
   // const showPerCategory =

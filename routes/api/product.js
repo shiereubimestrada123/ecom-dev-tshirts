@@ -110,26 +110,18 @@ router.get('/photo/:productId', async (req, res) => {
   }
 });
 
-// router.get('/search', async (req, res) => {
-//   try {
-//     const query = {};
-//     if (req.query.search) {
-//       query.name = { $regex: req.query.search, $options: 'i' };
+router.get('/:productId', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId);
 
-//       const products = await Product.find(query).select('-photo');
-
-//       if (!products) {
-//         return res.status(400).json({
-//           error: 'Products not found',
-//         });
-//       }
-
-//       res.json(products);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+    console.log(product);
+    res.json(product);
+    // next();
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 router.get('/', async (req, res) => {
   try {
@@ -141,12 +133,6 @@ router.get('/', async (req, res) => {
       .select('-photo')
       .populate('category')
       .sort([[sortBy, order]]);
-
-    // if (!products) {
-    //   return res.status(400).json({
-    //     error: 'Products not found',
-    //   });
-    // }
 
     res.json(products);
   } catch (err) {

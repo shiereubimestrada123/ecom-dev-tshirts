@@ -1,14 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
+// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// import ProductCard from '../../parts/productcard/ProductCard';
+import ProductCard from '../../parts/productcard/ProductCard';
+import { Row, Col } from 'react-bootstrap';
 
-const Product = (props) => {
+const Product = ({ products }) => {
+  console.log(products);
   return (
     <div>
-      <h1>prodcut page</h1>
+      <Row className='mt-5'>
+        <Col>asdasdasd</Col>
+      </Row>
     </div>
   );
 };
 
-Product.propTypes = {};
+// Product.propTypes = {};
 
-export default Product;
+const mapStateToProps = (state) => ({
+  products: state.product.products,
+});
+
+export default connect(mapStateToProps)(Product);
