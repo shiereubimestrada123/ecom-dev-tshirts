@@ -11,7 +11,7 @@ import {
 
 export const getProducts = () => async (dispatch) => {
   try {
-    const res = await axios.get('/api/product');
+    const res = await axios.get(`/api/product?sortBy=createdAt&order=desc`);
     dispatch({
       type: GET_PRODUCTS,
       payload: res.data,

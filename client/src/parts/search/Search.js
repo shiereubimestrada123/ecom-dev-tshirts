@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { getProducts } from '../../store/actions/product';
 import ProductCard from '../productcard/ProductCard';
-// import Pagination from 'react-bootstrap/Pagination';
 import PaginationProduct from '../../components/pagination/PaginationProduct';
 
 const Search = ({ getProducts, products }) => {
@@ -18,7 +17,7 @@ const Search = ({ getProducts, products }) => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  }, [getProducts]);
 
   const filteredProducts = products.filter((product) => {
     return product.name.toLowerCase().indexOf(search.toLowerCase()) >= 0;
@@ -56,9 +55,9 @@ const Search = ({ getProducts, products }) => {
         />
       </Form.Group>
 
-      <div className='shop-card mt-2 mb-4'>
+      {/* <div className='shop-card mt-2 mb-4'>
         <ProductCard allProducts={allProducts} />
-      </div>
+      </div> */}
 
       <div>
         <PaginationProduct

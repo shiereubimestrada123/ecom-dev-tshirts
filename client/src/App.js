@@ -10,13 +10,15 @@ import NavigationBar from './parts/navigationbar/NavigationBar';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
+import Shop from './pages/shop/Shop';
+import Product from './pages/product/Product';
 import UserRoute from './components/privaterouting/UserRoute';
 import AdminRoute from './components/privaterouting/AdminRoute';
 import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
 import AdminDashboard from './pages/dashboard/admin/admindashboard/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/createcategory/CreateCategory';
 import CreateProduct from './pages/dashboard/admin/createproduct/CreateProduct';
-import Shop from './pages/shop/Shop';
+
 import './App.scss';
 // Redux
 import { Provider } from 'react-redux';
@@ -40,6 +42,7 @@ const App = () => {
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/shop' component={Shop} />
+            <Route exact path='/product/:productId' component={Product} />
             <UserRoute path='/user/dashboard' exact component={UserDashboard} />
             <AdminRoute
               path='/admin/dashboard'

@@ -8,7 +8,11 @@ const MyModal = (props) => {
 
   return (
     <>
-      <Button variant={props.variant} onClick={() => setModalShow(true)}>
+      <Button
+        variant={props.variant}
+        style={{ borderRadius: '0' }}
+        onClick={() => setModalShow(true)}
+      >
         {text}
       </Button>
 
