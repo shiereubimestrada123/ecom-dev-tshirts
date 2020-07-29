@@ -6,8 +6,22 @@ import {
   PRODUCT_FAIL,
   FILTERED_PRODUCTS,
   GET_PRODUCTS,
+  GET_SINGLE_PRODUCT,
   SEARCH_PRODUCTS,
 } from './constants';
+
+export const getSingleProduct = (productId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/product/${productId}`);
+
+    dispatch({
+      type: GET_SINGLE_PRODUCT,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getProducts = () => async (dispatch) => {
   try {

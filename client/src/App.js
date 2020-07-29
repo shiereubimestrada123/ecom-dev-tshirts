@@ -38,11 +38,11 @@ const App = () => {
         <NavigationBar />
         <Container>
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/shop' component={Shop} />
-            <Route exact path='/product/:productId' component={Product} />
+            <Route path='/' exact component={Home} />
+            <Route path='/register' exact component={Register} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/shop' exact component={Shop} />
+            <Route path='/product/:productId' exact component={Product} />
             <UserRoute path='/user/dashboard' exact component={UserDashboard} />
             <AdminRoute
               path='/admin/dashboard'

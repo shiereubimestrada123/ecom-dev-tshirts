@@ -1,25 +1,37 @@
-import React, { Fragment } from 'react';
-// import PropTypes from 'prop-types';
+import React, { Fragment, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import ProductCard from '../../parts/productcard/ProductCard';
-import ProductCard from '../../parts/productcard/ProductCard';
 import { Row, Col } from 'react-bootstrap';
+import { getSingleProduct } from '../../store/actions/product';
+import SingleCard from '../../parts/card/SingleCard';
 
-const Product = ({ products }) => {
-  console.log(products);
+const Product = ({ match, getSingleProduct, product }) => {
+  useEffect(() => {
+    const productId = match.params.productId;
+
+    getSingleProduct(productId);
+  }, []);
+
   return (
     <div>
       <Row className='mt-5'>
-        <Col>asdasdasd</Col>
+        <Col md={8}>{product && <SingleCard product={product} />}</Col>
+        <Col md={4} className='mt-5'>
+          <p>Name: {product && product.name}</p>
+          <p>Description: {product && product.description}</p>
+          <p>Price: ${product && product.price}</p>
+        </Col>
       </Row>
     </div>
   );
 };
 
-// Product.propTypes = {};
+Product.propTypes = {
+  getSingleProduct: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
-  products: state.product.products,
+  product: state.product.product,
 });
 
-export default connect(mapStateToProps)(Product);
+export default connect(mapStateToProps, { getSingleProduct })(Product);

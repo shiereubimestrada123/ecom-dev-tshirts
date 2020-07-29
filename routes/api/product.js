@@ -4,6 +4,7 @@ const formidable = require('formidable');
 const fs = require('fs');
 const auth = require('../../middleware/auth');
 const admin = require('../../middleware/admin');
+const photo = require('../../middleware/photo');
 
 const Product = require('../../models/Product');
 const User = require('../../models/User');
@@ -95,28 +96,29 @@ router.post('/by/search', async (req, res) => {
   }
 });
 
-router.get('/photo/:productId', async (req, res) => {
+router.get('/:productId', async (req, res) => {
   try {
-    const product = await Product.findById(req.params.productId);
+    const product = await Product.findById(req.params.productId)
+      .select('-photo')
+      .populate('category');
 
-    if (product.photo.data) {
-      res.set('Content-Type', product.photo.contentType);
-      return res.send(product.photo.data);
-    }
-    // next();
+    res.json(product);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
   }
 });
 
-router.get('/:productId', async (req, res) => {
+router.get('/photo/:productId', async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.productId);
 
-    console.log(product);
-    res.json(product);
-    // next();
+    if (product.photo.data) {
+      res.set('Content-Type', product.photo.contentType);
+      res.send(product.photo.data);
+    }
+
+    next();
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');

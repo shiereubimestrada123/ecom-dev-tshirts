@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { getProducts } from '../../store/actions/product';
-import ProductCard from '../productcard/ProductCard';
+import ProductCard from '../card/ShopCard';
 import PaginationProduct from '../../components/pagination/PaginationProduct';
 
 const Search = ({ getProducts, products }) => {

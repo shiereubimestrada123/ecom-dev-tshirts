@@ -2,6 +2,7 @@ import {
   PRODUCT_SUCCESS,
   FILTERED_PRODUCTS,
   GET_PRODUCTS,
+  GET_SINGLE_PRODUCT,
   // SEARCH_PRODUCTS,
 } from '../actions/constants';
 
@@ -25,6 +26,12 @@ export default function (state = initialState, action) {
     //     loading: false,
     //   };
     // }
+    case GET_SINGLE_PRODUCT:
+      return {
+        ...state,
+        product: payload,
+        loading: false,
+      };
     case GET_PRODUCTS:
       return {
         ...state,

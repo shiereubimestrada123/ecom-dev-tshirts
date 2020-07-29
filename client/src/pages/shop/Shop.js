@@ -3,7 +3,7 @@ import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
-import ProductCard from '../../parts/productcard/ProductCard';
+import ShopCard from '../../parts/card/ShopCard';
 import { getCategories } from '../../store/actions/category';
 import { getProducts } from '../../store/actions/product';
 // import CategoryFilter from '../../components/categoryfilter/CategoryFilter';
@@ -52,7 +52,11 @@ const Shop = ({
         <Col md={12}>
           {/* <Search /> */}
           <div className='shop-card mt-2 mb-4'>
-            <ProductCard allProducts={allProducts} />
+            {allProducts.map((product, index) => (
+              <div key={index}>
+                <ShopCard product={product} />
+              </div>
+            ))}
           </div>
           <div>
             <PaginationProduct
