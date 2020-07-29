@@ -12,6 +12,7 @@ import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import Shop from './pages/shop/Shop';
 import Product from './pages/product/Product';
+import Cart from './pages/cart/Cart';
 import UserRoute from './components/privaterouting/UserRoute';
 import AdminRoute from './components/privaterouting/AdminRoute';
 import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
@@ -43,6 +44,7 @@ const App = () => {
             <Route path='/login' exact component={Login} />
             <Route path='/shop' exact component={Shop} />
             <Route path='/product/:productId' exact component={Product} />
+            <Route path='/cart' exact component={Cart} />
             <UserRoute path='/user/dashboard' exact component={UserDashboard} />
             <AdminRoute
               path='/admin/dashboard'
