@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Nav } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
-// import Search from '../search/Search';
 
 const NavigationBar = ({
   auth: { isAuthenticated, loading, user },
@@ -108,16 +107,7 @@ const NavigationBar = ({
             </div>
 
             <div className='nav-site'>
-              <div className='nav-search'>
-                {/* <Search /> */}
-                {/* <Form.Group controlId='search' className='search-form'>
-                  <Form.Control
-                    type='text'
-                    placeholder='Search'
-                    className='search-input'
-                  />
-                </Form.Group> */}
-              </div>
+              <div className='nav-search'></div>
 
               {isAuthenticated ? isLogin : isLogout}
 

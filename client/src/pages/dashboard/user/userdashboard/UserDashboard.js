@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { Row, Col, Spinner } from 'react-bootstrap';
 
-const UserDashboard = (props) => {
-  return <div>User Dashboard</div>;
+const UserDashboard = ({ auth: { loading, isAuthenticated } }) => {
+  return (
+    <Fragment>
+      {loading ? (
+        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
+          <Col className='spinner-class'>
+            <Spinner animation='border' variant='info' />
+          </Col>
+        </Row>
+      ) : (
+        <span>User Dashboard</span>
+      )}
+    </Fragment>
+  );
 };
 
-export default UserDashboard;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(UserDashboard);
