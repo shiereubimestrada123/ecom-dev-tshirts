@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ auth: { loading, isAuthenticated } }) => {
   return (
     <Fragment>
       <Row className='mt-5 admin-row-header'>
@@ -31,4 +32,8 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(AdminDashboard);

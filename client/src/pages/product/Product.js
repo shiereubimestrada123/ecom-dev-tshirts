@@ -1,13 +1,17 @@
-import React, { Fragment, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button, Spinner } from 'react-bootstrap';
 import { getSingleProduct } from '../../store/actions/product';
 import SingleCard from '../../parts/card/SingleCard';
-import { Button } from 'react-bootstrap';
 
-const Product = ({ match, getSingleProduct, product, isAuthenticated }) => {
+const Product = ({
+  match,
+  getSingleProduct,
+  product,
+  auth: { loading, isAuthenticated },
+}) => {
   const history = useHistory();
 
   useEffect(() => {
@@ -25,17 +29,25 @@ const Product = ({ match, getSingleProduct, product, isAuthenticated }) => {
 
   return (
     <div>
-      <Row className='mt-5'>
-        <Col md={8}>{product && <SingleCard product={product} />}</Col>
-        <Col md={4} className='mt-5'>
-          <p>Name: {product && product.name}</p>
-          <p>Description: {product && product.description}</p>
-          <p>Price: ${product && product.price}</p>
-          <Button variant='info' onClick={addToCart}>
-            Add to Cart
-          </Button>
-        </Col>
-      </Row>
+      {loading ? (
+        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
+          <Col className='spinner-class'>
+            <Spinner animation='border' variant='info' />
+          </Col>
+        </Row>
+      ) : (
+        <Row className='mt-5'>
+          <Col md={8}>{product && <SingleCard product={product} />}</Col>
+          <Col md={4} className='mt-5'>
+            <p>Name: {product && product.name}</p>
+            <p>Description: {product && product.description}</p>
+            <p>Price: ${product && product.price}</p>
+            <Button variant='info' onClick={addToCart}>
+              Add to Cart
+            </Button>
+          </Col>
+        </Row>
+      )}
     </div>
   );
 };
@@ -46,7 +58,7 @@ Product.propTypes = {
 
 const mapStateToProps = (state) => ({
   product: state.product.product,
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getSingleProduct })(Product);
