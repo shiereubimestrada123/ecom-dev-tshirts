@@ -11,7 +11,7 @@ const CreateProduct = ({
   createProduct,
   getCategories,
   category: { categories },
-  user: { _id },
+  user,
 }) => {
   let history = useHistory();
 
@@ -53,7 +53,7 @@ const CreateProduct = ({
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    createProduct(formData, _id);
+    createProduct(formData, user && user._id);
   };
 
   return (

@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap';
 import { createCategory } from '../../../../store/actions/category';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 
-const CreateCategory = ({ createCategory, user: { _id } }) => {
+const CreateCategory = ({ createCategory, user }) => {
   let history = useHistory();
 
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const CreateCategory = ({ createCategory, user: { _id } }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    createCategory(name, _id);
+    createCategory(name, user && user._id);
   };
 
   return (

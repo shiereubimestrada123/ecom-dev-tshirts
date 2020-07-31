@@ -5,13 +5,17 @@ import { connect } from 'react-redux';
 
 const UserRoute = ({
   component: Component,
-  auth: { isAuthenticated, loading },
+  auth: { isAuthenticated, loading, user },
   ...rest
 }) => (
   <Route
     {...rest}
     render={(props) =>
-      isAuthenticated ? <Component {...props} /> : <Redirect to='/login' />
+      loading || isAuthenticated ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to='/login' />
+      )
     }
   />
 );
