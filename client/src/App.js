@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NavigationBar from './parts/navigationbar/NavigationBar';
+// import Navigation from './parts/navigation/Navigation';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
@@ -19,6 +20,7 @@ import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
 import AdminDashboard from './pages/dashboard/admin/admindashboard/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/createcategory/CreateCategory';
 import CreateProduct from './pages/dashboard/admin/createproduct/CreateProduct';
+import NotFound from './pages/dashboard/notfound/NotFound';
 
 import './App.scss';
 // Redux
@@ -37,6 +39,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <NavigationBar />
+        {/* <Navigation /> */}
         <Container>
           <Switch>
             <Route path='/' exact component={Home} />
@@ -61,7 +64,7 @@ const App = () => {
               exact
               component={CreateProduct}
             />
-            <Redirect to='/' />
+            <Route component={NotFound} />
           </Switch>
         </Container>
       </Router>

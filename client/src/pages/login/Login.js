@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/actions/auth';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
-const Login = ({ match, login, auth: { loading, isAuthenticated } }) => {
+const Login = ({ match, login, auth: { loading, isAuthenticated, user } }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
