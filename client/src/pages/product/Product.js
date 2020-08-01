@@ -20,11 +20,7 @@ const Product = ({
   }, []);
 
   const addToCart = () => {
-    if (isAuthenticated) {
-      history.push('/cart');
-    } else {
-      history.push('/register');
-    }
+    history.push('/cart');
   };
 
   return (

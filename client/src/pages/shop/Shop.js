@@ -6,7 +6,7 @@ import { Row, Col, Spinner } from 'react-bootstrap';
 import ShopCard from '../../parts/card/ShopCard';
 import { getCategories } from '../../store/actions/category';
 import { getProducts } from '../../store/actions/product';
-import Search from '../../parts/search/Search';
+// import Search from '../../parts/search/Search';
 import PaginationProduct from '../../components/pagination/PaginationProduct';
 
 const Shop = ({

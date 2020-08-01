@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import { createProduct } from '../../../../store/actions/product';
 import { getCategories } from '../../../../store/actions/category';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
@@ -10,8 +10,9 @@ import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 const CreateProduct = ({
   createProduct,
   getCategories,
-  category: { categories },
   user,
+  category: { categories },
+  auth: { loading },
 }) => {
   let history = useHistory();
 
@@ -25,7 +26,7 @@ const CreateProduct = ({
     formData: '',
   });
 
-  const { name, description, price, shipping, quantity, formData } = values;
+  const { name, description, price, quantity, formData } = values;
 
   useEffect(() => {
     getCategories().then(() => {
@@ -59,16 +60,24 @@ const CreateProduct = ({
   return (
     <Fragment>
       <AlertPrompt />
-      <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
-        <div>
-          <input
-            type='file'
-            name='photo'
-            accept='image/*'
-            onChange={(e) => onChange(e)}
-          />
-        </div>
-        {/* <Form.Group>
+      {loading ? (
+        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
+          <Col className='spinner-class'>
+            <Spinner animation='border' variant='info' />
+          </Col>
+        </Row>
+      ) : (
+        <Fragment>
+          <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
+            <div>
+              <input
+                type='file'
+                name='photo'
+                accept='image/*'
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            {/* <Form.Group>
           <Form.File
             id='photo'
             name='photo'
@@ -77,92 +86,94 @@ const CreateProduct = ({
           />
         </Form.Group> */}
 
-        <Form.Group controlId='name'>
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type='name'
-            placeholder='Name'
-            name='name'
-            value={name}
-            onChange={(e) => onChange(e)}
-          />
-        </Form.Group>
+            <Form.Group controlId='name'>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type='name'
+                placeholder='Name'
+                name='name'
+                value={name}
+                onChange={(e) => onChange(e)}
+              />
+            </Form.Group>
 
-        <Form.Group controlId='description'>
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            type='description'
-            placeholder='Description'
-            name='description'
-            value={description}
-            onChange={(e) => onChange(e)}
-          />
-        </Form.Group>
+            <Form.Group controlId='description'>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                type='description'
+                placeholder='Description'
+                name='description'
+                value={description}
+                onChange={(e) => onChange(e)}
+              />
+            </Form.Group>
 
-        <Form.Group controlId='price'>
-          <Form.Label>Price</Form.Label>
-          <Form.Control
-            type='price'
-            placeholder='Price'
-            name='price'
-            value={price}
-            onChange={(e) => onChange(e)}
-          />
-        </Form.Group>
+            <Form.Group controlId='price'>
+              <Form.Label>Price</Form.Label>
+              <Form.Control
+                type='price'
+                placeholder='Price'
+                name='price'
+                value={price}
+                onChange={(e) => onChange(e)}
+              />
+            </Form.Group>
 
-        <Form.Group controlId='category'>
-          <Form.Label>Category</Form.Label>
-          <Form.Control
-            as='select'
-            name='category'
-            onChange={(e) => onChange(e)}
-          >
-            <option>Please select category</option>
-            {categories &&
-              categories.map((cat, index) => (
-                <option key={index} value={cat._id}>
-                  {cat.name}
-                </option>
-              ))}
-          </Form.Control>
-        </Form.Group>
+            <Form.Group controlId='category'>
+              <Form.Label>Category</Form.Label>
+              <Form.Control
+                as='select'
+                name='category'
+                onChange={(e) => onChange(e)}
+              >
+                <option>Please select category</option>
+                {categories &&
+                  categories.map((cat, index) => (
+                    <option key={index} value={cat._id}>
+                      {cat.name}
+                    </option>
+                  ))}
+              </Form.Control>
+            </Form.Group>
 
-        <Form.Group controlId='shipping'>
-          <Form.Label>Shipping</Form.Label>
-          <Form.Control
-            as='select'
-            name='shipping'
-            onChange={(e) => onChange(e)}
-          >
-            <option>Please select</option>
-            <option value='1'>True</option>
-            <option value='0'>False</option>
-          </Form.Control>
-        </Form.Group>
+            <Form.Group controlId='shipping'>
+              <Form.Label>Shipping</Form.Label>
+              <Form.Control
+                as='select'
+                name='shipping'
+                onChange={(e) => onChange(e)}
+              >
+                <option>Please select</option>
+                <option value='1'>True</option>
+                <option value='0'>False</option>
+              </Form.Control>
+            </Form.Group>
 
-        <Form.Group controlId='quantity'>
-          <Form.Label>Quantity</Form.Label>
-          <Form.Control
-            type='quantity'
-            placeholder='Quantity'
-            name='quantity'
-            value={quantity}
-            onChange={(e) => onChange(e)}
-          />
-        </Form.Group>
+            <Form.Group controlId='quantity'>
+              <Form.Label>Quantity</Form.Label>
+              <Form.Control
+                type='quantity'
+                placeholder='Quantity'
+                name='quantity'
+                value={quantity}
+                onChange={(e) => onChange(e)}
+              />
+            </Form.Group>
 
-        <Button
-          variant='light'
-          type='submit'
-          className='my-3 mr-2'
-          onClick={handleClick}
-        >
-          Cancel
-        </Button>
-        <Button variant='info' type='submit' className='my-3'>
-          Submit
-        </Button>
-      </Form>
+            <Button
+              variant='light'
+              type='submit'
+              className='my-3 mr-2'
+              onClick={handleClick}
+            >
+              Cancel
+            </Button>
+            <Button variant='info' type='submit' className='my-3'>
+              Submit
+            </Button>
+          </Form>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
@@ -175,6 +186,7 @@ CreateProduct.propTypes = {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   category: state.category,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, {

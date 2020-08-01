@@ -114,6 +114,18 @@
           .fa-shopping-cart:hover {
             color: #5076a0;
           }
+
+          .hovered-cart-icon {
+            position: absolute;
+            right: -40px;
+            top: 60px;
+            padding: 10px 20px 10px 20px;
+            background-color: #ffffff;
+            border: 1px solid #bebebe;
+            list-style: none;
+            box-shadow: 5px 10px 8px #888888;
+            z-index: 99;
+          }
         }
       }
     }

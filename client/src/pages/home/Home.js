@@ -26,7 +26,9 @@ const Home = ({ getCategories, auth: { loading } }) => {
   );
 };
 
-Home.propTypes = {};
+Home.propTypes = {
+  getCategories: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,

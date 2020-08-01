@@ -2,14 +2,12 @@ import React, { Fragment, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Nav } from 'react-bootstrap';
+import { Nav, Button } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
 
-const NavigationBar = ({
-  auth: { isAuthenticated, loading, user },
-  logout,
-}) => {
+const NavigationBar = ({ auth: { isAuthenticated, user }, logout }) => {
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
+  const [isCartContentShown, setIsCartContentShown] = useState(false);
 
   const isLogin = (
     <div
@@ -81,18 +79,39 @@ const NavigationBar = ({
     </div>
   );
 
+  const isCart = (
+    <div
+      className='holder-cart-icon'
+      onMouseEnter={() => setIsCartContentShown(true)}
+      onMouseLeave={() => setIsCartContentShown(false)}
+    >
+      {isCartContentShown ? (
+        <Fragment>
+          <i className='fas fa-shopping-cart'></i>
+          <div className='hovered-cart-icon'>
+            <Button variant='info' type='submit'>
+              Checkout
+            </Button>
+          </div>
+        </Fragment>
+      ) : (
+        <i className='fas fa-shopping-cart'></i>
+      )}
+    </div>
+  );
+
   return (
     <Fragment>
       <div className='holder-main'>
         <div className='holder-nav'>
           <Nav
-            activeKey='/home'
+            activeKey='/'
             onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
             className='nav-parent'
           >
             <div className='nav-home'>
               <Nav.Item>
-                <Link to='/home'>
+                <Link to='/'>
                   <i className='fas fa-home'></i>
                 </Link>
               </Nav.Item>
@@ -111,9 +130,7 @@ const NavigationBar = ({
 
               {isAuthenticated ? isLogin : isLogout}
 
-              <div className='holder-cart-icon'>
-                <i className='fas fa-shopping-cart'></i>
-              </div>
+              {isCart}
             </div>
           </Nav>
         </div>
