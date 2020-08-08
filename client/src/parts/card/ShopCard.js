@@ -1,9 +1,17 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CardTemplate from './CardTemplate';
+import { addProductCart } from '../../store/actions/product';
 
-const ShopCard = ({ product }) => {
+const ShopCard = ({ product, addProductCart }) => {
+  const addToCart = () => {
+    addProductCart(product);
+    // history.push('/cart');
+  };
+
   return (
     <Card
       style={{
@@ -20,16 +28,27 @@ const ShopCard = ({ product }) => {
       />
 
       <Card.Body className='overlay'>
-        <Link
+        <Button
+          variant='info'
+          className='mr-5 product-text'
+          onClick={addToCart}
+        >
+          Add to Cart
+        </Button>
+        {/* <Link
           to={`/product/${product._id}`}
           variant='light'
           className='mr-5 product-text'
         >
           View
-        </Link>
+        </Link> */}
       </Card.Body>
     </Card>
   );
 };
 
-export default ShopCard;
+ShopCard.propTypes = {
+  addProductCart: PropTypes.func.isRequired,
+};
+
+export default connect(null, { addProductCart })(ShopCard);

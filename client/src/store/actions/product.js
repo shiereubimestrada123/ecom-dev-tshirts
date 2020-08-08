@@ -7,8 +7,21 @@ import {
   FILTERED_PRODUCTS,
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
+  ADD_PRODUCT_CART,
   // SEARCH_PRODUCTS,
 } from './constants';
+
+export const addProductCart = (product) => async (dispatch) => {
+  try {
+    console.log(product);
+    dispatch({
+      type: ADD_PRODUCT_CART,
+      payload: product,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getSingleProduct = (productId) => async (dispatch) => {
   try {

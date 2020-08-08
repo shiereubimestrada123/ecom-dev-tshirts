@@ -2,10 +2,18 @@ import React, { Fragment, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Nav, Button } from 'react-bootstrap';
+import { Nav, Button, Card } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
+import CardTemplate from '../card/CardTemplate';
+import CartDropdown from '../../pages/cart/CartDropdown';
 
-const NavigationBar = ({ auth: { isAuthenticated, user }, logout }) => {
+const NavigationBar = ({
+  auth: { isAuthenticated, user },
+  product: { cartProducts },
+  logout,
+}) => {
+  console.log(cartProducts);
+
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
   const [isCartContentShown, setIsCartContentShown] = useState(false);
 
@@ -87,8 +95,16 @@ const NavigationBar = ({ auth: { isAuthenticated, user }, logout }) => {
     >
       {isCartContentShown ? (
         <Fragment>
-          <i className='fas fa-shopping-cart'></i>
+          <i className='fas fa-shopping-cart' style={{ color: '#5076a0' }}></i>
+
           <div className='hovered-cart-icon'>
+            {cartProducts.length > 0 ? (
+              cartProducts.map((product, index) => (
+                <CartDropdown key={index} product={product} />
+              ))
+            ) : (
+              <span className=''>Your cart is empty</span>
+            )}
             <Button variant='info' type='submit'>
               Checkout
             </Button>
@@ -146,6 +162,7 @@ NavigationBar.propTypes = {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  product: state.product,
 });
 
 export default connect(mapStateToProps, { logout })(NavigationBar);

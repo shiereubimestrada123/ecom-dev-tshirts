@@ -3,12 +3,13 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col, Button, Spinner } from 'react-bootstrap';
-import { getSingleProduct } from '../../store/actions/product';
+import { getSingleProduct, addProductCart } from '../../store/actions/product';
 import SingleCard from '../../parts/card/SingleCard';
 
 const Product = ({
   match,
   getSingleProduct,
+  addProductCart,
   product,
   auth: { loading, isAuthenticated },
 }) => {
@@ -20,7 +21,9 @@ const Product = ({
   }, []);
 
   const addToCart = () => {
-    history.push('/cart');
+    console.log('123123');
+    addProductCart(product);
+    // history.push('/cart');
   };
 
   return (
@@ -50,6 +53,7 @@ const Product = ({
 
 Product.propTypes = {
   getSingleProduct: PropTypes.func.isRequired,
+  addProductCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -57,4 +61,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getSingleProduct })(Product);
+export default connect(mapStateToProps, { getSingleProduct, addProductCart })(
+  Product
+);
