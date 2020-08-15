@@ -13,7 +13,6 @@ import {
 
 export const addProductCart = (product) => async (dispatch) => {
   try {
-    console.log(product);
     dispatch({
       type: ADD_PRODUCT_CART,
       payload: product,
