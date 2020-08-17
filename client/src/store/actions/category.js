@@ -2,7 +2,7 @@ import axios from 'axios';
 import { setAlertPrompt } from './alertPrompt';
 import {
   CATEGORY_SUCCESS,
-  CATEGORY_FAIL,
+  // CATEGORY_FAIL,
   GET_CATEGORIES,
   GET_CATEGORY,
 } from './constants';

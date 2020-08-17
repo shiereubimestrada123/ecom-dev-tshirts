@@ -1,9 +1,17 @@
-import React, { Fragment } from 'react';
-import { Card } from 'react-bootstrap';
+import React from 'react';
+import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CardTemplate from './CardTemplate';
+import { addProductCart } from '../../store/actions/product';
 
-const ShopCard = ({ product }) => {
+const ShopCard = ({ product, addProductCart }) => {
+  const addToCart = () => {
+    addProductCart(product);
+    // history.push('/cart');
+  };
+
   return (
     <Card
       style={{
@@ -20,6 +28,13 @@ const ShopCard = ({ product }) => {
       />
 
       <Card.Body className='overlay'>
+        {/* <Button
+          variant='info'
+          className='mr-5 product-text'
+          onClick={addToCart}
+        >
+          Add to Cart
+        </Button> */}
         <Link
           to={`/product/${product._id}`}
           variant='light'
@@ -32,4 +47,8 @@ const ShopCard = ({ product }) => {
   );
 };
 
-export default ShopCard;
+ShopCard.propTypes = {
+  addProductCart: PropTypes.func.isRequired,
+};
+
+export default connect(null, { addProductCart })(ShopCard);

@@ -1,12 +1,22 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/actions/auth';
+import {
+  selectAuthLoading,
+  selectAuthAuthenticated,
+} from '../../store/selectors/auth';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
-const Login = ({ match, login, auth: { loading, isAuthenticated, user } }) => {
+const Login = ({
+  login,
+  // auth: { loading, isAuthenticated },
+  loading,
+  isAuthenticated,
+}) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -82,8 +92,10 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
+const mapStateToProps = createStructuredSelector({
+  // auth: state.auth,
+  loading: selectAuthLoading,
+  isAuthenticated: selectAuthAuthenticated,
 });
 
 export default connect(mapStateToProps, { login })(Login);

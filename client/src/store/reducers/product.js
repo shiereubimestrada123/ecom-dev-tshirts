@@ -3,14 +3,17 @@ import {
   FILTERED_PRODUCTS,
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
-  // SEARCH_PRODUCTS,
+  ADD_PRODUCT_CART,
 } from '../actions/constants';
+
+import { addItemToCart } from './utils';
 
 const initialState = {
   product: null,
   results: [],
   products: [],
   filteredProducts: [],
+  cartProducts: [],
   loading: true,
   error: {},
 };
@@ -19,13 +22,12 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    // case SEARCH_PRODUCTS: {
-    //   return {
-    //     ...state,
-    //     results: payload,
-    //     loading: false,
-    //   };
-    // }
+    case ADD_PRODUCT_CART:
+      return {
+        ...state,
+        cartProducts: addItemToCart(state.cartProducts, payload),
+        loading: false,
+      };
     case GET_SINGLE_PRODUCT:
       return {
         ...state,

@@ -1,18 +1,24 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import AlertPrompt from '../../components/alertprompt/AlertPrompt';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 import { Row, Col, Spinner } from 'react-bootstrap';
 import ShopCard from '../../parts/card/ShopCard';
 import { getCategories } from '../../store/actions/category';
 import { getProducts } from '../../store/actions/product';
-import Search from '../../parts/search/Search';
+import { selectAllProducts } from '../../store/selectors/product';
+import { selectAuthLoading } from '../../store/selectors/auth';
+import { selectAllCategories } from '../../store/selectors/category';
 import PaginationProduct from '../../components/pagination/PaginationProduct';
+import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
 const Shop = ({
-  category: { categories },
-  product: { products },
-  auth: { loading },
+  // category: { categories },
+  // product: { products },
+  categories,
+  products,
+  loading,
+  // auth: { loading },
   getCategories,
   getProducts,
 }) => {
@@ -70,10 +76,13 @@ Shop.propTypes = {
   getProducts: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  product: state.product,
-  category: state.category,
-  auth: state.auth,
+const mapStateToProps = createStructuredSelector({
+  products: selectAllProducts,
+  loading: selectAuthLoading,
+  categories: selectAllCategories,
+  // product: state.product,
+  // category: state.category,
+  // auth: state.auth,
 });
 
 export default connect(mapStateToProps, {

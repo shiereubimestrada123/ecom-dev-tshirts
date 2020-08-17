@@ -1,14 +1,26 @@
 import axios from 'axios';
-import queryString from 'query-string';
+// import queryString from 'query-string';
 import { setAlertPrompt } from './alertPrompt';
 import {
   PRODUCT_SUCCESS,
-  PRODUCT_FAIL,
+  // PRODUCT_FAIL,
   FILTERED_PRODUCTS,
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
-  SEARCH_PRODUCTS,
+  ADD_PRODUCT_CART,
+  // SEARCH_PRODUCTS,
 } from './constants';
+
+export const addProductCart = (product) => async (dispatch) => {
+  try {
+    dispatch({
+      type: ADD_PRODUCT_CART,
+      payload: product,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getSingleProduct = (productId) => async (dispatch) => {
   try {

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Pagination from 'react-bootstrap/Pagination';
 
 const PaginationProduct = ({
@@ -42,6 +42,6 @@ const PaginationProduct = ({
   );
 };
 
-PaginationProduct.propTypes = {};
+// PaginationProduct.propTypes = {};
 
 export default PaginationProduct;

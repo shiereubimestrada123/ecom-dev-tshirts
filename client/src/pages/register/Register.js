@@ -1,16 +1,23 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import { register } from '../../store/actions/auth';
+import {
+  selectAuthLoading,
+  selectAuthAuthenticated,
+} from '../../store/selectors/auth';
 import { setAlertPrompt } from '../../store/actions/alertPrompt';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
 const Register = ({
   register,
   setAlertPrompt,
-  auth: { loading, isAuthenticated },
+  // auth: { loading, isAuthenticated },
+  loading,
+  isAuthenticated,
 }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -115,8 +122,10 @@ Register.propTypes = {
   setAlertPrompt: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
+const mapStateToProps = createStructuredSelector({
+  // auth: state.auth,
+  loading: selectAuthLoading,
+  isAuthenticated: selectAuthAuthenticated,
 });
 
 export default connect(mapStateToProps, { register, setAlertPrompt })(Register);
