@@ -2,10 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import {
+  selectAuthAuthenticated,
+  selectAuthUser,
+  selectAuthLoading,
+} from '../../store/selectors/auth';
 
 const AdminRoute = ({
   component: Component,
-  auth: { isAuthenticated, loading, user },
+  isAuthenticated,
+  user,
+  loading,
   ...rest
 }) => (
   <Route
@@ -24,8 +32,10 @@ AdminRoute.propTypes = {
   auth: PropTypes.object.isRequired,
 };
 
-const mapStateStoProps = (state) => ({
-  auth: state.auth,
+const mapStateStoProps = createStructuredSelector({
+  isAuthenticated: selectAuthAuthenticated,
+  user: selectAuthUser,
+  loading: selectAuthLoading,
 });
 
 export default connect(mapStateStoProps)(AdminRoute);
