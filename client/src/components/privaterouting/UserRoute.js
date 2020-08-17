@@ -12,7 +12,6 @@ const UserRoute = ({
   component: Component,
   isAuthenticated,
   loading,
-  // auth: { isAuthenticated, loading },
   ...rest
 }) => (
   <Route
@@ -28,13 +27,12 @@ const UserRoute = ({
 );
 
 UserRoute.propTypes = {
-  auth: PropTypes.object.isRequired,
+  // auth: PropTypes.object.isRequired,
 };
 
 const mapStateStoProps = createStructuredSelector({
   isAuthenticated: selectAuthAuthenticated,
   loading: selectAuthLoading,
-  // auth: state.auth,
 });
 
 export default connect(mapStateStoProps)(UserRoute);

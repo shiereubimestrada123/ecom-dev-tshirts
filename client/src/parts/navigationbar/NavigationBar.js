@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
@@ -21,6 +21,11 @@ const NavigationBar = ({
 }) => {
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
   const [isCartContentShown, setIsCartContentShown] = useState(false);
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/checkout');
+  };
 
   const isLogin = (
     <div
@@ -102,7 +107,10 @@ const NavigationBar = ({
         <Fragment>
           <i className='fas fa-shopping-cart' style={{ color: '#5076a0' }}></i>
 
-          <div className='hovered-cart-icon'>
+          <div
+            className='hovered-cart-icon'
+            onClick={() => setIsCartContentShown(false)}
+          >
             <div className='cart-items'>
               {cartProducts.length > 0 ? (
                 cartProducts.map((product, index) => (
@@ -113,9 +121,21 @@ const NavigationBar = ({
               )}
             </div>
 
-            <Button variant='info' type='submit'>
-              Checkout
-            </Button>
+            {cartProducts.length > 0 && user && user.role === 0 ? (
+              <Button variant='info' type='submit' onClick={handleClick}>
+                Checkout
+              </Button>
+            ) : (
+              <Button
+                variant='info'
+                type='submit'
+                onClick={() => {
+                  history.push('/login');
+                }}
+              >
+                You need to login first
+              </Button>
+            )}
           </div>
         </Fragment>
       ) : (
