@@ -98,13 +98,16 @@ const NavigationBar = ({
           <i className='fas fa-shopping-cart' style={{ color: '#5076a0' }}></i>
 
           <div className='hovered-cart-icon'>
-            {cartProducts.length > 0 ? (
-              cartProducts.map((product, index) => (
-                <CartDropdown key={index} product={product} />
-              ))
-            ) : (
-              <span className=''>Your cart is empty</span>
-            )}
+            <div className='cart-items'>
+              {cartProducts.length > 0 ? (
+                cartProducts.map((product, index) => (
+                  <CartDropdown key={index} product={product} />
+                ))
+              ) : (
+                <span className='cart-empty'>Your cart is empty</span>
+              )}
+            </div>
+
             <Button variant='info' type='submit'>
               Checkout
             </Button>

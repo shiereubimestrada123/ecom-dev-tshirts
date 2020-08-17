@@ -5,7 +5,7 @@ import { Card } from 'react-bootstrap';
 
 const CartDropdown = ({ product }) => {
   return (
-    <Fragment>
+    <div className='cart-parent'>
       <Card
         style={{
           width: '5rem',
@@ -20,13 +20,13 @@ const CartDropdown = ({ product }) => {
           variant='top'
         />
       </Card>
-      <div className=''>
+      <div className='cart-list'>
         <span className=''>{product.name}</span>
         <span className=''>
           {product.count} x ${product.price}
         </span>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

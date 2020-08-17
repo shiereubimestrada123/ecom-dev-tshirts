@@ -28,20 +28,20 @@ const ShopCard = ({ product, addProductCart }) => {
       />
 
       <Card.Body className='overlay'>
-        <Button
+        {/* <Button
           variant='info'
           className='mr-5 product-text'
           onClick={addToCart}
         >
           Add to Cart
-        </Button>
-        {/* <Link
+        </Button> */}
+        <Link
           to={`/product/${product._id}`}
           variant='light'
           className='mr-5 product-text'
         >
           View
-        </Link> */}
+        </Link>
       </Card.Body>
     </Card>
   );

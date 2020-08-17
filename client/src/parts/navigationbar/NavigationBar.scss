@@ -116,8 +116,12 @@
           }
 
           .hovered-cart-icon {
+            display: flex;
+            flex-direction: column;
+            width: 260px;
             position: absolute;
-            right: -40px;
+            max-width: 500px;
+            right: -80px;
             top: 60px;
             padding: 10px 20px 10px 20px;
             background-color: #ffffff;
@@ -130,6 +134,20 @@
               .cart-image {
                 height: 5rem;
               }
+            }
+
+            .cart-items {
+              height: 240px;
+              display: flex;
+              flex-direction: column;
+              overflow: scroll;
+              margin-bottom: 10px;
+            }
+
+            .cart-empty {
+              margin-top: 50%;
+              text-align: center;
+              margin-bottom: 10px;
             }
           }
         }
