@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 import { Row, Col, Button, Spinner } from 'react-bootstrap';
 import { getSingleProduct, addProductCart } from '../../store/actions/product';
+import {
+  selectAuthLoading,
+  selectAuthAuthenticated,
+} from '../../store/selectors/auth';
+import { selectSingleProduct } from '../../store/selectors/product';
 import SingleCard from '../../parts/card/SingleCard';
 
 const Product = ({
@@ -11,7 +17,9 @@ const Product = ({
   getSingleProduct,
   addProductCart,
   product,
-  auth: { loading, isAuthenticated },
+  loading,
+  isAuthenticated,
+  // auth: { loading, isAuthenticated },
 }) => {
   const history = useHistory();
 
@@ -21,7 +29,6 @@ const Product = ({
   }, []);
 
   const addToCart = () => {
-    console.log('123123');
     addProductCart(product);
     // history.push('/cart');
   };
@@ -56,9 +63,12 @@ Product.propTypes = {
   addProductCart: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  product: state.product.product,
-  auth: state.auth,
+const mapStateToProps = createStructuredSelector({
+  loading: selectAuthLoading,
+  isAuthenticated: selectAuthAuthenticated,
+  product: selectSingleProduct,
+  // product: state.product.product,
+  // auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getSingleProduct, addProductCart })(

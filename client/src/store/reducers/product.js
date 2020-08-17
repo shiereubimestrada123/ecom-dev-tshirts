@@ -23,24 +23,9 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case ADD_PRODUCT_CART:
-      // const existingCartProduct = state.cartProducts.find(
-      //   (cartProduct) => cartProduct._id === payload._id
-      // );
-
-      // console.log(existingCartProduct);
-
-      // if (existingCartProduct) {
-      //   return state.cartProducts.map((cartProduct) =>
-      //     cartProduct._id === payload._id
-      //       ? { ...cartProduct, count: cartProduct.count + 1 }
-      //       : cartProduct
-      //   );
-      // }
-
       return {
         ...state,
         cartProducts: addItemToCart(state.cartProducts, payload),
-        // cartProducts: [...state.cartProducts, { ...payload, count: 10 }],
         loading: false,
       };
     case GET_SINGLE_PRODUCT:

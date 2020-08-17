@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Row, Col, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { selectAuthLoading } from '../../../../store/selectors/auth';
 
-const AdminDashboard = ({ auth: { loading } }) => {
+const AdminDashboard = ({ loading }) => {
   return (
     <Fragment>
       {loading ? (
@@ -42,8 +44,8 @@ const AdminDashboard = ({ auth: { loading } }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
+const mapStateToProps = createStructuredSelector({
+  loading: selectAuthLoading,
 });
 
 export default connect(mapStateToProps)(AdminDashboard);

@@ -1,18 +1,24 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import { createProduct } from '../../../../store/actions/product';
 import { getCategories } from '../../../../store/actions/category';
+import {
+  selectAuthLoading,
+  selectAuthUser,
+} from '../../../../store/selectors/auth';
+import { selectAllCategories } from '../../../../store/selectors/category';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 
 const CreateProduct = ({
   createProduct,
   getCategories,
   user,
-  category: { categories },
-  auth: { loading },
+  categories,
+  loading,
 }) => {
   let history = useHistory();
 
@@ -183,10 +189,10 @@ CreateProduct.propTypes = {
   getCategories: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-  category: state.category,
-  auth: state.auth,
+const mapStateToProps = createStructuredSelector({
+  loading: selectAuthLoading,
+  user: selectAuthUser,
+  categories: selectAllCategories,
 });
 
 export default connect(mapStateToProps, {

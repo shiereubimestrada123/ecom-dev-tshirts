@@ -1,19 +1,24 @@
 import React, { Fragment, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Nav, Button, Card } from 'react-bootstrap';
+import { Nav, Button } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
-import CardTemplate from '../card/CardTemplate';
+import { selectCartProducts } from '../../store/selectors/product';
+import {
+  selectAuthAuthenticated,
+  selectAuthUser,
+} from '../../store/selectors/auth';
 import CartDropdown from '../../pages/cart/CartDropdown';
 
 const NavigationBar = ({
-  auth: { isAuthenticated, user },
-  product: { cartProducts },
+  // auth: { isAuthenticated, user },
+  user,
+  isAuthenticated,
+  cartProducts,
   logout,
 }) => {
-  console.log(cartProducts);
-
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
   const [isCartContentShown, setIsCartContentShown] = useState(false);
 
@@ -160,12 +165,13 @@ const NavigationBar = ({
 
 NavigationBar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  // auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  product: state.product,
+const mapStateToProps = createStructuredSelector({
+  user: selectAuthUser,
+  isAuthenticated: selectAuthAuthenticated,
+  cartProducts: selectCartProducts,
 });
 
 export default connect(mapStateToProps, { logout })(NavigationBar);

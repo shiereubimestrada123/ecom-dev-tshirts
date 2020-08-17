@@ -2,15 +2,16 @@ import React, { Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Form, Button, Spinner, Row, Col } from 'react-bootstrap';
 import { createCategory } from '../../../../store/actions/category';
+import {
+  selectAuthUser,
+  selectAuthLoading,
+} from '../../../../store/selectors/auth';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 
-const CreateCategory = ({
-  createCategory,
-  user,
-  auth: { loading, isAuthenticated },
-}) => {
+const CreateCategory = ({ createCategory, user, loading }) => {
   let history = useHistory();
 
   const [formData, setFormData] = useState({
@@ -79,9 +80,9 @@ CreateCategory.propTypes = {
   createCategory: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-  auth: state.auth,
+const mapStateToProps = createStructuredSelector({
+  user: selectAuthUser,
+  loading: selectAuthLoading,
 });
 
 export default connect(mapStateToProps, { createCategory })(CreateCategory);
