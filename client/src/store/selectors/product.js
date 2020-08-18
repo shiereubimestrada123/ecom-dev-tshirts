@@ -16,3 +16,13 @@ export const selectSingleProduct = createSelector(
   [selectProduct],
   (product) => product.product
 );
+
+export const selectCartProductsCount = createSelector(
+  [selectCartProducts],
+  (cartProducts) =>
+    cartProducts.reduce(
+      (accumulatedQuantity, cartProduct) =>
+        accumulatedQuantity + cartProduct.count,
+      0
+    )
+);

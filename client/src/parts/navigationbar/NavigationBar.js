@@ -3,9 +3,12 @@ import { Link, NavLink, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Nav, Button } from 'react-bootstrap';
+import { Nav, Button, Badge } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
-import { selectCartProducts } from '../../store/selectors/product';
+import {
+  selectCartProducts,
+  selectCartProductsCount,
+} from '../../store/selectors/product';
 import {
   selectAuthAuthenticated,
   selectAuthUser,
@@ -14,6 +17,7 @@ import CartDropdown from '../../pages/cart/CartDropdown';
 
 const NavigationBar = ({
   // auth: { isAuthenticated, user },
+  productCount,
   user,
   isAuthenticated,
   cartProducts,
@@ -105,7 +109,15 @@ const NavigationBar = ({
     >
       {isCartContentShown ? (
         <Fragment>
-          <i className='fas fa-shopping-cart' style={{ color: '#5076a0' }}></i>
+          <div className='parent-badge'>
+            <i
+              className='fas fa-shopping-cart'
+              style={{ color: '#5076a0' }}
+            ></i>
+            <Badge variant='light' className='total-badge'>
+              {productCount}
+            </Badge>
+          </div>
 
           <div
             className='hovered-cart-icon'
@@ -133,13 +145,20 @@ const NavigationBar = ({
                   history.push('/login');
                 }}
               >
-                You need to login first
+                Login first
               </Button>
             )}
           </div>
         </Fragment>
       ) : (
-        <i className='fas fa-shopping-cart'></i>
+        <Fragment>
+          <div className='parent-badge'>
+            <i className='fas fa-shopping-cart'></i>
+            <Badge variant='light' className='total-badge'>
+              {productCount}
+            </Badge>
+          </div>
+        </Fragment>
       )}
     </div>
   );
@@ -188,6 +207,7 @@ NavigationBar.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
+  productCount: selectCartProductsCount,
   user: selectAuthUser,
   isAuthenticated: selectAuthAuthenticated,
   cartProducts: selectCartProducts,

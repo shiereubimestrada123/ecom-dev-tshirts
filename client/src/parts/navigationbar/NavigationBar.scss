@@ -101,11 +101,21 @@
         }
 
         .holder-cart-icon {
+          // display: flex;
           position: relative;
           height: 63px;
           padding-left: 15px;
           padding-right: 15px;
           padding-top: 18px;
+
+          .parent-badge {
+            display: flex;
+
+            .total-badge {
+              margin-left: 5px;
+              font-size: 15px;
+            }
+          }
 
           .fa-shopping-cart {
             font-size: 1.5rem;

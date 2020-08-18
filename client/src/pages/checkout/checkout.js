@@ -32,11 +32,18 @@ const checkout = ({ cartProducts }) => {
           </tr>
         ))}
         <tr>
-          <td colSpan='4'></td>
-          <td style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>Total:</span>
+          <td style={{ borderStyle: 'hidden' }}>Total</td>
+          <td style={{ borderStyle: 'hidden' }}></td>
+          <td style={{ borderStyle: 'hidden' }}></td>
+          <td style={{ borderStyle: 'hidden' }}></td>
+          <td style={{ borderStyle: 'hidden' }}>123123</td>
+          {/* <td
+            colSpan='5'
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <span>Total</span>
             <span>123</span>
-          </td>
+          </td> */}
         </tr>
       </tbody>
     </Table>
