@@ -185,7 +185,6 @@ const NavigationBar = ({
 
 NavigationBar.propTypes = {
   logout: PropTypes.func.isRequired,
-  // auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
