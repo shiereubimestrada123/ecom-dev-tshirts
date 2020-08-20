@@ -1,11 +1,14 @@
 import React, { Fragment, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Nav, Button } from 'react-bootstrap';
+import { Nav, Button, Badge } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
-import { selectCartProducts } from '../../store/selectors/product';
+import {
+  selectCartProducts,
+  selectCartProductCount,
+} from '../../store/selectors/product';
 import {
   selectAuthAuthenticated,
   selectAuthUser,
@@ -14,6 +17,7 @@ import CartDropdown from '../../pages/cart/CartDropdown';
 
 const NavigationBar = ({
   // auth: { isAuthenticated, user },
+  productCount,
   user,
   isAuthenticated,
   cartProducts,
@@ -21,6 +25,11 @@ const NavigationBar = ({
 }) => {
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
   const [isCartContentShown, setIsCartContentShown] = useState(false);
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/checkout');
+  };
 
   const isLogin = (
     <div
@@ -100,9 +109,20 @@ const NavigationBar = ({
     >
       {isCartContentShown ? (
         <Fragment>
-          <i className='fas fa-shopping-cart' style={{ color: '#5076a0' }}></i>
+          <div className='parent-badge'>
+            <i
+              className='fas fa-shopping-cart'
+              style={{ color: '#5076a0' }}
+            ></i>
+            <Badge variant='light' className='total-badge'>
+              {productCount}
+            </Badge>
+          </div>
 
-          <div className='hovered-cart-icon'>
+          <div
+            className='hovered-cart-icon'
+            onClick={() => setIsCartContentShown(false)}
+          >
             <div className='cart-items'>
               {cartProducts.length > 0 ? (
                 cartProducts.map((product, index) => (
@@ -113,13 +133,32 @@ const NavigationBar = ({
               )}
             </div>
 
-            <Button variant='info' type='submit'>
-              Checkout
-            </Button>
+            {isAuthenticated ? (
+              <Button variant='info' type='submit' onClick={handleClick}>
+                Checkout
+              </Button>
+            ) : (
+              <Button
+                variant='info'
+                type='submit'
+                onClick={() => {
+                  history.push('/login');
+                }}
+              >
+                Login first
+              </Button>
+            )}
           </div>
         </Fragment>
       ) : (
-        <i className='fas fa-shopping-cart'></i>
+        <Fragment>
+          <div className='parent-badge'>
+            <i className='fas fa-shopping-cart'></i>
+            <Badge variant='light' className='total-badge'>
+              {productCount}
+            </Badge>
+          </div>
+        </Fragment>
       )}
     </div>
   );
@@ -165,10 +204,10 @@ const NavigationBar = ({
 
 NavigationBar.propTypes = {
   logout: PropTypes.func.isRequired,
-  // auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
+  productCount: selectCartProductCount,
   user: selectAuthUser,
   isAuthenticated: selectAuthAuthenticated,
   cartProducts: selectCartProducts,

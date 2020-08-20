@@ -11,12 +11,7 @@ import {
 } from '../../store/selectors/auth';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
-const Login = ({
-  login,
-  // auth: { loading, isAuthenticated },
-  loading,
-  isAuthenticated,
-}) => {
+const Login = ({ login, loading, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -93,7 +88,6 @@ Login.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  // auth: state.auth,
   loading: selectAuthLoading,
   isAuthenticated: selectAuthAuthenticated,
 });
