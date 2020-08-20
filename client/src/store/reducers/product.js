@@ -4,6 +4,7 @@ import {
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
+  CLEAR_PRODUCT_CART,
 } from '../actions/constants';
 
 import { addItemToCart } from './utils';
@@ -27,6 +28,13 @@ export default function (state = initialState, action) {
         ...state,
         cartProducts: addItemToCart(state.cartProducts, payload),
         loading: false,
+      };
+    case CLEAR_PRODUCT_CART:
+      return {
+        ...state,
+        cartProducts: state.cartProducts.filter(
+          (cartProduct) => cartProduct._id !== payload._id
+        ),
       };
     case GET_SINGLE_PRODUCT:
       return {

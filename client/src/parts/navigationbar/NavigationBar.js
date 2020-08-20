@@ -7,7 +7,7 @@ import { Nav, Button, Badge } from 'react-bootstrap';
 import { logout } from '../../store/actions/auth';
 import {
   selectCartProducts,
-  selectCartProductsCount,
+  selectCartProductCount,
 } from '../../store/selectors/product';
 import {
   selectAuthAuthenticated,
@@ -133,7 +133,7 @@ const NavigationBar = ({
               )}
             </div>
 
-            {cartProducts.length > 0 && user && user.role === 0 ? (
+            {isAuthenticated ? (
               <Button variant='info' type='submit' onClick={handleClick}>
                 Checkout
               </Button>
@@ -207,7 +207,7 @@ NavigationBar.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  productCount: selectCartProductsCount,
+  productCount: selectCartProductCount,
   user: selectAuthUser,
   isAuthenticated: selectAuthAuthenticated,
   cartProducts: selectCartProducts,
