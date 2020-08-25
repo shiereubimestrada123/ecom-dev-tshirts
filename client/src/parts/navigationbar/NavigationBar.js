@@ -129,13 +129,23 @@ const NavigationBar = ({
               )}
             </div>
 
-            <Button
-              variant='info'
-              type='submit'
-              onClick={() => history.push('/cart')}
-            >
-              Cart
-            </Button>
+            {cartProducts.length > 0 ? (
+              <Button
+                variant='info'
+                type='submit'
+                onClick={() => history.push('/cart')}
+              >
+                Cart
+              </Button>
+            ) : (
+              <Button
+                variant='info'
+                type='submit'
+                onClick={() => history.push('/shop')}
+              >
+                Shop
+              </Button>
+            )}
           </div>
         </Fragment>
       ) : (

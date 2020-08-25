@@ -51,7 +51,7 @@ const App = () => {
                 exact
                 component={UserDashboard}
               />
-              <UserRoute path='/checkout' exact component={Checkout} />
+              <Route path='/checkout' exact component={Checkout} />
               <AdminRoute
                 path='/admin/dashboard'
                 exact

@@ -90,7 +90,8 @@ const Cart = ({
             ) : (
               <tr>
                 <td colSpan='6' className='empty-cart'>
-                  You have no existing item go to <Link to='/shop'>Shop</Link>
+                  You have no existing item, please go to{' '}
+                  <Link to='/shop'>Shop</Link>
                 </td>
               </tr>
             )}
@@ -102,7 +103,7 @@ const Cart = ({
         </Table>
       )}
       <div className='proceed-checkout'>
-        {isAuthenticated ? (
+        {cartProducts.length > 0 ? (
           <Button
             variant='info'
             type='submit'
@@ -111,14 +112,8 @@ const Cart = ({
             Checkout
           </Button>
         ) : (
-          <Button
-            variant='info'
-            type='submit'
-            onClick={() => {
-              history.push('/login');
-            }}
-          >
-            Login to checkout
+          <Button disabled variant='secondary'>
+            Checkout
           </Button>
         )}
       </div>
