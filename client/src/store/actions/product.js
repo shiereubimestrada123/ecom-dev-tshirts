@@ -9,8 +9,22 @@ import {
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
   CLEAR_PRODUCT_CART,
+  GET_BRAINTREE_CLIENT_TOKEN,
   // SEARCH_PRODUCTS,
 } from './constants';
+
+export const getBraintreeClientToken = (userId, token) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/braintree/getToken/${userId}`);
+
+    dispatch({
+      type: GET_BRAINTREE_CLIENT_TOKEN,
+      payload: res.data.clientToken,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const addProductCart = (product) => async (dispatch) => {
   try {

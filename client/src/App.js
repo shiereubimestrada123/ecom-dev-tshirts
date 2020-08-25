@@ -15,7 +15,7 @@ import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
 import AdminDashboard from './pages/dashboard/admin/admindashboard/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/createcategory/CreateCategory';
 import CreateProduct from './pages/dashboard/admin/createproduct/CreateProduct';
-import Checkout from './pages/checkout/checkout';
+import Checkout from './pages/checkout/Checkout';
 import NotFound from './pages/dashboard/notfound/NotFound';
 
 import './App.scss';
