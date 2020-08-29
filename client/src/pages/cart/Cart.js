@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -13,10 +13,10 @@ import {
   selectAuthUser,
   selectAuthAuthenticated,
 } from '../../store/selectors/auth';
-import { selectBraintreeClientToken } from '../../store/selectors/product';
+// import { selectBraintreeClientToken } from '../../store/selectors/product';
 import {
   clearProductCart,
-  getBraintreeClientToken,
+  // getBraintreeClientToken,
 } from '../../store/actions/product';
 import CardTemplate from '../../parts/card/CardTemplate';
 
@@ -28,15 +28,15 @@ const Cart = ({
   loading,
   user,
   isAuthenticated,
-  clientToken,
+  // clientToken,
 }) => {
   const history = useHistory();
 
-  useEffect(() => {
-    const userId = user && user._id;
+  // useEffect(() => {
+  //   const userId = user && user._id;
 
-    getBraintreeClientToken(userId);
-  }, [getBraintreeClientToken, user && user._id]);
+  //   getBraintreeClientToken(userId);
+  // }, [getBraintreeClientToken, user && user._id]);
 
   return (
     <Fragment>
@@ -123,7 +123,7 @@ const Cart = ({
 
 Cart.propTypes = {
   clearProductCart: PropTypes.func.isRequired,
-  getBraintreeClientToken: PropTypes.func.isRequired,
+  // getBraintreeClientToken: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -132,10 +132,10 @@ const mapStateToProps = createStructuredSelector({
   loading: selectAuthLoading,
   user: selectAuthUser,
   isAuthenticated: selectAuthAuthenticated,
-  clientToken: selectBraintreeClientToken,
+  // clientToken: selectBraintreeClientToken,
 });
 
 export default connect(mapStateToProps, {
   clearProductCart,
-  getBraintreeClientToken,
+  // getBraintreeClientToken,
 })(Cart);

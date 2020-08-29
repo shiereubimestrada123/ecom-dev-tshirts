@@ -13,13 +13,36 @@ import {
   // SEARCH_PRODUCTS,
 } from './constants';
 
-export const getBraintreeClientToken = (userId, token) => async (dispatch) => {
+export const processPayment = (userId, paymentData) => async (dispatch) => {
+  console.log(paymentData);
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify(paymentData);
+
+  try {
+    const res = await axios.post(
+      `/api/braintree/payment/${userId}`,
+      body,
+      config
+    );
+
+    console.log(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getBraintreeClientToken = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/braintree/getToken/${userId}`);
 
     dispatch({
       type: GET_BRAINTREE_CLIENT_TOKEN,
-      payload: res.data.clientToken,
+      payload: res.data,
     });
   } catch (error) {
     console.log(error);

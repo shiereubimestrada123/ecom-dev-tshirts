@@ -13,6 +13,7 @@ import { addItemToCart } from './utils';
 const initialState = {
   product: null,
   clientToken: null,
+  instance: {},
   results: [],
   products: [],
   filteredProducts: [],
