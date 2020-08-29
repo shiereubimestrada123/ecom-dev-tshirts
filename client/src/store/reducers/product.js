@@ -5,12 +5,15 @@ import {
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
   CLEAR_PRODUCT_CART,
+  GET_BRAINTREE_CLIENT_TOKEN,
 } from '../actions/constants';
 
 import { addItemToCart } from './utils';
 
 const initialState = {
   product: null,
+  clientToken: null,
+  instance: {},
   results: [],
   products: [],
   filteredProducts: [],
@@ -23,6 +26,12 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case GET_BRAINTREE_CLIENT_TOKEN:
+      return {
+        ...state,
+        clientToken: payload,
+        loading: false,
+      };
     case ADD_PRODUCT_CART:
       return {
         ...state,

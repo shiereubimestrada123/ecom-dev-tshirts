@@ -13,7 +13,7 @@ import {
   selectAuthAuthenticated,
   selectAuthUser,
 } from '../../store/selectors/auth';
-import CartDropdown from '../../pages/cart/CartDropdown';
+import CartDropdown from '../../components/cartDropdown/CartDropdown';
 
 const NavigationBar = ({
   // auth: { isAuthenticated, user },
@@ -26,10 +26,6 @@ const NavigationBar = ({
   const [isShownRegisterLogin, setIsShownRegisterLogin] = useState(false);
   const [isCartContentShown, setIsCartContentShown] = useState(false);
   const history = useHistory();
-
-  const handleClick = () => {
-    history.push('/checkout');
-  };
 
   const isLogin = (
     <div
@@ -133,19 +129,21 @@ const NavigationBar = ({
               )}
             </div>
 
-            {isAuthenticated ? (
-              <Button variant='info' type='submit' onClick={handleClick}>
-                Checkout
+            {cartProducts.length > 0 ? (
+              <Button
+                variant='info'
+                type='submit'
+                onClick={() => history.push('/cart')}
+              >
+                Cart
               </Button>
             ) : (
               <Button
                 variant='info'
                 type='submit'
-                onClick={() => {
-                  history.push('/login');
-                }}
+                onClick={() => history.push('/shop')}
               >
-                Login first
+                Shop
               </Button>
             )}
           </div>

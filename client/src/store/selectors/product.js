@@ -17,6 +17,16 @@ export const selectSingleProduct = createSelector(
   (product) => product.product
 );
 
+export const selectBraintreeClientToken = createSelector(
+  [selectProduct],
+  (product) => product.clientToken
+);
+
+export const selectInstance = createSelector(
+  [selectProduct],
+  (product) => product.instance
+);
+
 export const selectCartProductCount = createSelector(
   [selectCartProducts],
   (cartProducts) =>
