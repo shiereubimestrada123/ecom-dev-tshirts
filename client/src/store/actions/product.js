@@ -49,26 +49,61 @@ export const getBraintreeClientToken = (userId) => async (dispatch) => {
   }
 };
 
-export const addProductCart = (product) => async (dispatch) => {
+export const addProductCart = (product) => async (dispatch, getState) => {
   try {
+    const cartProducts = getState().product.cartProducts.slice();
+    let alreadyExists = false;
+    cartProducts.forEach((x) => {
+      if (x._id === product._id) {
+        alreadyExists = true;
+        x.count++;
+      }
+    });
+    if (!alreadyExists) {
+      cartProducts.push({ ...product, count: 1 });
+    }
     dispatch({
       type: ADD_PRODUCT_CART,
-      payload: product,
+      payload: { cartProducts },
     });
+    localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
   } catch (error) {
     console.log(error);
   }
+  // try {
+  //   dispatch({
+  //     type: ADD_PRODUCT_CART,
+  //     payload: product,
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
 };
 
-export const clearProductCart = (product) => async (dispatch) => {
+export const clearProductCart = (product) => async (dispatch, getState) => {
   try {
+    const cartProducts = getState()
+      .product.cartProducts.slice()
+      .filter((x) => x._id !== product._id);
+
     dispatch({
       type: CLEAR_PRODUCT_CART,
-      payload: product,
+      payload: { cartProducts },
     });
+
+    localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
   } catch (error) {
     console.log(error);
   }
+
+  // try {
+  //   dispatch({
+  //     type: CLEAR_PRODUCT_CART,
+  //     payload: product,
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
 };
 
 export const getSingleProduct = (productId) => async (dispatch) => {

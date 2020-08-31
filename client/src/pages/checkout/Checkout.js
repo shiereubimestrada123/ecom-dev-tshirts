@@ -31,6 +31,8 @@ const Checkout = ({
     getBraintreeClientToken(userId);
   }, [getBraintreeClientToken]);
 
+  // console.log(clientToken.clientToken);
+
   const buy = () => {
     let nonce;
     let getNonce = clientToken.instance
@@ -57,7 +59,7 @@ const Checkout = ({
 
   return (
     <div>
-      {clientToken.clientToken != null && cartProducts.length > 0 ? (
+      {clientToken != null && cartProducts.length > 0 ? (
         <Fragment>
           <DropIn
             options={{
