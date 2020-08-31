@@ -20,10 +20,10 @@ import NotFound from './pages/dashboard/notfound/NotFound';
 
 import './App.scss';
 // Redux
-import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './store/store';
+// import { PersistGate } from 'redux-persist/integration/react';
+// import { store, persistor } from './store/store';
 import { Provider } from 'react-redux';
-// import store from './store/store';
+import store from './store/store';
 import { loadUser } from './store/actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
@@ -36,41 +36,37 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <PersistGate persistor={persistor}>
-          <NavigationBar />
-          <Container>
-            <Switch>
-              <Route path='/' exact component={Home} />
-              <Route path='/register' exact component={Register} />
-              <Route path='/login' exact component={Login} />
-              <Route path='/shop' exact component={Shop} />
-              <Route path='/product/:productId' exact component={Product} />
-              <Route path='/cart' exact component={Cart} />
-              <UserRoute
-                path='/user/dashboard'
-                exact
-                component={UserDashboard}
-              />
-              <Route path='/checkout' exact component={Checkout} />
-              <AdminRoute
-                path='/admin/dashboard'
-                exact
-                component={AdminDashboard}
-              />
-              <AdminRoute
-                path='/create/category'
-                exact
-                component={CreateCategory}
-              />
-              <AdminRoute
-                path='/create/product'
-                exact
-                component={CreateProduct}
-              />
-              <Route component={NotFound} />
-            </Switch>
-          </Container>
-        </PersistGate>
+        {/* <PersistGate persistor={persistor}> */}
+        <NavigationBar />
+        <Container>
+          <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/register' exact component={Register} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/shop' exact component={Shop} />
+            <Route path='/product/:productId' exact component={Product} />
+            <Route path='/cart' exact component={Cart} />
+            <UserRoute path='/user/dashboard' exact component={UserDashboard} />
+            <Route path='/checkout' exact component={Checkout} />
+            <AdminRoute
+              path='/admin/dashboard'
+              exact
+              component={AdminDashboard}
+            />
+            <AdminRoute
+              path='/create/category'
+              exact
+              component={CreateCategory}
+            />
+            <AdminRoute
+              path='/create/product'
+              exact
+              component={CreateProduct}
+            />
+            <Route component={NotFound} />
+          </Switch>
+        </Container>
+        {/* </PersistGate> */}
       </Router>
     </Provider>
   );
