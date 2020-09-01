@@ -8,13 +8,34 @@ import {
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
-  CLEAR_PRODUCT_CART,
+  // CLEAR_PRODUCT_CART,
   GET_BRAINTREE_CLIENT_TOKEN,
   // SEARCH_PRODUCTS,
+  DELETE_PRODUCT_CART,
+  REMOVE_CART,
 } from './constants';
 
-export const processPayment = (userId, paymentData) => async (dispatch) => {
-  console.log(paymentData);
+export const clearCart = () => async (dispatch, getState) => {
+  try {
+    const cartProducts = getState().product.cartProducts.slice();
+
+    dispatch({
+      type: REMOVE_CART,
+      payload: { cartProducts },
+    });
+
+    console.log('testing');
+    localStorage.removeItem('cartProducts');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const processPayment = (userId, paymentData) => async (
+  dispatch,
+  getState
+) => {
+  // console.log(paymentData);
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -24,13 +45,21 @@ export const processPayment = (userId, paymentData) => async (dispatch) => {
   const body = JSON.stringify(paymentData);
 
   try {
+    // const cartProducts = getState().product.cartProducts.slice();
+
     const res = await axios.post(
       `/api/braintree/payment/${userId}`,
       body,
       config
     );
-
     console.log(res.data);
+    dispatch({
+      type: REMOVE_CART,
+      payload: res.data,
+    });
+
+    localStorage.removeItem('cartProducts');
+    // console.log(res.data);
   } catch (error) {
     console.log(error);
   }
@@ -87,7 +116,7 @@ export const clearProductCart = (product) => async (dispatch, getState) => {
       .filter((x) => x._id !== product._id);
 
     dispatch({
-      type: CLEAR_PRODUCT_CART,
+      type: DELETE_PRODUCT_CART,
       payload: { cartProducts },
     });
 

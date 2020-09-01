@@ -13,6 +13,7 @@ import {
 import {
   getBraintreeClientToken,
   processPayment,
+  clearCart,
 } from '../../store/actions/product';
 import DropIn from 'braintree-web-drop-in-react';
 
@@ -46,7 +47,7 @@ const Checkout = ({
         };
 
         const userId = user && user._id;
-
+        // clearCart();
         processPayment(userId, paymentData);
 
         // console.log(paymentData);
@@ -59,7 +60,7 @@ const Checkout = ({
 
   return (
     <div>
-      {clientToken != null && cartProducts.length > 0 ? (
+      {clientToken != null ? (
         <Fragment>
           <DropIn
             options={{
@@ -94,4 +95,5 @@ const mapStateToProps = createStructuredSelector({
 export default connect(mapStateToProps, {
   getBraintreeClientToken,
   processPayment,
+  clearCart,
 })(Checkout);
