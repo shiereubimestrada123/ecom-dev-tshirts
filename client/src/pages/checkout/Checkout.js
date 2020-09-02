@@ -60,7 +60,7 @@ const Checkout = ({
 
   return (
     <div>
-      {clientToken != null ? (
+      {clientToken != null && cartProducts.length > 0 ? (
         <Fragment>
           <DropIn
             options={{
@@ -71,6 +71,7 @@ const Checkout = ({
             }}
             onInstance={(instance) => (clientToken.instance = instance)}
           />
+
           <Button variant='info' type='submit' onClick={buy}>
             Pay
           </Button>

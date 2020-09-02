@@ -47,7 +47,7 @@ const App = () => {
             <Route path='/product/:productId' exact component={Product} />
             <Route path='/cart' exact component={Cart} />
             <UserRoute path='/user/dashboard' exact component={UserDashboard} />
-            <Route path='/checkout' exact component={Checkout} />
+            <UserRoute path='/checkout' exact component={Checkout} />
             <AdminRoute
               path='/admin/dashboard'
               exact
