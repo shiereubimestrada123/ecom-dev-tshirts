@@ -37,6 +37,7 @@ const Login = ({ login, loading, isAuthenticated }) => {
   return (
     <Fragment>
       <AlertPrompt />
+
       {loading ? (
         <Row style={{ textAlign: 'center', marginTop: '200px' }}>
           <Col className='spinner-class'>
@@ -44,39 +45,51 @@ const Login = ({ login, loading, isAuthenticated }) => {
           </Col>
         </Row>
       ) : (
-        <Form className='login-parent' onSubmit={(e) => onSubmit(e)}>
-          <Form.Group controlId='formBasicEmail'>
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type='email'
-              placeholder='Enter email'
-              name='email'
-              value={email}
-              onChange={(e) => onChange(e)}
-            />
-          </Form.Group>
+        <div className='login-wrapper'>
+          <Form className='login-parent' onSubmit={(e) => onSubmit(e)}>
+            <Form.Group controlId='formBasicEmail' className='form-group'>
+              <Form.Label className='form-label'>Email address</Form.Label>
+              <Form.Control
+                type='email'
+                placeholder='Enter email'
+                name='email'
+                value={email}
+                onChange={(e) => onChange(e)}
+                className='form-control'
+              />
+            </Form.Group>
 
-          <Form.Group controlId='formBasicPassword'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Password'
-              name='password'
-              value={password}
-              onChange={(e) => onChange(e)}
-            />
-          </Form.Group>
+            <Form.Group controlId='formBasicPassword' className='form-group'>
+              <Form.Label className='form-label'>Password</Form.Label>
+              <Form.Control
+                type='password'
+                placeholder='Password'
+                name='password'
+                value={password}
+                onChange={(e) => onChange(e)}
+                className='form-control'
+              />
+            </Form.Group>
 
-          <Button variant='info' type='submit'>
-            Submit
-          </Button>
-          <p className='my-1'>
-            Already have an account?{' '}
-            <Link to='/register' variant='info' className='signin-text'>
-              Sign In
-            </Link>
-          </p>
-        </Form>
+            <input
+              name='login'
+              id='login'
+              className='btn btn-block login-btn'
+              type='submit'
+              value='Login'
+            />
+
+            {/* <Button variant='info' type='submit'>
+              Submit
+            </Button> */}
+            <p className='my-1'>
+              Already have an account?{' '}
+              <Link to='/register' variant='info' className='signin-text'>
+                Sign In
+              </Link>
+            </p>
+          </Form>
+        </div>
       )}
     </Fragment>
   );
