@@ -4,6 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
+import FormInput from '../../components/forms/forminput/FormInput';
 import { login } from '../../store/actions/auth';
 import {
   selectAuthLoading,
@@ -49,7 +50,8 @@ const Login = ({ login, loading, isAuthenticated }) => {
           <Form className='login-parent' onSubmit={(e) => onSubmit(e)}>
             <Form.Group controlId='formBasicEmail' className='form-group'>
               <Form.Label className='form-label'>Email address</Form.Label>
-              <Form.Control
+
+              <FormInput
                 type='email'
                 placeholder='Enter email'
                 name='email'
@@ -61,7 +63,8 @@ const Login = ({ login, loading, isAuthenticated }) => {
 
             <Form.Group controlId='formBasicPassword' className='form-group'>
               <Form.Label className='form-label'>Password</Form.Label>
-              <Form.Control
+
+              <FormInput
                 type='password'
                 placeholder='Password'
                 name='password'
@@ -71,7 +74,7 @@ const Login = ({ login, loading, isAuthenticated }) => {
               />
             </Form.Group>
 
-            <input
+            <FormInput
               name='login'
               id='login'
               className='btn btn-block login-btn'
@@ -79,9 +82,6 @@ const Login = ({ login, loading, isAuthenticated }) => {
               value='Login'
             />
 
-            {/* <Button variant='info' type='submit'>
-              Submit
-            </Button> */}
             <p className='my-1'>
               Already have an account?{' '}
               <Link to='/register' variant='info' className='signin-text'>
