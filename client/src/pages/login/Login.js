@@ -4,7 +4,9 @@ import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
+import FormInput from '../../components/forms/forminput/FormInput';
 import { login } from '../../store/actions/auth';
+import register from '../../assets/images/register.jpeg';
 import {
   selectAuthLoading,
   selectAuthAuthenticated,
@@ -37,6 +39,7 @@ const Login = ({ login, loading, isAuthenticated }) => {
   return (
     <Fragment>
       <AlertPrompt />
+
       {loading ? (
         <Row style={{ textAlign: 'center', marginTop: '200px' }}>
           <Col className='spinner-class'>
@@ -44,39 +47,61 @@ const Login = ({ login, loading, isAuthenticated }) => {
           </Col>
         </Row>
       ) : (
-        <Form className='login-parent' onSubmit={(e) => onSubmit(e)}>
-          <Form.Group controlId='formBasicEmail'>
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type='email'
-              placeholder='Enter email'
-              name='email'
-              value={email}
-              onChange={(e) => onChange(e)}
-            />
-          </Form.Group>
+        <Row className='parent-row'>
+          <Col md={6}>
+            <div className='login-wrapper'>
+              <h1 className='login-title'>Log in</h1>
+              <Form className='login-parent' onSubmit={(e) => onSubmit(e)}>
+                <Form.Group controlId='formBasicEmail' className='form-group'>
+                  <Form.Label className='form-label'>Email address</Form.Label>
 
-          <Form.Group controlId='formBasicPassword'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Password'
-              name='password'
-              value={password}
-              onChange={(e) => onChange(e)}
-            />
-          </Form.Group>
+                  <FormInput
+                    type='email'
+                    placeholder='Enter email'
+                    name='email'
+                    value={email}
+                    onChange={(e) => onChange(e)}
+                    className='form-control'
+                  />
+                </Form.Group>
 
-          <Button variant='info' type='submit'>
-            Submit
-          </Button>
-          <p className='my-1'>
-            Already have an account?{' '}
-            <Link to='/register' variant='info' className='signin-text'>
-              Sign In
-            </Link>
-          </p>
-        </Form>
+                <Form.Group
+                  controlId='formBasicPassword'
+                  className='form-group'
+                >
+                  <Form.Label className='form-label'>Password</Form.Label>
+
+                  <FormInput
+                    type='password'
+                    placeholder='Password'
+                    name='password'
+                    value={password}
+                    onChange={(e) => onChange(e)}
+                    className='form-control'
+                  />
+                </Form.Group>
+
+                <FormInput
+                  name='login'
+                  id='login'
+                  className='btn btn-block login-btn'
+                  type='submit'
+                  value='Login'
+                />
+
+                <p className='my-1'>
+                  Don't have an account yet?{' '}
+                  <Link to='/register' variant='info' className='signin-text'>
+                    Sign up
+                  </Link>
+                </p>
+              </Form>
+            </div>
+          </Col>
+          <Col md={6}>
+            <img src={register} className='hide-mobile login-image' />
+          </Col>
+        </Row>
       )}
     </Fragment>
   );

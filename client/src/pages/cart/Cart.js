@@ -13,30 +13,45 @@ import {
   selectAuthUser,
   selectAuthAuthenticated,
 } from '../../store/selectors/auth';
-// import { selectBraintreeClientToken } from '../../store/selectors/product';
-import {
-  clearProductCart,
-  // getBraintreeClientToken,
-} from '../../store/actions/product';
+import { clearProductCart } from '../../store/actions/product';
 import CardTemplate from '../../parts/card/CardTemplate';
 
 const Cart = ({
   cartProducts,
   total,
   clearProductCart,
-  getBraintreeClientToken,
+
   loading,
   user,
   isAuthenticated,
-  // clientToken,
 }) => {
   const history = useHistory();
 
-  // useEffect(() => {
-  //   const userId = user && user._id;
-
-  //   getBraintreeClientToken(userId);
-  // }, [getBraintreeClientToken, user && user._id]);
+  const isButton = () => {
+    if (cartProducts.length > 0) {
+      if (isAuthenticated) {
+        return (
+          <Button
+            variant='info'
+            type='submit'
+            onClick={() => history.push('/checkout')}
+          >
+            Checkout
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            variant='info'
+            type='submit'
+            onClick={() => history.push('/checkout')}
+          >
+            Login to checkout
+          </Button>
+        );
+      }
+    }
+  };
 
   return (
     <Fragment>
@@ -102,21 +117,7 @@ const Cart = ({
           </tbody>
         </Table>
       )}
-      <div className='proceed-checkout'>
-        {cartProducts.length > 0 ? (
-          <Button
-            variant='info'
-            type='submit'
-            onClick={() => history.push('/checkout')}
-          >
-            Checkout
-          </Button>
-        ) : (
-          <Button disabled variant='secondary'>
-            Checkout
-          </Button>
-        )}
-      </div>
+      <div className='proceed-checkout'>{isButton()}</div>
     </Fragment>
   );
 };
@@ -132,10 +133,8 @@ const mapStateToProps = createStructuredSelector({
   loading: selectAuthLoading,
   user: selectAuthUser,
   isAuthenticated: selectAuthAuthenticated,
-  // clientToken: selectBraintreeClientToken,
 });
 
 export default connect(mapStateToProps, {
   clearProductCart,
-  // getBraintreeClientToken,
 })(Cart);
