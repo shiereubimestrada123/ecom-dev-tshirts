@@ -50,6 +50,7 @@ const Login = ({ login, loading, isAuthenticated }) => {
         <Row className='parent-row'>
           <Col md={6}>
             <div className='login-wrapper'>
+              <h1 className='login-title'>Log in</h1>
               <Form className='login-parent' onSubmit={(e) => onSubmit(e)}>
                 <Form.Group controlId='formBasicEmail' className='form-group'>
                   <Form.Label className='form-label'>Email address</Form.Label>
@@ -89,16 +90,16 @@ const Login = ({ login, loading, isAuthenticated }) => {
                 />
 
                 <p className='my-1'>
-                  Already have an account?{' '}
+                  Don't have an account yet?{' '}
                   <Link to='/register' variant='info' className='signin-text'>
-                    Sign In
+                    Sign up
                   </Link>
                 </p>
               </Form>
             </div>
           </Col>
           <Col md={6}>
-            <img src={register} />
+            <img src={register} className='hide-mobile login-image' />
           </Col>
         </Row>
       )}
