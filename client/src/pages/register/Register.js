@@ -4,6 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+import { Animated } from 'react-animated-css';
 import signup from '../../assets/images/signup.jpeg';
 import FormInput from '../../components/forms/forminput/FormInput';
 import { register } from '../../store/actions/auth';
@@ -61,83 +62,95 @@ const Register = ({
       ) : (
         <Row className='parent-row'>
           <Col md={6}>
-            <img src={signup} className='hide-mobile register-image' />
+            <Animated
+              animationIn='fadeInLeft'
+              animationOut='fadeOut'
+              isVisible={true}
+            >
+              <img src={signup} className='hide-mobile register-image' />
+            </Animated>
           </Col>
           <Col md={6}>
-            <div className='register-wrapper'>
-              <h1 className='register-title'>Sign up</h1>
-              <Form className='register-parent' onSubmit={(e) => onSubmit(e)}>
-                <Form.Group controlId='formBasicName' className='form-group'>
-                  <Form.Label>Name</Form.Label>
+            <Animated
+              animationIn='fadeIn'
+              animationOut='fadeOut'
+              isVisible={true}
+            >
+              <div className='register-wrapper'>
+                <h1 className='register-title'>Sign up</h1>
+                <Form className='register-parent' onSubmit={(e) => onSubmit(e)}>
+                  <Form.Group controlId='formBasicName' className='form-group'>
+                    <Form.Label>Name</Form.Label>
+
+                    <FormInput
+                      type='name'
+                      placeholder='Name'
+                      name='name'
+                      value={name}
+                      onChange={(e) => onChange(e)}
+                      className='form-control'
+                    />
+                  </Form.Group>
+
+                  <Form.Group controlId='formBasicEmail' className='form-group'>
+                    <Form.Label>Email address</Form.Label>
+                    <FormInput
+                      type='email'
+                      placeholder='Enter email'
+                      name='email'
+                      value={email}
+                      onChange={(e) => onChange(e)}
+                      className='form-control'
+                    />
+                  </Form.Group>
+
+                  <Form.Group
+                    controlId='formBasicPassword'
+                    className='form-group'
+                  >
+                    <Form.Label>Password</Form.Label>
+                    <FormInput
+                      type='password'
+                      placeholder='Password'
+                      name='password'
+                      value={password}
+                      onChange={(e) => onChange(e)}
+                      className='form-control'
+                    />
+                  </Form.Group>
+
+                  <Form.Group
+                    controlId='formBasicPassword2'
+                    className='form-group'
+                  >
+                    <Form.Label>Re-enter Password</Form.Label>
+                    <FormInput
+                      type='password'
+                      placeholder='Password'
+                      name='password2'
+                      value={password2}
+                      onChange={(e) => onChange(e)}
+                      className='form-control'
+                    />
+                  </Form.Group>
 
                   <FormInput
-                    type='name'
-                    placeholder='Name'
-                    name='name'
-                    value={name}
-                    onChange={(e) => onChange(e)}
-                    className='form-control'
+                    name='register'
+                    id='register'
+                    className='btn btn-block register-btn'
+                    type='submit'
+                    value='Sign up'
                   />
-                </Form.Group>
 
-                <Form.Group controlId='formBasicEmail' className='form-group'>
-                  <Form.Label>Email address</Form.Label>
-                  <FormInput
-                    type='email'
-                    placeholder='Enter email'
-                    name='email'
-                    value={email}
-                    onChange={(e) => onChange(e)}
-                    className='form-control'
-                  />
-                </Form.Group>
-
-                <Form.Group
-                  controlId='formBasicPassword'
-                  className='form-group'
-                >
-                  <Form.Label>Password</Form.Label>
-                  <FormInput
-                    type='password'
-                    placeholder='Password'
-                    name='password'
-                    value={password}
-                    onChange={(e) => onChange(e)}
-                    className='form-control'
-                  />
-                </Form.Group>
-
-                <Form.Group
-                  controlId='formBasicPassword2'
-                  className='form-group'
-                >
-                  <Form.Label>Re-enter Password</Form.Label>
-                  <FormInput
-                    type='password'
-                    placeholder='Password'
-                    name='password2'
-                    value={password2}
-                    onChange={(e) => onChange(e)}
-                    className='form-control'
-                  />
-                </Form.Group>
-
-                <FormInput
-                  name='register'
-                  id='register'
-                  className='btn btn-block register-btn'
-                  type='submit'
-                  value='Sign up'
-                />
-
-                <p className='my-1 register-text'>
-                  Already have an account?{' '}
-                  <Link to='/login' variant='info' className='signup-text'>
-                    Log in
-                  </Link>
-                </p>
-              </Form>
-            </div>
+                  <p className='my-1 register-text'>
+                    Already have an account?{' '}
+                    <Link to='/login' variant='info' className='signup-text'>
+                      Log in
+                    </Link>
+                  </p>
+                </Form>
+              </div>
+            </Animated>
           </Col>
         </Row>
       )}
