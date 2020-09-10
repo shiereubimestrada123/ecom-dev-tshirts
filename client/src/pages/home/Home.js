@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FormInput from '../../components/forms/forminput/FormInput';
 import { connect } from 'react-redux';
@@ -10,6 +11,7 @@ import { selectAuthLoading } from '../../store/selectors/auth';
 import { selectAllProducts } from '../../store/selectors/product';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import home from '../../assets/images/home.jpg';
+import { Animated } from 'react-animated-css';
 
 const Home = ({ getCategories, getProducts, loading, products }) => {
   useEffect(() => {
@@ -35,18 +37,54 @@ const Home = ({ getCategories, getProducts, loading, products }) => {
               </Col>
             </Row>
           ) : (
-            <div className='parent-home'>
-              <img src={home} />
-              <div class='parent-home-image'>
-                <FormInput
-                  name='test'
-                  id='test'
-                  className='btn btn-block home-btn'
-                  type='button'
-                  value='SHOP NOW'
-                />
+            <Fragment>
+              <Animated
+                animationIn='fadeIn'
+                animationOut='fadeOut'
+                isVisible={true}
+              >
+                <div className='parent-home'>
+                  <img className='big-image' src={home} />
+                  <div className='parent-home-image'>
+                    <Link to='/shop' style={{ textDecoration: 'none' }}>
+                      <FormInput
+                        name='test'
+                        id='test'
+                        className='btn btn-block home-btn'
+                        type='button'
+                        value='SHOP NOW'
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </Animated>
+              <div className='parent-home-icons'>
+                <div className='child-home-icon'>
+                  <i className='fas fa-undo-alt'></i>
+                  <h3>return title</h3>
+                  <p>
+                    Curabitur arcu erat accumsan id imperdiet et porttitor at
+                    sem.
+                  </p>
+                </div>
+                <div className='child-home-icon'>
+                  <i className='fas fa-check-double'></i>
+                  <h3>authentic title</h3>
+                  <p>
+                    Curabitur arcu erat accumsan id imperdiet et porttitor at
+                    sem.
+                  </p>
+                </div>
+                <div className='child-home-icon'>
+                  <i className='fas fa-shipping-fast'></i>
+                  <h3>shipping title</h3>
+                  <p>
+                    Curabitur arcu erat accumsan id imperdiet et porttitor at
+                    sem.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Fragment>
           )}
         </Col>
       </Row>

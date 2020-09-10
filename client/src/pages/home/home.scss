@@ -3,7 +3,7 @@
   width: 100%;
   // max-width: 400px;
 
-  img {
+  .big-image {
     width: 100%;
     height: auto;
   }
@@ -35,5 +35,17 @@
       background-color: #fff;
       color: #5076a0;
     }
+  }
+}
+
+.parent-home-icons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  text-align: center;
+
+  .child-home-icon {
+    width: 30%;
+    padding: 20px;
   }
 }

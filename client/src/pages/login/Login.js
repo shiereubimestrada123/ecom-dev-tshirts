@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+import { Form, Row, Col, Spinner } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import { Link, Redirect } from 'react-router-dom';
 import FormInput from '../../components/forms/forminput/FormInput';
