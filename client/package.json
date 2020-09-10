@@ -12,6 +12,7 @@
     "moment": "^2.26.0",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
+    "react-animated-css": "^1.2.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-moment": "^0.9.7",
