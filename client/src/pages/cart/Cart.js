@@ -62,7 +62,7 @@ const Cart = ({
           </Col>
         </Row>
       ) : (
-        <Table striped bordered className='mt-5 table-parent'>
+        <Table striped bordered className='table-parent'>
           <thead>
             <tr>
               <th>Image</th>

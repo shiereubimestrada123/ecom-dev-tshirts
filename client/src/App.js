@@ -36,7 +36,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <NavigationBar />
-        <Container style={{ minHeight: '60vh' }}>
+        <Container style={{ minHeight: '100vh' }}>
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/register' exact component={Register} />
