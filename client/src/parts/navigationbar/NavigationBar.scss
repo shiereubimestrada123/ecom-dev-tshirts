@@ -1,5 +1,9 @@
 .holder-main {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background-color: #eaeaea;
+
 
   .holder-nav {
     margin-left: auto;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NavigationBar from './parts/navigationbar/NavigationBar';
-// import Navigation from './parts/navigation/Navigation';
+import Footer from './parts/footer/Footer';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
@@ -19,9 +19,8 @@ import Checkout from './pages/checkout/Checkout';
 import NotFound from './pages/dashboard/notfound/NotFound';
 
 import './App.scss';
+
 // Redux
-// import { PersistGate } from 'redux-persist/integration/react';
-// import { store, persistor } from './store/store';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import { loadUser } from './store/actions/auth';
@@ -36,9 +35,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        {/* <PersistGate persistor={persistor}> */}
         <NavigationBar />
-        <Container>
+        <Container style={{ minHeight: '60vh' }}>
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/register' exact component={Register} />
@@ -66,7 +64,7 @@ const App = () => {
             <Route component={NotFound} />
           </Switch>
         </Container>
-        {/* </PersistGate> */}
+        <Footer />
       </Router>
     </Provider>
   );
