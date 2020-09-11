@@ -59,7 +59,7 @@ const Checkout = ({
   };
 
   return (
-    <div>
+    <div className='holder-payment'>
       {clientToken != null && cartProducts.length > 0 ? (
         <Fragment>
           <DropIn
