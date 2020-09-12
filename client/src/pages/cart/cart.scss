@@ -13,5 +13,47 @@
 }
 
 .proceed-checkout {
-  text-align: right;
+  float: right;
+  clear: both;
+  // width: 25%;
+
+  .checkout-btn {
+    background-color: #5076a0;
+    border-radius: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .checkout-btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .checkout-btn:hover {
+    border: 1px solid #5076a0;
+    background-color: #fff;
+    color: #5076a0;
+  }
+
+  .login-checkout-btn {
+    background-color: #5076a0;
+    border-radius: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .login-checkout-btn:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .login-checkout-btn:hover {
+    border: 1px solid #5076a0;
+    background-color: #fff;
+    color: #5076a0;
+  }
 }

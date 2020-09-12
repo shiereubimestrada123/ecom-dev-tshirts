@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { Table, Card, Spinner, Row, Col, Button } from 'react-bootstrap';
+import FormInput from '../../components/forms/forminput/FormInput';
 import {
   selectCartProducts,
   selectCartProductTotal,
@@ -31,23 +32,35 @@ const Cart = ({
     if (cartProducts.length > 0) {
       if (isAuthenticated) {
         return (
-          <Button
-            variant='info'
+          <FormInput
+            className='btn btn-block checkout-btn'
             type='submit'
+            value='Checkout'
             onClick={() => history.push('/checkout')}
-          >
-            Checkout
-          </Button>
+          />
+          // <Button
+          //   variant='info'
+          //   type='submit'
+          //   onClick={() => history.push('/checkout')}
+          // >
+          //   Checkout
+          // </Button>
         );
       } else {
         return (
-          <Button
-            variant='info'
+          <FormInput
+            className='btn btn-block login-checkout-btn'
             type='submit'
+            value='Please login to checkout'
             onClick={() => history.push('/checkout')}
-          >
-            Login to checkout
-          </Button>
+          />
+          // <Button
+          //   variant='info'
+          //   type='submit'
+          //   onClick={() => history.push('/checkout')}
+          // >
+          //   Please login to checkout
+          // </Button>
         );
       }
     }
@@ -62,7 +75,12 @@ const Cart = ({
           </Col>
         </Row>
       ) : (
-        <Table striped bordered className='table-parent'>
+        <Table
+          responsive='sm md lg xl'
+          striped
+          bordered
+          className='table-parent'
+        >
           <thead>
             <tr>
               <th>Image</th>

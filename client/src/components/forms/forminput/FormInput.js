@@ -5,6 +5,7 @@ const FormInput = ({
   type,
   placeholder,
   onChange,
+  onClick,
   className,
   value,
   label,
@@ -18,6 +19,7 @@ const FormInput = ({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        onClick={onClick}
         value={value}
         className={className}
       />

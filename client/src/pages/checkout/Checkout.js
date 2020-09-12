@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
+import FormInput from '../../components/forms/forminput/FormInput';
 import { createStructuredSelector } from 'reselect';
 import { selectAuthUser } from '../../store/selectors/auth';
+import { selectAuthLoading } from '../../store/selectors/auth';
 import {
   selectCartProductTotal,
   selectBraintreeClientToken,
@@ -18,6 +20,7 @@ import {
 import DropIn from 'braintree-web-drop-in-react';
 
 const Checkout = ({
+  loading,
   user,
   clientToken,
   instance,
@@ -58,7 +61,7 @@ const Checkout = ({
 
   return (
     <div className='holder-payment'>
-      {clientToken != null && cartProducts.length > 0 ? (
+      {clientToken != null && cartProducts.length > 0 && (
         <Fragment>
           <DropIn
             options={{
@@ -70,12 +73,15 @@ const Checkout = ({
             onInstance={(instance) => (clientToken.instance = instance)}
           />
 
-          <Button variant='info' type='submit' onClick={buy}>
-            Pay
-          </Button>
+          <div className='holder-place-order-button'>
+            <FormInput
+              className='btn btn-block place-order-btn'
+              type='submit'
+              value='Place order'
+              onClick={buy}
+            />
+          </div>
         </Fragment>
-      ) : (
-        <span>asdadsd</span>
       )}
     </div>
   );
@@ -89,6 +95,7 @@ const mapStateToProps = createStructuredSelector({
   cartProducts: selectCartProducts,
   instance: selectInstance,
   total: selectCartProductTotal,
+  loading: selectAuthLoading,
 });
 
 export default connect(mapStateToProps, {
