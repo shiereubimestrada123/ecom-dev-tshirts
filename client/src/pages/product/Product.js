@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
@@ -19,10 +18,7 @@ const Product = ({
   product,
   loading,
   isAuthenticated,
-  // auth: { loading, isAuthenticated },
 }) => {
-  const history = useHistory();
-
   useEffect(() => {
     const productId = match.params.productId;
     getSingleProduct(productId);
@@ -30,7 +26,6 @@ const Product = ({
 
   const addToCart = () => {
     addProductCart(product);
-    // history.push('/cart');
   };
 
   return (

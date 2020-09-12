@@ -14,9 +14,9 @@ import {
   selectAuthUser,
 } from '../../store/selectors/auth';
 import CartDropdown from '../../components/cartDropdown/CartDropdown';
+import FormInput from '../../components/forms/forminput/FormInput';
 
 const NavigationBar = ({
-  // auth: { isAuthenticated, user },
   productCount,
   user,
   isAuthenticated,
@@ -130,21 +130,19 @@ const NavigationBar = ({
             </div>
 
             {cartProducts.length > 0 ? (
-              <Button
-                variant='info'
+              <FormInput
+                className='btn btn-block cart-btn-cart-dropdown'
                 type='submit'
+                value='Cart'
                 onClick={() => history.push('/cart')}
-              >
-                Cart
-              </Button>
+              />
             ) : (
-              <Button
-                variant='info'
+              <FormInput
+                className='btn btn-block shop-btn-cart-dropdown'
                 type='submit'
+                value='Shop'
                 onClick={() => history.push('/shop')}
-              >
-                Shop
-              </Button>
+              />
             )}
           </div>
         </Fragment>

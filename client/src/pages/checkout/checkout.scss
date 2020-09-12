@@ -1,4 +1,31 @@
 .holder-payment {
   margin-top: 100px;
   z-index: -999;
+
+  .holder-place-order-button {
+    float: right;
+    clear: both;
+
+    .place-order-btn {
+      background-color: #5076a0;
+      border-radius: 0;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .place-order-btn:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .place-order-btn:hover {
+      border: 1px solid #5076a0;
+      background-color: #fff;
+      color: #5076a0;
+    }
+  }
+
+
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+import { Form, Row, Col, Spinner } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import signup from '../../assets/images/signup.jpeg';
 import FormInput from '../../components/forms/forminput/FormInput';
@@ -15,13 +15,7 @@ import {
 import { setAlertPrompt } from '../../store/actions/alertPrompt';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
-const Register = ({
-  register,
-  setAlertPrompt,
-  // auth: { loading, isAuthenticated },
-  loading,
-  isAuthenticated,
-}) => {
+const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -67,7 +61,11 @@ const Register = ({
               animationOut='fadeOut'
               isVisible={true}
             >
-              <img src={signup} className='hide-mobile register-image' />
+              <img
+                src={signup}
+                alt='signup'
+                className='hide-mobile register-image'
+              />
             </Animated>
           </Col>
           <Col md={6}>

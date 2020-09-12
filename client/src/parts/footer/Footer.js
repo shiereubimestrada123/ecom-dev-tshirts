@@ -25,23 +25,17 @@ const Footer = (props) => {
         </li>
 
         <li className='footer-list'>
-          <i class='fas fa-envelope-square'></i> <span>asdasdasds</span>
+          <i className='fas fa-envelope-square'></i> <span>asdasdasds</span>
         </li>
         <li className='footer-list'>
-          <i class='fas fa-map-marker-alt'></i> <span>1231231312</span>
+          <i className='fas fa-map-marker-alt'></i> <span>1231231312</span>
         </li>
       </ul>
 
       <section className='footer-bottom-section flex-rw'>
         <div className='footer-bottom-wrapper'>
-          <i className='fa fa-copyright' role='copyright'></i> 2020 Pavilion in{' '}
-          <address className='footer-address' role='company address'>
-            Bergen, NY
-          </address>
-          <span className='footer-bottom-rights'>
-            {' '}
-            - All Rights Reserved -{' '}
-          </span>
+          <i className='fas fa-copyright'></i> 2020 Copyright:{' '}
+          <span className='footer-bottom-rights'> EcomDev</span>
         </div>
       </section>
     </footer>

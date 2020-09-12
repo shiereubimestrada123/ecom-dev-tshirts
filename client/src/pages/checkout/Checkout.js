@@ -1,9 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
+import FormInput from '../../components/forms/forminput/FormInput';
 import { createStructuredSelector } from 'reselect';
 import { selectAuthUser } from '../../store/selectors/auth';
+import { selectAuthLoading } from '../../store/selectors/auth';
 import {
   selectCartProductTotal,
   selectBraintreeClientToken,
@@ -18,6 +20,7 @@ import {
 import DropIn from 'braintree-web-drop-in-react';
 
 const Checkout = ({
+  loading,
   user,
   clientToken,
   instance,
@@ -30,9 +33,7 @@ const Checkout = ({
     const userId = user && user._id;
 
     getBraintreeClientToken(userId);
-  }, [getBraintreeClientToken]);
-
-  // console.log(clientToken.clientToken);
+  }, [user]);
 
   const buy = () => {
     let nonce;
@@ -59,27 +60,42 @@ const Checkout = ({
   };
 
   return (
-    <div className='holder-payment'>
-      {clientToken != null && cartProducts.length > 0 ? (
-        <Fragment>
-          <DropIn
-            options={{
-              authorization: clientToken.clientToken,
-              paypal: {
-                flow: 'vault',
-              },
-            }}
-            onInstance={(instance) => (clientToken.instance = instance)}
-          />
+    <Row>
+      <Col>
+        {loading ? (
+          <Row style={{ textAlign: 'center', marginTop: '200px' }}>
+            <Col className='spinner-class'>
+              <Spinner animation='border' variant='info' />
+            </Col>
+          </Row>
+        ) : (
+          <div className='holder-payment'>
+            {clientToken != null && cartProducts.length > 0 && (
+              <Fragment>
+                <DropIn
+                  options={{
+                    authorization: clientToken.clientToken,
+                    paypal: {
+                      flow: 'vault',
+                    },
+                  }}
+                  onInstance={(instance) => (clientToken.instance = instance)}
+                />
 
-          <Button variant='info' type='submit' onClick={buy}>
-            Pay
-          </Button>
-        </Fragment>
-      ) : (
-        <span>asdadsd</span>
-      )}
-    </div>
+                <div className='holder-place-order-button'>
+                  <FormInput
+                    className='btn btn-block place-order-btn'
+                    type='submit'
+                    value='Place order'
+                    onClick={buy}
+                  />
+                </div>
+              </Fragment>
+            )}
+          </div>
+        )}
+      </Col>
+    </Row>
   );
 };
 
@@ -91,6 +107,7 @@ const mapStateToProps = createStructuredSelector({
   cartProducts: selectCartProducts,
   instance: selectInstance,
   total: selectCartProductTotal,
+  loading: selectAuthLoading,
 });
 
 export default connect(mapStateToProps, {

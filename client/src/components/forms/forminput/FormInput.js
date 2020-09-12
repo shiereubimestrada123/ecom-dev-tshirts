@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 const FormInput = ({
   name,
   type,
   placeholder,
   onChange,
+  onClick,
   className,
   value,
   label,
@@ -19,6 +19,7 @@ const FormInput = ({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        onClick={onClick}
         value={value}
         className={className}
       />
