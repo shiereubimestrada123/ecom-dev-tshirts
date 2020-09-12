@@ -34,7 +34,7 @@ const Footer = (props) => {
 
       <section className='footer-bottom-section flex-rw'>
         <div className='footer-bottom-wrapper'>
-          <i class='fas fa-copyright'></i> 2020 Copyright:{' '}
+          <i className='fas fa-copyright'></i> 2020 Copyright:{' '}
           <span className='footer-bottom-rights'> EcomDev</span>
         </div>
       </section>

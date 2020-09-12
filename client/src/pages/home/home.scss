@@ -38,6 +38,11 @@
   }
 }
 
+.home-header {
+  margin-top: 40px;
+  text-align: center;
+}
+
 .parent-home-icons {
   display: flex;
   justify-content: space-between;
@@ -47,5 +52,25 @@
   .child-home-icon {
     width: 30%;
     padding: 20px;
+  }
+}
+
+.holder-new-arrival {
+  position: relative;
+
+  .child-new-arrival::before {
+    content: "";
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
+    left: 0;
+    margin: auto;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #373737;
+    width: 35%;
+    height: 200px;
   }
 }

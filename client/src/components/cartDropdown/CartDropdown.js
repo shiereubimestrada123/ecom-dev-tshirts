@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CardTemplate from '../../parts/card/CardTemplate';
 import { Card } from 'react-bootstrap';

@@ -13,12 +13,9 @@ import PaginationProduct from '../../components/pagination/PaginationProduct';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 
 const Shop = ({
-  // category: { categories },
-  // product: { products },
   categories,
   products,
   loading,
-  // auth: { loading },
   getCategories,
   getProducts,
 }) => {
@@ -34,7 +31,7 @@ const Shop = ({
   useEffect(() => {
     getCategories();
     getProducts();
-  }, [getCategories, getProducts]);
+  }, []);
 
   return (
     <Fragment>
@@ -48,7 +45,6 @@ const Shop = ({
       ) : (
         <Row>
           <Col md={12}>
-            {/* <Search /> */}
             <div className='shop-card mt-2 mb-4'>
               {allProducts.map((product, index) => (
                 <div key={index}>
@@ -80,9 +76,6 @@ const mapStateToProps = createStructuredSelector({
   products: selectAllProducts,
   loading: selectAuthLoading,
   categories: selectAllCategories,
-  // product: state.product,
-  // category: state.category,
-  // auth: state.auth,
 });
 
 export default connect(mapStateToProps, {

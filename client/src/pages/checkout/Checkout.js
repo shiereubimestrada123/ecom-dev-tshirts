@@ -30,9 +30,7 @@ const Checkout = ({
     const userId = user && user._id;
 
     getBraintreeClientToken(userId);
-  }, [getBraintreeClientToken]);
-
-  // console.log(clientToken.clientToken);
+  }, [user]);
 
   const buy = () => {
     let nonce;

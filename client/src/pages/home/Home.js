@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { Fragment, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FormInput from '../../components/forms/forminput/FormInput';
 import { connect } from 'react-redux';
@@ -17,13 +17,7 @@ const Home = ({ getCategories, getProducts, loading, products }) => {
   useEffect(() => {
     getCategories();
     getProducts();
-    console.log(products);
-  }, [getCategories, getProducts]);
-  const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
+  }, []);
 
   return (
     <Fragment>
@@ -44,7 +38,7 @@ const Home = ({ getCategories, getProducts, loading, products }) => {
                 isVisible={true}
               >
                 <div className='parent-home'>
-                  <img className='big-image' src={home} />
+                  <img className='big-image' src={home} alt='home' />
                   <div className='parent-home-image'>
                     <Link to='/shop' style={{ textDecoration: 'none' }}>
                       <FormInput
@@ -57,33 +51,39 @@ const Home = ({ getCategories, getProducts, loading, products }) => {
                     </Link>
                   </div>
                 </div>
+
+                <h1 className='home-header'>Welcome to EcomDev</h1>
+                <div className='parent-home-icons'>
+                  <div className='child-home-icon'>
+                    <i className='fas fa-undo-alt'></i>
+                    <h3>return title</h3>
+                    <p>
+                      Curabitur arcu erat accumsan id imperdiet et porttitor at
+                      sem.
+                    </p>
+                  </div>
+                  <div className='child-home-icon'>
+                    <i className='fas fa-check-double'></i>
+                    <h3>authentic title</h3>
+                    <p>
+                      Curabitur arcu erat accumsan id imperdiet et porttitor at
+                      sem.
+                    </p>
+                  </div>
+                  <div className='child-home-icon'>
+                    <i className='fas fa-shipping-fast'></i>
+                    <h3>shipping title</h3>
+                    <p>
+                      Curabitur arcu erat accumsan id imperdiet et porttitor at
+                      sem.
+                    </p>
+                  </div>
+                </div>
+
+                <div className='holder-new-arrival'>
+                  <span className='child-new-arrival'>asdasd</span>
+                </div>
               </Animated>
-              <div className='parent-home-icons'>
-                <div className='child-home-icon'>
-                  <i className='fas fa-undo-alt'></i>
-                  <h3>return title</h3>
-                  <p>
-                    Curabitur arcu erat accumsan id imperdiet et porttitor at
-                    sem.
-                  </p>
-                </div>
-                <div className='child-home-icon'>
-                  <i className='fas fa-check-double'></i>
-                  <h3>authentic title</h3>
-                  <p>
-                    Curabitur arcu erat accumsan id imperdiet et porttitor at
-                    sem.
-                  </p>
-                </div>
-                <div className='child-home-icon'>
-                  <i className='fas fa-shipping-fast'></i>
-                  <h3>shipping title</h3>
-                  <p>
-                    Curabitur arcu erat accumsan id imperdiet et porttitor at
-                    sem.
-                  </p>
-                </div>
-              </div>
             </Fragment>
           )}
         </Col>

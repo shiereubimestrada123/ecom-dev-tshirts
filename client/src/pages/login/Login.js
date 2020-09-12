@@ -113,7 +113,11 @@ const Login = ({ login, loading, isAuthenticated }) => {
               animationOut='fadeOut'
               isVisible={true}
             >
-              <img src={register} className='hide-mobile login-image' />
+              <img
+                src={register}
+                alt='register'
+                className='hide-mobile login-image'
+              />
             </Animated>
           </Col>
         </Row>
