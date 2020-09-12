@@ -60,30 +60,42 @@ const Checkout = ({
   };
 
   return (
-    <div className='holder-payment'>
-      {clientToken != null && cartProducts.length > 0 && (
-        <Fragment>
-          <DropIn
-            options={{
-              authorization: clientToken.clientToken,
-              paypal: {
-                flow: 'vault',
-              },
-            }}
-            onInstance={(instance) => (clientToken.instance = instance)}
-          />
+    <Row>
+      <Col>
+        {loading ? (
+          <Row style={{ textAlign: 'center', marginTop: '200px' }}>
+            <Col className='spinner-class'>
+              <Spinner animation='border' variant='info' />
+            </Col>
+          </Row>
+        ) : (
+          <div className='holder-payment'>
+            {clientToken != null && cartProducts.length > 0 && (
+              <Fragment>
+                <DropIn
+                  options={{
+                    authorization: clientToken.clientToken,
+                    paypal: {
+                      flow: 'vault',
+                    },
+                  }}
+                  onInstance={(instance) => (clientToken.instance = instance)}
+                />
 
-          <div className='holder-place-order-button'>
-            <FormInput
-              className='btn btn-block place-order-btn'
-              type='submit'
-              value='Place order'
-              onClick={buy}
-            />
+                <div className='holder-place-order-button'>
+                  <FormInput
+                    className='btn btn-block place-order-btn'
+                    type='submit'
+                    value='Place order'
+                    onClick={buy}
+                  />
+                </div>
+              </Fragment>
+            )}
           </div>
-        </Fragment>
-      )}
-    </div>
+        )}
+      </Col>
+    </Row>
   );
 };
 
