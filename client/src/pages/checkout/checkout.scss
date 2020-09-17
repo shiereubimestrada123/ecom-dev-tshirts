@@ -1,3 +1,43 @@
+.heading-checkout {
+  text-align: center;
+}
+
+.login-wrapper {
+  // width: 300px;
+  max-width: 100%;
+  padding-top: 48px;
+  padding-bottom: 24px;
+  margin: 0 auto;
+
+  .form-group {
+    .form-control {
+      border: none;
+      border-bottom: 1px solid #e7e7e7;
+      border-radius: 0;
+      padding: 9px 5px;
+      min-height: 40px;
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    .form-control:focus {
+      outline: none;
+      box-shadow: none;
+      border-bottom: 1px solid #5076a0;
+    }
+
+    .form-control::placeholder {
+      color: #b0adad;
+    }
+
+    .form-label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #b0adad;
+    }
+  }
+}
+
 .holder-payment {
   margin-top: 100px;
   z-index: -999;
@@ -26,6 +66,4 @@
       color: #5076a0;
     }
   }
-
-
 }

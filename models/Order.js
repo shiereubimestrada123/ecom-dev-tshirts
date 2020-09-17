@@ -17,11 +17,23 @@ const CartItem = mongoose.model('CartItem', CartItemSchema);
 const OrderSchema = new mongoose.Schema(
   {
     products: [CartItemSchema],
-    transaction_id: {},
     total: { type: Number },
-
-    address: String,
-
+    name: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    contact: {
+      type: Number,
+      required: true,
+    },
     status: {
       type: String,
       default: 'Not processed',
