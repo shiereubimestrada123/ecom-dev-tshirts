@@ -5,36 +5,36 @@ import {
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
   DELETE_PRODUCT_CART,
-  GET_BRAINTREE_CLIENT_TOKEN,
   REMOVE_CART,
+  CREATE_ORDER,
 } from '../actions/constants';
 
 const initialState = {
   product: null,
-  clientToken: null,
-  instance: {},
   results: [],
   products: [],
   filteredProducts: [],
   loading: true,
   error: {},
   cartProducts: JSON.parse(localStorage.getItem('cartProducts') || '[]'),
+  order: null,
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case CREATE_ORDER: {
+      return {
+        ...state,
+        cartProducts: [],
+        order: payload,
+      };
+    }
     case REMOVE_CART:
       return {
         ...state,
         cartProducts: [],
-      };
-    case GET_BRAINTREE_CLIENT_TOKEN:
-      return {
-        ...state,
-        clientToken: payload,
-        loading: false,
       };
     case ADD_PRODUCT_CART:
       return {
