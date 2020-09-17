@@ -4,15 +4,22 @@ import { Row, Col, Spinner, Form } from 'react-bootstrap';
 import FormInput from '../../components/forms/forminput/FormInput';
 import { Animated } from 'react-animated-css';
 import { createStructuredSelector } from 'reselect';
-import { selectAuthUser } from '../../store/selectors/auth';
-import { selectAuthLoading } from '../../store/selectors/auth';
+import { selectAuthUser, selectAuthLoading } from '../../store/selectors/auth';
 import {
   selectCartProductTotal,
   selectCartProducts,
+  selectCartProductCount,
 } from '../../store/selectors/product';
 import { createOrder } from '../../store/actions/product';
 
-const Checkout = ({ loading, user, cartProducts, total, createOrder }) => {
+const Checkout = ({
+  loading,
+  user,
+  cartProducts,
+  total,
+  createOrder,
+  productCount,
+}) => {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -66,12 +73,12 @@ const Checkout = ({ loading, user, cartProducts, total, createOrder }) => {
             >
               <Row>
                 <Col>
-                  <h1 className='heading-checkout'>Checkout Page</h1>
+                  <h1 className='heading-checkout'>Secure Checkout</h1>
                 </Col>
               </Row>
               <Row>
                 <Col md={9}>
-                  <div className='login-wrapper'>
+                  <div className='checkout-wrapper'>
                     <Form
                       className='checkout-form-parent'
                       onSubmit={(e) => onSubmit(e)}
@@ -133,8 +140,16 @@ const Checkout = ({ loading, user, cartProducts, total, createOrder }) => {
                   </div>
                 </Col>
                 <Col md={3}>
-                  <p>right</p>
                   <div className='holder-payment'>
+                    <h3>Order Details</h3>
+                    <div className='checkout-product-count'>
+                      <span> # item(s)</span>
+                      <span>{productCount}</span>
+                    </div>
+                    <div className='checkout-total'>
+                      <span>Total</span>
+                      <span>&#8369;{total}</span>
+                    </div>
                     <div className='holder-place-order-button'>
                       <FormInput
                         className='btn btn-block place-order-btn'
@@ -159,6 +174,7 @@ const mapStateToProps = createStructuredSelector({
   cartProducts: selectCartProducts,
   total: selectCartProductTotal,
   loading: selectAuthLoading,
+  productCount: selectCartProductCount,
 });
 
 export default connect(mapStateToProps, {
