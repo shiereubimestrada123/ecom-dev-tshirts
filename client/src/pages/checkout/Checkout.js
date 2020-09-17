@@ -17,6 +17,7 @@ const Checkout = ({ loading, user, cartProducts, total, createOrder }) => {
 
     const createOrderData = {
       products: cartProducts,
+      total: total,
     };
 
     createOrder(userId, createOrderData);
