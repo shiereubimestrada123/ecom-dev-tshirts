@@ -30,7 +30,7 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/category', require('./routes/api/category'));
 app.use('/api/product', require('./routes/api/product'));
-app.use('/api/braintree', require('./routes/api/braintree'));
+app.use('/api/order', require('./routes/api/order'));
 
 const PORT = process.env.PORT || 5000;
 

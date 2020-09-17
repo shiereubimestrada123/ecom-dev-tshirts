@@ -22,6 +22,10 @@ const UserSchema = new Schema({
     type: Number,
     default: 0,
   },
+  history: {
+    type: Array,
+    default: [],
+  },
   date: {
     type: Date,
     default: Date.now,

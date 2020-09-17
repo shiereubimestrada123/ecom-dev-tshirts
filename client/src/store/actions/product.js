@@ -8,71 +8,29 @@ import {
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
-  // CLEAR_PRODUCT_CART,
-  GET_BRAINTREE_CLIENT_TOKEN,
-  // SEARCH_PRODUCTS,
   DELETE_PRODUCT_CART,
   REMOVE_CART,
+  CREATE_ORDER,
 } from './constants';
 
-export const clearCart = () => async (dispatch, getState) => {
-  try {
-    const cartProducts = getState().product.cartProducts.slice();
-
-    dispatch({
-      type: REMOVE_CART,
-      payload: { cartProducts },
-    });
-
-    console.log('testing');
-    localStorage.removeItem('cartProducts');
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const processPayment = (userId, paymentData) => async (
-  dispatch,
-  getState
-) => {
-  // console.log(paymentData);
+export const createOrder = (userId, createOrderData) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
-  const body = JSON.stringify(paymentData);
+  const body = JSON.stringify({ order: createOrderData });
 
   try {
-    // const cartProducts = getState().product.cartProducts.slice();
-
-    const res = await axios.post(
-      `/api/braintree/payment/${userId}`,
-      body,
-      config
-    );
+    const res = await axios.post(`/api/order/create/${userId}`, body, config);
     console.log(res.data);
     dispatch({
-      type: REMOVE_CART,
+      type: CREATE_ORDER,
       payload: res.data,
     });
 
     localStorage.removeItem('cartProducts');
-    // console.log(res.data);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getBraintreeClientToken = (userId) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/api/braintree/getToken/${userId}`);
-
-    dispatch({
-      type: GET_BRAINTREE_CLIENT_TOKEN,
-      payload: res.data,
-    });
   } catch (error) {
     console.log(error);
   }
@@ -99,14 +57,6 @@ export const addProductCart = (product) => async (dispatch, getState) => {
   } catch (error) {
     console.log(error);
   }
-  // try {
-  //   dispatch({
-  //     type: ADD_PRODUCT_CART,
-  //     payload: product,
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  // }
 };
 
 export const clearProductCart = (product) => async (dispatch, getState) => {
@@ -124,15 +74,6 @@ export const clearProductCart = (product) => async (dispatch, getState) => {
   } catch (error) {
     console.log(error);
   }
-
-  // try {
-  //   dispatch({
-  //     type: CLEAR_PRODUCT_CART,
-  //     payload: product,
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  // }
 };
 
 export const getSingleProduct = (productId) => async (dispatch) => {
