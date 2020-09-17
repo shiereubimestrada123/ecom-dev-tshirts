@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { check, validationResult } = require('express-validator');
 
 const auth = require('../../middleware/auth');
 const addOrderToUserHistory = require('../../middleware/addOrderToUserHistory');
@@ -9,10 +10,19 @@ const { Order, CartItem } = require('../../models/Order');
 
 router.post(
   '/create/:userId',
+  [
+    check('name', 'Name is required').not().isEmpty(),
+    check('email', 'Email is required').not().isEmpty(),
+    check('address', 'Address is required').not().isEmpty(),
+    check('contact', 'Contact number is required').not().isEmpty(),
+  ],
   auth,
   addOrderToUserHistory,
   async (req, res) => {
-    console.log('CREATE ORDER: ', req.body);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
     try {
       const user = await User.findById(req.params.userId);
