@@ -24,15 +24,22 @@ export const createOrder = (userId, createOrderData) => async (dispatch) => {
 
   try {
     const res = await axios.post(`/api/order/create/${userId}`, body, config);
-    console.log(res.data);
+
     dispatch({
       type: CREATE_ORDER,
       payload: res.data,
     });
 
+    dispatch(setAlertPrompt('Checkout Successfully', 'success'));
+
     localStorage.removeItem('cartProducts');
   } catch (error) {
-    console.log(error);
+    const errors = error.response.data.errors;
+    console.log(errors);
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlertPrompt(error.msg, 'danger')));
+    }
   }
 };
 

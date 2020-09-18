@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { SET_ALERT, REMOVE_ALERT } from './constants';
 
-export const setAlertPrompt = (msg, alertType, timeout = 1000) => (
+export const setAlertPrompt = (msg, alertType, timeout = 2000) => (
   dispatch
 ) => {
   const id = uuid();
