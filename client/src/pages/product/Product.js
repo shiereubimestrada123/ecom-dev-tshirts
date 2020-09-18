@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Row, Col, Button, Spinner } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
+import FormInput from '../../components/forms/forminput/FormInput';
 import { getSingleProduct, addProductCart } from '../../store/actions/product';
 import {
   selectAuthLoading,
@@ -40,12 +41,20 @@ const Product = ({
         <Row className='mt-5'>
           <Col md={8}>{product && <SingleCard product={product} />}</Col>
           <Col md={4} className='mt-5'>
-            <p>Name: {product && product.name}</p>
-            <p>Description: {product && product.description}</p>
-            <p>Price: ${product && product.price}</p>
-            <Button variant='info' onClick={addToCart}>
-              Add to Cart
-            </Button>
+            <Fragment>
+              <p>Name: {product && product.name}</p>
+              <p>Description: {product && product.description}</p>
+              <p>Price: ${product && product.price}</p>
+
+              <div className='holder-add-to-cart-button'>
+                <FormInput
+                  className='btn btn-block add-cart-btn'
+                  type='submit'
+                  value='Add to Cart'
+                  onClick={addToCart}
+                />
+              </div>
+            </Fragment>
           </Col>
         </Row>
       )}

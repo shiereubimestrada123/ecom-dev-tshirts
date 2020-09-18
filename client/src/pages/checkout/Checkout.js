@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Spinner, Form } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import FormInput from '../../components/forms/forminput/FormInput';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import { Animated } from 'react-animated-css';
@@ -27,6 +28,8 @@ const Checkout = ({
     email: '',
     contact: '',
   });
+
+  const history = useHistory();
 
   const { name, address, email, contact } = formData;
 
@@ -152,14 +155,27 @@ const Checkout = ({
                       <span>Total</span>
                       <span>&#8369;{total}</span>
                     </div>
-                    <div className='holder-place-order-button'>
-                      <FormInput
-                        className='btn btn-block place-order-btn'
-                        type='submit'
-                        value='Place order'
-                        onClick={buy}
-                      />
-                    </div>
+                    {productCount === 0 && total === 0 ? (
+                      <div className='holder-place-order-button'>
+                        <FormInput
+                          className='btn btn-block place-order-btn'
+                          type='submit'
+                          value='Shop'
+                          onClick={() => history.push('/shop')}
+                        />
+                      </div>
+                    ) : (
+                      <Fragment>
+                        <div className='holder-place-order-button'>
+                          <FormInput
+                            className='btn btn-block place-order-btn'
+                            type='submit'
+                            value='Place order'
+                            onClick={buy}
+                          />
+                        </div>
+                      </Fragment>
+                    )}
                   </div>
                 </Col>
               </Row>
