@@ -11,24 +11,34 @@ const { Order, CartItem } = require('../../models/Order');
 router.post(
   '/create/:userId',
   [
-    check('name', 'Name is required').not().isEmpty(),
-    check('email', 'Email is required').not().isEmpty(),
-    check('address', 'Address is required').not().isEmpty(),
-    check('contact', 'Contact number is required').not().isEmpty(),
+    check('order.name', 'Name is required').not().isEmpty(),
+    check('order.email', 'Email is required').not().isEmpty(),
+    check('order.address', 'Address is required').not().isEmpty(),
+    check('order.contact', 'Contact number is required').not().isEmpty(),
   ],
   auth,
   addOrderToUserHistory,
   async (req, res) => {
     const errors = validationResult(req);
+    console.log(errors);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
+    const { products, total, name, email, address, contact } = req.body.order;
 
     try {
       const user = await User.findById(req.params.userId);
 
       req.body.order.user = req.user.id;
-      const order = new Order(req.body.order);
+      const order = new Order({
+        products,
+        total,
+        name,
+        email,
+        address,
+        contact,
+      });
 
       await order.save();
 
