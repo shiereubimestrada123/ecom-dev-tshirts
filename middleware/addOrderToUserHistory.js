@@ -30,8 +30,6 @@ module.exports = async function (req, res, next) {
     );
   } catch (error) {
     console.log(error);
-    return res
-      .status(500)
-      .json({ msg: 'You are not authorized to perform this action.' });
+    res.status(500).send('Server error');
   }
 };

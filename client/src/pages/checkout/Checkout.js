@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Spinner, Form } from 'react-bootstrap';
 import FormInput from '../../components/forms/forminput/FormInput';
+import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import { Animated } from 'react-animated-css';
 import { createStructuredSelector } from 'reselect';
 import { selectAuthUser, selectAuthLoading } from '../../store/selectors/auth';
@@ -73,6 +74,7 @@ const Checkout = ({
             >
               <Row>
                 <Col>
+                  <AlertPrompt />
                   <h1 className='heading-checkout'>Secure Checkout</h1>
                 </Col>
               </Row>
