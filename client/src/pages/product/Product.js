@@ -28,7 +28,7 @@ const Product = ({
   const addToCart = () => {
     addProductCart(product);
   };
-
+  console.log(product);
   return (
     <div>
       {loading ? (

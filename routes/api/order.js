@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 
 const auth = require('../../middleware/auth');
 const addOrderToUserHistory = require('../../middleware/addOrderToUserHistory');
+const decreaseQuantity = require('../../middleware/decreaseQuantity');
 
 const User = require('../../models/User');
 const { Order, CartItem } = require('../../models/Order');
@@ -18,6 +19,7 @@ router.post(
   ],
   auth,
   addOrderToUserHistory,
+  decreaseQuantity,
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
