@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Row, Col, Spinner } from 'react-bootstrap';
+import { Row, Col, Spinner, Badge } from 'react-bootstrap';
 import FormInput from '../../components/forms/forminput/FormInput';
 import { getSingleProduct, addProductCart } from '../../store/actions/product';
 import {
@@ -45,6 +45,11 @@ const Product = ({
               <p>Name: {product && product.name}</p>
               <p>Description: {product && product.description}</p>
               <p>Price: ${product && product.price}</p>
+              {product && product.quantity > 0 ? (
+                <Badge variant='secondary'>In Stock</Badge>
+              ) : (
+                <Badge variant='warning'>Out of stock</Badge>
+              )}
 
               <div className='holder-add-to-cart-button'>
                 <FormInput
