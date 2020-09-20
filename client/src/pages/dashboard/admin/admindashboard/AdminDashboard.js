@@ -33,6 +33,11 @@ const AdminDashboard = ({ loading }) => {
                   Create Product
                 </Link>
               </div>
+              <div>
+                <Link to='/orders' variant='info' className=''>
+                  Orders
+                </Link>
+              </div>
             </Col>
             <Col className='right' md={9}>
               right

@@ -9,9 +9,23 @@ import {
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
   DELETE_PRODUCT_CART,
-  REMOVE_CART,
   CREATE_ORDER,
+  LIST_ORDERS,
 } from './constants';
+
+export const listOrders = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/order/list/${userId}`);
+    console.log(res.data);
+
+    dispatch({
+      type: LIST_ORDERS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const createOrder = (userId, createOrderData) => async (dispatch) => {
   const config = {
