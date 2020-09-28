@@ -45,9 +45,11 @@ const Checkout = ({
   };
 
   const buy = () => {
+    let transactionId = Math.random().toString(36).substr(2, 9);
     const userId = user && user._id;
 
     const createOrderData = {
+      transactionId: transactionId,
       products: cartProducts,
       total: total,
       name: name,

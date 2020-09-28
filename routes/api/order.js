@@ -27,13 +27,22 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { products, total, name, email, address, contact } = req.body.order;
+    const {
+      products,
+      total,
+      name,
+      email,
+      address,
+      contact,
+      transactionId,
+    } = req.body.order;
 
     try {
       const user = await User.findById(req.params.userId);
 
       req.body.order.user = req.user.id;
       const order = new Order({
+        transactionId,
         products,
         total,
         name,
@@ -52,8 +61,7 @@ router.post(
   }
 );
 
-router.get('/list/:userId', admin, async (req, res) => {
-  console.log('listorders');
+router.get('/list/:userId', auth, admin, async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
 
