@@ -16,6 +16,7 @@ const CartItem = mongoose.model('CartItem', CartItemSchema);
 
 const OrderSchema = new mongoose.Schema(
   {
+    transactionId: { type: String, required: true },
     products: [CartItemSchema],
     total: { type: Number },
     name: {
@@ -46,7 +47,7 @@ const OrderSchema = new mongoose.Schema(
       ],
     },
     updated: Date,
-    user: { type: ObjectId, ref: 'User' },
+    user: { type: ObjectId, ref: 'user' },
   },
   { timestamps: true }
 );
