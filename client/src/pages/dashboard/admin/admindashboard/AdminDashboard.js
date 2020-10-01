@@ -11,9 +11,8 @@ import {
   Tab,
   ListGroup,
   Form,
-  Button,
+  InputGroup,
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import {
   selectAuthLoading,
   selectAuthUser,
@@ -23,6 +22,7 @@ import { listOrders } from '../../../../store/actions/product';
 import { createCategory } from '../../../../store/actions/category';
 import PaginationOrder from '../../../../components/pagination/PaginationOrder';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
+import FormInput from '../../../../components/forms/forminput/FormInput';
 
 const AdminDashboard = ({
   listOrders,
@@ -108,7 +108,32 @@ const AdminDashboard = ({
                       onSubmit={(e) => onCategorySubmit(e)}
                     >
                       <Form.Group controlId='formCategoryName'>
-                        <Form.Label>Category Name</Form.Label>
+                        <InputGroup className='mb-3'>
+                          <InputGroup.Prepend>
+                            <InputGroup.Text id='basic-addon1'>
+                              Name
+                            </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <Form.Control
+                            type='name'
+                            placeholder='Enter category name'
+                            name='name'
+                            value={name || ''}
+                            className='create-category-input'
+                            onChange={(e) => onCategoryChange(e)}
+                          />
+                        </InputGroup>
+
+                        <div className='create-category-holder'>
+                          <FormInput
+                            name='text'
+                            id='update'
+                            className='btn btn-block create-category-btn'
+                            type='submit'
+                            value='Create Category'
+                          />
+                        </div>
+                        {/* <Form.Label>Category Name</Form.Label>
                         <Form.Control
                           type='name'
                           placeholder='Enter category name'
@@ -127,7 +152,7 @@ const AdminDashboard = ({
                         </Button>
                         <Button variant='info' type='submit' className='my-3'>
                           Submit
-                        </Button>
+                        </Button> */}
                       </Form.Group>
                     </Form>
                   </Tab.Pane>
