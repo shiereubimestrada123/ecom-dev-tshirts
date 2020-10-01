@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 router.put('/:userId', auth, async (req, res) => {
-  const { name } = req.body;
+  const { name, password, email } = req.body;
 
   try {
     let user = await User.findById(req.params.userId).select('-password');
@@ -31,7 +31,11 @@ router.put('/:userId', auth, async (req, res) => {
       return res.status(400).json({ errors: [{ msg: 'Invalid user' }] });
     }
 
+    const salt = await bcrypt.genSalt(10);
+
     user.name = name;
+    user.email = email;
+    user.password = await bcrypt.hash(password, salt);
 
     await user.save();
 

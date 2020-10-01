@@ -2,17 +2,20 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Spinner, Tab, Nav, Form, Button } from 'react-bootstrap';
+import { Row, Col, Spinner, Tab, Nav, Form, InputGroup } from 'react-bootstrap';
 import {
   selectAuthLoading,
   selectAuthUser,
 } from '../../../../store/selectors/auth';
 import { updateUser } from '../../../../store/actions/auth';
+import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
+import FormInput from '../../../../components/forms/forminput/FormInput';
 
 const UserDashboard = ({ loading, user, updateUser }) => {
   const [values, setValues] = useState({
     name: '',
     email: '',
+    password: '',
   });
   console.log(values);
   useEffect(() => {
@@ -23,7 +26,7 @@ const UserDashboard = ({ loading, user, updateUser }) => {
     });
   }, [user]);
 
-  const { name, email } = values;
+  const { name, email, password } = values;
 
   const handleChange = async (e) => {
     setValues({
@@ -36,11 +39,12 @@ const UserDashboard = ({ loading, user, updateUser }) => {
     const userId = user && user._id;
 
     e.preventDefault();
-    updateUser({ name, userId });
+    updateUser({ name, password, email, userId });
   };
 
   return (
     <Fragment>
+      <AlertPrompt />
       {loading ? (
         <Row style={{ textAlign: 'center', marginTop: '200px' }}>
           <Col className='spinner-class'>
@@ -62,7 +66,7 @@ const UserDashboard = ({ loading, user, updateUser }) => {
                     <Nav.Link eventKey='first'>My Cart</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey='second'>User Profile</Nav.Link>
+                    <Nav.Link eventKey='second'>Update Profile</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Col>
@@ -74,24 +78,61 @@ const UserDashboard = ({ loading, user, updateUser }) => {
                   <Tab.Pane eventKey='second'>
                     <Form className='my-5' onSubmit={(e) => handleSubmit(e)}>
                       <Form.Group controlId='formUpdateName'>
-                        <Form.Control
-                          type='name'
-                          name='name'
-                          value={name || ''}
-                          onChange={(e) => handleChange(e)}
-                        />
+                        <InputGroup className='mb-3'>
+                          <InputGroup.Prepend>
+                            <InputGroup.Text id='basic-addon1'>
+                              Name
+                            </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <Form.Control
+                            type='name'
+                            name='name'
+                            value={name || ''}
+                            className='user-profile-input'
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </InputGroup>
 
-                        <Form.Control
-                          type='email'
-                          name='email'
-                          value={email || ''}
-                          onChange={(e) => handleChange(e)}
-                          disabled
-                        />
+                        <InputGroup className='mb-3'>
+                          <InputGroup.Prepend>
+                            <InputGroup.Text id='basic-addon1'>
+                              Email
+                            </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <Form.Control
+                            type='email'
+                            name='email'
+                            value={email || ''}
+                            className='user-profile-input'
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </InputGroup>
 
-                        <Button variant='info' type='submit' className='my-3'>
-                          Submit
-                        </Button>
+                        <InputGroup className='mb-3'>
+                          <InputGroup.Prepend>
+                            <InputGroup.Text id='basic-addon1'>
+                              Password
+                            </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <Form.Control
+                            type='password'
+                            name='password'
+                            value={password || ''}
+                            className='user-profile-input'
+                            placeholder='Enter new password'
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </InputGroup>
+
+                        <div className='update-button-holder'>
+                          <FormInput
+                            name='text'
+                            id='update'
+                            className='btn btn-block user-update-btn'
+                            type='submit'
+                            value='Update'
+                          />
+                        </div>
                       </Form.Group>
                     </Form>
                   </Tab.Pane>

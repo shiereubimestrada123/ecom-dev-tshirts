@@ -32,14 +32,16 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
-export const updateUser = ({ name, userId }) => async (dispatch) => {
+export const updateUser = ({ name, password, email, userId }) => async (
+  dispatch
+) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
-  const body = JSON.stringify({ name });
+  const body = JSON.stringify({ name, password, email });
 
   try {
     const res = await axios.put(`/api/auth/${userId}`, body, config);
@@ -48,6 +50,8 @@ export const updateUser = ({ name, userId }) => async (dispatch) => {
       type: UPDATE_USER,
       payload: res.data,
     });
+
+    dispatch(setAlertPrompt('Updated profile successfully', 'success'));
   } catch (error) {
     console.log(error);
   }
