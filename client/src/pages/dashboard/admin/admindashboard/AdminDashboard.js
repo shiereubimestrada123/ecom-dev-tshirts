@@ -1,13 +1,77 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Spinner } from 'react-bootstrap';
+import moment from 'moment';
+import {
+  Row,
+  Col,
+  Spinner,
+  Nav,
+  Tab,
+  ListGroup,
+  Form,
+  Button,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { selectAuthLoading } from '../../../../store/selectors/auth';
+import {
+  selectAuthLoading,
+  selectAuthUser,
+} from '../../../../store/selectors/auth';
+import { selectOrders } from '../../../../store/selectors/product';
+import { listOrders } from '../../../../store/actions/product';
+import { createCategory } from '../../../../store/actions/category';
+import PaginationOrder from '../../../../components/pagination/PaginationOrder';
+import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 
-const AdminDashboard = ({ loading }) => {
+const AdminDashboard = ({
+  listOrders,
+  createCategory,
+  loading,
+  user,
+  orders,
+}) => {
+  let history = useHistory();
+
+  const [currentpage, setcurrentpage] = useState(1);
+  const [orderperpage] = useState(3);
+
+  const indexOfLastOrder = currentpage * orderperpage;
+  const indexOfFirstOrder = indexOfLastOrder - orderperpage;
+  const allOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+
+  const paginate = (pageNumber) => setcurrentpage(pageNumber);
+
+  const [formData, setFormData] = useState({
+    name: '',
+  });
+
+  const { name } = formData;
+
+  useEffect(() => {
+    listOrders(user && user._id);
+  }, [user]);
+
+  const handleCategoryClick = () => {
+    history.push('/');
+  };
+
+  const onCategoryChange = (e) =>
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+
+  const onCategorySubmit = async (e) => {
+    e.preventDefault();
+    createCategory(name, user && user._id);
+    // history.push('/shop');
+    setFormData('');
+  };
+
   return (
     <Fragment>
+      <AlertPrompt />
       {loading ? (
         <Row style={{ textAlign: 'center', marginTop: '200px' }}>
           <Col className='spinner-class'>
@@ -21,28 +85,91 @@ const AdminDashboard = ({ loading }) => {
               <i className='fab fa-black-tie'></i> Admin Dashboard
             </Col>
           </Row>
-          <Row className='admin-row-body'>
-            <Col className='left' md={3}>
-              <div>
-                <Link to='/create/category' variant='info' className=''>
-                  Create Category
-                </Link>
-              </div>
-              <div>
-                <Link to='/create/product' variant='info' className=''>
-                  Create Product
-                </Link>
-              </div>
-              <div>
-                <Link to='/orders' variant='info' className=''>
-                  Orders
-                </Link>
-              </div>
-            </Col>
-            <Col className='right' md={9}>
-              right
-            </Col>
-          </Row>
+          <Tab.Container id='left-tabs-example' defaultActiveKey='first'>
+            <Row className='admin-row-body'>
+              <Col className='left' md={3}>
+                <Nav variant='pills' className='flex-column'>
+                  <Nav.Item>
+                    <Nav.Link eventKey='first'>Create Category</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey='second'>Create Product</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey='three'>Orders</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Col>
+              <Col className='right' md={9}>
+                <Tab.Content>
+                  <Tab.Pane eventKey='first'>
+                    <Form
+                      className='my-5'
+                      onSubmit={(e) => onCategorySubmit(e)}
+                    >
+                      <Form.Group controlId='formCategoryName'>
+                        <Form.Label>Category Name</Form.Label>
+                        <Form.Control
+                          type='name'
+                          placeholder='Enter category name'
+                          name='name'
+                          value={name || ''}
+                          onChange={(e) => onCategoryChange(e)}
+                        />
+
+                        <Button
+                          variant='light'
+                          type='submit'
+                          className='my-3 mr-2'
+                          onClick={handleCategoryClick}
+                        >
+                          Cancel
+                        </Button>
+                        <Button variant='info' type='submit' className='my-3'>
+                          Submit
+                        </Button>
+                      </Form.Group>
+                    </Form>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey='second'>
+                    <p>second</p>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey='three'>
+                    {allOrders.map((order, orderIndex) => (
+                      <ListGroup as='ul' key={orderIndex} className='my-3'>
+                        <ListGroup.Item as='li' active>
+                          Transaction Id: {order.transactionId}
+                        </ListGroup.Item>
+                        <ListGroup.Item as='li'>
+                          Ordered by: {order.name}
+                        </ListGroup.Item>
+                        <ListGroup.Item as='li'>
+                          Ordered date:{' '}
+                          {moment(order.createdAt).format('MM/DD/YYYY')}
+                        </ListGroup.Item>
+                        <ListGroup.Item as='li'>
+                          Status: {order.status}
+                        </ListGroup.Item>
+                        <ListGroup.Item as='li'>
+                          Delivery Address: {order.address}
+                        </ListGroup.Item>
+                        <ListGroup.Item as='li'>
+                          Total: &#8369;{order.total}
+                        </ListGroup.Item>
+                      </ListGroup>
+                    ))}
+
+                    <PaginationOrder
+                      orderperpage={orderperpage}
+                      totalOrders={orders.length}
+                      paginate={paginate}
+                      currentpage={currentpage}
+                    />
+                  </Tab.Pane>
+                </Tab.Content>
+              </Col>
+            </Row>
+          </Tab.Container>
         </Fragment>
       )}
     </Fragment>
@@ -50,7 +177,11 @@ const AdminDashboard = ({ loading }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
+  user: selectAuthUser,
+  orders: selectOrders,
   loading: selectAuthLoading,
 });
 
-export default connect(mapStateToProps)(AdminDashboard);
+export default connect(mapStateToProps, { listOrders, createCategory })(
+  AdminDashboard
+);

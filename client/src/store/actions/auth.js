@@ -9,6 +9,7 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
+  UPDATE_USER,
 } from './constants';
 
 // Load user
@@ -28,6 +29,27 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: AUTH_ERROR,
     });
+  }
+};
+
+export const updateUser = ({ name, userId }) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ name });
+
+  try {
+    const res = await axios.put(`/api/auth/${userId}`, body, config);
+
+    dispatch({
+      type: UPDATE_USER,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
 

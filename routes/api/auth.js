@@ -13,11 +13,31 @@ const User = require('../../models/User');
 router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-
     res.json(user);
   } catch (error) {
     console.log(error.message);
     res.status(500).send('Server error');
+  }
+});
+
+router.put('/:userId', auth, async (req, res) => {
+  const { name } = req.body;
+
+  try {
+    let user = await User.findById(req.params.userId).select('-password');
+
+    if (!user) {
+      console.log('invalid user');
+      return res.status(400).json({ errors: [{ msg: 'Invalid user' }] });
+    }
+
+    user.name = name;
+
+    await user.save();
+
+    res.json(user);
+  } catch (error) {
+    console.log(error);
   }
 });
 

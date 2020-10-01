@@ -1,10 +1,9 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import Pagination from 'react-bootstrap/Pagination';
 
-const PaginationProduct = ({
-  productperpage,
-  totalproducts,
+const PaginationOrder = ({
+  orderperpage,
+  totalOrders,
   paginate,
   currentpage,
 }) => {
@@ -12,7 +11,7 @@ const PaginationProduct = ({
   let pageNumbers = [];
   for (
     let number = 1;
-    number <= Math.ceil(totalproducts / productperpage);
+    number <= Math.ceil(totalOrders / orderperpage);
     number++
   ) {
     pageNumbers.push(
@@ -33,6 +32,4 @@ const PaginationProduct = ({
   );
 };
 
-// PaginationProduct.propTypes = {};
-
-export default PaginationProduct;
+export default PaginationOrder;

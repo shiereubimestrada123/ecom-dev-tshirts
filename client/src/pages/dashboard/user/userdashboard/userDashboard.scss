@@ -1,16 +1,16 @@
-.admin-row-header {
+.user-row-header {
   padding: 20px;
   background-color: #EAEAEA;
   border: 1px solid #CECECE;
   border-bottom: none;
 
-  .fa-black-tie {
+  .fa-user {
     font-size: 1.5rem;
     margin-right: 10px;
   }
 }
 
-.admin-row-body {
+.user-row-body {
   min-height: 650px;
   border: 1px solid #CECECE;
   margin-bottom: 50px;
