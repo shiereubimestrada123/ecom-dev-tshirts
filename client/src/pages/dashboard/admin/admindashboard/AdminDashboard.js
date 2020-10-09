@@ -10,8 +10,6 @@ import {
   Nav,
   Tab,
   ListGroup,
-  Form,
-  InputGroup,
 } from 'react-bootstrap';
 import {
   selectAuthLoading,
@@ -22,7 +20,7 @@ import { listOrders } from '../../../../store/actions/product';
 import { createCategory } from '../../../../store/actions/category';
 import PaginationOrder from '../../../../components/pagination/PaginationOrder';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
-import FormInput from '../../../../components/forms/forminput/FormInput';
+import CategoryComponent from '../categorycomponent/CategoryComponent';
 
 const AdminDashboard = ({
   listOrders,
@@ -42,32 +40,15 @@ const AdminDashboard = ({
 
   const paginate = (pageNumber) => setcurrentpage(pageNumber);
 
-  const [formData, setFormData] = useState({
-    name: '',
-  });
-
-  const { name } = formData;
+  const [categoryData, setCategoryData] = useState('')
 
   useEffect(() => {
     listOrders(user && user._id);
   }, [user]);
 
-  const handleCategoryClick = () => {
-    history.push('/');
-  };
-
-  const onCategoryChange = (e) =>
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-
-  const onCategorySubmit = async (e) => {
-    e.preventDefault();
-    createCategory(name, user && user._id);
-    // history.push('/shop');
-    setFormData('');
-  };
+  const categoryFormCallback = () => {
+    setCategoryData(categoryData);
+  }
 
   return (
     <Fragment>
@@ -103,58 +84,7 @@ const AdminDashboard = ({
               <Col className='right' md={9}>
                 <Tab.Content>
                   <Tab.Pane eventKey='first'>
-                    <Form
-                      className='my-5'
-                      onSubmit={(e) => onCategorySubmit(e)}
-                    >
-                      <Form.Group controlId='formCategoryName'>
-                        <InputGroup className='mb-3'>
-                          <InputGroup.Prepend>
-                            <InputGroup.Text id='basic-addon1'>
-                              Name
-                            </InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <Form.Control
-                            type='name'
-                            placeholder='Enter category name'
-                            name='name'
-                            value={name || ''}
-                            className='create-category-input'
-                            onChange={(e) => onCategoryChange(e)}
-                          />
-                        </InputGroup>
-
-                        <div className='create-category-holder'>
-                          <FormInput
-                            name='text'
-                            id='update'
-                            className='btn btn-block create-category-btn'
-                            type='submit'
-                            value='Create Category'
-                          />
-                        </div>
-                        {/* <Form.Label>Category Name</Form.Label>
-                        <Form.Control
-                          type='name'
-                          placeholder='Enter category name'
-                          name='name'
-                          value={name || ''}
-                          onChange={(e) => onCategoryChange(e)}
-                        />
-
-                        <Button
-                          variant='light'
-                          type='submit'
-                          className='my-3 mr-2'
-                          onClick={handleCategoryClick}
-                        >
-                          Cancel
-                        </Button>
-                        <Button variant='info' type='submit' className='my-3'>
-                          Submit
-                        </Button> */}
-                      </Form.Group>
-                    </Form>
+                    <CategoryComponent parentCallback={categoryFormCallback} />
                   </Tab.Pane>
                   <Tab.Pane eventKey='second'>
                     <p>second</p>
