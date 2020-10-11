@@ -41,11 +41,18 @@ const NavigationBar = ({
             onClick={() => setIsShownRegisterLogin(false)}
           >
             {user && user.role === 0 ? (
-              <li>
-                <NavLink to='/user/dashboard' exact activeClassName='current'>
-                  User
-                </NavLink>
-              </li>
+              <Fragment>
+                <li>
+                  <NavLink to='/user/dashboard' exact activeClassName='current'>
+                    User
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to='/user/account' exact activeClassName='current'>
+                    Account
+                  </NavLink>
+                </li>
+              </Fragment>
             ) : (
               <li>
                 <NavLink to='/admin/dashboard' exact activeClassName='current'>

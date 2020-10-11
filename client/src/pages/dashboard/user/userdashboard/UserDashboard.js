@@ -17,7 +17,7 @@ const UserDashboard = ({ loading, user, updateUser }) => {
     email: '',
     password: '',
   });
-  console.log(values);
+
   useEffect(() => {
     setValues({
       ...values,
