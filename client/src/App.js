@@ -11,7 +11,7 @@ import Product from './pages/product/Product';
 import Cart from './pages/cart/Cart';
 import UserRoute from './components/privaterouting/UserRoute';
 import AdminRoute from './components/privaterouting/AdminRoute';
-import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
+// import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
 import UserAccount from './pages/dashboard/user/useraccount/UserAccount';
 import AdminDashboard from './pages/dashboard/admin/admindashboard/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/createcategory/CreateCategory';
@@ -46,13 +46,18 @@ const App = () => {
             <Route path='/shop' exact component={Shop} />
             <Route path='/product/:productId' exact component={Product} />
             <Route path='/cart' exact component={Cart} />
-            <UserRoute path='/user/dashboard' exact component={UserDashboard} />
+            {/* <UserRoute path='/user/dashboard' exact component={UserDashboard} /> */}
             <UserRoute path='/user/account' exact component={UserAccount} />
             <UserRoute path='/checkout' exact component={Checkout} />
             <AdminRoute
               path='/admin/dashboard'
               exact
               component={AdminDashboard}
+            />
+            <AdminRoute
+              path='/admin/create/category'
+              exact
+              component={CreateCategory}
             />
             <AdminRoute
               path='/create/category'

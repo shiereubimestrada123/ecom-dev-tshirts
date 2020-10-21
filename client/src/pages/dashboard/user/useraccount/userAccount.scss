@@ -1,0 +1,52 @@
+.user-row-header {
+  padding: 20px;
+  background-color: #eaeaea;
+  border: 1px solid #cecece;
+  border-bottom: none;
+
+  .fa-user {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+}
+
+.user-row-body {
+  min-height: 650px;
+  border: 1px solid #cecece;
+  margin-bottom: 50px;
+
+  .user-profile-input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+  }
+  
+  .update-button-holder {
+    text-align: center;
+  
+    .user-update-btn {
+      display: inline-block;
+      width: 200px;
+      // padding: 13px 10px;
+      background-color: #5076a0;
+      border-radius: 0;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+  
+    .user-update-btn:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  
+    .user-update-btn:hover {
+      border: 1px solid #5076a0;
+      background-color: #fff;
+      color: #5076a0;
+    }
+  }
+}
+
+

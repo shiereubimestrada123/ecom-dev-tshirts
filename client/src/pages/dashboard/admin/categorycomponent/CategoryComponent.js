@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  Form,
-  InputGroup,
-} from 'react-bootstrap';
+import { Form, InputGroup } from 'react-bootstrap';
 import { createStructuredSelector } from 'reselect';
 import { createCategory } from '../../../../store/actions/category';
 import { selectAuthUser } from '../../../../store/selectors/auth';
@@ -22,7 +19,7 @@ const CategoryComponent = ({ createCategory, parentCallback, user }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    parentCallback({[e.target.name]: e.target.value})
+    parentCallback({ [e.target.name]: e.target.value });
   };
 
   const onCategorySubmit = async (e) => {
@@ -68,4 +65,4 @@ const mapStateToProps = createStructuredSelector({
   user: selectAuthUser,
 });
 
-export default connect(mapStateToProps, {createCategory})(CategoryComponent);
+export default connect(mapStateToProps, { createCategory })(CategoryComponent);

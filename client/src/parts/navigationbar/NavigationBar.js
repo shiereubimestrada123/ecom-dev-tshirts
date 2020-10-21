@@ -37,28 +37,47 @@ const NavigationBar = ({
         <Fragment>
           <i className='fas fa-id-card' style={{ color: '#5076a0' }}></i>
           <ul
-            className='hovered-user-icon'
+            className={
+              user && user.role === 0
+                ? 'hovered-user-icon'
+                : 'hovered-admin-icon'
+            }
             onClick={() => setIsShownRegisterLogin(false)}
           >
             {user && user.role === 0 ? (
               <Fragment>
-                <li>
+                {/* <li>
                   <NavLink to='/user/dashboard' exact activeClassName='current'>
                     User
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink to='/user/account' exact activeClassName='current'>
-                    Account
+                    My Account
                   </NavLink>
                 </li>
               </Fragment>
             ) : (
-              <li>
-                <NavLink to='/admin/dashboard' exact activeClassName='current'>
-                  Admin
-                </NavLink>
-              </li>
+              <Fragment>
+                <li>
+                  <NavLink
+                    to='/admin/dashboard'
+                    exact
+                    activeClassName='current'
+                  >
+                    Admin
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to='/admin/create/category'
+                    exact
+                    activeClassName='current'
+                  >
+                    Create Category
+                  </NavLink>
+                </li>
+              </Fragment>
             )}
             <li onClick={logout}>
               <NavLink to='/' exact>
@@ -83,7 +102,7 @@ const NavigationBar = ({
         <Fragment>
           <i className='fas fa-user-plus' style={{ color: '#5076a0' }}></i>
           <ul
-            className='hovered-user-icon'
+            className='hovered-not-login-icon'
             onClick={() => setIsShownRegisterLogin(false)}
           >
             <li>

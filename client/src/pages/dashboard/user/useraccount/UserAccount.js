@@ -59,68 +59,62 @@ const Account = ({ updateUser, loading, user }) => {
             </Col>
           </Row>
           <Row className='user-row-body'>
-            <Col className='right'>
-              <Tab.Pane eventKey='second'>
-                <Form className='my-5' onSubmit={(e) => handleSubmit(e)}>
-                  <Form.Group controlId='formUpdateName'>
-                    <InputGroup className='mb-3'>
-                      <InputGroup.Prepend>
-                        <InputGroup.Text id='basic-addon1'>
-                          Name
-                        </InputGroup.Text>
-                      </InputGroup.Prepend>
-                      <Form.Control
-                        type='name'
-                        name='name'
-                        value={name || ''}
-                        className='user-profile-input'
-                        onChange={(e) => handleChange(e)}
-                      />
-                    </InputGroup>
+            <Col>
+              <Form className='my-5' onSubmit={(e) => handleSubmit(e)}>
+                <Form.Group controlId='formUpdateName'>
+                  <InputGroup className='mb-3'>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id='basic-addon1'>Name</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <Form.Control
+                      type='name'
+                      name='name'
+                      value={name || ''}
+                      className='user-profile-input'
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </InputGroup>
 
-                    <InputGroup className='mb-3'>
-                      <InputGroup.Prepend>
-                        <InputGroup.Text id='basic-addon1'>
-                          Email
-                        </InputGroup.Text>
-                      </InputGroup.Prepend>
-                      <Form.Control
-                        type='email'
-                        name='email'
-                        value={email || ''}
-                        className='user-profile-input'
-                        onChange={(e) => handleChange(e)}
-                      />
-                    </InputGroup>
+                  <InputGroup className='mb-3'>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id='basic-addon1'>Email</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <Form.Control
+                      type='email'
+                      name='email'
+                      value={email || ''}
+                      className='user-profile-input'
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </InputGroup>
 
-                    <InputGroup className='mb-3'>
-                      <InputGroup.Prepend>
-                        <InputGroup.Text id='basic-addon1'>
-                          Password
-                        </InputGroup.Text>
-                      </InputGroup.Prepend>
-                      <Form.Control
-                        type='password'
-                        name='password'
-                        value={password || ''}
-                        className='user-profile-input'
-                        placeholder='Enter new password'
-                        onChange={(e) => handleChange(e)}
-                      />
-                    </InputGroup>
+                  <InputGroup className='mb-3'>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id='basic-addon1'>
+                        Password
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <Form.Control
+                      type='password'
+                      name='password'
+                      value={password || ''}
+                      className='user-profile-input'
+                      placeholder='Enter new password'
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </InputGroup>
 
-                    <div className='update-button-holder'>
-                      <FormInput
-                        name='text'
-                        id='update'
-                        className='btn btn-block user-update-btn'
-                        type='submit'
-                        value='Update'
-                      />
-                    </div>
-                  </Form.Group>
-                </Form>
-              </Tab.Pane>
+                  <div className='update-button-holder'>
+                    <FormInput
+                      name='text'
+                      id='update'
+                      className='btn btn-block user-update-btn'
+                      type='submit'
+                      value='Update'
+                    />
+                  </div>
+                </Form.Group>
+              </Form>
             </Col>
           </Row>
         </Fragment>
