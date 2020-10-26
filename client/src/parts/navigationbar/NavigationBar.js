@@ -77,6 +77,15 @@ const NavigationBar = ({
                     Create Category
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    to='/admin/create/product'
+                    exact
+                    activeClassName='current'
+                  >
+                    Create Product
+                  </NavLink>
+                </li>
               </Fragment>
             )}
             <li onClick={logout}>

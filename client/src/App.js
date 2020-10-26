@@ -60,15 +60,20 @@ const App = () => {
               component={CreateCategory}
             />
             <AdminRoute
-              path='/create/category'
-              exact
-              component={CreateCategory}
-            />
-            <AdminRoute
-              path='/create/product'
+              path='/admin/create/product'
               exact
               component={CreateProduct}
             />
+            {/* <AdminRoute
+              path='/create/category'
+              exact
+              component={CreateCategory}
+            /> */}
+            {/* <AdminRoute
+              path='/create/product'
+              exact
+              component={CreateProduct}
+            /> */}
             <AdminRoute path='/orders' exact component={Orders} />
             <Route component={NotFound} />
           </Switch>

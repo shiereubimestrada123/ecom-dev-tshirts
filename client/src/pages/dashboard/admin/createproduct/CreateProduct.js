@@ -1,9 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Form, Button, Row, Col, Spinner } from 'react-bootstrap';
+import { Form, Row, Col, Spinner, InputGroup } from 'react-bootstrap';
 import { createProduct } from '../../../../store/actions/product';
 import { getCategories } from '../../../../store/actions/category';
 import {
@@ -12,6 +11,7 @@ import {
 } from '../../../../store/selectors/auth';
 import { selectAllCategories } from '../../../../store/selectors/category';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
+import FormInput from '../../../../components/forms/forminput/FormInput';
 
 const CreateProduct = ({
   createProduct,
@@ -20,8 +20,6 @@ const CreateProduct = ({
   categories,
   loading,
 }) => {
-  let history = useHistory();
-
   const [values, setValues] = useState({
     name: '',
     description: '',
@@ -43,10 +41,6 @@ const CreateProduct = ({
     });
   }, [getCategories]);
 
-  const handleClick = () => {
-    history.push('/admin/dashboard');
-  };
-
   const onChange = (e) => {
     const value =
       e.target.name === 'photo' ? e.target.files[0] : e.target.value;
@@ -61,6 +55,8 @@ const CreateProduct = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     createProduct(formData, user && user._id);
+    setValues('');
+    e.target.reset();
   };
 
   return (
@@ -74,110 +70,129 @@ const CreateProduct = ({
         </Row>
       ) : (
         <Fragment>
-          <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
-            <div>
-              <input
-                type='file'
-                name='photo'
-                accept='image/*'
-                onChange={(e) => onChange(e)}
-              />
-            </div>
-            {/* <Form.Group>
-          <Form.File
-            id='photo'
-            name='photo'
-            label='Photo'
-            onChange={(e) => onChange(e)}
-          />
-        </Form.Group> */}
+          <Row className='mt-5 admin-row-header'>
+            <Col>
+              <i className='fab fa-black-tie' aria-hidden='true'></i> Create
+              Product
+            </Col>
+          </Row>
+          <Row className='admin-row-body'>
+            <Col>
+              <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
+                <div>
+                  <input
+                    type='file'
+                    name='photo'
+                    accept='image/*'
+                    onChange={(e) => onChange(e)}
+                  />
+                </div>
 
-            <Form.Group controlId='name'>
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Name'
-                name='name'
-                value={name}
-                onChange={(e) => onChange(e)}
-              />
-            </Form.Group>
+                <InputGroup className='mb-3'>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id='basic-addon1'>Name</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    type='name'
+                    name='name'
+                    value={name || ''}
+                    // className='user-profile-input'
+                    onChange={(e) => onChange(e)}
+                  />
+                </InputGroup>
 
-            <Form.Group controlId='description'>
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                type='description'
-                placeholder='Description'
-                name='description'
-                value={description}
-                onChange={(e) => onChange(e)}
-              />
-            </Form.Group>
+                <InputGroup className='mb-3'>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id='basic-addon1'>
+                      Description
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    type='description'
+                    name='description'
+                    value={description || ''}
+                    // className='user-profile-input'
+                    onChange={(e) => onChange(e)}
+                  />
+                </InputGroup>
 
-            <Form.Group controlId='price'>
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type='price'
-                placeholder='Price'
-                name='price'
-                value={price}
-                onChange={(e) => onChange(e)}
-              />
-            </Form.Group>
+                <InputGroup className='mb-3'>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id='basic-addon1'>Price</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    type='number'
+                    name='price'
+                    value={price || ''}
+                    // className='user-profile-input'
+                    onChange={(e) => onChange(e)}
+                  />
+                </InputGroup>
 
-            <Form.Group controlId='category'>
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                as='select'
-                name='category'
-                onChange={(e) => onChange(e)}
-              >
-                <option>Please select category</option>
-                {categories &&
-                  categories.map((cat, index) => (
-                    <option key={index} value={cat._id}>
-                      {cat.name}
-                    </option>
-                  ))}
-              </Form.Control>
-            </Form.Group>
+                <InputGroup className='mb-3'>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id='basic-addon1'>
+                      Category
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    as='select'
+                    name='category'
+                    onChange={(e) => onChange(e)}
+                  >
+                    <option>Please select category</option>
+                    {categories &&
+                      categories.map((cat, index) => (
+                        <option key={index} value={cat._id}>
+                          {cat.name}
+                        </option>
+                      ))}
+                  </Form.Control>
+                </InputGroup>
 
-            <Form.Group controlId='shipping'>
-              <Form.Label>Shipping</Form.Label>
-              <Form.Control
-                as='select'
-                name='shipping'
-                onChange={(e) => onChange(e)}
-              >
-                <option>Please select</option>
-                <option value='1'>True</option>
-                <option value='0'>False</option>
-              </Form.Control>
-            </Form.Group>
+                <InputGroup className='mb-3'>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id='basic-addon1'>
+                      Shipping
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    as='select'
+                    name='shipping'
+                    onChange={(e) => onChange(e)}
+                  >
+                    <option>Please select</option>
+                    <option value='1'>True</option>
+                    <option value='0'>False</option>
+                  </Form.Control>
+                </InputGroup>
 
-            <Form.Group controlId='quantity'>
-              <Form.Label>Quantity</Form.Label>
-              <Form.Control
-                type='quantity'
-                placeholder='Quantity'
-                name='quantity'
-                value={quantity}
-                onChange={(e) => onChange(e)}
-              />
-            </Form.Group>
+                <InputGroup className='mb-3'>
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id='basic-addon1'>
+                      Quantity
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    type='quantity'
+                    name='quantity'
+                    value={quantity}
+                    onChange={(e) => onChange(e)}
+                  />
+                </InputGroup>
 
-            <Button
-              variant='light'
-              type='submit'
-              className='my-3 mr-2'
-              onClick={handleClick}
-            >
-              Cancel
-            </Button>
-            <Button variant='info' type='submit' className='my-3'>
-              Submit
-            </Button>
-          </Form>
+                <div className='submit-button-holder'>
+                  <FormInput
+                    name='number'
+                    id='create'
+                    className='btn btn-block product-create-btn'
+                    type='submit'
+                    value='Create'
+                  />
+                </div>
+              </Form>
+            </Col>
+          </Row>
         </Fragment>
       )}
     </Fragment>
