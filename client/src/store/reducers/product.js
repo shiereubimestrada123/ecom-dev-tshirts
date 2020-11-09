@@ -7,6 +7,7 @@ import {
   DELETE_PRODUCT_CART,
   CREATE_ORDER,
   LIST_ORDERS,
+  RESET_CART,
 } from '../actions/constants';
 
 const initialState = {
@@ -50,6 +51,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         cartProducts: payload.cartProducts,
+      };
+    case RESET_CART:
+      return {
+        ...state,
+        cartProducts: [],
       };
     case GET_SINGLE_PRODUCT:
       return {

@@ -10,6 +10,7 @@ import {
   AUTH_ERROR,
   LOGOUT,
   UPDATE_USER,
+  RESET_CART,
 } from './constants';
 
 // Load user
@@ -127,7 +128,11 @@ export const login = (email, password) => async (dispatch) => {
 
 // Logout
 export const logout = () => async (dispatch) => {
+  localStorage.removeItem('cartProducts');
   dispatch({
     type: LOGOUT,
+  });
+  dispatch({
+    type: RESET_CART,
   });
 };
