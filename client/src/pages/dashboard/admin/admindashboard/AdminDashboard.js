@@ -1,16 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import moment from 'moment';
-import {
-  Row,
-  Col,
-  Spinner,
-  Nav,
-  Tab,
-  ListGroup,
-} from 'react-bootstrap';
+import { Row, Col, Spinner, Nav, Tab, ListGroup } from 'react-bootstrap';
 import {
   selectAuthLoading,
   selectAuthUser,
@@ -40,7 +33,7 @@ const AdminDashboard = ({
 
   const paginate = (pageNumber) => setcurrentpage(pageNumber);
 
-  const [categoryData, setCategoryData] = useState('')
+  const [categoryData, setCategoryData] = useState('');
 
   useEffect(() => {
     listOrders(user && user._id);
@@ -48,7 +41,7 @@ const AdminDashboard = ({
 
   const categoryFormCallback = () => {
     setCategoryData(categoryData);
-  }
+  };
 
   return (
     <Fragment>
@@ -66,7 +59,34 @@ const AdminDashboard = ({
               <i className='fab fa-black-tie'></i> Admin Dashboard
             </Col>
           </Row>
-          <Tab.Container id='left-tabs-example' defaultActiveKey='first'>
+          <Row className='admin-row-body'>
+            <Col className='left' md={3}>
+              <ul>
+                <li>
+                  <Link to='/admin/create/category'>Create Category</Link>
+                </li>
+                <li>
+                  <Link to='/admin/create/product'>Create Product</Link>
+                </li>
+                <li>
+                  <Link to='/'>Orders</Link>
+                </li>
+                <li>
+                  <Link to='/user/account'>Update Account</Link>
+                </li>
+              </ul>
+            </Col>
+            <Col className='left' md={9}>
+              <ListGroup>
+                <ListGroup.Item>{user && user.name}</ListGroup.Item>
+                <ListGroup.Item>{user && user.email}</ListGroup.Item>
+                {/* <ListGroup.Item>
+                  {user && user.role === 1 ? 'Admin' : 'Registered User'}
+                </ListGroup.Item> */}
+              </ListGroup>
+            </Col>
+          </Row>
+          {/* <Tab.Container id='left-tabs-example' defaultActiveKey='first'>
             <Row className='admin-row-body'>
               <Col className='left' md={3}>
                 <Nav variant='pills' className='flex-column'>
@@ -124,7 +144,7 @@ const AdminDashboard = ({
                 </Tab.Content>
               </Col>
             </Row>
-          </Tab.Container>
+          </Tab.Container> */}
         </Fragment>
       )}
     </Fragment>

@@ -19,6 +19,17 @@
     padding: 20px;
     border-right: 1px solid #CECECE;
 
+    ul {
+      list-style-type:none;
+
+      li {
+
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+
     .nav-item {
       a {
         color: #5076A0;

@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col, Spinner, Tab, Nav, Form, InputGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -17,6 +18,8 @@ const Account = ({ updateUser, loading, user }) => {
     email: '',
     password: '',
   });
+
+  let history = useHistory();
 
   useEffect(() => {
     setValues({
@@ -40,6 +43,12 @@ const Account = ({ updateUser, loading, user }) => {
 
     e.preventDefault();
     updateUser({ name, password, email, userId });
+
+    if (user && user.role === 1) {
+      history.push('/admin/dashboard');
+    } else {
+      history.push('/user/dashboard');
+    }
   };
 
   return (

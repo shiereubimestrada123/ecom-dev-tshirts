@@ -46,16 +46,16 @@ const NavigationBar = ({
           >
             {user && user.role === 0 ? (
               <Fragment>
-                {/* <li>
+                <li>
                   <NavLink to='/user/dashboard' exact activeClassName='current'>
                     User
                   </NavLink>
-                </li> */}
-                <li>
+                </li>
+                {/* <li>
                   <NavLink to='/user/account' exact activeClassName='current'>
                     My Account
                   </NavLink>
-                </li>
+                </li> */}
               </Fragment>
             ) : (
               <Fragment>
