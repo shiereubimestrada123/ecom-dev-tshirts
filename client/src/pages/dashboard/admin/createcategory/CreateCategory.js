@@ -3,13 +3,14 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Form, Button, Spinner, Row, Col } from 'react-bootstrap';
+import { Form, Button, Spinner, Row, Col, InputGroup } from 'react-bootstrap';
 import { createCategory } from '../../../../store/actions/category';
 import {
   selectAuthUser,
   selectAuthLoading,
 } from '../../../../store/selectors/auth';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
+import FormInput from '../../../../components/forms/forminput/FormInput';
 
 const CreateCategory = ({ createCategory, user, loading }) => {
   let history = useHistory();
@@ -20,11 +21,7 @@ const CreateCategory = ({ createCategory, user, loading }) => {
 
   const { name } = formData;
 
-  const handleClick = () => {
-    history.push('/admin/dashboard');
-  };
-
-  const onChange = (e) =>
+  const handleChange = (e) =>
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -33,6 +30,8 @@ const CreateCategory = ({ createCategory, user, loading }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     createCategory(name, user && user._id);
+    setFormData('');
+    // e.target.reset();
   };
 
   return (
@@ -46,30 +45,42 @@ const CreateCategory = ({ createCategory, user, loading }) => {
         </Row>
       ) : (
         <Fragment>
-          <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
-            <Form.Group controlId='formCategoryName'>
-              <Form.Label>Category Name</Form.Label>
-              <Form.Control
-                type='name'
-                placeholder='Enter category name'
-                name='name'
-                value={name}
-                onChange={(e) => onChange(e)}
-              />
+          <Row className='mt-5 admin-row-header'>
+            <Col>
+              <i className='fab fa-black-tie' aria-hidden='true'></i> Create
+              Category
+            </Col>
+          </Row>
+          <Row className='user-row-body'>
+            <Col>
+              <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
+                <Form.Group controlId='formCategoryName'>
+                  <InputGroup className='mb-3'>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id='basic-addon1'>Name</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <Form.Control
+                      type='name'
+                      name='name'
+                      value={name || ''}
+                      className='user-profile-input'
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </InputGroup>
 
-              <Button
-                variant='light'
-                type='submit'
-                className='my-3 mr-2'
-                onClick={handleClick}
-              >
-                Cancel
-              </Button>
-              <Button variant='info' type='submit' className='my-3'>
-                Submit
-              </Button>
-            </Form.Group>
-          </Form>
+                  <div className='update-button-holder'>
+                    <FormInput
+                      name='text'
+                      id='update'
+                      className='btn btn-block user-update-btn'
+                      type='submit'
+                      value='Create'
+                    />
+                  </div>
+                </Form.Group>
+              </Form>
+            </Col>
+          </Row>
         </Fragment>
       )}
     </Fragment>

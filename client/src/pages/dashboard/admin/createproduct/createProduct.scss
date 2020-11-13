@@ -1,0 +1,28 @@
+.admin-row-body {
+  .submit-button-holder {
+    text-align: center;
+
+    .product-create-btn {
+      display: inline-block;
+      width: 200px;
+      // padding: 13px 10px;
+      background-color: #5076a0;
+      border-radius: 0;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+  
+    .product-create-btn:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  
+    .product-create-btn:hover {
+      border: 1px solid #5076a0;
+      background-color: #fff;
+      color: #5076a0;
+    }
+  }
+}

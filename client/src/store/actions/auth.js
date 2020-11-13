@@ -9,6 +9,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
+  UPDATE_USER,
+  RESET_CART,
 } from './constants';
 
 // Load user
@@ -28,6 +30,31 @@ export const loadUser = () => async (dispatch) => {
     dispatch({
       type: AUTH_ERROR,
     });
+  }
+};
+
+export const updateUser = ({ name, password, email, userId }) => async (
+  dispatch
+) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ name, password, email });
+
+  try {
+    const res = await axios.put(`/api/auth/${userId}`, body, config);
+
+    dispatch({
+      type: UPDATE_USER,
+      payload: res.data,
+    });
+
+    dispatch(setAlertPrompt('Updated profile successfully', 'success'));
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -101,7 +128,11 @@ export const login = (email, password) => async (dispatch) => {
 
 // Logout
 export const logout = () => async (dispatch) => {
+  localStorage.removeItem('cartProducts');
   dispatch({
     type: LOGOUT,
+  });
+  dispatch({
+    type: RESET_CART,
   });
 };

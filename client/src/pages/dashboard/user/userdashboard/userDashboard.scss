@@ -1,16 +1,16 @@
-.admin-row-header {
-  padding: 20px;
-  background-color: #EAEAEA;
-  border: 1px solid #CECECE;
-  border-bottom: none;
+// .user-row-header {
+//   padding: 20px;
+//   background-color: #EAEAEA;
+//   border: 1px solid #CECECE;
+//   border-bottom: none;
 
-  .fa-black-tie {
-    font-size: 1.5rem;
-    margin-right: 10px;
-  }
-}
+//   .fa-user {
+//     font-size: 1.5rem;
+//     margin-right: 10px;
+//   }
+// }
 
-.admin-row-body {
+.user-row-body {
   min-height: 650px;
   border: 1px solid #CECECE;
   margin-bottom: 50px;
@@ -48,16 +48,16 @@
   .right {
     padding: 20px;
 
-    .create-category-input:focus {
+    .user-profile-input:focus {
       outline: none;
       box-shadow: none;
       border: 1px solid #CED4DA;
     }
 
-    .create-category-holder {
+    .update-button-holder {
       text-align: center;
 
-      .create-category-btn {
+      .user-update-btn {
         display: inline-block;
         width: 200px;
         // padding: 13px 10px;
@@ -69,36 +69,17 @@
         margin-bottom: 14px;
       }
 
-      .create-category-btn:focus {
+      .user-update-btn:focus {
         outline: none;
         box-shadow: none;
       }
 
-      .create-category-btn:hover {
+      .user-update-btn:hover {
         border: 1px solid #5076a0;
         background-color: #fff;
         color: #5076a0;
       }
     }
 
-    .list-group-item.active {
-      z-index: 2;
-      color: #212529;
-      background-color: #EAEAEA;
-      border-color: #EAEAEA;
-    }
-
-    .page-link {
-      color: #5076A0;
-      background-color: #fff;
-      border: 1px solid #dee2e6;
-    }
-
-    .page-item.active .page-link {
-      z-index: 3;
-      color: #fff;
-      background-color: #5076A0;
-      border-color: #5076A0;
-    }
   }
 }

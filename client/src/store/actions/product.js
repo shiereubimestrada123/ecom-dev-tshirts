@@ -1,5 +1,6 @@
 import axios from 'axios';
 // import queryString from 'query-string';
+import setAuthToken from '../../utils/setAuthToken';
 import { setAlertPrompt } from './alertPrompt';
 import {
   PRODUCT_SUCCESS,
@@ -14,9 +15,12 @@ import {
 } from './constants';
 
 export const listOrders = (userId) => async (dispatch) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
   try {
     const res = await axios.get(`/api/order/list/${userId}`);
-    console.log(res.data);
 
     dispatch({
       type: LIST_ORDERS,
