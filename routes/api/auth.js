@@ -27,7 +27,6 @@ router.put('/:userId', auth, async (req, res) => {
     let user = await User.findById(req.params.userId).select('-password');
 
     if (!user) {
-      console.log('invalid user');
       return res.status(400).json({ errors: [{ msg: 'Invalid user' }] });
     }
 
@@ -35,7 +34,10 @@ router.put('/:userId', auth, async (req, res) => {
 
     user.name = name;
     user.email = email;
-    user.password = await bcrypt.hash(password, salt);
+
+    if (password !== '') {
+      user.password = await bcrypt.hash(password, salt);
+    }
 
     await user.save();
 

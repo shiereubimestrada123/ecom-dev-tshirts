@@ -39,9 +39,8 @@ const Account = ({ updateUser, loading, user }) => {
   };
 
   const handleSubmit = async (e) => {
-    const userId = user && user._id;
-
     e.preventDefault();
+    const userId = user && user._id;
     updateUser({ name, password, email, userId });
 
     if (user && user.role === 1) {
