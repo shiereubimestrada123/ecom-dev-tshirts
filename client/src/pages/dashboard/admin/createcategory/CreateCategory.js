@@ -30,7 +30,11 @@ const CreateCategory = ({ createCategory, user, loading }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     createCategory(name, user && user._id);
-    setFormData('');
+    if (name) {
+      history.push('/admin/dashboard');
+    }
+
+    // setFormData('');
     // e.target.reset();
   };
 

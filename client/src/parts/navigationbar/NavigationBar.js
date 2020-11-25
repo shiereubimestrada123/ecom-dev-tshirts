@@ -68,7 +68,7 @@ const NavigationBar = ({
                     Admin
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to='/admin/create/category'
                     exact
@@ -85,7 +85,7 @@ const NavigationBar = ({
                   >
                     Create Product
                   </NavLink>
-                </li>
+                </li> */}
               </Fragment>
             )}
             <li onClick={logout}>

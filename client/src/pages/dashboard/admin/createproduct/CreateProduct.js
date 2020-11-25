@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
@@ -32,6 +33,8 @@ const CreateProduct = ({
 
   const { name, description, price, quantity, formData } = values;
 
+  const history = useHistory();
+
   useEffect(() => {
     getCategories().then(() => {
       setValues({
@@ -55,8 +58,11 @@ const CreateProduct = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     createProduct(formData, user && user._id);
-    setValues('');
-    e.target.reset();
+    if (name && description && price && quantity && formData) {
+      history.push('/admin/dashboard');
+    }
+    // setValues('');
+    // e.target.reset();
   };
 
   return (
