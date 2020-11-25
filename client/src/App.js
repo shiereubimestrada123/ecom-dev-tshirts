@@ -13,7 +13,7 @@ import UserRoute from './components/privaterouting/UserRoute';
 import AdminRoute from './components/privaterouting/AdminRoute';
 import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
 import UserAccount from './pages/dashboard/user/useraccount/UserAccount';
-import UserPurchase from './pages/dashboard/user/userPurchase/UserPurchase';
+import UserPurchase from './pages/dashboard/user/userpurchase/UserPurchase';
 import AdminDashboard from './pages/dashboard/admin/admindashboard/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/createcategory/CreateCategory';
 import CreateProduct from './pages/dashboard/admin/createproduct/CreateProduct';
