@@ -3,7 +3,7 @@ import Pagination from 'react-bootstrap/Pagination';
 
 const PaginationOrder = ({
   orderperpage,
-  totalOrders,
+  totalorders,
   paginate,
   currentpage,
 }) => {
@@ -11,7 +11,7 @@ const PaginationOrder = ({
   let pageNumbers = [];
   for (
     let number = 1;
-    number <= Math.ceil(totalOrders / orderperpage);
+    number <= Math.ceil(totalorders / orderperpage);
     number++
   ) {
     pageNumbers.push(

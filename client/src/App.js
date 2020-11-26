@@ -17,7 +17,7 @@ import UserPurchase from './pages/dashboard/user/userpurchase/UserPurchase';
 import AdminDashboard from './pages/dashboard/admin/admindashboard/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/createcategory/CreateCategory';
 import CreateProduct from './pages/dashboard/admin/createproduct/CreateProduct';
-import Orders from './pages/orders/Orders';
+import Orders from './pages/dashboard/admin/orders/Orders';
 import Checkout from './pages/checkout/Checkout';
 import NotFound from './pages/dashboard/notfound/NotFound';
 
@@ -76,7 +76,7 @@ const App = () => {
               exact
               component={CreateProduct}
             /> */}
-            <AdminRoute path='/orders' exact component={Orders} />
+            <AdminRoute path='/admin/orders' exact component={Orders} />
             <Route component={NotFound} />
           </Switch>
         </Container>

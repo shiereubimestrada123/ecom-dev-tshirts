@@ -69,7 +69,7 @@ const AdminDashboard = ({
                   <Link to='/admin/create/product'>Create Product</Link>
                 </li>
                 <li>
-                  <Link to='/'>Orders</Link>
+                  <Link to='/admin/orders'>Orders</Link>
                 </li>
                 <li>
                   <Link to='/user/account'>Update Account</Link>
