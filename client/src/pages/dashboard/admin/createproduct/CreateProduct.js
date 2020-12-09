@@ -1,8 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Form, Row, Col, Spinner, InputGroup } from 'react-bootstrap';
+import { Form, Row, Col, Spinner, InputGroup, Button } from 'react-bootstrap';
 import { createProduct } from '../../../../store/actions/product';
 import { getCategories } from '../../../../store/actions/category';
 import {
@@ -32,6 +33,8 @@ const CreateProduct = ({
 
   const { name, description, price, quantity, formData } = values;
 
+  const history = useHistory();
+
   useEffect(() => {
     getCategories().then(() => {
       setValues({
@@ -55,8 +58,11 @@ const CreateProduct = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     createProduct(formData, user && user._id);
-    setValues('');
-    e.target.reset();
+    if (name && description && price && quantity && formData) {
+      history.push('/admin/dashboard');
+    }
+    // setValues('');
+    // e.target.reset();
   };
 
   return (
@@ -181,14 +187,17 @@ const CreateProduct = ({
                   />
                 </InputGroup>
 
-                <div className='submit-button-holder'>
-                  <FormInput
-                    name='number'
-                    id='create'
-                    className='btn btn-block product-create-btn'
-                    type='submit'
-                    value='Create'
-                  />
+                <div className='product-button-holder'>
+                  <Link
+                    to='/admin/dashboard'
+                    className='cancel'
+                    style={{ textDecoration: 'none' }}
+                  >
+                    Cancel
+                  </Link>{' '}
+                  <Button variant='success' className='button' type='submit'>
+                    Submit
+                  </Button>
                 </div>
               </Form>
             </Col>

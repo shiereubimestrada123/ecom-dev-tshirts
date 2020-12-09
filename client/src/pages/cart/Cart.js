@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Table, Card, Spinner, Row, Col, Button } from 'react-bootstrap';
+import { Table, Card, Spinner, Row, Col } from 'react-bootstrap';
 import FormInput from '../../components/forms/forminput/FormInput';
 import {
   selectCartProducts,

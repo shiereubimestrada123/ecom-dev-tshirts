@@ -13,10 +13,11 @@ import UserRoute from './components/privaterouting/UserRoute';
 import AdminRoute from './components/privaterouting/AdminRoute';
 import UserDashboard from './pages/dashboard/user/userdashboard/UserDashboard';
 import UserAccount from './pages/dashboard/user/useraccount/UserAccount';
+import UserPurchase from './pages/dashboard/user/userpurchase/UserPurchase';
 import AdminDashboard from './pages/dashboard/admin/admindashboard/AdminDashboard';
 import CreateCategory from './pages/dashboard/admin/createcategory/CreateCategory';
 import CreateProduct from './pages/dashboard/admin/createproduct/CreateProduct';
-import Orders from './pages/orders/Orders';
+import Orders from './pages/dashboard/admin/orders/Orders';
 import Checkout from './pages/checkout/Checkout';
 import NotFound from './pages/dashboard/notfound/NotFound';
 
@@ -48,6 +49,7 @@ const App = () => {
             <Route path='/cart' exact component={Cart} />
             <UserRoute path='/user/dashboard' exact component={UserDashboard} />
             <UserRoute path='/user/account' exact component={UserAccount} />
+            <UserRoute path='/user/purchase' exact component={UserPurchase} />
             <UserRoute path='/checkout' exact component={Checkout} />
             <AdminRoute
               path='/admin/dashboard'
@@ -74,7 +76,7 @@ const App = () => {
               exact
               component={CreateProduct}
             /> */}
-            <AdminRoute path='/orders' exact component={Orders} />
+            <AdminRoute path='/admin/orders' exact component={Orders} />
             <Route component={NotFound} />
           </Switch>
         </Container>
