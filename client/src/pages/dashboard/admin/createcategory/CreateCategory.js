@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -26,6 +26,11 @@ const CreateCategory = ({ createCategory, user, loading }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+
+  const cancel = () => {
+    console.log('cancecl');
+    history.push('/admin/dashboard');
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -72,14 +77,17 @@ const CreateCategory = ({ createCategory, user, loading }) => {
                     />
                   </InputGroup>
 
-                  <div className='update-button-holder'>
-                    <FormInput
-                      name='text'
-                      id='update'
-                      className='btn btn-block user-update-btn'
-                      type='submit'
-                      value='Create'
-                    />
+                  <div className='category-holder'>
+                    <Link
+                      to='/admin/dashboard'
+                      className='cancel'
+                      style={{ textDecoration: 'none' }}
+                    >
+                      Cancel
+                    </Link>{' '}
+                    <Button variant='success' className='button' type='submit'>
+                      Submit
+                    </Button>
                   </div>
                 </Form.Group>
               </Form>

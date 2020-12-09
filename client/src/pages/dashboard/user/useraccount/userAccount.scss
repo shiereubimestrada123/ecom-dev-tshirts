@@ -21,30 +21,30 @@
     border: 1px solid #ced4da;
   }
   
-  .update-button-holder {
+  .update-user-button-holder {
     text-align: center;
   
-    .user-update-btn {
+    .button {
+      border-radius: 0!important
+    }
+    
+    .cancel {
       display: inline-block;
-      width: 200px;
-      // padding: 13px 10px;
-      background-color: #5076a0;
-      border-radius: 0;
-      font-size: 20px;
-      font-weight: bold;
       color: #fff;
-      margin-bottom: 14px;
+      font-weight: 400;
+      background-color: #DC3544;
+      border-color:#DC3544;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid transparent;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
     }
-  
-    .user-update-btn:focus {
-      outline: none;
-      box-shadow: none;
-    }
-  
-    .user-update-btn:hover {
-      border: 1px solid #5076a0;
-      background-color: #fff;
-      color: #5076a0;
+    
+    .cancel:hover {
+      color: #fff;
+      background-color: #c82333;
     }
   }
 }

@@ -1,47 +1,20 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import moment from 'moment';
-import { Row, Col, Spinner, Nav, Tab, ListGroup } from 'react-bootstrap';
+import { Row, Col, Spinner, ListGroup } from 'react-bootstrap';
 import {
   selectAuthLoading,
   selectAuthUser,
 } from '../../../../store/selectors/auth';
 import { selectOrders } from '../../../../store/selectors/product';
 import { listOrders } from '../../../../store/actions/product';
-import { createCategory } from '../../../../store/actions/category';
-import PaginationOrder from '../../../../components/pagination/PaginationOrder';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
-import CategoryComponent from '../categorycomponent/CategoryComponent';
 
-const AdminDashboard = ({
-  listOrders,
-  createCategory,
-  loading,
-  user,
-  orders,
-}) => {
-  let history = useHistory();
-
-  const [currentpage, setcurrentpage] = useState(1);
-  const [orderperpage] = useState(3);
-
-  const indexOfLastOrder = currentpage * orderperpage;
-  const indexOfFirstOrder = indexOfLastOrder - orderperpage;
-  const allOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
-
-  const paginate = (pageNumber) => setcurrentpage(pageNumber);
-
-  const [categoryData, setCategoryData] = useState('');
-
+const AdminDashboard = ({ listOrders, loading, user, orders }) => {
   useEffect(() => {
     listOrders(user && user._id);
   }, [user]);
-
-  const categoryFormCallback = () => {
-    setCategoryData(categoryData);
-  };
 
   return (
     <Fragment>
@@ -80,71 +53,9 @@ const AdminDashboard = ({
               <ListGroup>
                 <ListGroup.Item>{user && user.name}</ListGroup.Item>
                 <ListGroup.Item>{user && user.email}</ListGroup.Item>
-                {/* <ListGroup.Item>
-                  {user && user.role === 1 ? 'Admin' : 'Registered User'}
-                </ListGroup.Item> */}
               </ListGroup>
             </Col>
           </Row>
-          {/* <Tab.Container id='left-tabs-example' defaultActiveKey='first'>
-            <Row className='admin-row-body'>
-              <Col className='left' md={3}>
-                <Nav variant='pills' className='flex-column'>
-                  <Nav.Item>
-                    <Nav.Link eventKey='first'>Create Category</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey='second'>Create Product</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey='three'>Orders</Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Col>
-              <Col className='right' md={9}>
-                <Tab.Content>
-                  <Tab.Pane eventKey='first'>
-                    <CategoryComponent parentCallback={categoryFormCallback} />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey='second'>
-                    <p>second</p>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey='three'>
-                    {allOrders.map((order, orderIndex) => (
-                      <ListGroup as='ul' key={orderIndex} className='my-3'>
-                        <ListGroup.Item as='li' active>
-                          Transaction Id: {order.transactionId}
-                        </ListGroup.Item>
-                        <ListGroup.Item as='li'>
-                          Ordered by: {order.name}
-                        </ListGroup.Item>
-                        <ListGroup.Item as='li'>
-                          Ordered date:{' '}
-                          {moment(order.createdAt).format('MM/DD/YYYY')}
-                        </ListGroup.Item>
-                        <ListGroup.Item as='li'>
-                          Status: {order.status}
-                        </ListGroup.Item>
-                        <ListGroup.Item as='li'>
-                          Delivery Address: {order.address}
-                        </ListGroup.Item>
-                        <ListGroup.Item as='li'>
-                          Total: &#8369;{order.total}
-                        </ListGroup.Item>
-                      </ListGroup>
-                    ))}
-
-                    <PaginationOrder
-                      orderperpage={orderperpage}
-                      totalOrders={orders.length}
-                      paginate={paginate}
-                      currentpage={currentpage}
-                    />
-                  </Tab.Pane>
-                </Tab.Content>
-              </Col>
-            </Row>
-          </Tab.Container> */}
         </Fragment>
       )}
     </Fragment>
@@ -157,6 +68,4 @@ const mapStateToProps = createStructuredSelector({
   loading: selectAuthLoading,
 });
 
-export default connect(mapStateToProps, { listOrders, createCategory })(
-  AdminDashboard
-);
+export default connect(mapStateToProps, { listOrders })(AdminDashboard);

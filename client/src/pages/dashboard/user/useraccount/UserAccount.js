@@ -1,8 +1,17 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Spinner, Tab, Nav, Form, InputGroup } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Spinner,
+  Tab,
+  Nav,
+  Form,
+  InputGroup,
+  Button,
+} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 import {
@@ -112,14 +121,21 @@ const Account = ({ updateUser, loading, user }) => {
                     />
                   </InputGroup>
 
-                  <div className='update-button-holder'>
-                    <FormInput
-                      name='text'
-                      id='update'
-                      className='btn btn-block user-update-btn'
-                      type='submit'
-                      value='Update'
-                    />
+                  <div className='update-user-button-holder'>
+                    <Link
+                      to={
+                        user && user.role === 1
+                          ? '/admin/dashboard'
+                          : '/user/dashboard'
+                      }
+                      className='cancel'
+                      style={{ textDecoration: 'none' }}
+                    >
+                      Cancel
+                    </Link>{' '}
+                    <Button variant='success' className='button' type='submit'>
+                      Submit
+                    </Button>
                   </div>
                 </Form.Group>
               </Form>
