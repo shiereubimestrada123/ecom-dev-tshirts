@@ -26,6 +26,10 @@
         a {
           text-decoration: none;
           font-size: 1.5rem;
+          color: #212529;
+        }
+
+        a:hover {
           color: #5076a0;
         }
       }
@@ -36,6 +40,10 @@
         a {
           text-decoration: none;
           font-size: 1.5rem;
+          color: #212529;
+        }
+
+        a:hover {
           color: #5076a0;
         }
       }
@@ -72,6 +80,15 @@
           padding-right: 15px;
           padding-top: 18px;
 
+          .parent-badge {
+            display: flex;
+
+            .user-badge {
+              margin-left: 5px;
+              font-size: 15px;
+            }
+          }
+
           .fa-user-plus,
           .fa-id-card {
             font-size: 1.5rem;
@@ -79,7 +96,7 @@
 
           .hovered-user-icon {
             position: absolute;
-            right: -35px;
+            right: 10px;
             top: 60px;
             padding: 10px 20px 10px 20px;
             background-color: #ffffff;
@@ -87,7 +104,7 @@
             list-style: none;
             box-shadow: 5px 10px 8px #888888;
             z-index: 99;
-            width: 130px;
+            width: 100px;
 
             a {
               text-decoration: none;
@@ -101,7 +118,7 @@
 
           .hovered-not-login-icon {
             position: absolute;
-            right: -15px;
+            right: 5px;
             top: 60px;
             padding: 10px 20px 10px 20px;
             background-color: #ffffff;
@@ -123,7 +140,7 @@
 
           .hovered-admin-icon {
             position: absolute;
-            right: -50px;
+            right: 10px;
             top: 60px;
             padding: 10px 20px 10px 20px;
             background-color: #ffffff;
@@ -131,7 +148,7 @@
             list-style: none;
             box-shadow: 5px 10px 8px #888888;
             z-index: 99;
-            width: 160px;
+            width: 100px;
 
             a {
               text-decoration: none;
@@ -219,8 +236,8 @@
 
             .shop-btn-cart-dropdown:hover {
               border: 1px solid #5076a0;
-              background-color: #fff;
-              color: #5076a0;
+              background-color:#48698f;
+              color:  #fff;
             }
 
             .cart-empty {
@@ -245,8 +262,8 @@
 
             .cart-btn-cart-dropdown:hover {
               border: 1px solid #5076a0;
-              background-color: #fff;
-              color: #5076a0;
+              background-color: #48698f;
+              color: #fff;
             }
           }
         }
