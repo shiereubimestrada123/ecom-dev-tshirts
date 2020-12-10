@@ -35,7 +35,14 @@ const NavigationBar = ({
     >
       {isShownRegisterLogin ? (
         <Fragment>
-          <i className='fas fa-id-card' style={{ color: '#5076a0' }}></i>
+          <div className='parent-badge'>
+            <i className='fas fa-id-card' style={{ color: '#5076a0' }}></i>
+            <span style={{ fontSize: '20px', color: '#5076a0' }}>
+              {' '}
+              {user && user.name}
+            </span>
+          </div>
+
           <ul
             className={
               user && user.role === 0
@@ -51,11 +58,6 @@ const NavigationBar = ({
                     User
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink to='/user/account' exact activeClassName='current'>
-                    My Account
-                  </NavLink>
-                </li> */}
               </Fragment>
             ) : (
               <Fragment>
@@ -68,24 +70,6 @@ const NavigationBar = ({
                     Admin
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink
-                    to='/admin/create/category'
-                    exact
-                    activeClassName='current'
-                  >
-                    Create Category
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to='/admin/create/product'
-                    exact
-                    activeClassName='current'
-                  >
-                    Create Product
-                  </NavLink>
-                </li> */}
               </Fragment>
             )}
             <li onClick={logout}>
@@ -96,7 +80,12 @@ const NavigationBar = ({
           </ul>
         </Fragment>
       ) : (
-        <i className='fas fa-id-card'></i>
+        <Fragment>
+          <div className='parent-badge'>
+            <i className='fas fa-id-card'></i>
+            <span style={{ fontSize: '20px' }}> {user && user.name}</span>
+          </div>
+        </Fragment>
       )}
     </div>
   );
@@ -109,7 +98,11 @@ const NavigationBar = ({
     >
       {isShownRegisterLogin ? (
         <Fragment>
-          <i className='fas fa-user-plus' style={{ color: '#5076a0' }}></i>
+          <div className='parent-badge'>
+            <i className='fas fa-user-plus' style={{ color: '#5076a0' }}></i>
+            <span style={{ fontSize: '20px', color: '#5076a0' }}>Login</span>
+          </div>
+
           <ul
             className='hovered-not-login-icon'
             onClick={() => setIsShownRegisterLogin(false)}
@@ -127,7 +120,12 @@ const NavigationBar = ({
           </ul>
         </Fragment>
       ) : (
-        <i className='fas fa-user-plus'></i>
+        <Fragment>
+          <div className='parent-badge'>
+            <i className='fas fa-user-plus'></i>
+            <span style={{ fontSize: '20px' }}>Login</span>
+          </div>
+        </Fragment>
       )}
     </div>
   );
@@ -207,6 +205,7 @@ const NavigationBar = ({
               <Nav.Item>
                 <Link to='/'>
                   <i className='fas fa-home'></i>
+                  <span style={{ fontSize: '20px' }}>Home</span>
                 </Link>
               </Nav.Item>
             </div>
@@ -215,6 +214,7 @@ const NavigationBar = ({
               <Nav.Item>
                 <Link to='/shop'>
                   <i className='fas fa-store'></i>
+                  <span style={{ fontSize: '20px' }}>Shop</span>
                 </Link>
               </Nav.Item>
             </div>
