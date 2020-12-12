@@ -28,3 +28,4 @@ export const LIST_ORDERS = 'LIST_ORDERS';
 export const UPDATE_USER = 'UPDATE_USER';
 
 export const RESET_CART = 'RESET_CART';
+export const CAROUSEL_PRODUCTS = 'CAROUSEL_PRODUCTS';

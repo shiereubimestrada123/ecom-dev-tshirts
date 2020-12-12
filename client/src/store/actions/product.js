@@ -12,7 +12,22 @@ import {
   DELETE_PRODUCT_CART,
   CREATE_ORDER,
   LIST_ORDERS,
+  CAROUSEL_PRODUCTS,
 } from './constants';
+
+export const showCarouselProducts = () => async (dispatch) => {
+  console.log('showCarouselProducts');
+  try {
+    const res = await axios.get('/api/product/top');
+
+    dispatch({
+      type: CAROUSEL_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const listOrders = (userId) => async (dispatch) => {
   if (localStorage.token) {

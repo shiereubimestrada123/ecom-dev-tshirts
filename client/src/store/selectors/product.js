@@ -2,6 +2,11 @@ import { createSelector } from 'reselect';
 
 const selectProduct = (state) => state.product;
 
+export const selectCarouselProducts = createSelector(
+  [selectProduct],
+  (product) => product.carouselProducts
+);
+
 export const selectOrders = createSelector(
   [selectProduct],
   (product) => product.orders

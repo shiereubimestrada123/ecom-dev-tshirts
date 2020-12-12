@@ -8,6 +8,7 @@ import {
   CREATE_ORDER,
   LIST_ORDERS,
   RESET_CART,
+  CAROUSEL_PRODUCTS,
 } from '../actions/constants';
 
 const initialState = {
@@ -20,12 +21,20 @@ const initialState = {
   cartProducts: JSON.parse(localStorage.getItem('cartProducts') || '[]'),
   order: null,
   orders: [],
+  carouselProducts: [],
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case CAROUSEL_PRODUCTS: {
+      return {
+        ...state,
+        carouselProducts: payload,
+        loading: false,
+      };
+    }
     case LIST_ORDERS: {
       return {
         ...state,

@@ -96,6 +96,19 @@ router.post('/by/search', async (req, res) => {
   }
 });
 
+router.get('/top', async (req, res) => {
+  try {
+    const products = await Product.find({})
+      .select('-photo')
+      .sort({ sold: -1 })
+      .limit(3);
+
+    res.json(products);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get('/:productId', async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId)

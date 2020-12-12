@@ -4,19 +4,30 @@ import PropTypes from 'prop-types';
 import FormInput from '../../components/forms/forminput/FormInput';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Spinner } from 'react-bootstrap';
+import { Row, Col, Spinner, Carousel } from 'react-bootstrap';
 import { getCategories } from '../../store/actions/category';
-import { getProducts } from '../../store/actions/product';
+import { getProducts, showCarouselProducts } from '../../store/actions/product';
 import { selectAuthLoading } from '../../store/selectors/auth';
-import { selectAllProducts } from '../../store/selectors/product';
+import {
+  selectAllProducts,
+  selectCarouselProducts,
+} from '../../store/selectors/product';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import home from '../../assets/images/home.jpg';
 import { Animated } from 'react-animated-css';
 
-const Home = ({ getCategories, getProducts, loading, products }) => {
+const Home = ({
+  getCategories,
+  getProducts,
+  showCarouselProducts,
+  loading,
+  products,
+  carouselProducts,
+}) => {
   useEffect(() => {
     getCategories();
     getProducts();
+    showCarouselProducts();
   }, []);
 
   return (
@@ -37,20 +48,24 @@ const Home = ({ getCategories, getProducts, loading, products }) => {
                 animationOut='fadeOut'
                 isVisible={true}
               >
-                <div className='parent-home'>
-                  <img className='big-image' src={home} alt='home' />
-                  <div className='parent-home-image'>
-                    <Link to='/shop' style={{ textDecoration: 'none' }}>
-                      <FormInput
-                        name='test'
-                        id='test'
-                        className='btn btn-block home-btn'
-                        type='button'
-                        value='SHOP NOW'
-                      />
-                    </Link>
-                  </div>
-                </div>
+                <Carousel>
+                  {carouselProducts.map((product) => (
+                    <Carousel.Item interval={1000} key={product._id}>
+                      <Link to={`/product/${product._id}`}>
+                        <img
+                          style={{ height: '500px', width: '100%' }}
+                          className=''
+                          src={`/api/product/photo/${product._id}`}
+                          alt={product.name}
+                        />
+                        <Carousel.Caption>
+                          <h3>First slide label</h3>
+                          <p>{product.name}</p>
+                        </Carousel.Caption>
+                      </Link>
+                    </Carousel.Item>
+                  ))}
+                </Carousel>
 
                 <h1 className='home-header'>Welcome to EcomDev</h1>
                 <div className='parent-home-icons'>
@@ -95,11 +110,17 @@ const Home = ({ getCategories, getProducts, loading, products }) => {
 Home.propTypes = {
   getCategories: PropTypes.func.isRequired,
   getProducts: PropTypes.func.isRequired,
+  showCarouselProducts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: selectAuthLoading,
   products: selectAllProducts,
+  carouselProducts: selectCarouselProducts,
 });
 
-export default connect(mapStateToProps, { getCategories, getProducts })(Home);
+export default connect(mapStateToProps, {
+  getCategories,
+  getProducts,
+  showCarouselProducts,
+})(Home);
