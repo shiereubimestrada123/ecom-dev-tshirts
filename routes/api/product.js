@@ -142,13 +142,13 @@ router.get('/', async (req, res) => {
   try {
     let order = req.query.order ? req.query.order : 'asc';
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id';
-    let limit = req.query.limit ? parseInt(req.query.limit) : 2;
+    let limit = req.query.limit ? parseInt(req.query.limit) : 100;
 
     const products = await Product.find()
       .select('-photo')
       .populate('category')
-      .sort([[sortBy, order]]);
-
+      .sort([[sortBy, order]])
+      .limit(limit);
     res.json(products);
   } catch (err) {
     console.error(err.message);

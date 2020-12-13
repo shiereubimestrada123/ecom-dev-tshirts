@@ -41,6 +41,7 @@
 .home-header {
   margin-top: 40px;
   text-align: center;
+  font-size: 3em;
 }
 
 .parent-home-icons {
@@ -55,15 +56,15 @@
   }
 }
 
-.holder-new-arrival {
+.holder-most-popular {
   position: relative;
 
-  .child-new-arrival::before {
+  .child-most-popular::before {
     content: "";
     position: absolute;
     display: block;
     right: 0;
-    top: 0;
+    top: -30px;
     left: 0;
     margin: auto;
     border-width: 2px;
@@ -72,5 +73,11 @@
     border-top-color: #373737;
     width: 35%;
     height: 200px;
+  }
+
+  h2 {
+    text-align: center;
+    // padding-top: 20px;
+    font-size: 3em;
   }
 }

@@ -29,3 +29,4 @@ export const UPDATE_USER = 'UPDATE_USER';
 
 export const RESET_CART = 'RESET_CART';
 export const CAROUSEL_PRODUCTS = 'CAROUSEL_PRODUCTS';
+export const SOLD_PRODUCTS = 'SOLD_PRODUCTS';

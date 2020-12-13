@@ -9,6 +9,7 @@ import {
   LIST_ORDERS,
   RESET_CART,
   CAROUSEL_PRODUCTS,
+  SOLD_PRODUCTS,
 } from '../actions/constants';
 
 const initialState = {
@@ -22,12 +23,20 @@ const initialState = {
   order: null,
   orders: [],
   carouselProducts: [],
+  soldProducts: [],
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case SOLD_PRODUCTS: {
+      return {
+        ...state,
+        soldProducts: payload,
+        loading: false,
+      };
+    }
     case CAROUSEL_PRODUCTS: {
       return {
         ...state,
