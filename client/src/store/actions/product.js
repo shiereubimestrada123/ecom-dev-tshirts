@@ -12,7 +12,23 @@ import {
   DELETE_PRODUCT_CART,
   CREATE_ORDER,
   LIST_ORDERS,
+  CAROUSEL_PRODUCTS,
+  SOLD_PRODUCTS,
 } from './constants';
+
+export const showCarouselProducts = () => async (dispatch) => {
+  console.log('showCarouselProducts');
+  try {
+    const res = await axios.get('/api/product/top');
+
+    dispatch({
+      type: CAROUSEL_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const listOrders = (userId) => async (dispatch) => {
   if (localStorage.token) {
@@ -119,6 +135,17 @@ export const getProducts = () => async (dispatch) => {
     const res = await axios.get(`/api/product?sortBy=createdAt&order=desc`);
     dispatch({
       type: GET_PRODUCTS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getSoldProducts = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/product?sortBy=sold&order=desc&limit=9`);
+    dispatch({
+      type: SOLD_PRODUCTS,
       payload: res.data,
     });
   } catch (error) {

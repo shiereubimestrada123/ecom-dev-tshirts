@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import CardTemplate from './CardTemplate';
 
-const ShopCard = ({ product }) => {
+const SingleCard = ({ product }) => {
   return (
     <Card
       style={{
@@ -21,4 +21,4 @@ const ShopCard = ({ product }) => {
   );
 };
 
-export default ShopCard;
+export default SingleCard;
