@@ -14,6 +14,7 @@ import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 const AdminDashboard = ({ listOrders, loading, user, orders }) => {
   useEffect(() => {
     listOrders(user && user._id);
+    window.scrollTo(0, 0);
   }, [user]);
 
   return (

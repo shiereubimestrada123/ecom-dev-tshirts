@@ -42,6 +42,7 @@ const CreateProduct = ({
         formData: new FormData(),
       });
     });
+    window.scrollTo(0, 0);
   }, [getCategories]);
 
   const onChange = (e) => {

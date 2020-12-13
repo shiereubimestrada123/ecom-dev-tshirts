@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Spinner, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -22,6 +22,10 @@ const Checkout = ({
   createOrder,
   productCount,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     address: '',

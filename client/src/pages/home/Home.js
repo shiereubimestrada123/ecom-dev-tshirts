@@ -35,6 +35,7 @@ const Home = ({
     getProducts();
     getSoldProducts();
     showCarouselProducts();
+    window.scrollTo(0, 0);
   }, []);
 
   return (

@@ -36,6 +36,7 @@ const Account = ({ updateUser, loading, user }) => {
       name: user && user.name,
       email: user && user.email,
     });
+    window.scrollTo(0, 0);
   }, [user]);
 
   const { name, email, password } = values;

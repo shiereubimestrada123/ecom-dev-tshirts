@@ -31,6 +31,7 @@ const Shop = ({
   useEffect(() => {
     getCategories();
     getProducts();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
