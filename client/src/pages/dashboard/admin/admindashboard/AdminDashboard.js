@@ -48,6 +48,9 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
                 <li>
                   <Link to='/user/account'>Update Account</Link>
                 </li>
+                <li>
+                  <Link to='/admin/products'>Manage Products</Link>
+                </li>
               </ul>
             </Col>
             <Col className='left' md={9}>

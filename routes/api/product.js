@@ -96,7 +96,7 @@ router.post('/by/search', async (req, res) => {
   }
 });
 
-router.get('/top', async (req, res) => {
+router.get('/carousel', async (req, res) => {
   try {
     const products = await Product.find({})
       .select('-photo')

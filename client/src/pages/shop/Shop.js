@@ -46,6 +46,11 @@ const Shop = ({
       ) : (
         <Row>
           <Col md={12}>
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+              <h2>Welcome to our store</h2>
+              <p>Check our new items</p>
+            </div>
+
             <div className='shop-card mt-2 mb-4'>
               {allProducts.map((product, index) => (
                 <div key={index}>

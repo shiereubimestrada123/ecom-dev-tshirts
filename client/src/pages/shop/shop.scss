@@ -4,3 +4,20 @@
   justify-content: center;
   width: auto;
 }
+
+.pagination {
+  justify-content: center;
+
+  .page-item.active {
+    .page-link {
+      background-color:  #5076a0;
+      border-color:  #5076a0;
+    }
+  }
+
+  .page-item {
+    .page-link {
+      color: #5076a0;
+    }
+  }
+}
