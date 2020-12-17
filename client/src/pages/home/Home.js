@@ -35,6 +35,7 @@ const Home = ({
     getProducts();
     getSoldProducts();
     showCarouselProducts();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -55,9 +56,16 @@ const Home = ({
                 animationOut='fadeOut'
                 isVisible={true}
               >
-                <Carousel>
+                <Carousel
+                  // nextIcon=''
+                  // nextLabel=''
+                  // prevIcon=''
+                  // prevLabel=''
+                  interval={3000}
+                  indicators={false}
+                >
                   {carouselProducts.map((product) => (
-                    <Carousel.Item interval={1000} key={product._id}>
+                    <Carousel.Item key={product._id}>
                       <Link to={`/product/${product._id}`}>
                         <img
                           style={{ height: '500px', width: '100%' }}
@@ -65,10 +73,6 @@ const Home = ({
                           src={`/api/product/photo/${product._id}`}
                           alt={product.name}
                         />
-                        <Carousel.Caption>
-                          <h3>First slide label</h3>
-                          <p>{product.name}</p>
-                        </Carousel.Caption>
                       </Link>
                     </Carousel.Item>
                   ))}

@@ -19,7 +19,7 @@ import {
 export const showCarouselProducts = () => async (dispatch) => {
   console.log('showCarouselProducts');
   try {
-    const res = await axios.get('/api/product/top');
+    const res = await axios.get('/api/product/carousel');
 
     dispatch({
       type: CAROUSEL_PRODUCTS,

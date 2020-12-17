@@ -25,6 +25,7 @@ const Order = ({ listOrders, user, orders, loading }) => {
 
   useEffect(() => {
     listOrders(user && user._id);
+    window.scrollTo(0, 0);
   }, [user]);
 
   return (

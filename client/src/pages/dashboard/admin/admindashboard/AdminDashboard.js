@@ -14,6 +14,7 @@ import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 const AdminDashboard = ({ listOrders, loading, user, orders }) => {
   useEffect(() => {
     listOrders(user && user._id);
+    window.scrollTo(0, 0);
   }, [user]);
 
   return (
@@ -46,6 +47,9 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
                 </li>
                 <li>
                   <Link to='/user/account'>Update Account</Link>
+                </li>
+                <li>
+                  <Link to='/admin/products'>Manage Products</Link>
                 </li>
               </ul>
             </Col>

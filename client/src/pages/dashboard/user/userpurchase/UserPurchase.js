@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
@@ -14,6 +14,10 @@ import {
 } from '../../../../store/selectors/auth';
 
 const UserPurchase = ({ loading, user }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [currentpage, setcurrentpage] = useState(1);
   const [purchaseperpage] = useState(5);
 
