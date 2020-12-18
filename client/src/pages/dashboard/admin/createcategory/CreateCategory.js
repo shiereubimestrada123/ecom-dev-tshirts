@@ -10,7 +10,6 @@ import {
   selectAuthLoading,
 } from '../../../../store/selectors/auth';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
-import FormInput from '../../../../components/forms/forminput/FormInput';
 
 const CreateCategory = ({ createCategory, user, loading }) => {
   let history = useHistory();
@@ -31,10 +30,10 @@ const CreateCategory = ({ createCategory, user, loading }) => {
       [e.target.name]: e.target.value,
     });
 
-  const cancel = () => {
-    console.log('cancecl');
-    history.push('/admin/dashboard');
-  };
+  // const cancel = () => {
+  //   console.log('cancecl');
+  //   history.push('/admin/dashboard');
+  // };
 
   const onSubmit = async (e) => {
     e.preventDefault();

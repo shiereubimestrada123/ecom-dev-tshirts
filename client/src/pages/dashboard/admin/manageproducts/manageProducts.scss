@@ -1,0 +1,26 @@
+.manage-row-header {
+  padding: 20px;
+  background-color: #EAEAEA;
+  border: 1px solid #CECECE;
+  border-bottom: none;
+
+  .fa-black-tie {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+}
+
+.manage-row-body {
+  min-height: 650px;
+  border: 1px solid #CECECE;
+  margin-bottom: 50px;
+
+  .manage-product-holder {
+
+    h2 {
+      text-align: center;
+      margin: 20px 0 20px 0;
+    }
+
+  }
+}
