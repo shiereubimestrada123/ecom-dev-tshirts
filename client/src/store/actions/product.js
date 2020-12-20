@@ -14,10 +14,18 @@ import {
   LIST_ORDERS,
   CAROUSEL_PRODUCTS,
   SOLD_PRODUCTS,
+  DELETE_PRODUCT,
 } from './constants';
 
+export const deleteProduct = () => {
+  try {
+    console.log('deleteProduct');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const showCarouselProducts = () => async (dispatch) => {
-  console.log('showCarouselProducts');
   try {
     const res = await axios.get('/api/product/carousel');
 

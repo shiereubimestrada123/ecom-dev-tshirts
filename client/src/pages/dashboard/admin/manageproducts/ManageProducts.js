@@ -6,13 +6,20 @@ import { createStructuredSelector } from 'reselect';
 import { Spinner, Row, Col, Table } from 'react-bootstrap';
 import { getProducts } from '../../../../store/actions/product';
 import { selectAllProducts } from '../../../../store/selectors/product';
-import { selectAuthLoading } from '../../../../store/selectors/auth';
+import {
+  selectAuthLoading,
+  selectAuthUser,
+} from '../../../../store/selectors/auth';
 
-const ManageProducts = ({ loading, products, getProducts }) => {
+const ManageProducts = ({ loading, products, getProducts, user }) => {
   useEffect(() => {
     getProducts();
     window.scrollTo(0, 0);
   }, []);
+
+  const deleteProduct = (productId) => {
+    console.log(user);
+  };
 
   return (
     <Fragment>
@@ -44,11 +51,11 @@ const ManageProducts = ({ loading, products, getProducts }) => {
                   </thead>
                   <tbody>
                     {products.length > 0 ? (
-                      products.map((product) => (
-                        <tr>
+                      products.map((product, index) => (
+                        <tr key={index}>
                           <td>{product.name}</td>
-                          <td>
-                            <i class='fas fa-edit'></i>
+                          <td onClick={() => deleteProduct(product._id)}>
+                            <i className='fas fa-edit'></i>
                           </td>
                           <td>
                             <i className='fas fa-trash-alt'></i>
@@ -76,7 +83,7 @@ ManageProducts.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  // user: selectAuthUser,
+  user: selectAuthUser,
   loading: selectAuthLoading,
   products: selectAllProducts,
 });

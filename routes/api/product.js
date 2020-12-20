@@ -96,6 +96,21 @@ router.post('/by/search', async (req, res) => {
   }
 });
 
+router.delete('/:productId/user/:userId', auth, admin, async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId)
+      .select('-photo')
+      .populate('category');
+    const user = await User.findById(req.params.userId);
+
+    await product.remove();
+
+    res.json({ msg: 'Product removed' });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get('/carousel', async (req, res) => {
   try {
     const products = await Product.find({})

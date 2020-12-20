@@ -10,6 +10,7 @@ import {
   RESET_CART,
   CAROUSEL_PRODUCTS,
   SOLD_PRODUCTS,
+  DELETE_PRODUCT,
 } from '../actions/constants';
 
 const initialState = {
@@ -24,12 +25,20 @@ const initialState = {
   orders: [],
   carouselProducts: [],
   soldProducts: [],
+  deleteProduct: {},
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case DELETE_PRODUCT: {
+      return {
+        ...state,
+        deleteProduct: payload,
+        loading: false,
+      };
+    }
     case SOLD_PRODUCTS: {
       return {
         ...state,
