@@ -17,9 +17,18 @@ import {
   DELETE_PRODUCT,
 } from './constants';
 
-export const deleteProduct = () => {
+export const deleteProduct = (productId, userId) => async (dispatch) => {
   try {
-    console.log('deleteProduct');
+    await axios.delete(`/api/product/${productId}/user/${userId}`);
+
+    dispatch({
+      type: DELETE_PRODUCT,
+      payload: productId,
+    });
+
+    dispatch(setAlertPrompt('Deleted product Successfully', 'success'));
+
+    localStorage.removeItem('cartProducts');
   } catch (error) {
     console.log(error);
   }

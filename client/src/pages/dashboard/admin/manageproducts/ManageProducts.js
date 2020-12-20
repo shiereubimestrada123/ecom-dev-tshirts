@@ -4,25 +4,34 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Spinner, Row, Col, Table } from 'react-bootstrap';
-import { getProducts } from '../../../../store/actions/product';
+import { getProducts, deleteProduct } from '../../../../store/actions/product';
 import { selectAllProducts } from '../../../../store/selectors/product';
 import {
   selectAuthLoading,
   selectAuthUser,
 } from '../../../../store/selectors/auth';
+import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 
-const ManageProducts = ({ loading, products, getProducts, user }) => {
+const ManageProducts = ({
+  loading,
+  products,
+  user,
+  getProducts,
+  deleteProduct,
+}) => {
   useEffect(() => {
     getProducts();
     window.scrollTo(0, 0);
   }, []);
 
-  const deleteProduct = (productId) => {
-    console.log(user);
+  const handleDeleteProduct = (productId) => {
+    const userId = user && user._id;
+    deleteProduct(productId, userId);
   };
 
   return (
     <Fragment>
+      <AlertPrompt />
       {loading ? (
         <Row style={{ textAlign: 'center', marginTop: '200px' }}>
           <Col className='spinner-class'>
@@ -54,10 +63,10 @@ const ManageProducts = ({ loading, products, getProducts, user }) => {
                       products.map((product, index) => (
                         <tr key={index}>
                           <td>{product.name}</td>
-                          <td onClick={() => deleteProduct(product._id)}>
+                          <td>
                             <i className='fas fa-edit'></i>
                           </td>
-                          <td>
+                          <td onClick={() => handleDeleteProduct(product._id)}>
                             <i className='fas fa-trash-alt'></i>
                           </td>
                         </tr>
@@ -80,6 +89,7 @@ const ManageProducts = ({ loading, products, getProducts, user }) => {
 
 ManageProducts.propTypes = {
   getProducts: PropTypes.func.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -88,4 +98,6 @@ const mapStateToProps = createStructuredSelector({
   products: selectAllProducts,
 });
 
-export default connect(mapStateToProps, { getProducts })(ManageProducts);
+export default connect(mapStateToProps, { getProducts, deleteProduct })(
+  ManageProducts
+);

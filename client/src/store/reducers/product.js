@@ -25,7 +25,6 @@ const initialState = {
   orders: [],
   carouselProducts: [],
   soldProducts: [],
-  deleteProduct: {},
 };
 
 export default function (state = initialState, action) {
@@ -35,7 +34,10 @@ export default function (state = initialState, action) {
     case DELETE_PRODUCT: {
       return {
         ...state,
-        deleteProduct: payload,
+        products: state.products.filter((product) => product._id !== payload),
+        cartProducts: state.cartProducts.filter(
+          (cartProduct) => cartProduct._id !== payload
+        ),
         loading: false,
       };
     }
