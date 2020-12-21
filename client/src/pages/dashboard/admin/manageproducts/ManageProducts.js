@@ -64,7 +64,13 @@ const ManageProducts = ({
                         <tr key={index}>
                           <td>{product.name}</td>
                           <td>
-                            <i className='fas fa-edit'></i>
+                            <Link
+                              to={`/admin/product/update/${product._id}`}
+                              className='cancel'
+                              style={{ textDecoration: 'none' }}
+                            >
+                              <i className='fas fa-edit'></i>
+                            </Link>{' '}
                           </td>
                           <td onClick={() => handleDeleteProduct(product._id)}>
                             <i className='fas fa-trash-alt'></i>
