@@ -34,10 +34,13 @@ export default function (state = initialState, action) {
     case DELETE_PRODUCT: {
       return {
         ...state,
-        products: state.products.filter((product) => product._id !== payload),
-        cartProducts: state.cartProducts.filter(
-          (cartProduct) => cartProduct._id !== payload
+        products: state.products.filter(
+          (product) => product._id !== payload.productId
         ),
+        cartProducts: payload.cartProducts,
+        // cartProducts: state.cartProducts.filter(
+        //   (cartProduct) => cartProduct._id !== payload
+        // ),
         loading: false,
       };
     }

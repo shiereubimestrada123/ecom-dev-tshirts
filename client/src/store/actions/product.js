@@ -17,18 +17,25 @@ import {
   DELETE_PRODUCT,
 } from './constants';
 
-export const deleteProduct = (productId, userId) => async (dispatch) => {
+export const deleteProduct = (productId, userId) => async (
+  dispatch,
+  getState
+) => {
   try {
+    const cartProducts = getState()
+      .product.cartProducts.slice()
+      .filter((cartProduct) => productId !== cartProduct._id);
+
     await axios.delete(`/api/product/${productId}/user/${userId}`);
 
     dispatch({
       type: DELETE_PRODUCT,
-      payload: productId,
+      payload: { productId, cartProducts },
     });
 
     dispatch(setAlertPrompt('Deleted product Successfully', 'success'));
 
-    localStorage.removeItem('cartProducts');
+    localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
   } catch (error) {
     console.log(error);
   }
