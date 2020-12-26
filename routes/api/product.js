@@ -9,6 +9,53 @@ const photo = require('../../middleware/photo');
 const Product = require('../../models/Product');
 const User = require('../../models/User');
 
+router.put('/:productId/user/:userId', auth, admin, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    let product = await Product.findById(req.params.productId);
+
+    if (user.id !== req.user.id) {
+      return res.status(403).json({ msg: 'Access denied' });
+    }
+
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        return res.status(400).json({
+          error: 'Image could not be uploaded',
+        });
+      }
+
+      product = Object.assign(product, fields);
+      // console.log(req);
+      if (files.photo) {
+        if (files.photo.size > 1000000) {
+          return res.status(400).json({
+            error: 'Image should be less than 1mb in size',
+          });
+        }
+        product.photo.data = fs.readFileSync(files.photo.path);
+        product.photo.contentType = files.photo.type;
+      }
+
+      product.save((err, result) => {
+        if (err) {
+          console.log('PRODUCT CREATE ERROR ', err);
+          return res.status(400).json({
+            error: errorHandler(err),
+          });
+        }
+        res.json(result);
+      });
+    });
+  } catch (error) {
+    console.log('errorrrr');
+    console.log(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 router.post('/create/:userId', auth, admin, async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
@@ -17,7 +64,7 @@ router.post('/create/:userId', auth, admin, async (req, res) => {
       return res.status(403).json({ msg: 'Access denied' });
     }
 
-    const form = new formidable.IncomingForm();
+    let form = new formidable.IncomingForm();
     form.keepExtensions = true;
     form.parse(req, (err, fields, files) => {
       if (err) {
@@ -93,6 +140,21 @@ router.post('/by/search', async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.status(500).send('Server Error');
+  }
+});
+
+router.delete('/:productId/user/:userId', auth, admin, async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.productId)
+      .select('-photo')
+      .populate('category');
+    const user = await User.findById(req.params.userId);
+
+    await product.remove();
+
+    res.json({ msg: 'Product removed' });
+  } catch (error) {
+    console.log(error);
   }
 });
 
