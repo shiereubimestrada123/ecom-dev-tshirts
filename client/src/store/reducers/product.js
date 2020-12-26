@@ -11,6 +11,7 @@ import {
   CAROUSEL_PRODUCTS,
   SOLD_PRODUCTS,
   DELETE_PRODUCT,
+  UPDATE_PRODUCT,
 } from '../actions/constants';
 
 const initialState = {
@@ -31,6 +32,13 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case UPDATE_PRODUCT: {
+      return {
+        ...state,
+        products: payload,
+        loading: false,
+      };
+    }
     case DELETE_PRODUCT: {
       return {
         ...state,
@@ -38,9 +46,6 @@ export default function (state = initialState, action) {
           (product) => product._id !== payload.productId
         ),
         cartProducts: payload.cartProducts,
-        // cartProducts: state.cartProducts.filter(
-        //   (cartProduct) => cartProduct._id !== payload
-        // ),
         loading: false,
       };
     }

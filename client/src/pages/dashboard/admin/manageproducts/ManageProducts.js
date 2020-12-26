@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -27,6 +27,12 @@ const ManageProducts = ({
   const handleDeleteProduct = (productId) => {
     const userId = user && user._id;
     deleteProduct(productId, userId);
+  };
+
+  let history = useHistory();
+
+  const handleRedirect = (productId) => {
+    history.push(`/admin/product/update/${productId}`);
   };
 
   return (
@@ -63,14 +69,8 @@ const ManageProducts = ({
                       products.map((product, index) => (
                         <tr key={index}>
                           <td>{product.name}</td>
-                          <td>
-                            <Link
-                              to={`/admin/product/update/${product._id}`}
-                              className='cancel'
-                              style={{ textDecoration: 'none' }}
-                            >
-                              <i className='fas fa-edit'></i>
-                            </Link>{' '}
+                          <td onClick={() => handleRedirect(product._id)}>
+                            <i className='fas fa-edit'></i>
                           </td>
                           <td onClick={() => handleDeleteProduct(product._id)}>
                             <i className='fas fa-trash-alt'></i>
@@ -79,7 +79,7 @@ const ManageProducts = ({
                       ))
                     ) : (
                       <tr>
-                        <td>123123</td>
+                        <td>No products</td>
                       </tr>
                     )}
                   </tbody>

@@ -15,7 +15,58 @@ import {
   CAROUSEL_PRODUCTS,
   SOLD_PRODUCTS,
   DELETE_PRODUCT,
+  UPDATE_PRODUCT,
 } from './constants';
+
+export const updateProduct = (productId, userId, formData) => async (
+  dispatch
+) => {
+  const body = formData;
+
+  try {
+    const config = {
+      headers: {
+        Accept: 'application/json',
+      },
+    };
+
+    const res = await axios.put(
+      `/api/product/${productId}/user/${userId}`,
+      body,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_PRODUCT,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createProduct = (formData, userId) => async (dispatch) => {
+  const body = formData;
+
+  try {
+    const config = {
+      headers: {
+        Accept: 'application/json',
+      },
+    };
+
+    const res = await axios.post(`/api/product/create/${userId}`, body, config);
+
+    dispatch({
+      type: PRODUCT_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(setAlertPrompt('Product added successfully', 'success'));
+  } catch (error) {
+    dispatch(setAlertPrompt(error.response.data.error, 'danger'));
+  }
+};
 
 export const deleteProduct = (productId, userId) => async (
   dispatch,
@@ -204,29 +255,6 @@ export const getFilteredProducts = (skip, limit, selectedCategoryId) => async (
   } catch (error) {
     console.log('123');
     console.log(error);
-  }
-};
-
-export const createProduct = (formData, userId) => async (dispatch) => {
-  const body = formData;
-
-  try {
-    const config = {
-      headers: {
-        Accept: 'application/json',
-      },
-    };
-
-    const res = await axios.post(`/api/product/create/${userId}`, body, config);
-
-    dispatch({
-      type: PRODUCT_SUCCESS,
-      payload: res.data,
-    });
-
-    dispatch(setAlertPrompt('Product added successfully', 'success'));
-  } catch (error) {
-    dispatch(setAlertPrompt(error.response.data.error, 'danger'));
   }
 };
 
