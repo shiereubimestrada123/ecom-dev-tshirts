@@ -31,8 +31,9 @@ const ManageProducts = ({
 
   let history = useHistory();
 
-  const handleRedirect = (productId) => {
+  const handleRedirect = async (productId) => {
     history.push(`/admin/product/update/${productId}`);
+    // window.location.reload();
   };
 
   return (
@@ -65,7 +66,7 @@ const ManageProducts = ({
                     </tr>
                   </thead>
                   <tbody>
-                    {products.length > 0 ? (
+                    {products.length > 0 &&
                       products.map((product, index) => (
                         <tr key={index}>
                           <td>{product.name}</td>
@@ -76,12 +77,7 @@ const ManageProducts = ({
                             <i className='fas fa-trash-alt'></i>
                           </td>
                         </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td>No products</td>
-                      </tr>
-                    )}
+                      ))}
                   </tbody>
                 </Table>
               </div>

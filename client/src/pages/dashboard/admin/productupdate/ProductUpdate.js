@@ -7,6 +7,7 @@ import { Form, Row, Col, Spinner, InputGroup, Button } from 'react-bootstrap';
 import {
   getSingleProduct,
   updateProduct,
+  getProducts,
 } from '../../../../store/actions/product';
 import { getCategories } from '../../../../store/actions/category';
 import { selectSingleProduct } from '../../../../store/selectors/product';
@@ -19,6 +20,7 @@ import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 import FormInput from '../../../../components/forms/forminput/FormInput';
 
 const ProductUpdate = ({
+  getProducts,
   getCategories,
   getSingleProduct,
   updateProduct,
@@ -53,8 +55,15 @@ const ProductUpdate = ({
       quantity: product && product.quantity,
       formData: new FormData(),
     });
+    getProducts();
     window.scrollTo(0, 0);
-  }, [(product && product && product._id) || (user && user._id)]);
+  }, [
+    product && product._id,
+    product && product.name,
+    product && product.description,
+    product && product.price,
+    product && product.quantity,
+  ]);
 
   const onChange = (e) => {
     const value =
@@ -73,9 +82,9 @@ const ProductUpdate = ({
     const productId = match.params.productId;
     const userId = user && user._id;
 
-    updateProduct(productId, userId, formData);
+    await updateProduct(productId, userId, formData);
     history.push('/admin/products');
-    window.location.reload();
+    await getProducts();
   };
 
   return (
@@ -220,6 +229,7 @@ const ProductUpdate = ({
 };
 
 ProductUpdate.propTypes = {
+  getProducts: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired,
   getSingleProduct: PropTypes.func.isRequired,
   updateProduct: PropTypes.func.isRequired,
@@ -233,6 +243,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export default connect(mapStateToProps, {
+  getProducts,
   getCategories,
   getSingleProduct,
   updateProduct,
