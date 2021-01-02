@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { useHistory, Link, Redirect } from 'react-router-dom';
-import { connect, useStore } from 'react-redux';
+import { useHistory, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Form, Row, Col, Spinner, InputGroup, Button } from 'react-bootstrap';
+import { Form, Row, Col, InputGroup, Button } from 'react-bootstrap';
 import {
   getSingleProduct,
   updateProduct,
@@ -17,7 +17,7 @@ import {
 } from '../../../../store/selectors/auth';
 import { selectAllCategories } from '../../../../store/selectors/category';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
-import FormInput from '../../../../components/forms/forminput/FormInput';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const ProductUpdate = ({
   getProducts,
@@ -91,11 +91,7 @@ const ProductUpdate = ({
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
           <Row className='mt-5 admin-row-header'>
@@ -125,6 +121,7 @@ const ProductUpdate = ({
                     name='name'
                     value={name || ''}
                     onChange={(e) => onChange(e)}
+                    className='product-update-input'
                   />
                 </InputGroup>
 
@@ -139,6 +136,7 @@ const ProductUpdate = ({
                     name='description'
                     value={description || ''}
                     onChange={(e) => onChange(e)}
+                    className='product-update-input'
                   />
                 </InputGroup>
 
@@ -151,6 +149,7 @@ const ProductUpdate = ({
                     name='price'
                     value={price || ''}
                     onChange={(e) => onChange(e)}
+                    className='product-update-input'
                   />
                 </InputGroup>
 
@@ -164,6 +163,7 @@ const ProductUpdate = ({
                     as='select'
                     name='category'
                     onChange={(e) => onChange(e)}
+                    className='product-update-input'
                   >
                     <option>Please select category</option>
                     {categories &&
@@ -185,6 +185,7 @@ const ProductUpdate = ({
                     as='select'
                     name='shipping'
                     onChange={(e) => onChange(e)}
+                    className='product-update-input'
                   >
                     <option>Please select</option>
                     <option value='1'>True</option>
@@ -203,6 +204,7 @@ const ProductUpdate = ({
                     name='quantity'
                     value={quantity || ''}
                     onChange={(e) => onChange(e)}
+                    className='product-update-input'
                   />
                 </InputGroup>
 

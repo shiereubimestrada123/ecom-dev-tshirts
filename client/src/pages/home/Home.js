@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Spinner, Carousel } from 'react-bootstrap';
+import { Row, Col, Carousel } from 'react-bootstrap';
 import { getCategories } from '../../store/actions/category';
 import {
   getProducts,
@@ -19,6 +19,7 @@ import {
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import ShopCard from '../../parts/card/ShopCard';
 import { Animated } from 'react-animated-css';
+import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 
 const Home = ({
   getCategories,
@@ -44,11 +45,7 @@ const Home = ({
       <Row>
         <Col>
           {loading ? (
-            <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-              <Col className='spinner-class'>
-                <Spinner animation='border' variant='info' />
-              </Col>
-            </Row>
+            <LoadingSpinner />
           ) : (
             <Fragment>
               <Animated

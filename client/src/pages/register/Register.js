@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link, Redirect } from 'react-router-dom';
@@ -6,14 +6,15 @@ import PropTypes from 'prop-types';
 import { Form, Row, Col, Spinner } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import signup from '../../assets/images/signup.jpeg';
-import FormInput from '../../components/forms/forminput/FormInput';
 import { register } from '../../store/actions/auth';
 import {
   selectAuthLoading,
   selectAuthAuthenticated,
 } from '../../store/selectors/auth';
 import { setAlertPrompt } from '../../store/actions/alertPrompt';
+import FormInput from '../../components/forms/forminput/FormInput';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
+import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 
 const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -22,6 +23,10 @@ const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
     password: '',
     password2: '',
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { name, email, password, password2 } = formData;
 
@@ -48,11 +53,7 @@ const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Row className='parent-row'>
           <Col md={6}>

@@ -1,5 +1,4 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 
 const PaginationProduct = ({
@@ -8,6 +7,10 @@ const PaginationProduct = ({
   paginate,
   currentpage,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   let active = currentpage;
   let pageNumbers = [];
   for (
@@ -32,7 +35,5 @@ const PaginationProduct = ({
     </div>
   );
 };
-
-// PaginationProduct.propTypes = {};
 
 export default PaginationProduct;

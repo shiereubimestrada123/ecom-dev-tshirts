@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Spinner, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup } from 'react-bootstrap';
 import moment from 'moment';
 import { listOrders } from '../../../../store/actions/product';
 import {
@@ -11,6 +11,7 @@ import {
 } from '../../../../store/selectors/auth';
 import { selectOrders } from '../../../../store/selectors/product';
 import PaginationOrder from '../../../../components/pagination/PaginationOrder';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const Order = ({ listOrders, user, orders, loading }) => {
   const [currentpage, setcurrentpage] = useState(1);
@@ -31,11 +32,7 @@ const Order = ({ listOrders, user, orders, loading }) => {
   return (
     <Fragment>
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
           <Row className='mt-5 admin-row-header'>

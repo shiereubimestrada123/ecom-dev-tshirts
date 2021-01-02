@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Form, Row, Col, Spinner, InputGroup, Button } from 'react-bootstrap';
+import { Form, Row, Col, InputGroup, Button } from 'react-bootstrap';
 import { createProduct } from '../../../../store/actions/product';
 import { getCategories } from '../../../../store/actions/category';
 import {
@@ -12,7 +12,7 @@ import {
 } from '../../../../store/selectors/auth';
 import { selectAllCategories } from '../../../../store/selectors/category';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
-import FormInput from '../../../../components/forms/forminput/FormInput';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const CreateProduct = ({
   createProduct,
@@ -70,11 +70,7 @@ const CreateProduct = ({
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
           <Row className='mt-5 admin-row-header'>
@@ -103,7 +99,7 @@ const CreateProduct = ({
                     type='name'
                     name='name'
                     value={name || ''}
-                    // className='user-profile-input'
+                    className='create-product-input'
                     onChange={(e) => onChange(e)}
                   />
                 </InputGroup>
@@ -118,7 +114,7 @@ const CreateProduct = ({
                     type='description'
                     name='description'
                     value={description || ''}
-                    // className='user-profile-input'
+                    className='create-product-input'
                     onChange={(e) => onChange(e)}
                   />
                 </InputGroup>
@@ -131,7 +127,7 @@ const CreateProduct = ({
                     type='number'
                     name='price'
                     value={price || ''}
-                    // className='user-profile-input'
+                    className='create-product-input'
                     onChange={(e) => onChange(e)}
                   />
                 </InputGroup>
@@ -146,6 +142,7 @@ const CreateProduct = ({
                     as='select'
                     name='category'
                     onChange={(e) => onChange(e)}
+                    className='create-product-input'
                   >
                     <option>Please select category</option>
                     {categories &&
@@ -167,6 +164,7 @@ const CreateProduct = ({
                     as='select'
                     name='shipping'
                     onChange={(e) => onChange(e)}
+                    className='create-product-input'
                   >
                     <option>Please select</option>
                     <option value='1'>True</option>
@@ -185,6 +183,7 @@ const CreateProduct = ({
                     name='quantity'
                     value={quantity}
                     onChange={(e) => onChange(e)}
+                    className='create-product-input'
                   />
                 </InputGroup>
 

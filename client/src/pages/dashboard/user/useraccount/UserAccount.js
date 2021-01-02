@@ -2,16 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
-import {
-  Row,
-  Col,
-  Spinner,
-  Tab,
-  Nav,
-  Form,
-  InputGroup,
-  Button,
-} from 'react-bootstrap';
+import { Row, Col, Form, InputGroup, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 import {
@@ -19,7 +10,7 @@ import {
   selectAuthUser,
 } from '../../../../store/selectors/auth';
 import { updateUser } from '../../../../store/actions/auth';
-import FormInput from '../../../../components/forms/forminput/FormInput';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const Account = ({ updateUser, loading, user }) => {
   const [values, setValues] = useState({
@@ -64,11 +55,7 @@ const Account = ({ updateUser, loading, user }) => {
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
           <Row className='mt-5 user-row-header'>

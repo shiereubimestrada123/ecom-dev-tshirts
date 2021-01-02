@@ -40,6 +40,8 @@ export const updateProduct = (productId, userId, formData) => async (
       type: UPDATE_PRODUCT,
       payload: res.data,
     });
+
+    dispatch(setAlertPrompt('Product updated successfully', 'success'));
   } catch (error) {
     console.log(error);
   }

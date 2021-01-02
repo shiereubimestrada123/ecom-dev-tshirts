@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Spinner, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup } from 'react-bootstrap';
 import {
   selectAuthLoading,
   selectAuthUser,
@@ -10,6 +10,7 @@ import {
 import { selectOrders } from '../../../../store/selectors/product';
 import { listOrders } from '../../../../store/actions/product';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const AdminDashboard = ({ listOrders, loading, user, orders }) => {
   useEffect(() => {
@@ -21,11 +22,7 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
           <Row className='mt-5 admin-row-header'>
