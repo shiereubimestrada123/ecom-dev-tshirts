@@ -1,4 +1,22 @@
+.admin-row-header {
+  padding: 20px;
+  background-color: #eaeaea;
+  border: 1px solid #cecece;
+  border-bottom: none;
+
+  .fa-black-tie {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+}
+
 .admin-row-body {
+  .create-product-input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+  }
+
   .product-button-holder {
     text-align: center;
 

@@ -3,13 +3,14 @@ import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Form, Button, Spinner, Row, Col, InputGroup } from 'react-bootstrap';
+import { Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
 import { createCategory } from '../../../../store/actions/category';
 import {
   selectAuthUser,
   selectAuthLoading,
 } from '../../../../store/selectors/auth';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const CreateCategory = ({ createCategory, user, loading }) => {
   let history = useHistory();
@@ -30,31 +31,19 @@ const CreateCategory = ({ createCategory, user, loading }) => {
       [e.target.name]: e.target.value,
     });
 
-  // const cancel = () => {
-  //   console.log('cancecl');
-  //   history.push('/admin/dashboard');
-  // };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     createCategory(name, user && user._id);
     if (name) {
       history.push('/admin/dashboard');
     }
-
-    // setFormData('');
-    // e.target.reset();
   };
 
   return (
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
           <Row className='mt-5 admin-row-header'>
@@ -63,7 +52,7 @@ const CreateCategory = ({ createCategory, user, loading }) => {
               Category
             </Col>
           </Row>
-          <Row className='user-row-body'>
+          <Row className='admin-row-body'>
             <Col>
               <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
                 <Form.Group controlId='formCategoryName'>
@@ -75,7 +64,7 @@ const CreateCategory = ({ createCategory, user, loading }) => {
                       type='name'
                       name='name'
                       value={name || ''}
-                      className='user-profile-input'
+                      className='category-input'
                       onChange={(e) => handleChange(e)}
                     />
                   </InputGroup>

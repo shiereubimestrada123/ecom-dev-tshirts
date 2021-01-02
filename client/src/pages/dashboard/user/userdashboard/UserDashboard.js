@@ -1,19 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-import { Row, Col, Spinner, ListGroup } from 'react-bootstrap';
-
+import { Row, Col, ListGroup } from 'react-bootstrap';
 import {
   selectAuthLoading,
   selectAuthUser,
 } from '../../../../store/selectors/auth';
 import { updateUser } from '../../../../store/actions/auth';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
-import FormInput from '../../../../components/forms/forminput/FormInput';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const UserDashboard = ({ loading, user, updateUser }) => {
   const [values, setValues] = useState({
@@ -51,11 +48,7 @@ const UserDashboard = ({ loading, user, updateUser }) => {
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
           <Row className='mt-5 user-row-header'>

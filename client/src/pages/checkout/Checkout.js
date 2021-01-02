@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Spinner, Form } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import FormInput from '../../components/forms/forminput/FormInput';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
@@ -13,6 +13,7 @@ import {
   selectCartProductCount,
 } from '../../store/selectors/product';
 import { createOrder } from '../../store/actions/product';
+import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 
 const Checkout = ({
   loading,
@@ -69,11 +70,7 @@ const Checkout = ({
     <Row>
       <Col>
         {loading ? (
-          <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-            <Col className='spinner-class'>
-              <Spinner animation='border' variant='info' />
-            </Col>
-          </Row>
+          <LoadingSpinner />
         ) : (
           <Fragment>
             <Animated

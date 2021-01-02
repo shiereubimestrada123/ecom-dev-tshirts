@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Row, Col, Spinner } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import ShopCard from '../../parts/card/ShopCard';
 import { getCategories } from '../../store/actions/category';
 import { getProducts } from '../../store/actions/product';
@@ -11,6 +11,7 @@ import { selectAuthLoading } from '../../store/selectors/auth';
 import { selectAllCategories } from '../../store/selectors/category';
 import PaginationProduct from '../../components/pagination/PaginationProduct';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
+import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 
 const Shop = ({
   categories,
@@ -38,14 +39,10 @@ const Shop = ({
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Row>
-          <Col md={12}>
+          <Col>
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
               <h2>Welcome to our store</h2>
               <p>Check our new items</p>

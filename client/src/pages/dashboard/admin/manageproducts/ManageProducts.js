@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -11,6 +11,7 @@ import {
   selectAuthUser,
 } from '../../../../store/selectors/auth';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const ManageProducts = ({
   loading,
@@ -33,27 +34,22 @@ const ManageProducts = ({
 
   const handleRedirect = async (productId) => {
     history.push(`/admin/product/update/${productId}`);
-    // window.location.reload();
   };
 
   return (
     <Fragment>
       <AlertPrompt />
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
-          <Row className='mt-5 manage-row-header'>
+          <Row className='mt-5 admin-row-header'>
             <Col>
               <i className='fab fa-black-tie' aria-hidden='true'></i> Manage
               Products
             </Col>
           </Row>
-          <Row className='manage-row-body'>
+          <Row className='admin-row-body'>
             <Col>
               <div className='manage-product-holder'>
                 <h2>Total {products.length} products</h2>

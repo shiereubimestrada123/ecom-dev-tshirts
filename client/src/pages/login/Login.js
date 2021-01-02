@@ -1,11 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Form, Row, Col, Spinner } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import { Link, Redirect } from 'react-router-dom';
 import FormInput from '../../components/forms/forminput/FormInput';
+import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 import { login } from '../../store/actions/auth';
 import register from '../../assets/images/register.jpeg';
 import {
@@ -19,6 +20,10 @@ const Login = ({ login, loading, isAuthenticated }) => {
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { email, password } = formData;
 
@@ -40,13 +45,8 @@ const Login = ({ login, loading, isAuthenticated }) => {
   return (
     <Fragment>
       <AlertPrompt />
-
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Row className='parent-row'>
           <Col md={6}>

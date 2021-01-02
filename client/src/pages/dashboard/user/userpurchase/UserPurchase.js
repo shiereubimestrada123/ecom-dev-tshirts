@@ -1,17 +1,13 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-import { Row, Col, Spinner, ListGroup } from 'react-bootstrap';
-
+import { Row, Col, ListGroup } from 'react-bootstrap';
 import PaginationHistory from '../../../../components/pagination/PaginationHistory';
-
 import {
   selectAuthLoading,
   selectAuthUser,
 } from '../../../../store/selectors/auth';
+import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
 const UserPurchase = ({ loading, user }) => {
   useEffect(() => {
@@ -31,11 +27,7 @@ const UserPurchase = ({ loading, user }) => {
   return (
     <Fragment>
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
         <Fragment>
           <Row className='mt-5 user-row-header'>
@@ -69,8 +61,6 @@ const UserPurchase = ({ loading, user }) => {
     </Fragment>
   );
 };
-
-UserPurchase.propTypes = {};
 
 const mapStateToProps = createStructuredSelector({
   loading: selectAuthLoading,

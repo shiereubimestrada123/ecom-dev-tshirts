@@ -1,0 +1,18 @@
+.admin-row-header {
+  padding: 20px;
+  background-color: #eaeaea;
+  border: 1px solid #cecece;
+  border-bottom: none;
+}
+
+.admin-row-body {
+  min-height: 650px;
+  border: 1px solid #CECECE;
+  margin-bottom: 50px;
+
+  .product-update-input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ced4da;
+  }
+}
