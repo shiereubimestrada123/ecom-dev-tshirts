@@ -41,30 +41,32 @@ const Shop = ({
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <Row>
-          <Col>
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <h2>Welcome to our store</h2>
-              <p>Check our new items</p>
-            </div>
+        <Fragment>
+          <Row>
+            <Col>
+              <div className='shop-header'>
+                <h2>Welcome to our store</h2>
+                <p>Check our new items</p>
+              </div>
 
-            <div className='shop-card mt-2 mb-4'>
-              {allProducts.map((product, index) => (
-                <div key={index}>
-                  <ShopCard product={product} />
-                </div>
-              ))}
-            </div>
-            <div>
-              <PaginationProduct
-                productperpage={productperpage}
-                totalproducts={products.length}
-                paginate={paginate}
-                currentpage={currentpage}
-              />
-            </div>
-          </Col>
-        </Row>
+              <div className='shop-card mt-2 mb-4'>
+                {allProducts.map((product, index) => (
+                  <div key={index}>
+                    <ShopCard product={product} />
+                  </div>
+                ))}
+              </div>
+              <div>
+                <PaginationProduct
+                  productperpage={productperpage}
+                  totalproducts={products.length}
+                  paginate={paginate}
+                  currentpage={currentpage}
+                />
+              </div>
+            </Col>
+          </Row>
+        </Fragment>
       )}
     </Fragment>
   );
