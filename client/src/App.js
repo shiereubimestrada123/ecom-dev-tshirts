@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import NavigationBar from './parts/navigationbar/NavigationBar';
+// import NavigationBar from './parts/navigationbar/NavigationBar';
+import NavBar from './parts/navbar/NavBar';
 import Footer from './parts/footer/Footer';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
@@ -40,7 +41,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <NavigationBar />
+        {/* <NavigationBar /> */}
+        <NavBar />
         <Container style={{ minHeight: '100vh' }}>
           <Switch>
             <Route path='/' exact component={Home} />

@@ -1,0 +1,23 @@
+.nav2-parent {
+  .nav2-child {
+    margin: auto;
+
+    .nav-link:first-child {
+      padding-left: 0.5rem !important;
+    }
+
+    .nav-link {
+      padding-left: 10rem !important;
+    }
+  }
+}
+
+@media (max-width: 800px - 1) {
+  .nav2-parent {
+    .nav2-child {
+      .nav-link {
+        padding-left: 0.5rem !important;
+      }
+    }
+  }
+}
