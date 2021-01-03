@@ -3,11 +3,13 @@ import { Row, Col, Spinner } from 'react-bootstrap';
 
 const LoadingSpinner = (props) => {
   return (
-    <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-      <Col>
-        <Spinner animation='border' variant='info' />
-      </Col>
-    </Row>
+    <div style={{ textAlign: 'center', marginTop: '200px' }}>
+      <Row>
+        <Col>
+          <Spinner animation='border' variant='info' />
+        </Col>
+      </Row>
+    </div>
   );
 };
 
