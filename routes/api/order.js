@@ -67,7 +67,7 @@ router.get('/list/:userId', auth, admin, async (req, res) => {
 
     const orders = await Order.find()
       .populate('user', '_id name address')
-      .sort('-created');
+      .sort('-createdAt');
 
     if (!orders) {
       return res.status(400).json({

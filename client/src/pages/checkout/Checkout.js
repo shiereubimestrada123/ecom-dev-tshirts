@@ -44,11 +44,6 @@ const Checkout = ({
       [e.target.name]: e.target.value,
     });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    // login(email, password);
-  };
-
   const buy = () => {
     let transactionId = Math.random().toString(36).substr(2, 9);
     const userId = user && user._id;
@@ -87,10 +82,7 @@ const Checkout = ({
               <Row>
                 <Col md={9}>
                   <div className='checkout-wrapper'>
-                    <Form
-                      className='checkout-form-parent'
-                      onSubmit={(e) => onSubmit(e)}
-                    >
+                    <Form className='checkout-form-parent'>
                       <Form.Group className='form-group'>
                         <Form.Label className='form-label'>Name</Form.Label>
                         <FormInput

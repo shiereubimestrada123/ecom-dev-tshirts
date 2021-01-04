@@ -21,8 +21,8 @@ const Product = ({
   isAuthenticated,
 }) => {
   useEffect(() => {
-    const productId = match.params.productId;
-    getSingleProduct(productId);
+    getSingleProduct(match.params.productId);
+    window.scrollTo(0, 0);
   }, []);
 
   const addToCart = () => {
