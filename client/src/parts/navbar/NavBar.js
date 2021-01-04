@@ -75,7 +75,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
 
   return (
     <Fragment>
-      <Navbar bg='light' expand='lg' className='nav2-parent'>
+      <Navbar sticky='top' bg='light' expand='lg' className='nav2-parent'>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='nav2-child'>
