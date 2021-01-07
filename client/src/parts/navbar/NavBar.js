@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Nav, Navbar, Badge } from 'react-bootstrap';
@@ -14,13 +14,25 @@ import { selectCartProductCount } from '../../store/selectors/product';
 import { logout } from '../../store/actions/auth';
 
 const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
+  const [scrollnav, setScrollNav] = useState(false);
+
+  const scrollfunc = () => {
+    if (window.scrollY >= 100) {
+      setScrollNav(true);
+    } else {
+      setScrollNav(false);
+    }
+  };
+
+  window.addEventListener('scroll', scrollfunc);
+
   const history = useHistory();
 
   const isHome = (
     <Fragment>
       <Nav.Link className='home' onClick={() => history.push('/')}>
         <i className='fas fa-home'></i>
-        Home
+        <span>Home</span>
       </Nav.Link>
     </Fragment>
   );
@@ -29,7 +41,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
     <Fragment>
       <Nav.Link className='shop' onClick={() => history.push('/shop')}>
         <i className='fas fa-store'></i>
-        Shop
+        <span>Shop</span>
       </Nav.Link>
     </Fragment>
   );
@@ -38,7 +50,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
     <Fragment>
       <Nav.Link className='cart' onClick={() => history.push('/cart')}>
         <i className='fas fa-shopping-cart'></i>
-        Cart
+        <span>Cart</span>
         <Badge variant='light' className='total-badge'>
           {productCount}
         </Badge>
@@ -59,7 +71,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
       </Nav.Link>
       <Nav.Link className='login' onClick={logout}>
         <i className='fas fa-id-card'></i>
-        Logout
+        <span>Logout</span>
       </Nav.Link>
     </Fragment>
   );
@@ -68,14 +80,18 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
     <Fragment>
       <Nav.Link className='login' onClick={() => history.push('/login')}>
         <i className='fas fa-user-plus'></i>
-        Login
+        <span>Login</span>
       </Nav.Link>
     </Fragment>
   );
 
   return (
     <Fragment>
-      <Navbar sticky='top' bg='light' expand='lg' className='nav2-parent'>
+      <Navbar
+        sticky='top'
+        expand='lg'
+        className={scrollnav ? 'nav2-parent active' : 'nav2-parent'}
+      >
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='nav2-child'>
