@@ -1,6 +1,24 @@
 @media only screen and (max-width: 600px) {
   .nav2-parent {
+    background-color: #5076A0;
+
     .nav2-child {
+      margin: auto;
+
+      span, i {
+        color: #fff;
+        margin-left: 5px;
+      }
+
+      .total-badge {
+        color: #5076A0;
+        margin-left: 5px;
+      }
+
+      // .nav-link:first-child {
+      //   margin-left: 0.5rem !important;
+      // }
+
       .nav-link {
         margin-left: 0.5rem !important;
       }
@@ -10,7 +28,25 @@
 
 @media only screen and (min-width: 600px) {
   .nav2-parent {
+    background-color: #5076A0;
+
     .nav2-child {
+      margin: auto;
+
+      span, i {
+        color: #fff;
+        margin-left: 5px;
+      }
+
+      .total-badge {
+        color: #5076A0;
+        margin-left: 5px;
+      }
+
+      // .nav-link:first-child {
+      //   margin-left: 0.5rem !important;
+      // }
+
       .nav-link {
         margin-left: 0.5rem !important;
       }
@@ -20,7 +56,25 @@
 
 @media only screen and (min-width: 768px) {
   .nav2-parent {
+    background-color: #5076A0;
+
     .nav2-child {
+      margin: auto;
+
+      span, i {
+        color: #fff;
+        margin-left: 5px;
+      }
+
+      .total-badge {
+        color: #5076A0;
+        margin-left: 5px;
+      }
+
+      // .nav-link:first-child {
+      //   margin-left: 0.5rem !important;
+      // }
+
       .nav-link {
         margin-left: 0.5rem !important;
       }
@@ -32,17 +86,20 @@
   .nav2-parent {
     background-color: #5076A0;
     transition: all 0.3s ease-in-out;
-    padding: 13px 0!important;
+    // height: 80px;
+    // padding: 13px 0!important;
 
     .nav2-child {
       margin: auto;
 
       span, i {
         color: #fff;
+        margin-left: 5px;
       }
 
       .total-badge {
         color: #5076A0;
+        margin-left: 5px;
       }
 
       .nav-link:first-child {
@@ -57,7 +114,8 @@
 
   .nav2-parent.active {
     background-color: #F8F9FA;
-    padding: 10px 0!important;
+    // height: 70px;
+    // padding: 10px 0!important;
 
     span, i {
       color: #485E5B;
@@ -65,7 +123,7 @@
 
     .total-badge {
       color: #fff;
-      background-color: #5076A0;
+      background-color: #485E5B;
     }
   }
 }
