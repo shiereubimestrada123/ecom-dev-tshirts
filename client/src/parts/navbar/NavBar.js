@@ -88,7 +88,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
   return (
     <Fragment>
       <Navbar
-        sticky='top'
+        fixed='top'
         expand='lg'
         className={scrollnav ? 'nav2-parent active' : 'nav2-parent'}
       >
