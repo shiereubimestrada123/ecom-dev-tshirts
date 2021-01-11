@@ -86,7 +86,7 @@
   .nav2-parent {
     background-color: #5076A0;
     transition: all 0.3s ease-in-out;
-    // height: 80px;
+    height: 80px;
     // padding: 13px 0!important;
 
     .nav2-child {
@@ -95,6 +95,8 @@
       span, i {
         color: #fff;
         margin-left: 5px;
+        font-family: 'Crimson Text', serif;
+        font-size: 20px;
       }
 
       .total-badge {
@@ -114,7 +116,7 @@
 
   .nav2-parent.active {
     background-color: #F8F9FA;
-    // height: 70px;
+    height: 70px;
     // padding: 10px 0!important;
 
     span, i {
