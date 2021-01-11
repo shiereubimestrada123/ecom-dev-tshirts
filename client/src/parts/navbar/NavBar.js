@@ -67,7 +67,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
         }
       >
         <i className='fas fa-id-card'></i>
-        {user && user.name}
+        <span> {user && user.name}</span>
       </Nav.Link>
       <Nav.Link className='login' onClick={logout}>
         <i className='fas fa-id-card'></i>

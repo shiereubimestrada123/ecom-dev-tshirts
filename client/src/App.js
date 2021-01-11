@@ -25,6 +25,7 @@ import Checkout from './pages/checkout/Checkout';
 import NotFound from './pages/dashboard/notfound/NotFound';
 
 import './App.scss';
+// import './index.scss';
 
 // Redux
 import { Provider } from 'react-redux';
