@@ -1,6 +1,13 @@
-.carousel {
-  margin-top: 26px;
+.row-carousel {
+  margin-right: 0!important;
+  margin-left: 0!important;
+
+  .carousel {
+    margin-top: 26px;
+  }
 }
+
+
 
 .parent-home {
   position: relative;
@@ -48,12 +55,18 @@
   font-size: 3em;
 }
 
-.parent-home-icons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+.row-welcome {
+  margin-right: 0!important;
+  margin-left: 0!important;
   text-align: center;
 }
+
+// .parent-home-icons {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-top: 20px;
+//   text-align: center;
+// }
 
 .holder-most-popular {
   position: relative;
