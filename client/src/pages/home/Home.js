@@ -42,17 +42,18 @@ const Home = ({
   return (
     <Fragment>
       <AlertPrompt />
-      <Row>
-        <Col>
-          {loading ? (
-            <LoadingSpinner />
-          ) : (
-            <Fragment>
-              <Animated
-                animationIn='fadeIn'
-                animationOut='fadeOut'
-                isVisible={true}
-              >
+
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <Fragment>
+          <Animated
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            isVisible={true}
+          >
+            <Row className='row-carousel'>
+              <Col md={12}>
                 <Carousel
                   // nextIcon=''
                   // nextLabel=''
@@ -74,53 +75,62 @@ const Home = ({
                     </Carousel.Item>
                   ))}
                 </Carousel>
+              </Col>
+            </Row>
 
-                <h2 className='home-header'>Welcome to EcomDev</h2>
-                <div className='parent-home-icons'>
-                  <div className='child-home-icon'>
-                    <i className='fas fa-undo-alt'></i>
-                    <h3>return title</h3>
-                    <p>
-                      Curabitur arcu erat accumsan id imperdiet et porttitor at
-                      sem.
-                    </p>
-                  </div>
-                  <div className='child-home-icon'>
-                    <i className='fas fa-check-double'></i>
-                    <h3>authentic title</h3>
-                    <p>
-                      Curabitur arcu erat accumsan id imperdiet et porttitor at
-                      sem.
-                    </p>
-                  </div>
-                  <div className='child-home-icon'>
-                    <i className='fas fa-shipping-fast'></i>
-                    <h3>shipping title</h3>
-                    <p>
-                      Curabitur arcu erat accumsan id imperdiet et porttitor at
-                      sem.
-                    </p>
+            <h2 className='home-header'>Welcome to EcomDev</h2>
+            <Row className='row-welcome'>
+              <Col md={4}>
+                <div className='child-home-icon'>
+                  <i className='fas fa-undo-alt'></i>
+                  <h3>return title</h3>
+                  <p>
+                    Curabitur arcu erat accumsan id imperdiet et porttitor at
+                    sem.
+                  </p>
+                </div>
+              </Col>
+              <Col md={4}>
+                <div className='child-home-icon'>
+                  <i className='fas fa-check-double'></i>
+                  <h3>authentic title</h3>
+                  <p>
+                    Curabitur arcu erat accumsan id imperdiet et porttitor at
+                    sem.
+                  </p>
+                </div>
+              </Col>
+              <Col md={4}>
+                <div className='child-home-icon'>
+                  <i className='fas fa-shipping-fast'></i>
+                  <h3>shipping title</h3>
+                  <p>
+                    Curabitur arcu erat accumsan id imperdiet et porttitor at
+                    sem.
+                  </p>
+                </div>
+              </Col>
+            </Row>
+            {/* <div className='parent-home-icons'> */}
+
+            {/* </div> */}
+
+            <Row>
+              <Col md={12}>
+                <div className='holder-most-popular'>
+                  <span className='child-most-popular'></span>
+                  <h2 className='mt-5'>Most Popular</h2>
+                  <div className='shop-card mt-2 mb-4'>
+                    {soldProducts.map((product, index) => (
+                      <ShopCard product={product} key={index} />
+                    ))}
                   </div>
                 </div>
-
-                <Row>
-                  <Col md={12}>
-                    <div className='holder-most-popular'>
-                      <span className='child-most-popular'></span>
-                      <h2 className='mt-5'>Most Popular</h2>
-                      <div className='shop-card mt-2 mb-4'>
-                        {soldProducts.map((product, index) => (
-                          <ShopCard product={product} key={index} />
-                        ))}
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </Animated>
-            </Fragment>
-          )}
-        </Col>
-      </Row>
+              </Col>
+            </Row>
+          </Animated>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
