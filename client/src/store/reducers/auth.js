@@ -7,6 +7,7 @@ import {
   AUTH_ERROR,
   LOGOUT,
   UPDATE_USER,
+  ADD_MAIL_NEWSLETTER,
 } from '../actions/constants';
 
 const initialState = {
@@ -14,12 +15,19 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: null,
+  mail: '',
 };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case ADD_MAIL_NEWSLETTER:
+      return {
+        ...state,
+        mail: payload,
+        loading: false,
+      };
     case UPDATE_USER:
       return {
         ...state,
