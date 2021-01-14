@@ -134,13 +134,12 @@ const Home = ({
                 <div className='mail-parent'>
                   <div className='mail-container'>
                     <div className='copy-wrapper'>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Nobis, sapiente.
+                      <p> SIGN UP FOR OUR NEWSLETTER</p>
                     </div>
                     <div className='form-wrapper'>
                       <form className='form-parent-mailing'>
                         <input type='email' placeholder='Enter email' />
-                        <button>Subscribe</button>
+                        <button>Go</button>
                       </form>
                     </div>
                   </div>
