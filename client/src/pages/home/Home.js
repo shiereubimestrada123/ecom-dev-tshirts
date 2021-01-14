@@ -139,7 +139,7 @@ const Home = ({
                     <div className='form-wrapper'>
                       <form className='form-parent-mailing'>
                         <input type='email' placeholder='Enter email' />
-                        <button>Subscribe</button>
+                        <button>Go</button>
                       </form>
                     </div>
                   </div>
