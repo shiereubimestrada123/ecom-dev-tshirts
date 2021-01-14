@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Carousel } from 'react-bootstrap';
+import { Row, Col, Carousel, Form, Button } from 'react-bootstrap';
 import { getCategories } from '../../store/actions/category';
 import {
   getProducts,
@@ -124,6 +124,25 @@ const Home = ({
                     {soldProducts.map((product, index) => (
                       <ShopCard product={product} key={index} />
                     ))}
+                  </div>
+                </div>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col md={12}>
+                <div className='mail-parent'>
+                  <div className='mail-container'>
+                    <div className='copy-wrapper'>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Nobis, sapiente.
+                    </div>
+                    <div className='form-wrapper'>
+                      <form className='form-parent-mailing'>
+                        <input type='email' placeholder='Enter email' />
+                        <button>Subscribe</button>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </Col>
