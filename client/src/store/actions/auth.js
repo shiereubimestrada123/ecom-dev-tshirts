@@ -11,6 +11,7 @@ import {
   LOGOUT,
   UPDATE_USER,
   RESET_CART,
+  ADD_MAIL_NEWSLETTER,
 } from './constants';
 
 // Load user
@@ -55,6 +56,31 @@ export const updateUser = ({ name, password, email, userId }) => async (
     dispatch(setAlertPrompt('Updated profile successfully', 'success'));
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const addMailNewsletter = ({ email }) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ email });
+
+  try {
+    const res = await axios.post('/api/mail', body, config);
+    console.log(res);
+    dispatch({
+      type: ADD_MAIL_NEWSLETTER,
+      payload: res.data,
+    });
+  } catch (error) {
+    const errors = error.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlertPrompt(error.msg, 'danger')));
+    }
   }
 };
 

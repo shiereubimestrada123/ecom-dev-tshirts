@@ -1,10 +1,11 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col, Carousel, Form, Button } from 'react-bootstrap';
 import { getCategories } from '../../store/actions/category';
+import { addMailNewsletter } from '../../store/actions/auth';
 import {
   getProducts,
   showCarouselProducts,
@@ -24,6 +25,7 @@ import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 const Home = ({
   getCategories,
   getProducts,
+  addMailNewsletter,
   getSoldProducts,
   showCarouselProducts,
   loading,
@@ -38,6 +40,24 @@ const Home = ({
     showCarouselProducts();
     window.scrollTo(0, 0);
   }, []);
+
+  const [formData, setFormData] = useState({
+    email: '',
+  });
+
+  const { email } = formData;
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    addMailNewsletter({ email });
+  };
 
   return (
     <Fragment>
@@ -137,8 +157,16 @@ const Home = ({
                       <p> SIGN UP FOR OUR NEWSLETTER</p>
                     </div>
                     <div className='form-wrapper'>
-                      <form className='form-parent-mailing'>
-                        <input type='email' placeholder='Enter email' />
+                      <form
+                        className='form-parent-mailing'
+                        onSubmit={(e) => onSubmit(e)}
+                      >
+                        <input
+                          type='email'
+                          name='email'
+                          placeholder='Enter email'
+                          onChange={handleChange}
+                        />
                         <button>Go</button>
                       </form>
                     </div>
@@ -158,6 +186,7 @@ Home.propTypes = {
   getProducts: PropTypes.func.isRequired,
   getSoldProducts: PropTypes.func.isRequired,
   showCarouselProducts: PropTypes.func.isRequired,
+  addMailNewsletter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -172,4 +201,5 @@ export default connect(mapStateToProps, {
   getProducts,
   getSoldProducts,
   showCarouselProducts,
+  addMailNewsletter,
 })(Home);
