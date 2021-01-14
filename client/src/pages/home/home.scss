@@ -109,7 +109,7 @@
 
 .mail-parent {
   display: block;
-  background-color: #f4f4f4;
+  background-color: #F8F9FA;
 
   .mail-container {
     display: flex;
@@ -120,7 +120,13 @@
     width: 100%;
     text-align: center;
     padding: 4.5rem 3.75rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0;
+
+    p {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
   }
 
   .form-wrapper {
