@@ -70,11 +70,17 @@ export const addMailNewsletter = ({ email }) => async (dispatch) => {
 
   try {
     const res = await axios.post('/api/mail', body, config);
-    console.log(res);
+
     dispatch({
       type: ADD_MAIL_NEWSLETTER,
       payload: res.data,
     });
+
+    if (email) {
+      dispatch(setAlertPrompt('Submitted email successfully', 'success'));
+    } else {
+      dispatch(setAlertPrompt('Please enter valid email address', 'danger'));
+    }
   } catch (error) {
     const errors = error.response.data.errors;
 

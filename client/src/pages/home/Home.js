@@ -57,6 +57,7 @@ const Home = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     addMailNewsletter({ email });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -131,9 +132,6 @@ const Home = ({
                 </div>
               </Col>
             </Row>
-            {/* <div className='parent-home-icons'> */}
-
-            {/* </div> */}
 
             <Row>
               <Col md={12}>
