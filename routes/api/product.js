@@ -11,8 +11,8 @@ const User = require('../../models/User');
 
 router.put('/:productId/user/:userId', auth, admin, async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
-    let product = await Product.findById(req.params.productId);
+    let user = await User.findById(req.params.userId);
+    let product = await Product.findById(req.params.productId).select('-photo');
 
     if (user.id !== req.user.id) {
       return res.status(403).json({ msg: 'Access denied' });
