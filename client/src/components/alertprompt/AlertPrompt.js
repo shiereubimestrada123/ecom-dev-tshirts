@@ -6,7 +6,11 @@ import { selectAlert } from '../../store/selectors/alertPrompt';
 
 const AlertPrompt = ({ alertPrompt }) =>
   alertPrompt.map((alert) => (
-    <Alert key={alert.id} variant={alert.alertType} className='my-4'>
+    <Alert
+      key={alert.id}
+      variant={alert.alertType}
+      style={{ marginTop: '80px' }}
+    >
       {alert.msg}
     </Alert>
   ));
