@@ -1,35 +1,25 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Card } from 'react-bootstrap';
 import CardTemplate from './CardTemplate';
 import { addProductCart } from '../../store/actions/product';
 
 const ShopCard = ({ product, addProductCart }) => {
-  return (
-    <Card
-      style={{
-        width: '18rem',
-        marginLeft: '20px',
-        marginTop: '20px',
-      }}
-    >
-      <CardTemplate
-        product={product}
-        src={`/api/product/photo/${product._id}`}
-        classImage='product-image'
-        variant='top'
-      />
+  const history = useHistory();
 
-      <Card.Body className='overlay'>
-        <Link
-          to={`/product/${product._id}`}
-          variant='light'
-          className='mr-5 product-text'
-        >
-          View
-        </Link>
+  const handleRedirect = () => {
+    history.push(`/product/${product._id}`);
+  };
+
+  return (
+    <Card style={{ width: '18rem', marginLeft: '20px', marginTop: '20px' }}>
+      <Card.Img variant='top' src={`/api/product/photo/${product._id}`} />
+      <Card.Body>
+        <Card.Title>{product.name}</Card.Title>
+        <Card.Text>{product.description}</Card.Text>
+        <button onClick={handleRedirect}>View</button>
       </Card.Body>
     </Card>
   );

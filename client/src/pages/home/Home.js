@@ -34,11 +34,15 @@ const Home = ({
   soldProducts,
 }) => {
   useEffect(() => {
-    getCategories();
-    getProducts();
-    getSoldProducts();
-    showCarouselProducts();
-    window.scrollTo(0, 0);
+    async function anyNameFunction() {
+      await getCategories();
+      await showCarouselProducts();
+      await getProducts();
+      await getSoldProducts();
+      window.scrollTo(0, 0);
+    }
+
+    anyNameFunction();
   }, []);
 
   const [formData, setFormData] = useState({
