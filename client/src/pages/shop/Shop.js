@@ -51,9 +51,7 @@ const Shop = ({
 
               <div className='shop-card mt-2 mb-4'>
                 {allProducts.map((product, index) => (
-                  <div key={index}>
-                    <ShopCard product={product} />
-                  </div>
+                  <ShopCard product={product} key={index} />
                 ))}
               </div>
               <div>
