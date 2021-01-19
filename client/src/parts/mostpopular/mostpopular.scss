@@ -1,0 +1,31 @@
+.holder-most-popular {
+  position: relative;
+
+  .home-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+
+  .child-most-popular::before {
+    content: "";
+    position: absolute;
+    display: block;
+    right: 0;
+    top: -30px;
+    left: 0;
+    margin: auto;
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #373737;
+    width: 35%;
+    height: 200px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 3em;
+  }
+}
