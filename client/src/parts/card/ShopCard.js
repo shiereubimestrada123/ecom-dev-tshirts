@@ -1,12 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import CardTemplate from './CardTemplate';
-import { addProductCart } from '../../store/actions/product';
 
-const ShopCard = ({ product, addProductCart }) => {
+const ShopCard = ({ product }) => {
   const history = useHistory();
 
   const handleRedirect = () => {
@@ -25,8 +21,4 @@ const ShopCard = ({ product, addProductCart }) => {
   );
 };
 
-ShopCard.propTypes = {
-  addProductCart: PropTypes.func.isRequired,
-};
-
-export default connect(null, { addProductCart })(ShopCard);
+export default ShopCard;

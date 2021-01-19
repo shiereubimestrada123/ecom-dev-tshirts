@@ -1,0 +1,24 @@
+.home-header {
+  margin: 40px 0 30px 0;
+  text-align: center;
+  font-size: 3em;
+}
+
+.row-welcome {
+  margin-right: 0!important;
+  margin-left: 0!important;
+  text-align: center;
+
+  .child-home-icon {
+    i {
+      background-color: #5076A0;
+      border-radius: 50%;
+      padding: 20px;
+      color: #fff;
+    }
+
+    h3 {
+      margin-top: 10px;
+    }
+  }
+}

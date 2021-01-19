@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
         let mailOptions = {
           from: process.env.MAIL_USER,
           to: newUser.email,
+          subject: 'Subscribing to Newsletter',
         };
 
         transporter

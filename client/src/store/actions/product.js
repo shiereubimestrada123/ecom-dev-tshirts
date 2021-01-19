@@ -12,7 +12,7 @@ import {
   DELETE_PRODUCT_CART,
   CREATE_ORDER,
   LIST_ORDERS,
-  CAROUSEL_PRODUCTS,
+  // CAROUSEL_PRODUCTS,
   SOLD_PRODUCTS,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
@@ -94,18 +94,18 @@ export const deleteProduct = (productId, userId) => async (
   }
 };
 
-export const showCarouselProducts = () => async (dispatch) => {
-  try {
-    const res = await axios.get('/api/product/carousel');
+// export const showCarouselProducts = () => async (dispatch) => {
+//   try {
+//     const res = await axios.get('/api/product/carousel');
 
-    dispatch({
-      type: CAROUSEL_PRODUCTS,
-      payload: res.data,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     dispatch({
+//       type: CAROUSEL_PRODUCTS,
+//       payload: res.data,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export const listOrders = (userId) => async (dispatch) => {
   if (localStorage.token) {
@@ -220,7 +220,7 @@ export const getProducts = () => async (dispatch) => {
 };
 export const getSoldProducts = () => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/product?sortBy=sold&order=desc&limit=9`);
+    const res = await axios.get(`/api/product?sortBy=sold&order=desc&limit=6`);
     dispatch({
       type: SOLD_PRODUCTS,
       payload: res.data,

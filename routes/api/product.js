@@ -158,18 +158,18 @@ router.delete('/:productId/user/:userId', auth, admin, async (req, res) => {
   }
 });
 
-router.get('/carousel', async (req, res) => {
-  try {
-    const products = await Product.find({})
-      .select('-photo')
-      .sort({ sold: -1 })
-      .limit(3);
+// router.get('/carousel', async (req, res) => {
+//   try {
+//     const products = await Product.find({})
+//       .select('-photo')
+//       .sort({ sold: -1 })
+//       .limit(3);
 
-    res.json(products);
-  } catch (error) {
-    console.log(error);
-  }
-});
+//     res.json(products);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 router.get('/:productId', async (req, res) => {
   try {
