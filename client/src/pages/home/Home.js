@@ -7,14 +7,14 @@ import { Row, Col, Carousel, Form, Button } from 'react-bootstrap';
 import { getCategories } from '../../store/actions/category';
 import { addMailNewsletter } from '../../store/actions/auth';
 import {
-  getProducts,
-  showCarouselProducts,
+  // getProducts,
+  // showCarouselProducts,
   getSoldProducts,
 } from '../../store/actions/product';
 import { selectAuthLoading } from '../../store/selectors/auth';
 import {
-  selectAllProducts,
-  selectCarouselProducts,
+  // selectAllProducts,
+  // selectCarouselProducts,
   selectSoldProducts,
 } from '../../store/selectors/product';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
@@ -24,25 +24,25 @@ import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 
 const Home = ({
   getCategories,
-  getProducts,
+  // getProducts,
   addMailNewsletter,
   getSoldProducts,
-  showCarouselProducts,
+  // showCarouselProducts,
   loading,
-  products,
-  carouselProducts,
+  // products,
+  // carouselProducts,
   soldProducts,
 }) => {
   useEffect(() => {
-    async function anyNameFunction() {
+    async function callfunc() {
       await getCategories();
-      await showCarouselProducts();
-      await getProducts();
+      // await showCarouselProducts();
+      // await getProducts();
       await getSoldProducts();
       window.scrollTo(0, 0);
     }
 
-    anyNameFunction();
+    callfunc();
   }, []);
 
   const [formData, setFormData] = useState({
@@ -87,7 +87,7 @@ const Home = ({
                   interval={3000}
                   indicators={false}
                 >
-                  {carouselProducts.map((product) => (
+                  {soldProducts.map((product) => (
                     <Carousel.Item key={product._id}>
                       <Link to={`/product/${product._id}`}>
                         <img
@@ -185,23 +185,23 @@ const Home = ({
 
 Home.propTypes = {
   getCategories: PropTypes.func.isRequired,
-  getProducts: PropTypes.func.isRequired,
+  // getProducts: PropTypes.func.isRequired,
   getSoldProducts: PropTypes.func.isRequired,
-  showCarouselProducts: PropTypes.func.isRequired,
+  // showCarouselProducts: PropTypes.func.isRequired,
   addMailNewsletter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: selectAuthLoading,
-  products: selectAllProducts,
-  carouselProducts: selectCarouselProducts,
+  // products: selectAllProducts,
+  // carouselProducts: selectCarouselProducts,
   soldProducts: selectSoldProducts,
 });
 
 export default connect(mapStateToProps, {
   getCategories,
-  getProducts,
+  // getProducts,
   getSoldProducts,
-  showCarouselProducts,
+  // showCarouselProducts,
   addMailNewsletter,
 })(Home);

@@ -24,7 +24,7 @@ const initialState = {
   cartProducts: JSON.parse(localStorage.getItem('cartProducts') || '[]'),
   order: null,
   orders: [],
-  carouselProducts: [],
+  // carouselProducts: [],
   soldProducts: [],
 };
 
@@ -56,13 +56,13 @@ export default function (state = initialState, action) {
         loading: false,
       };
     }
-    case CAROUSEL_PRODUCTS: {
-      return {
-        ...state,
-        carouselProducts: payload,
-        loading: false,
-      };
-    }
+    // case CAROUSEL_PRODUCTS: {
+    //   return {
+    //     ...state,
+    //     carouselProducts: payload,
+    //     loading: false,
+    //   };
+    // }
     case LIST_ORDERS: {
       return {
         ...state,
