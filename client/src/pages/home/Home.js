@@ -21,7 +21,6 @@ const Home = ({ getCategories, getSoldProducts, loading, soldProducts }) => {
       await getSoldProducts();
       window.scrollTo(0, 0);
     }
-
     callfunc();
   }, []);
 
