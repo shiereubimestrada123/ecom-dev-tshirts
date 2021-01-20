@@ -3,8 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Table, Card } from 'react-bootstrap';
-import FormInput from '../../components/forms/forminput/FormInput';
+import { Table, Card, Button } from 'react-bootstrap';
 import {
   selectCartProducts,
   selectCartProductTotal,
@@ -37,35 +36,23 @@ const Cart = ({
     if (cartProducts.length > 0) {
       if (isAuthenticated) {
         return (
-          <FormInput
-            className='btn btn-block checkout-btn'
+          <Button
+            className='checkout-btn'
             type='submit'
-            value='Checkout'
             onClick={() => history.push('/checkout')}
-          />
-          // <Button
-          //   variant='info'
-          //   type='submit'
-          //   onClick={() => history.push('/checkout')}
-          // >
-          //   Checkout
-          // </Button>
+          >
+            Checkout
+          </Button>
         );
       } else {
         return (
-          <FormInput
-            className='btn btn-block login-checkout-btn'
+          <Button
+            className='login-checkout-btn'
             type='submit'
-            value='Please login to checkout'
             onClick={() => history.push('/checkout')}
-          />
-          // <Button
-          //   variant='info'
-          //   type='submit'
-          //   onClick={() => history.push('/checkout')}
-          // >
-          //   Please login to checkout
-          // </Button>
+          >
+            Please login to checkout
+          </Button>
         );
       }
     }
@@ -77,12 +64,8 @@ const Cart = ({
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <Table
-            responsive='sm md lg xl'
-            striped
-            bordered
-            className='table-parent'
-          >
+          <h1 className='shopping-cart'>My Shopping Cart</h1>
+          <Table responsive='sm md lg xl' striped bordered>
             <thead>
               <tr>
                 <th>Image</th>

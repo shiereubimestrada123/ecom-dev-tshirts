@@ -76,7 +76,7 @@ const CreateCategory = ({ createCategory, user, loading }) => {
                       style={{ textDecoration: 'none' }}
                     >
                       Cancel
-                    </Link>{' '}
+                    </Link>
                     <Button variant='success' className='button' type='submit'>
                       Submit
                     </Button>
