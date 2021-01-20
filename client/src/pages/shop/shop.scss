@@ -1,3 +1,8 @@
+.shop-header {
+  text-align: center;
+  margin-top: 100px;
+}
+
 .pagination {
   justify-content: center;
 
@@ -12,5 +17,33 @@
     .page-link {
       color: #5076a0;
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .shop-header {
+    text-align: center;
+    margin-top: 80px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .shop-header {
+    text-align: center;
+    margin-top: 80px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .shop-header {
+    text-align: center;
+    margin-top: 100px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .shop-header {
+    text-align: center;
+    margin-top: 100px;
   }
 }
