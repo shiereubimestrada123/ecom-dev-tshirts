@@ -10,7 +10,7 @@ const ShopCard = ({ product }) => {
   };
 
   return (
-    <Card style={{ width: '18rem', marginLeft: '20px', marginTop: '20px' }}>
+    <Card>
       <Card.Img variant='top' src={`/api/product/photo/${product._id}`} />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>

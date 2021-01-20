@@ -1,22 +1,10 @@
-.shop-header {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.shop-card {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: auto;
-}
-
 .pagination {
   justify-content: center;
 
   .page-item.active {
     .page-link {
-      background-color:  #5076a0;
-      border-color:  #5076a0;
+      background-color: #5076a0;
+      border-color: #5076a0;
     }
   }
 

@@ -1,13 +1,6 @@
 .holder-most-popular {
   position: relative;
 
-  .home-card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: auto;
-  }
-
   .child-most-popular::before {
     content: "";
     position: absolute;
