@@ -65,7 +65,7 @@ const Cart = ({
       ) : (
         <Fragment>
           <h1 className='shopping-cart'>My Shopping Cart</h1>
-          <Table responsive='sm md lg xl' bordered>
+          <Table responsive='sm md lg xl'>
             <thead>
               <tr className='tr-header'>
                 <th>Image</th>

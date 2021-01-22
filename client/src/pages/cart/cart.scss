@@ -12,12 +12,14 @@
     th {
       text-align: center;
       color: #fff;
+      border-bottom: none;
     }
   }
 
   tr {
     td {
       text-align: center;
+      vertical-align: middle;
     }
   }
 
@@ -48,6 +50,10 @@
 }
 
 .proceed-checkout {
+  display:flex;
+  justify-content: flex-end;
+  margin: -10px 0 50px 0;
+  
   .checkout-btn {
     border-radius: 0 !important;
     background-color: #5076a0;

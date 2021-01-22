@@ -44,7 +44,7 @@ const App = () => {
       <Router>
         {/* <NavigationBar /> */}
         <NavBar />
-        <Container style={{ minHeight: '100vh' }}>
+        <Container style={{ minHeight: '90vh' }}>
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/register' exact component={Register} />
