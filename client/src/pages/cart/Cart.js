@@ -65,13 +65,12 @@ const Cart = ({
       ) : (
         <Fragment>
           <h1 className='shopping-cart'>My Shopping Cart</h1>
-          <Table responsive='sm md lg xl' striped bordered>
+          <Table responsive='sm md lg xl' bordered>
             <thead>
-              <tr>
+              <tr className='tr-header'>
                 <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity</th>
+                <th className='mobile-hide'>Name</th>
+                <th className='mobile-hide'>Quantity</th>
                 <th>Price</th>
                 <th></th>
               </tr>
@@ -82,11 +81,7 @@ const Cart = ({
                   <tr key={index}>
                     <Fragment>
                       <td>
-                        <Card
-                          style={{
-                            width: '10rem',
-                          }}
-                        >
+                        <Card className='cart-card'>
                           <CardTemplate
                             product={product}
                             src={`/api/product/photo/${product._id}`}
@@ -95,9 +90,8 @@ const Cart = ({
                           />
                         </Card>
                       </td>
-                      <td>{product.name}</td>
-                      <td>{product.description}</td>
-                      <td>{product.count}</td>
+                      <td className='mobile-hide'>{product.name}</td>
+                      <td className='mobile-hide'>{product.count}</td>
                       <td>{product.price}</td>
                       <td onClick={() => clearProductCart(product)}>
                         <i className='fas fa-trash-alt'></i>
@@ -114,7 +108,10 @@ const Cart = ({
                 </tr>
               )}
               <tr>
-                <td colSpan='5'>Total</td>
+                <td className='no-border-right-td'>Total</td>
+                <td className='no-border-td mobile-hide'></td>
+                <td className='no-border-td mobile-hide'></td>
+                <td className='no-border-td'></td>
                 <td>{total}</td>
               </tr>
             </tbody>
