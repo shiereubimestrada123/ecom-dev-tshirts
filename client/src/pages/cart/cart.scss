@@ -20,6 +20,10 @@
     td {
       text-align: center;
       vertical-align: middle;
+
+      .fa-trash-alt {
+        cursor: pointer;
+      }
     }
   }
 
@@ -55,36 +59,34 @@
   
   .checkout-btn {
     border-radius: 0 !important;
-    background-color: #5076a0;
+    background-color: #5076a0!important;
     font-size: 20px;
     border: none;
   }
 
-  .checkout-btn:focus {
-    outline: none;
-    box-shadow: none;
-  }
+  // .checkout-btn:focus {
+  //   outline: none;
+  //   box-shadow: none;
+  // }
 
   .checkout-btn:hover {
-    background-color: #48698f;
-    color: #fff;
+    background-color: #48698f!important;
   }
 
   .login-checkout-btn {
     border-radius: 0 !important;
-    background-color: #5076a0;
+    background-color: #5076a0!important;
     font-size: 20px;
     border: none;
   }
 
-  .login-checkout-btn:focus {
-    outline: none;
-    box-shadow: none;
-  }
+  // .login-checkout-btn:focus {
+  //   outline: none;
+  //   box-shadow: none;
+  // }
 
   .login-checkout-btn:hover {
-    background-color: #48698f;
-    color: #fff;
+    background-color: #48698f!important;
   }
 }
 

@@ -1,23 +1,18 @@
-.holder-add-to-cart-button {
-  margin-top: 20px;
-
+.parent-single-product {
+  margin: 120px 0 40px 0;
+  
   .add-cart-btn {
-    background-color: #5076a0;
+    background-color: #5076a0!important;
     border-radius: 0;
     font-size: 20px;
-    font-weight: bold;
     color: #fff;
-    margin-bottom: 14px;
-  }
-
-  .add-cart-btn:focus {
-    outline: none;
-    box-shadow: none;
+    margin: 20px 0 20px 0;
+    border: transparent;
   }
 
   .add-cart-btn:hover {
-    border: 1px solid #5076a0;
-    background-color: #48698f;
+    background-color: #48698f!important;
     color: #fff;
   }
 }
+

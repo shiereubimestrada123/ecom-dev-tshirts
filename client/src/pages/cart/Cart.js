@@ -37,7 +37,7 @@ const Cart = ({
       if (isAuthenticated) {
         return (
           <Button
-            className='checkout-btn'
+            className='checkout-btn shadow-none'
             type='submit'
             onClick={() => history.push('/checkout')}
           >
@@ -47,7 +47,7 @@ const Cart = ({
       } else {
         return (
           <Button
-            className='login-checkout-btn'
+            className='login-checkout-btn shadow-none'
             type='submit'
             onClick={() => history.push('/checkout')}
           >
