@@ -16,6 +16,7 @@ import {
 import { clearProductCart } from '../../store/actions/product';
 import CardTemplate from '../../parts/card/CardTemplate';
 import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
+import { Animated } from 'react-animated-css';
 
 const Cart = ({
   cartProducts,
@@ -64,59 +65,65 @@ const Cart = ({
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <h1 className='shopping-cart'>My Shopping Cart</h1>
-          <Table responsive='sm md lg xl'>
-            <thead>
-              <tr className='tr-header'>
-                <th>Image</th>
-                <th className='mobile-hide'>Name</th>
-                <th className='mobile-hide'>Quantity</th>
-                <th>Price</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartProducts.length > 0 ? (
-                cartProducts.map((product, index) => (
-                  <tr key={index}>
-                    <Fragment>
-                      <td>
-                        <Card className='cart-card'>
-                          <CardTemplate
-                            product={product}
-                            src={`/api/product/photo/${product._id}`}
-                            classImage='cart-image'
-                            variant='top'
-                          />
-                        </Card>
-                      </td>
-                      <td className='mobile-hide'>{product.name}</td>
-                      <td className='mobile-hide'>{product.count}</td>
-                      <td>{product.price}</td>
-                      <td onClick={() => clearProductCart(product)}>
-                        <i className='fas fa-trash-alt'></i>
-                      </td>
-                    </Fragment>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan='6' className='empty-cart'>
-                    You have no existing item, please go to{' '}
-                    <Link to='/shop'>Shop</Link>
-                  </td>
+          <Animated
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            isVisible={true}
+          >
+            <h1 className='shopping-cart'>My Shopping Cart</h1>
+            <Table responsive='sm md lg xl'>
+              <thead>
+                <tr className='tr-header'>
+                  <th>Image</th>
+                  <th className='mobile-hide'>Name</th>
+                  <th className='mobile-hide'>Quantity</th>
+                  <th>Price</th>
+                  <th></th>
                 </tr>
-              )}
-              <tr>
-                <td className='no-border-right-td'>Total</td>
-                <td className='no-border-td mobile-hide'></td>
-                <td className='no-border-td mobile-hide'></td>
-                <td className='no-border-td'></td>
-                <td>{total}</td>
-              </tr>
-            </tbody>
-          </Table>
-          <div className='proceed-checkout'>{isButton()}</div>
+              </thead>
+              <tbody>
+                {cartProducts.length > 0 ? (
+                  cartProducts.map((product, index) => (
+                    <tr key={index}>
+                      <Fragment>
+                        <td>
+                          <Card className='cart-card'>
+                            <CardTemplate
+                              product={product}
+                              src={`/api/product/photo/${product._id}`}
+                              classImage='cart-image'
+                              variant='top'
+                            />
+                          </Card>
+                        </td>
+                        <td className='mobile-hide'>{product.name}</td>
+                        <td className='mobile-hide'>{product.count}</td>
+                        <td>{product.price}</td>
+                        <td onClick={() => clearProductCart(product)}>
+                          <i className='fas fa-trash-alt'></i>
+                        </td>
+                      </Fragment>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan='6' className='empty-cart'>
+                      You have no existing item, please go to{' '}
+                      <Link to='/shop'>Shop</Link>
+                    </td>
+                  </tr>
+                )}
+                <tr>
+                  <td className='no-border-right-td'>Total</td>
+                  <td className='no-border-td mobile-hide'></td>
+                  <td className='no-border-td mobile-hide'></td>
+                  <td className='no-border-td'></td>
+                  <td>{total}</td>
+                </tr>
+              </tbody>
+            </Table>
+            <div className='proceed-checkout'>{isButton()}</div>
+          </Animated>
         </Fragment>
       )}
     </Fragment>
