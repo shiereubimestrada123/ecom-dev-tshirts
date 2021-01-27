@@ -46,7 +46,55 @@ const CreateCategory = ({ createCategory, user, loading }) => {
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <Row className='mt-5 admin-row-header'>
+          <Row>
+            <Col md={12}>
+              <section className='holder-create-category'>
+                <div className='parent-create-category'>
+                  <div className='category-heading'>
+                    <h2>Create Category</h2>
+                  </div>
+                  <div className='category-body'>
+                    <Form className='my-5' onSubmit={(e) => onSubmit(e)}>
+                      <Form.Group controlId='formCategoryName'>
+                        <InputGroup className='mb-3'>
+                          <InputGroup.Prepend>
+                            <InputGroup.Text id='basic-addon1'>
+                              Name
+                            </InputGroup.Text>
+                          </InputGroup.Prepend>
+                          <Form.Control
+                            type='name'
+                            name='name'
+                            value={name || ''}
+                            className='category-input'
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </InputGroup>
+
+                        <div className='button-holder'>
+                          <Link
+                            to='/admin/dashboard'
+                            className='cancel'
+                            style={{ textDecoration: 'none' }}
+                          >
+                            Cancel
+                          </Link>
+                          <Button
+                            variant='success'
+                            className='button'
+                            type='submit'
+                          >
+                            Submit
+                          </Button>
+                        </div>
+                      </Form.Group>
+                    </Form>
+                  </div>
+                </div>
+              </section>
+            </Col>
+          </Row>
+          {/* <Row className='mt-5 admin-row-header'>
             <Col>
               <i className='fab fa-black-tie' aria-hidden='true'></i> Create
               Category
@@ -84,7 +132,7 @@ const CreateCategory = ({ createCategory, user, loading }) => {
                 </Form.Group>
               </Form>
             </Col>
-          </Row>
+          </Row> */}
         </Fragment>
       )}
     </Fragment>

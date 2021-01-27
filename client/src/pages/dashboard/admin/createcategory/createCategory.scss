@@ -1,54 +1,138 @@
-.admin-row-header {
-  padding: 20px;
-  background-color: #eaeaea;
-  border: 1px solid #cecece;
-  border-bottom: none;
+.holder-create-category {
+  background: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 150px 0 50px 0;
 
-  .fa-black-tie {
-    font-size: 1.5rem;
-    margin-right: 10px;
-  }
-}
+  .parent-create-category {
+    border: 1px solid #bce8f1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 
-.admin-row-body {
-  min-height: 650px;
-  border: 1px solid #cecece;
-  margin-bottom: 50px;
-
-  .category-input:focus {
-    outline: none;
-    box-shadow: none;
-    border: 1px solid #ced4da;
-  }
-
-  .category-holder {
-    text-align: center;
-  
-    .button {
-      border-radius: 0!important
-    }
-    
-    .cancel {
-      display: inline-block;
-      color: #fff;
-      font-weight: 400;
-      background-color: #DC3544;
-      border-color:#DC3544;
-      text-align: center;
-      vertical-align: middle;
+    .category-heading {
+      padding: 20px 0;
+      background: #d9edf7;
+      /* -webkit-border-top-left-radius: 10px; */
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
       border: 1px solid transparent;
-      padding: .375rem .75rem;
-      font-size: 1rem;
-      line-height: 1.5;
+
+      h2 {
+        color: #31708f;
+        text-transform: uppercase;
+        text-align: center;
+      }
     }
-    
-    .cancel:hover {
-      color: #fff;
-      background-color: #c82333;
+
+    .category-body {
+      padding: 52px 85px;
+      // max-width: 400px;
+
+      .button-holder {
+        text-align: center;
+      }
     }
   }
 }
 
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .holder-create-category {
+      padding: 100px 0 50px 0;
+    }
+}
 
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  .holder-create-category {
+    padding: 100px 0 50px 0;
+  }
+}
 
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .holder-create-category {
+    padding: 100px 0 50px 0;
+  }
+}
 
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+  .holder-create-category {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .holder-create-category {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 3) {
+  .holder-create-category {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (device-aspect-ratio: 4/3) {
+  .holder-create-category {
+    padding: 150px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  .holder-create-category {
+    padding: 150px 0 50px 0;
+  }
+}
+
+// .admin-row-header {
+//   padding: 20px;
+//   background-color: #eaeaea;
+//   border: 1px solid #cecece;
+//   border-bottom: none;
+
+//   .fa-black-tie {
+//     font-size: 1.5rem;
+//     margin-right: 10px;
+//   }
+// }
+
+// .admin-row-body {
+//   min-height: 650px;
+//   border: 1px solid #cecece;
+//   margin-bottom: 50px;
+
+//   .category-input:focus {
+//     outline: none;
+//     box-shadow: none;
+//     border: 1px solid #ced4da;
+//   }
+
+//   .category-holder {
+//     text-align: center;
+
+//     .button {
+//       border-radius: 0!important
+//     }
+
+//     .cancel {
+//       display: inline-block;
+//       color: #fff;
+//       font-weight: 400;
+//       background-color: #DC3544;
+//       border-color:#DC3544;
+//       text-align: center;
+//       vertical-align: middle;
+//       border: 1px solid transparent;
+//       padding: .375rem .75rem;
+//       font-size: 1rem;
+//       line-height: 1.5;
+//     }
+
+//     .cancel:hover {
+//       color: #fff;
+//       background-color: #c82333;
+//     }
+//   }
+// }
