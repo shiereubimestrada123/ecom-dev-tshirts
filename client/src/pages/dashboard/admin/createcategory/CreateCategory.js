@@ -72,7 +72,6 @@ const CreateCategory = ({ createCategory, user, loading }) => {
                               type='name'
                               name='name'
                               value={name || ''}
-                              className='category-input'
                               onChange={(e) => handleChange(e)}
                             />
                           </InputGroup>
