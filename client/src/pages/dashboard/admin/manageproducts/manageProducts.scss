@@ -29,11 +29,17 @@
     .manage-body {
       padding: 25px;
 
+      tr {
+        td {
+          text-align: left;
+        }
+      }
+
       .tr-header {
         background-color: #6B6E70;
 
         .product-name {
-          text-align: center;
+          text-align: left;
         }
       }
 
@@ -91,30 +97,3 @@
     padding: 130px 0 50px 0;
   }
 }
-
-// .admin-row-header {
-//   padding: 20px;
-//   background-color: #EAEAEA;
-//   border: 1px solid #CECECE;
-//   border-bottom: none;
-
-//   .fa-black-tie {
-//     font-size: 1.5rem;
-//     margin-right: 10px;
-//   }
-// }
-
-// .admin-row-body {
-//   min-height: 650px;
-//   border: 1px solid #CECECE;
-//   margin-bottom: 50px;
-
-//   .manage-product-holder {
-
-//     h2 {
-//       text-align: center;
-//       margin: 20px 0 20px 0;
-//     }
-
-//   }
-// }
