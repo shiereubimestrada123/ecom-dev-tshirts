@@ -31,7 +31,7 @@
 
       .tr-header {
         background-color: #6B6E70;
-        
+
         .product-name {
           text-align: center;
         }
@@ -41,6 +41,54 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .holder-manage-product {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  .holder-manage-product {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  .holder-manage-product {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+  .holder-manage-product {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .holder-manage-product {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 3) {
+  .holder-manage-product {
+    padding: 100px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (device-aspect-ratio: 4/3) {
+  .holder-manage-product {
+    padding: 150px 0 50px 0;
+  }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  .holder-manage-product {
+    padding: 130px 0 50px 0;
   }
 }
 
