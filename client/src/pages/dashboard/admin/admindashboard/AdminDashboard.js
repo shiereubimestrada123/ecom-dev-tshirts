@@ -25,12 +25,8 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <section className='admin-parent'>
-          <Animated
-            animationIn='fadeIn'
-            animationOut='fadeOut'
-            isVisible={true}
-          >
+        <Animated animationIn='fadeIn' animationOut='fadeOut' isVisible={true}>
+          <section className='admin-parent'>
             <Row>
               <Col md={12}>
                 <Jumbotron>
@@ -73,40 +69,8 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
                 </ListGroup>
               </Col>
             </Row>
-          </Animated>
-          {/* <Row className='admin-row-header'>
-            <Col>
-              <i className='fab fa-black-tie'></i> Admin Dashboard
-            </Col>
-          </Row>
-          <Row className='admin-row-body'>
-            <Col className='left' md={3}>
-              <ul>
-                <li>
-                  <Link to='/admin/create/category'>Create Category</Link>
-                </li>
-                <li>
-                  <Link to='/admin/create/product'>Create Product</Link>
-                </li>
-                <li>
-                  <Link to='/admin/orders'>Orders</Link>
-                </li>
-                <li>
-                  <Link to='/user/account'>Update Account</Link>
-                </li>
-                <li>
-                  <Link to='/admin/products'>Manage Products</Link>
-                </li>
-              </ul>
-            </Col>
-            <Col className='left' md={9}>
-              <ListGroup>
-                <ListGroup.Item>{user && user.name}</ListGroup.Item>
-                <ListGroup.Item>{user && user.email}</ListGroup.Item>
-              </ListGroup>
-            </Col>
-          </Row> */}
-        </section>
+          </section>
+        </Animated>
       )}
     </Fragment>
   );
