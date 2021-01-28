@@ -49,13 +49,13 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
                     <Link to='/admin/create/product'>Create Product</Link>
                   </ListGroup.Item>
                   <ListGroup.Item as='li'>
+                    <Link to='/admin/products'>Manage Products</Link>
+                  </ListGroup.Item>
+                  <ListGroup.Item as='li'>
                     <Link to='/admin/orders'>Orders</Link>
                   </ListGroup.Item>
                   <ListGroup.Item as='li'>
                     <Link to='/user/account'>Update Account</Link>
-                  </ListGroup.Item>
-                  <ListGroup.Item as='li'>
-                    <Link to='/admin/products'>Manage Products</Link>
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
