@@ -70,7 +70,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
         <span> {user && user.name}</span>
       </Nav.Link>
       <Nav.Link className='login' onClick={logout}>
-        <i className='fas fa-id-card'></i>
+        <i class='fas fa-sign-out-alt'></i>
         <span>Logout</span>
       </Nav.Link>
     </Fragment>
@@ -79,7 +79,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
   const isLogout = (
     <Fragment>
       <Nav.Link className='login' onClick={() => history.push('/login')}>
-        <i className='fas fa-user-plus'></i>
+        <i class='fas fa-sign-in-alt'></i>
         <span>Login</span>
       </Nav.Link>
     </Fragment>
