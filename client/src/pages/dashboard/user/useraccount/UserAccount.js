@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col, Form, InputGroup, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { Animated } from 'react-animated-css';
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 import {
   selectAuthLoading,
@@ -58,77 +59,86 @@ const Account = ({ updateUser, loading, user }) => {
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <Row className='mt-5 user-row-header'>
-            <Col>
-              <i className='fa fa-user' aria-hidden='true'></i> Update Account
-            </Col>
-          </Row>
-          <Row className='user-row-body'>
-            <Col>
-              <Form className='my-5' onSubmit={(e) => handleSubmit(e)}>
-                <Form.Group controlId='formUpdateName'>
-                  <InputGroup className='mb-3'>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id='basic-addon1'>Name</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control
-                      type='name'
-                      name='name'
-                      value={name || ''}
-                      className='user-profile-input'
-                      onChange={(e) => handleChange(e)}
-                    />
-                  </InputGroup>
+          <Animated
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            isVisible={true}
+          >
+            <Row>
+              <Col md={12}>
+                <section className='holder-update-account'>
+                  <div className='parent-update-product'>
+                    <div className='update-heading'>
+                      <h2>Update Account</h2>
+                    </div>
+                    <div className='update-body'>
+                      <Form className='my-5' onSubmit={(e) => handleSubmit(e)}>
+                        <Form.Group controlId='formUpdateName'>
+                          <InputGroup className='mb-3'>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text>Name</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                              type='name'
+                              name='name'
+                              value={name || ''}
+                              onChange={(e) => handleChange(e)}
+                            />
+                          </InputGroup>
 
-                  <InputGroup className='mb-3'>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id='basic-addon1'>Email</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control
-                      type='email'
-                      name='email'
-                      value={email || ''}
-                      className='user-profile-input'
-                      onChange={(e) => handleChange(e)}
-                    />
-                  </InputGroup>
+                          <InputGroup className='mb-3'>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text>Email</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                              type='email'
+                              name='email'
+                              value={email || ''}
+                              onChange={(e) => handleChange(e)}
+                            />
+                          </InputGroup>
 
-                  <InputGroup className='mb-3'>
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id='basic-addon1'>
-                        Password
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control
-                      type='password'
-                      name='password'
-                      value={password || ''}
-                      className='user-profile-input'
-                      placeholder='Enter new password'
-                      onChange={(e) => handleChange(e)}
-                    />
-                  </InputGroup>
+                          <InputGroup className='mb-3'>
+                            <InputGroup.Prepend>
+                              <InputGroup.Text>Password</InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                              type='password'
+                              name='password'
+                              value={password || ''}
+                              placeholder='Enter new password'
+                              onChange={(e) => handleChange(e)}
+                            />
+                          </InputGroup>
 
-                  <div className='update-user-button-holder'>
-                    <Link
-                      to={
-                        user && user.role === 1
-                          ? '/admin/dashboard'
-                          : '/user/dashboard'
-                      }
-                      className='cancel'
-                      style={{ textDecoration: 'none' }}
-                    >
-                      Cancel
-                    </Link>{' '}
-                    <Button variant='success' className='button' type='submit'>
-                      Submit
-                    </Button>
+                          <div className='button-holder'>
+                            <Link
+                              to={
+                                user && user.role === 1
+                                  ? '/admin/dashboard'
+                                  : '/user/dashboard'
+                              }
+                              className='cancel'
+                              style={{ textDecoration: 'none' }}
+                            >
+                              Cancel
+                            </Link>{' '}
+                            <Button
+                              variant='success'
+                              className='button'
+                              type='submit'
+                            >
+                              Submit
+                            </Button>
+                          </div>
+                        </Form.Group>
+                      </Form>
+                    </div>
                   </div>
-                </Form.Group>
-              </Form>
-            </Col>
-          </Row>
+                </section>
+              </Col>
+            </Row>
+          </Animated>
         </Fragment>
       )}
     </Fragment>
