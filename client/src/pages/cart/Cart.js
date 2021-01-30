@@ -3,8 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Table, Card } from 'react-bootstrap';
-import FormInput from '../../components/forms/forminput/FormInput';
+import { Table, Card, Button } from 'react-bootstrap';
 import {
   selectCartProducts,
   selectCartProductTotal,
@@ -17,6 +16,7 @@ import {
 import { clearProductCart } from '../../store/actions/product';
 import CardTemplate from '../../parts/card/CardTemplate';
 import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
+import { Animated } from 'react-animated-css';
 
 const Cart = ({
   cartProducts,
@@ -37,35 +37,23 @@ const Cart = ({
     if (cartProducts.length > 0) {
       if (isAuthenticated) {
         return (
-          <FormInput
-            className='btn btn-block checkout-btn'
+          <Button
+            className='checkout-btn shadow-none'
             type='submit'
-            value='Checkout'
             onClick={() => history.push('/checkout')}
-          />
-          // <Button
-          //   variant='info'
-          //   type='submit'
-          //   onClick={() => history.push('/checkout')}
-          // >
-          //   Checkout
-          // </Button>
+          >
+            Checkout
+          </Button>
         );
       } else {
         return (
-          <FormInput
-            className='btn btn-block login-checkout-btn'
+          <Button
+            className='login-checkout-btn shadow-none'
             type='submit'
-            value='Please login to checkout'
             onClick={() => history.push('/checkout')}
-          />
-          // <Button
-          //   variant='info'
-          //   type='submit'
-          //   onClick={() => history.push('/checkout')}
-          // >
-          //   Please login to checkout
-          // </Button>
+          >
+            Please login to checkout
+          </Button>
         );
       }
     }
@@ -77,66 +65,65 @@ const Cart = ({
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <Table
-            responsive='sm md lg xl'
-            striped
-            bordered
-            className='table-parent'
+          <Animated
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            isVisible={true}
           >
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartProducts.length > 0 ? (
-                cartProducts.map((product, index) => (
-                  <tr key={index}>
-                    <Fragment>
-                      <td>
-                        <Card
-                          style={{
-                            width: '10rem',
-                          }}
-                        >
-                          <CardTemplate
-                            product={product}
-                            src={`/api/product/photo/${product._id}`}
-                            classImage='cart-image'
-                            variant='top'
-                          />
-                        </Card>
-                      </td>
-                      <td>{product.name}</td>
-                      <td>{product.description}</td>
-                      <td>{product.count}</td>
-                      <td>{product.price}</td>
-                      <td onClick={() => clearProductCart(product)}>
-                        <i className='fas fa-trash-alt'></i>
-                      </td>
-                    </Fragment>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan='6' className='empty-cart'>
-                    You have no existing item, please go to{' '}
-                    <Link to='/shop'>Shop</Link>
-                  </td>
+            <h1 className='shopping-cart'>My Shopping Cart</h1>
+            <Table responsive='sm md lg xl'>
+              <thead>
+                <tr className='tr-header'>
+                  <th>Image</th>
+                  <th className='mobile-hide'>Name</th>
+                  <th className='mobile-hide'>Quantity</th>
+                  <th>Price</th>
+                  <th></th>
                 </tr>
-              )}
-              <tr>
-                <td colSpan='5'>Total</td>
-                <td>{total}</td>
-              </tr>
-            </tbody>
-          </Table>
-          <div className='proceed-checkout'>{isButton()}</div>
+              </thead>
+              <tbody>
+                {cartProducts.length > 0 ? (
+                  cartProducts.map((product, index) => (
+                    <tr key={index}>
+                      <Fragment>
+                        <td>
+                          <Card className='cart-card'>
+                            <CardTemplate
+                              product={product}
+                              src={`/api/product/photo/${product._id}`}
+                              classImage='cart-image'
+                              variant='top'
+                            />
+                          </Card>
+                        </td>
+                        <td className='mobile-hide'>{product.name}</td>
+                        <td className='mobile-hide'>{product.count}</td>
+                        <td>{product.price}</td>
+                        <td onClick={() => clearProductCart(product)}>
+                          <i className='fas fa-trash-alt'></i>
+                        </td>
+                      </Fragment>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan='6' className='empty-cart'>
+                      You have no existing item, please go to{' '}
+                      <Link to='/shop'>Shop</Link>
+                    </td>
+                  </tr>
+                )}
+                <tr>
+                  <td className='no-border-right-td'>Total</td>
+                  <td className='no-border-td mobile-hide'></td>
+                  <td className='no-border-td mobile-hide'></td>
+                  <td className='no-border-td'></td>
+                  <td>{total}</td>
+                </tr>
+              </tbody>
+            </Table>
+            <div className='proceed-checkout'>{isButton()}</div>
+          </Animated>
         </Fragment>
       )}
     </Fragment>

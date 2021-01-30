@@ -2,7 +2,8 @@ import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Row, Col, Spinner, Badge } from 'react-bootstrap';
+import { Row, Col, Badge, Button } from 'react-bootstrap';
+import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 import FormInput from '../../components/forms/forminput/FormInput';
 import { getSingleProduct, addProductCart } from '../../store/actions/product';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../store/selectors/auth';
 import { selectSingleProduct } from '../../store/selectors/product';
 import SingleCard from '../../parts/card/SingleCard';
+import { Animated } from 'react-animated-css';
 
 const Product = ({
   match,
@@ -32,36 +34,42 @@ const Product = ({
   return (
     <div>
       {loading ? (
-        <Row style={{ textAlign: 'center', marginTop: '200px' }}>
-          <Col className='spinner-class'>
-            <Spinner animation='border' variant='info' />
-          </Col>
-        </Row>
+        <LoadingSpinner />
       ) : (
-        <Row className='mt-5'>
-          <Col md={8}>{product && <SingleCard product={product} />}</Col>
-          <Col md={4} className='mt-5'>
-            <Fragment>
-              <p>Name: {product && product.name}</p>
-              <p>Description: {product && product.description}</p>
-              <p>Price: ${product && product.price}</p>
-              {product && product.quantity > 0 ? (
-                <Badge variant='secondary'>In Stock</Badge>
-              ) : (
-                <Badge variant='warning'>Out of stock</Badge>
-              )}
+        <Animated animationIn='fadeIn' animationOut='fadeOut' isVisible={true}>
+          <Row className='parent-single-product'>
+            <Col md={8}>{product && <SingleCard product={product} />}</Col>
+            <Col md={4} className='mt-3'>
+              <Fragment>
+                <p>Name: {product && product.name}</p>
+                <p>Description: {product && product.description}</p>
+                <p>Price: ${product && product.price}</p>
+                {product && product.quantity > 0 ? (
+                  <Badge variant='secondary'>In Stock</Badge>
+                ) : (
+                  <Badge variant='warning'>Out of stock</Badge>
+                )}
 
-              <div className='holder-add-to-cart-button'>
+                {/* <div className='holder-add-to-cart-button'>
                 <FormInput
                   className='btn btn-block add-cart-btn'
                   type='submit'
                   value='Add to Cart'
                   onClick={addToCart}
                 />
-              </div>
-            </Fragment>
-          </Col>
-        </Row>
+              </div> */}
+                <br />
+                <Button
+                  className='add-cart-btn shadow-none'
+                  type='submit'
+                  onClick={addToCart}
+                >
+                  Add to Cart
+                </Button>
+              </Fragment>
+            </Col>
+          </Row>
+        </Animated>
       )}
     </div>
   );

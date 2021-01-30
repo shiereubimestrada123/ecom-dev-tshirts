@@ -29,8 +29,9 @@
 
 @import 'components/cartDropdown/CartDropdown.scss';
 
-body {
+html, body {
   font-family: 'Lora', serif!important;
   color: #2D2926!important;
+  height: 100%;
 }
 

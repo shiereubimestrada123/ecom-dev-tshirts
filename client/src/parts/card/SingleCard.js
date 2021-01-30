@@ -4,13 +4,7 @@ import CardTemplate from './CardTemplate';
 
 const SingleCard = ({ product }) => {
   return (
-    <Card
-      style={{
-        width: '30rem',
-        marginLeft: '20px',
-        marginTop: '20px',
-      }}
-    >
+    <Card>
       <CardTemplate
         product={product}
         src={`/api/product/photo/${product._id}`}

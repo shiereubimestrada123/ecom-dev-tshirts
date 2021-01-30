@@ -1,59 +1,99 @@
-.table-parent {
-  margin-top: 100px;
-  border: 5px solid red;
+.shopping-cart {
+  margin: 100px 0 30px 0;
+  text-align: center;
+}
 
-  .cart-image {
-    height: 5rem;
-    // width: 10rem;
+.table {
+  border-collapse: collapse;
+
+  .tr-header {
+    background-color: #6B6E70;
+
+    th {
+      text-align: center;
+      color: #fff;
+      border-bottom: none;
+    }
   }
+
+  tr {
+    td {
+      text-align: center;
+      vertical-align: middle;
+
+      .fa-trash-alt {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .cart-card {
+    border: 0;
+
+    .cart-image {
+      height: 5rem;
+      width: 5rem;
+    }
+  }
+
+
 
   .empty-cart {
     text-align: center;
   }
+
+  .no-border-right-td {
+    border-right: 1px solid transparent;
+  }
+
+  .no-border-td {
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+  }
 }
 
 .proceed-checkout {
-  float: right;
-  clear: both;
-  // width: 25%;
-
+  display:flex;
+  justify-content: flex-end;
+  margin: -10px 0 50px 0;
+  
   .checkout-btn {
-    background-color: #5076a0;
-    border-radius: 0;
+    border-radius: 0 !important;
+    background-color: #5076a0!important;
     font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 14px;
+    border: none;
   }
 
-  .checkout-btn:focus {
-    outline: none;
-    box-shadow: none;
-  }
+  // .checkout-btn:focus {
+  //   outline: none;
+  //   box-shadow: none;
+  // }
 
   .checkout-btn:hover {
-    border: 1px solid #5076a0;
-    background-color: #48698f;
-    color: #fff;
+    background-color: #48698f!important;
   }
 
   .login-checkout-btn {
-    background-color: #5076a0;
-    border-radius: 0;
+    border-radius: 0 !important;
+    background-color: #5076a0!important;
     font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 14px;
+    border: none;
   }
 
-  .login-checkout-btn:focus {
-    outline: none;
-    box-shadow: none;
-  }
+  // .login-checkout-btn:focus {
+  //   outline: none;
+  //   box-shadow: none;
+  // }
 
   .login-checkout-btn:hover {
-    border: 1px solid #5076a0;
-    background-color:  #48698f;
-    color: #fff;
+    background-color: #48698f!important;
   }
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px) {
+    .mobile-hide {
+      display: none;
+    }
 }

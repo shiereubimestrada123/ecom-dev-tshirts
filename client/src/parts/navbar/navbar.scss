@@ -15,10 +15,6 @@
         margin-left: 5px;
       }
 
-      // .nav-link:first-child {
-      //   margin-left: 0.5rem !important;
-      // }
-
       .nav-link {
         margin-left: 0.5rem !important;
       }
@@ -42,10 +38,6 @@
         color: #5076A0;
         margin-left: 5px;
       }
-
-      // .nav-link:first-child {
-      //   margin-left: 0.5rem !important;
-      // }
 
       .nav-link {
         margin-left: 0.5rem !important;
@@ -71,10 +63,6 @@
         margin-left: 5px;
       }
 
-      // .nav-link:first-child {
-      //   margin-left: 0.5rem !important;
-      // }
-
       .nav-link {
         margin-left: 0.5rem !important;
       }
@@ -87,12 +75,11 @@
     background-color: #5076A0;
     transition: all 0.3s ease-in-out;
     height: 80px;
-    // padding: 13px 0!important;
 
     .nav2-child {
       margin: auto;
 
-      span, i {
+      span {
         color: #fff;
         margin-left: 5px;
         font-family: 'Crimson Text', serif;
@@ -109,7 +96,7 @@
       }
 
       .nav-link {
-        margin-left: 10rem !important;
+        margin-left: 6rem !important;
       }
     }
   }
@@ -117,7 +104,6 @@
   .nav2-parent.active {
     background-color: #F8F9FA;
     height: 70px;
-    // padding: 10px 0!important;
 
     span, i {
       color: #485E5B;
@@ -132,16 +118,52 @@
 
 @media only screen and (min-width: 1200px) {
   .nav2-parent {
+    background-color: #5076A0;
+    transition: all 0.3s ease-in-out;
+    height: 80px;
+
     .nav2-child {
       margin: auto;
+
+      span {
+        color: #fff;
+        margin-left: 5px;
+        font-family: 'Crimson Text', serif;
+        font-size: 20px;
+      }
+
+      .total-badge {
+        color: #5076A0;
+        margin-left: 5px;
+      }
 
       .nav-link:first-child {
         margin-left: 0.5rem !important;
       }
 
       .nav-link {
-        margin-left: 10rem !important;
+        transition: .3s ease-in-out;
+        margin-left: 6rem !important;
+        font-size: 1rem;
       }
+
+      .nav-link:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .nav2-parent.active {
+    background-color: #F8F9FA;
+    height: 70px;
+
+    span, i {
+      color: #485E5B;
+    }
+
+    .total-badge {
+      color: #fff;
+      background-color: #485E5B;
     }
   }
 }

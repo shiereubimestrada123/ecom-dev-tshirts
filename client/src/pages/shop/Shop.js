@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
+import { Animated } from 'react-animated-css';
 import ShopCard from '../../parts/card/ShopCard';
 import { getCategories } from '../../store/actions/category';
 import { getProducts } from '../../store/actions/product';
@@ -42,28 +43,33 @@ const Shop = ({
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <Row>
-            <Col>
-              <div className='shop-header'>
-                <h2>Welcome to our store</h2>
-                <p>Check our new items</p>
-              </div>
+          <Animated
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            isVisible={true}
+          >
+            <div className='shop-header'>
+              <h2>Welcome to our store</h2>
+              <p>Check our new items</p>
+            </div>
 
-              <div className='shop-card mt-2 mb-4'>
-                {allProducts.map((product, index) => (
-                  <ShopCard product={product} key={index} />
-                ))}
-              </div>
-              <div>
-                <PaginationProduct
-                  productperpage={productperpage}
-                  totalproducts={products.length}
-                  paginate={paginate}
-                  currentpage={currentpage}
-                />
-              </div>
-            </Col>
-          </Row>
+            <Row>
+              {allProducts.map((product, index) => (
+                <Col lg={4} md={4} className='mb-4' key={index}>
+                  <ShopCard product={product} />
+                </Col>
+              ))}
+            </Row>
+
+            <div>
+              <PaginationProduct
+                productperpage={productperpage}
+                totalproducts={products.length}
+                paginate={paginate}
+                currentpage={currentpage}
+              />
+            </div>
+          </Animated>
         </Fragment>
       )}
     </Fragment>
