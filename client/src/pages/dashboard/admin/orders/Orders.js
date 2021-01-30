@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Animated } from 'react-animated-css';
 import moment from 'moment';
 import { listOrders } from '../../../../store/actions/product';
 import {
@@ -35,48 +36,56 @@ const Order = ({ listOrders, user, orders, loading }) => {
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <Row className='mt-5 admin-row-header'>
-            <Col>
-              <i className='fab fa-black-tie'></i> Orders
-            </Col>
-          </Row>
-          <Row className='admin-row-body'>
-            <Col>
-              <div>
-                {allOrders.map((order, orderIndex) => (
-                  <ListGroup as='ul' key={orderIndex} className='my-3'>
-                    <ListGroup.Item as='li' active>
-                      Transaction Id: {order.transactionId}
-                    </ListGroup.Item>
-                    <ListGroup.Item as='li'>
-                      Ordered by: {order.name}
-                    </ListGroup.Item>
-                    <ListGroup.Item as='li'>
-                      Ordered date:{' '}
-                      {moment(order.createdAt).format('MM/DD/YYYY')}
-                    </ListGroup.Item>
-                    <ListGroup.Item as='li'>
-                      Status: {order.status}
-                    </ListGroup.Item>
-                    <ListGroup.Item as='li'>
-                      Delivery Address: {order.address}
-                    </ListGroup.Item>
-                    <ListGroup.Item as='li'>
-                      Total: &#8369;{order.total}
-                    </ListGroup.Item>
-                  </ListGroup>
-                ))}
-              </div>
-              <div>
-                <PaginationOrder
-                  orderperpage={orderperpage}
-                  totalorders={orders.length}
-                  paginate={paginate}
-                  currentpage={currentpage}
-                />
-              </div>
-            </Col>
-          </Row>
+          <Animated
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            isVisible={true}
+          >
+            <Row>
+              <Col md={12}>
+                <div className='holder-orders'>
+                  <div className='parent-orders'>
+                    <div className='orders-heading'>
+                      <h2>Orders</h2>
+                    </div>
+                    <div className='orders-body'>
+                      {allOrders.map((order, orderIndex) => (
+                        <ListGroup as='ul' key={orderIndex} className='my-3'>
+                          <ListGroup.Item as='li' active>
+                            Transaction Id: {order.transactionId}
+                          </ListGroup.Item>
+                          <ListGroup.Item as='li'>
+                            Ordered by: {order.name}
+                          </ListGroup.Item>
+                          <ListGroup.Item as='li'>
+                            Ordered date:{' '}
+                            {moment(order.createdAt).format('MM/DD/YYYY')}
+                          </ListGroup.Item>
+                          <ListGroup.Item as='li'>
+                            Status: {order.status}
+                          </ListGroup.Item>
+                          <ListGroup.Item as='li'>
+                            Delivery Address: {order.address}
+                          </ListGroup.Item>
+                          <ListGroup.Item as='li'>
+                            Total: &#8369;{order.total}
+                          </ListGroup.Item>
+                        </ListGroup>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className='holder-pagination'>
+                  <PaginationOrder
+                    orderperpage={orderperpage}
+                    totalorders={orders.length}
+                    paginate={paginate}
+                    currentpage={currentpage}
+                  />
+                </div>
+              </Col>
+            </Row>
+          </Animated>
         </Fragment>
       )}
     </Fragment>
