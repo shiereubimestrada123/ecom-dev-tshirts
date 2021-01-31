@@ -31,7 +31,6 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
               <Col md={12}>
                 <Jumbotron>
                   <h1>Admin Dashboard</h1>
-                  <p>Welcome back {user && user.name}</p>
                 </Jumbotron>
               </Col>
             </Row>
@@ -62,7 +61,7 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
               <Col md={6} className='user-information-parent'>
                 <ListGroup as='ul'>
                   <ListGroup.Item as='li' active>
-                    User Information
+                    Admin Information
                   </ListGroup.Item>
                   <ListGroup.Item as='li'>{user && user.name}</ListGroup.Item>
                   <ListGroup.Item as='li'>{user && user.email}</ListGroup.Item>

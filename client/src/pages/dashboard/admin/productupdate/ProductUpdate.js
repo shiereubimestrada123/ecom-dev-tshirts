@@ -84,8 +84,9 @@ const ProductUpdate = ({
     const userId = user && user._id;
 
     await updateProduct(productId, userId, formData);
-    history.push('/admin/products');
     await getProducts();
+
+    history.push('/admin/products');
   };
 
   return (
@@ -217,7 +218,7 @@ const ProductUpdate = ({
                           </Link>{' '}
                           <Button
                             variant='success'
-                            className='button'
+                            className='button shadow-none'
                             type='submit'
                           >
                             Submit

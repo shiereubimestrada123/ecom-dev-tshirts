@@ -1,7 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup, Button } from 'react-bootstrap';
+import { Animated } from 'react-animated-css';
 import PaginationHistory from '../../../../components/pagination/PaginationHistory';
 import {
   selectAuthLoading,
@@ -24,38 +26,80 @@ const UserPurchase = ({ loading, user }) => {
 
   const paginate = (pageNumber) => setcurrentpage(pageNumber);
 
+  let history = useHistory();
+
+  const handleOnclick = () => {
+    history.goBack();
+  };
+
   return (
     <Fragment>
       {loading ? (
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <Row className='mt-5 user-row-header'>
-            <Col>
-              <i className='fa fa-user' aria-hidden='true'></i> Purchase History
-            </Col>
-          </Row>
-          <Row className='user-row-body'>
-            <Col>
-              {purchase.map((history) => (
-                <ListGroup key={history._id} className='purchase-history'>
-                  <ListGroup.Item as='li'>{history._id}</ListGroup.Item>
-                  <ListGroup.Item as='li'>{history.name}</ListGroup.Item>
-                  <ListGroup.Item as='li'>{history.description}</ListGroup.Item>
-                  <ListGroup.Item as='li'>{history.quantity}</ListGroup.Item>
-                  <ListGroup.Item as='li'>{history.amount}</ListGroup.Item>
-                </ListGroup>
-              ))}
-              <div className='pagination-purchase-history'>
-                <PaginationHistory
-                  purchaseperpage={purchaseperpage}
-                  totalpurchase={user.history.length}
-                  paginate={paginate}
-                  currentpage={currentpage}
-                />
-              </div>
-            </Col>
-          </Row>
+          <Animated
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            isVisible={true}
+          >
+            <Fragment>
+              <Row>
+                <Col md={12}>
+                  <section className='holder-purchase-history'>
+                    <div className='parent-purchase-history'>
+                      <div className='purchase-heading'>
+                        <h2>Purchase History</h2>
+                      </div>
+                      <div className='purchase-body'>
+                        {purchase.map((history, index) => (
+                          <ListGroup
+                            as='ul'
+                            key={index}
+                            className='purchase-history'
+                          >
+                            {/* <ListGroup.Item as='li'>
+                              {history._id}
+                            </ListGroup.Item> */}
+                            <ListGroup.Item as='li'>
+                              {history.name}
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li'>
+                              {history.description}
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li'>
+                              {history.quantity}
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li'>
+                              {history.amount}
+                            </ListGroup.Item>
+                          </ListGroup>
+                        ))}
+                        <div className='pagination-purchase-history'>
+                          <PaginationHistory
+                            purchaseperpage={purchaseperpage}
+                            totalpurchase={user.history.length}
+                            paginate={paginate}
+                            currentpage={currentpage}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className='go-back'>
+                      <Button
+                        variant='success'
+                        className='button-goback shadow-none'
+                        type='submit'
+                        onClick={handleOnclick}
+                      >
+                        Back
+                      </Button>
+                    </div>
+                  </section>
+                </Col>
+              </Row>
+            </Fragment>
+          </Animated>
         </Fragment>
       )}
     </Fragment>

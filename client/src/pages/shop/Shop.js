@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Jumbotron } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import ShopCard from '../../parts/card/ShopCard';
 import { getCategories } from '../../store/actions/category';
@@ -48,10 +48,14 @@ const Shop = ({
             animationOut='fadeOut'
             isVisible={true}
           >
-            <div className='shop-header'>
-              <h2>Welcome to our store</h2>
-              <p>Check our new items</p>
-            </div>
+            <Row>
+              <Col md={12}>
+                <Jumbotron className='shop-header'>
+                  <h2>Welcome to our store</h2>
+                  <p>Check our new items</p>
+                </Jumbotron>
+              </Col>
+            </Row>
 
             <Row>
               {allProducts.map((product, index) => (

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup, Jumbotron } from 'react-bootstrap';
+import { Animated } from 'react-animated-css';
 import {
   selectAuthLoading,
   selectAuthUser,
@@ -51,35 +52,51 @@ const UserDashboard = ({ loading, user, updateUser }) => {
         <LoadingSpinner />
       ) : (
         <Fragment>
-          <Row className='mt-5 user-row-header'>
-            <Col>
-              <i className='fa fa-user' aria-hidden='true'></i> User Dashboard
-            </Col>
-          </Row>
-          <Row className='user-row-body'>
-            <Col className='left' md={3}>
-              <ul>
-                <li>
-                  <Link to='/cart'>My Cart</Link>
-                </li>
-                <li>
-                  <Link to='/user/account'>Update Account</Link>
-                </li>
-                <li>
-                  <Link to='/user/purchase'>Purchase History</Link>
-                </li>
-              </ul>
-            </Col>
-            <Col className='right' md={9}>
-              <ListGroup>
-                <ListGroup.Item>{user && user.name}</ListGroup.Item>
-                <ListGroup.Item>{user && user.email}</ListGroup.Item>
-                {/* <ListGroup.Item>
-                  {user && user.role === 1 ? 'Admin' : 'Registered User'}
-                </ListGroup.Item> */}
-              </ListGroup>
-            </Col>
-          </Row>
+          <Animated
+            animationIn='fadeIn'
+            animationOut='fadeOut'
+            isVisible={true}
+          >
+            <section className='user-parent'>
+              <Row>
+                <Col md={12}>
+                  <Jumbotron>
+                    <h1>User Dashboard</h1>
+                  </Jumbotron>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={6}>
+                  <ListGroup as='ul'>
+                    <ListGroup.Item as='li' active>
+                      User Links
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                      <Link to='/cart'>My Cart</Link>
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                      <Link to='/user/purchase'>Purchase History</Link>
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                      <Link to='/user/account'>Update Account</Link>
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Col>
+                <Col md={6} className='user-information-parent'>
+                  <ListGroup as='ul'>
+                    <ListGroup.Item as='li' active>
+                      User Information
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>{user && user.name}</ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                      {user && user.email}
+                    </ListGroup.Item>
+                  </ListGroup>
+                </Col>
+              </Row>
+            </section>
+          </Animated>
         </Fragment>
       )}
     </Fragment>
