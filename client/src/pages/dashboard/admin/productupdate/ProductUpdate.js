@@ -84,8 +84,9 @@ const ProductUpdate = ({
     const userId = user && user._id;
 
     await updateProduct(productId, userId, formData);
-    history.push('/admin/products');
     await getProducts();
+
+    history.push('/admin/products');
   };
 
   return (
