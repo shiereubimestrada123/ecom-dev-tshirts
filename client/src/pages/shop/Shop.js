@@ -51,8 +51,7 @@ const Shop = ({
             <Row>
               <Col md={12}>
                 <Jumbotron className='shop-header'>
-                  <h2>Welcome to our store</h2>
-                  <p>Check our new items</p>
+                  <h1>Check our new items</h1>
                 </Jumbotron>
               </Col>
             </Row>
