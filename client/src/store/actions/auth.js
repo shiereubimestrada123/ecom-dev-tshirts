@@ -79,7 +79,7 @@ export const addMailNewsletter = ({ email }) => async (dispatch) => {
     if (email) {
       dispatch(setAlertPrompt('Submitted email successfully', 'success'));
     } else {
-      dispatch(setAlertPrompt('Please enter valid email address', 'danger'));
+      dispatch(setAlertPrompt('Please enter a valid email address', 'danger'));
     }
   } catch (error) {
     const errors = error.response.data.errors;

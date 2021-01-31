@@ -38,16 +38,17 @@
         padding-left: 10px;
       }
 
-      button {
+      .button {
         height: 50px;
         background-color: #5076A0;
         color: #fff;
         padding: 0 10px;
         border: none;
+        border-radius: 0!important;
         transition: all 0.3s ease-in-out;
       }
 
-      button:hover {
+      .button:hover {
         background-color: #48698f;
         color: #fff;
       }

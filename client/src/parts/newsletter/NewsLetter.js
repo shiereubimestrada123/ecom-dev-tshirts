@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addMailNewsletter } from '../../store/actions/auth';
 
@@ -45,7 +45,9 @@ const NewsLetter = ({ addMailNewsletter, parentNewsletterCallback }) => {
                   placeholder='Enter email'
                   onChange={handleChange}
                 />
-                <button>Go</button>
+                <Button className='button shadow-none' type='submit'>
+                  Go
+                </Button>
               </form>
             </div>
           </div>

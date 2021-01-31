@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Table, Card, Button } from 'react-bootstrap';
+import { Table, Card, Button, Jumbotron, Row, Col } from 'react-bootstrap';
 import {
   selectCartProducts,
   selectCartProductTotal,
@@ -70,7 +70,14 @@ const Cart = ({
             animationOut='fadeOut'
             isVisible={true}
           >
-            <h1 className='shopping-cart'>My Shopping Cart</h1>
+            <Row>
+              <Col md={12}>
+                <Jumbotron className='shopping-cart'>
+                  <h1>My Shopping Cart</h1>
+                </Jumbotron>
+              </Col>
+            </Row>
+
             <Table responsive='sm md lg xl'>
               <thead>
                 <tr className='tr-header'>
