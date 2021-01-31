@@ -108,8 +108,8 @@ const Cart = ({
                 ) : (
                   <tr>
                     <td colSpan='6' className='empty-cart'>
-                      You have no existing item, please go to{' '}
-                      <Link to='/shop'>Shop</Link>
+                      You have no existing item, please{' '}
+                      <Link to='/shop'>Shop</Link> first
                     </td>
                   </tr>
                 )}

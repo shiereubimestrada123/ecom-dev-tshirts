@@ -16,9 +16,9 @@ const MostPopular = ({ soldProducts }) => {
       </Row>
 
       <Row>
-        {soldProducts.map((product, index) => (
-          <Col md={4} className='mb-4'>
-            <ShopCard product={product} key={index} />
+        {soldProducts.map((product) => (
+          <Col md={4} className='mb-4' key={product._id}>
+            <ShopCard product={product} />
           </Col>
         ))}
       </Row>

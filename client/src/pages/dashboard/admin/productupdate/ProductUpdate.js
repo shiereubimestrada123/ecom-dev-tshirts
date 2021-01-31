@@ -217,7 +217,7 @@ const ProductUpdate = ({
                           </Link>{' '}
                           <Button
                             variant='success'
-                            className='button'
+                            className='button shadow-none'
                             type='submit'
                           >
                             Submit

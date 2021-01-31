@@ -5,6 +5,14 @@
     background-color: #88bdbc;
   }
 
+  ul {
+    li {
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
   .list-group-item.active {
     z-index: 2;
     color: #212529;

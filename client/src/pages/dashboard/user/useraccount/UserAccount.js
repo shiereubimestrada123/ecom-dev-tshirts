@@ -125,7 +125,7 @@ const Account = ({ updateUser, loading, user }) => {
                             </Link>{' '}
                             <Button
                               variant='success'
-                              className='button'
+                              className='button shadow-none'
                               type='submit'
                             >
                               Submit
