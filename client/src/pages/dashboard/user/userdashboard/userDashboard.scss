@@ -1,85 +1,33 @@
-// .user-row-header {
-//   padding: 20px;
-//   background-color: #EAEAEA;
-//   border: 1px solid #CECECE;
-//   border-bottom: none;
+.user-parent {
+  margin: 120px 0 60px 0;
 
-//   .fa-user {
-//     font-size: 1.5rem;
-//     margin-right: 10px;
-//   }
-// }
-
-.user-row-body {
-  min-height: 650px;
-  border: 1px solid #CECECE;
-  margin-bottom: 50px;
-
-  .left {
-    padding: 20px;
-    border-right: 1px solid #CECECE;
-
-    ul {
-      list-style-type:none;
-
-      li {
-
-        a {
-          text-decoration: none;
-        }
-      }
-    }
-
-    .nav-item {
-      a {
-        color: #5076A0;
-        font-weight: bold;
-      }
-    }
-
-    .nav-pills .nav-link.active,
-    .nav-pills .show>.nav-link {
-      color: #fff;
-      background-color: #5076A0;
-      border-radius: 0;
-    }
+  .jumbotron {
+    background-color: #88bdbc;
   }
 
-  .right {
-    padding: 20px;
+  .list-group-item.active {
+    z-index: 2;
+    color: #212529;
+    background-color: #eaeaea;
+    border-color: #eaeaea;
+    font-size: 1.3rem;
+  }
+}
 
-    .user-profile-input:focus {
-      outline: none;
-      box-shadow: none;
-      border: 1px solid #CED4DA;
-    }
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  .user-information-parent {
+    margin: 30px 0 30px 0;
+  }
+}
 
-    .update-button-holder {
-      text-align: center;
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  .user-information-parent {
+    margin: 30px 0 30px 0;
+  }
+}
 
-      .user-update-btn {
-        display: inline-block;
-        width: 200px;
-        // padding: 13px 10px;
-        background-color: #5076a0;
-        border-radius: 0;
-        font-size: 20px;
-        font-weight: bold;
-        color: #fff;
-        margin-bottom: 14px;
-      }
-
-      .user-update-btn:focus {
-        outline: none;
-        box-shadow: none;
-      }
-
-      .user-update-btn:hover {
-        border: 1px solid #5076a0;
-        background-color: #fff;
-        color: #5076a0;
-      }
-    }
-
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+  .user-information-parent {
+    margin: 30px 0 30px 0;
   }
 }
