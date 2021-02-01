@@ -139,7 +139,6 @@ const Cart = ({
 
 Cart.propTypes = {
   clearProductCart: PropTypes.func.isRequired,
-  // getBraintreeClientToken: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

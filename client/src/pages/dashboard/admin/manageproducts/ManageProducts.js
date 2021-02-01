@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Table } from 'react-bootstrap';
+import { Row, Col, Table, Button } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import { getProducts, deleteProduct } from '../../../../store/actions/product';
 import { selectAllProducts } from '../../../../store/selectors/product';
@@ -42,6 +42,10 @@ const ManageProducts = ({
   };
 
   let history = useHistory();
+
+  const handleOnclick = () => {
+    history.goBack();
+  };
 
   const handleRedirect = async (productId) => {
     history.push(`/admin/product/update/${productId}`);
@@ -103,6 +107,16 @@ const ManageProducts = ({
                         />
                       </div>
                     </div>
+                  </div>
+                  <div className='go-back'>
+                    <Button
+                      variant='success'
+                      className='button-goback shadow-none'
+                      type='submit'
+                      onClick={handleOnclick}
+                    >
+                      Back
+                    </Button>
                   </div>
                 </section>
               </Col>

@@ -11,7 +11,6 @@ import {
   InputGroup,
 } from 'react-bootstrap';
 import { createStructuredSelector } from 'reselect';
-import FormInput from '../../components/forms/forminput/FormInput';
 import AlertPrompt from '../../components/alertprompt/AlertPrompt';
 import { Animated } from 'react-animated-css';
 import { selectAuthUser, selectAuthLoading } from '../../store/selectors/auth';
@@ -66,11 +65,15 @@ const Checkout = ({
     };
 
     createOrder(userId, createOrderData);
+    if (name || address || email || contact !== '') {
+      history.push('/shop');
+    }
   };
 
   return (
     <Row>
       <Col>
+        <AlertPrompt />
         {loading ? (
           <LoadingSpinner />
         ) : (
@@ -193,6 +196,7 @@ const Checkout = ({
                         variant='success'
                         className='button shadow-none'
                         type='submit'
+                        onClick={buy}
                       >
                         Place Order
                       </Button>

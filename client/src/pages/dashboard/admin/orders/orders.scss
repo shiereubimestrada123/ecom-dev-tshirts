@@ -30,24 +30,32 @@
       padding: 0 25px;
 
       li.active {
-        background-color: #6B6E70;
+        background-color: #eaeaea;
+        color: #212529;
         border: none;
       }
     }
   }
-}
 
-.holder-pagination {
-  padding-bottom: 50px;
+  .go-back {
+    margin: 10px 0 30px 0;
+    text-align: center;
+
+    .button-goback {
+      border-radius: 0 !important;
+      background-color: #dc3544 !important;
+      border-color: #dc3544 !important;
+    }
+
+    .button-goback:hover {
+      background-color: #c82333 !important;
+    }
+  }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
   .holder-orders {
     padding: 100px 0 20px 0;
-  }
-
-  .holder-pagination {
-    padding-bottom: 20px;
   }
 }
 
@@ -55,19 +63,11 @@
   .holder-orders {
     padding: 100px 0 20px 0;
   }
-
-  .holder-pagination {
-    padding-bottom: 20px;
-  }
 }
 
 @media only screen and (min-width: 375px) and (max-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
   .holder-orders {
     padding: 100px 0 20px 0;
-  }
-
-  .holder-pagination {
-    padding-bottom: 20px;
   }
 }
 
@@ -75,19 +75,11 @@
   .holder-orders {
     padding: 100px 0 20px 0;
   }
-
-  .holder-pagination {
-    padding-bottom: 20px;
-  }
 }
 
 @media only screen and (min-width: 375px) and (max-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   .holder-orders {
     padding: 100px 0 20px 0;
-  }
-
-  .holder-pagination {
-    padding-bottom: 20px;
   }
 }
 
@@ -95,28 +87,16 @@
   .holder-orders {
     padding: 100px 0 20px 0;
   }
-
-  .holder-pagination {
-    padding-bottom: 20px;
-  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (device-aspect-ratio: 4/3) {
   .holder-orders {
     padding: 100px 0 20px 0;
   }
-
-  .holder-pagination {
-    padding-bottom: 20px;
-  }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
   .holder-orders {
     padding: 100px 0 20px 0;
-  }
-
-  .holder-pagination {
-    padding-bottom: 20px;
   }
 }

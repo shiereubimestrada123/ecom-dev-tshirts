@@ -62,16 +62,16 @@ const UserPurchase = ({ loading, user }) => {
                               {history._id}
                             </ListGroup.Item> */}
                             <ListGroup.Item as='li'>
-                              {history.name}
+                              Name: {history.name}
                             </ListGroup.Item>
                             <ListGroup.Item as='li'>
-                              {history.description}
+                              Description: {history.description}
                             </ListGroup.Item>
                             <ListGroup.Item as='li'>
-                              {history.quantity}
+                              Quantity: {history.quantity}
                             </ListGroup.Item>
                             <ListGroup.Item as='li'>
-                              {history.amount}
+                              Amount: {history.amount}
                             </ListGroup.Item>
                           </ListGroup>
                         ))}
