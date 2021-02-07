@@ -15,6 +15,7 @@ import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 import PaginationProduct from '../../../../components/pagination/PaginationProduct';
 import MyModal from '../../../../components/modal/MyModal';
+import ProductList from './productlist/ProductList';
 
 const ManageProducts = ({
   loading,
@@ -43,6 +44,7 @@ const ManageProducts = ({
 
   const handleClose = () => setShow(false);
   const handleShow = (product) => {
+    console.log(123);
     setShow(true);
     setProduct(product);
   };
@@ -94,42 +96,19 @@ const ManageProducts = ({
                         <tbody>
                           {allProducts.length > 0 &&
                             allProducts.map((product, index) => (
-                              <Fragment>
-                                <tr key={index}>
-                                  <td>{product.name}</td>
-                                  <td
-                                    onClick={() => handleRedirect(product._id)}
-                                  >
-                                    <i className='fas fa-edit'></i>
-                                  </td>
-                                  <td
-                                    show={show}
-                                    onClick={() => handleShow(product)}
-                                  >
-                                    <i className='fas fa-trash-alt'></i>
-                                  </td>
-                                </tr>
-                              </Fragment>
+                              <ProductList
+                                key={index}
+                                product={product}
+                                handleShow={handleShow}
+                                handleRedirect={handleRedirect}
+                              />
                             ))}
-                          <Modal centered show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                              <Modal.Title>Modal heading</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                              Woohoo, you're reading this text in a modal!
-                            </Modal.Body>
-                            <Modal.Footer>
-                              <Button variant='secondary' onClick={handleClose}>
-                                No
-                              </Button>
-                              <Button
-                                variant='primary'
-                                onClick={() => handleDeleteProduct(product._id)}
-                              >
-                                {product && product.name}
-                              </Button>
-                            </Modal.Footer>
-                          </Modal>
+                          <MyModal
+                            product={product}
+                            handleClose={handleClose}
+                            handleDeleteProduct={handleDeleteProduct}
+                            show={show}
+                          />
                         </tbody>
                       </Table>
                       <div>
