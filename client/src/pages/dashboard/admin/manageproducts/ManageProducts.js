@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Table, Button } from 'react-bootstrap';
+import { Row, Col, Table, Button, Modal } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import { getProducts, deleteProduct } from '../../../../store/actions/product';
 import { selectAllProducts } from '../../../../store/selectors/product';
@@ -14,6 +14,7 @@ import {
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 import PaginationProduct from '../../../../components/pagination/PaginationProduct';
+import MyModal from '../../../../components/modal/MyModal';
 
 const ManageProducts = ({
   loading,
@@ -36,9 +37,20 @@ const ManageProducts = ({
     window.scrollTo(0, 0);
   }, []);
 
+  const [product, setProduct] = useState();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = (product) => {
+    setShow(true);
+    setProduct(product);
+  };
+
   const handleDeleteProduct = (productId) => {
     const userId = user && user._id;
     deleteProduct(productId, userId);
+    setShow(false);
   };
 
   let history = useHistory();
@@ -82,20 +94,42 @@ const ManageProducts = ({
                         <tbody>
                           {allProducts.length > 0 &&
                             allProducts.map((product, index) => (
-                              <tr key={index}>
-                                <td>{product.name}</td>
-                                <td onClick={() => handleRedirect(product._id)}>
-                                  <i className='fas fa-edit'></i>
-                                </td>
-                                <td
-                                  onClick={() =>
-                                    handleDeleteProduct(product._id)
-                                  }
-                                >
-                                  <i className='fas fa-trash-alt'></i>
-                                </td>
-                              </tr>
+                              <Fragment>
+                                <tr key={index}>
+                                  <td>{product.name}</td>
+                                  <td
+                                    onClick={() => handleRedirect(product._id)}
+                                  >
+                                    <i className='fas fa-edit'></i>
+                                  </td>
+                                  <td
+                                    show={show}
+                                    onClick={() => handleShow(product)}
+                                  >
+                                    <i className='fas fa-trash-alt'></i>
+                                  </td>
+                                </tr>
+                              </Fragment>
                             ))}
+                          <Modal centered show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                              <Modal.Title>Modal heading</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              Woohoo, you're reading this text in a modal!
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button variant='secondary' onClick={handleClose}>
+                                No
+                              </Button>
+                              <Button
+                                variant='primary'
+                                onClick={() => handleDeleteProduct(product._id)}
+                              >
+                                {product && product.name}
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
                         </tbody>
                       </Table>
                       <div>
