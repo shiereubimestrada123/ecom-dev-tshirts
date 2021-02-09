@@ -30,6 +30,15 @@
   .update-body {
     padding: 0 25px;
 
+    .form-control {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .form-control:focus {
+      border: 1px solid #CED4DA;
+    }
+
     .button-holder {
       text-align: center;
 

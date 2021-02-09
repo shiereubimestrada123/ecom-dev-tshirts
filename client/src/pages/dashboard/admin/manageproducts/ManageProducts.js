@@ -44,7 +44,6 @@ const ManageProducts = ({
 
   const handleClose = () => setShow(false);
   const handleShow = (product) => {
-    console.log(123);
     setShow(true);
     setProduct(product);
   };
@@ -57,8 +56,8 @@ const ManageProducts = ({
 
   let history = useHistory();
 
-  const handleOnclick = () => {
-    history.goBack();
+  const handleGoBack = () => {
+    history.push('/admin/dashboard');
   };
 
   const handleRedirect = async (productId) => {
@@ -126,7 +125,7 @@ const ManageProducts = ({
                       variant='success'
                       className='button-goback shadow-none'
                       type='submit'
-                      onClick={handleOnclick}
+                      onClick={handleGoBack}
                     >
                       Back
                     </Button>
