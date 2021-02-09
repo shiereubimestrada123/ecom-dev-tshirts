@@ -85,5 +85,15 @@
 
   .button {
     border-radius: 0!important;
+    background-color: #5076a0!important;
+    font-size: 20px;
+    color: #fff;
+    // margin: 20px 0 20px 0;
+    border: transparent;
+  }
+
+  .button:hover {
+    background-color: #48698f!important;
+    color: #fff;
   }
 }

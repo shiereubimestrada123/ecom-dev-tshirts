@@ -193,7 +193,7 @@ const Checkout = ({
                     </Table>
                     <div className='parent-order-button'>
                       <Button
-                        variant='success'
+                        // variant='success'
                         className='button shadow-none'
                         type='submit'
                         onClick={buy}

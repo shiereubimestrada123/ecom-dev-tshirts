@@ -71,7 +71,7 @@ const Product = ({
 
                   <div className='parent-add-btn'>
                     <Button
-                      variant='success'
+                      // variant='success'
                       className='add-cart-btn shadow-none'
                       type='submit'
                       onClick={addToCart}
