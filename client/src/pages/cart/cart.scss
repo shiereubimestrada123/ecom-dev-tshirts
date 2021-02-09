@@ -41,6 +41,17 @@
 
   .empty-cart {
     text-align: center;
+
+    a {
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: #5076A0;
+    }
+
+    a:hover {
+      color: #334B66;
+    }
   }
 
   .no-border-right-td {
