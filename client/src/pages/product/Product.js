@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
@@ -27,8 +28,11 @@ const Product = ({
     window.scrollTo(0, 0);
   }, []);
 
+  let history = useHistory();
+
   const addToCart = () => {
     addProductCart(product);
+    history.push('/checkout');
   };
 
   return (
@@ -76,7 +80,7 @@ const Product = ({
                       type='submit'
                       onClick={addToCart}
                     >
-                      Place Order
+                      Add To Cart
                     </Button>
                   </div>
                 </div>

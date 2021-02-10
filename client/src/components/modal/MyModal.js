@@ -12,11 +12,11 @@ const MyModal = ({ product, show, handleClose, handleDeleteProduct }) => {
           Are you sure you want to delete {product && product.name}?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
+          <Button variant='danger' onClick={handleClose}>
             No
           </Button>
           <Button
-            variant='primary'
+            variant='success'
             onClick={() => handleDeleteProduct(product._id)}
           >
             Yes
