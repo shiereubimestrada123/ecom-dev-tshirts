@@ -8,7 +8,9 @@ const MyModal = ({ product, show, handleClose, handleDeleteProduct }) => {
         {/* <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header> */}
-        <Modal.Body>Are you sure you want to delete this product?</Modal.Body>
+        <Modal.Body>
+          Are you sure you want to delete {product && product.name}?
+        </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
             No

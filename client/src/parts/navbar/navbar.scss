@@ -73,7 +73,7 @@
 @media only screen and (min-width: 992px) {
   .nav2-parent {
     background-color: #5076A0;
-    transition: all 0.3s ease-in-out;
+    // transition: all 0.3s ease-in-out;
     height: 80px;
 
     .nav2-child {
@@ -96,6 +96,7 @@
       }
 
       .nav-link {
+        transition: .3s ease-in-out;
         margin-left: 6rem !important;
       }
     }
@@ -119,7 +120,7 @@
 @media only screen and (min-width: 1200px) {
   .nav2-parent {
     background-color: #5076A0;
-    transition: all 0.3s ease-in-out;
+    // transition: all 0.3s ease-in-out;
     height: 80px;
 
     .nav2-child {
