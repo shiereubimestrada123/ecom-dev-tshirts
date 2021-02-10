@@ -4,11 +4,11 @@ import {
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
+  DECREASE_PRODUCT_CART,
   DELETE_PRODUCT_CART,
   CREATE_ORDER,
   LIST_ORDERS,
   RESET_CART,
-  CAROUSEL_PRODUCTS,
   SOLD_PRODUCTS,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
@@ -24,7 +24,6 @@ const initialState = {
   cartProducts: JSON.parse(localStorage.getItem('cartProducts') || '[]'),
   order: null,
   orders: [],
-  // carouselProducts: [],
   soldProducts: [],
 };
 
@@ -56,13 +55,6 @@ export default function (state = initialState, action) {
         loading: false,
       };
     }
-    // case CAROUSEL_PRODUCTS: {
-    //   return {
-    //     ...state,
-    //     carouselProducts: payload,
-    //     loading: false,
-    //   };
-    // }
     case LIST_ORDERS: {
       return {
         ...state,
@@ -79,6 +71,12 @@ export default function (state = initialState, action) {
       };
     }
     case ADD_PRODUCT_CART:
+      return {
+        ...state,
+        cartProducts: payload.cartProducts,
+        loading: false,
+      };
+    case DECREASE_PRODUCT_CART:
       return {
         ...state,
         cartProducts: payload.cartProducts,

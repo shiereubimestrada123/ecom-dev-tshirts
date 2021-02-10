@@ -6,6 +6,25 @@
 
 .table {
   border-collapse: collapse;
+  table-layout: fixed;
+
+  .tbody-cart {
+    .decrease-quantity {
+      cursor: pointer;
+    }
+
+    .decrease-quantity:hover {
+      color: #5076A0;
+    }
+
+    .increase-quantity {
+      cursor: pointer;
+    }
+
+    .increase-quantity:hover {
+      color: #5076A0;
+    }
+  }
 
   .tr-header {
     background-color: #eaeaea;

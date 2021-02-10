@@ -32,7 +32,7 @@ const Product = ({
 
   const addToCart = () => {
     addProductCart(product);
-    history.push('/checkout');
+    history.push('/cart');
   };
 
   return (
