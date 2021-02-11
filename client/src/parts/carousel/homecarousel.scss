@@ -1,8 +1,8 @@
 @media only screen and (max-width: 600px) {
   .row-carousel {
-    margin-right: 0!important;
-    margin-left: 0!important;
-  
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+
     .carousel {
       margin-top: 50px;
     }
@@ -11,9 +11,9 @@
 
 @media only screen and (min-width: 768px) {
   .row-carousel {
-    margin-right: 0!important;
-    margin-left: 0!important;
-  
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+
     .carousel {
       margin-top: 50px;
     }
@@ -22,9 +22,9 @@
 
 @media only screen and (min-width: 992px) {
   .row-carousel {
-    margin-right: 0!important;
-    margin-left: 0!important;
-  
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+
     .carousel {
       margin-top: 80px;
     }
@@ -33,11 +33,32 @@
 
 @media only screen and (min-width: 1200px) {
   .row-carousel {
-    margin-right: 0!important;
-    margin-left: 0!important;
-  
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+
     .carousel {
       margin-top: 80px;
+
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        height: 100px;
+        width: 100px;
+        outline: black;
+        background-size: 100%, 100%;
+        background-image: none;
+      }
+
+      .carousel-control-next-icon:after {
+        content: '>';
+        font-size: 55px;
+        color: #5076A0;
+      }
+
+      .carousel-control-prev-icon:after {
+        content: '<';
+        font-size: 55px;
+        color: #5076A0;
+      }
     }
   }
 }

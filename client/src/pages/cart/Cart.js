@@ -13,7 +13,11 @@ import {
   selectAuthUser,
   selectAuthAuthenticated,
 } from '../../store/selectors/auth';
-import { clearProductCart } from '../../store/actions/product';
+import {
+  clearProductCart,
+  addProductCart,
+  decreaseProductCart,
+} from '../../store/actions/product';
 import CardTemplate from '../../parts/card/CardTemplate';
 import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 import { Animated } from 'react-animated-css';
@@ -22,7 +26,8 @@ const Cart = ({
   cartProducts,
   total,
   clearProductCart,
-
+  addProductCart,
+  decreaseProductCart,
   loading,
   user,
   isAuthenticated,
@@ -32,6 +37,10 @@ const Cart = ({
   }, []);
 
   const history = useHistory();
+
+  const addQuantity = (product) => {
+    addProductCart(product);
+  };
 
   const isButton = () => {
     if (cartProducts.length > 0) {
@@ -88,7 +97,7 @@ const Cart = ({
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className='tbody-cart'>
                 {cartProducts.length > 0 ? (
                   cartProducts.map((product, index) => (
                     <tr key={index}>
@@ -104,7 +113,30 @@ const Cart = ({
                           </Card>
                         </td>
                         <td className='mobile-hide'>{product.name}</td>
-                        <td className='mobile-hide'>{product.count}</td>
+                        <td className='mobile-hide'>
+                          {product.count > 1 ? (
+                            <span
+                              className='decrease-quantity'
+                              onClick={() => decreaseProductCart(product)}
+                            >
+                              &#65308;
+                            </span>
+                          ) : (
+                            <span
+                              className='decrease-quantity'
+                              onClick={() => clearProductCart(product)}
+                            >
+                              &#65308;
+                            </span>
+                          )}{' '}
+                          {product.count}{' '}
+                          <span
+                            className='increase-quantity'
+                            onClick={() => addQuantity(product)}
+                          >
+                            &#65310;
+                          </span>
+                        </td>
                         <td>{product.price}</td>
                         <td onClick={() => clearProductCart(product)}>
                           <i className='fas fa-trash-alt'></i>
@@ -114,7 +146,7 @@ const Cart = ({
                   ))
                 ) : (
                   <tr>
-                    <td colSpan='6' className='empty-cart'>
+                    <td colSpan='5' className='empty-cart'>
                       You have no existing item, please{' '}
                       <Link to='/shop'>Shop</Link> first
                     </td>
@@ -139,7 +171,8 @@ const Cart = ({
 
 Cart.propTypes = {
   clearProductCart: PropTypes.func.isRequired,
-  // getBraintreeClientToken: PropTypes.func.isRequired,
+  addProductCart: PropTypes.func.isRequired,
+  decreaseProductCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -152,4 +185,6 @@ const mapStateToProps = createStructuredSelector({
 
 export default connect(mapStateToProps, {
   clearProductCart,
+  addProductCart,
+  decreaseProductCart,
 })(Cart);

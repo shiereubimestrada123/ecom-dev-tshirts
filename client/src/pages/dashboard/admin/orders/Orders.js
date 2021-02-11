@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup, Button } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import moment from 'moment';
 import { listOrders } from '../../../../store/actions/product';
@@ -25,6 +26,12 @@ const Order = ({ listOrders, user, orders, loading }) => {
 
   const paginate = (pageNumber) => setcurrentpage(pageNumber);
 
+  let history = useHistory();
+
+  const handleOnclick = () => {
+    history.goBack();
+  };
+
   useEffect(() => {
     listOrders(user && user._id);
     window.scrollTo(0, 0);
@@ -43,7 +50,7 @@ const Order = ({ listOrders, user, orders, loading }) => {
           >
             <Row>
               <Col md={12}>
-                <div className='holder-orders'>
+                <section className='holder-orders'>
                   <div className='parent-orders'>
                     <div className='orders-heading'>
                       <h2>Orders</h2>
@@ -73,16 +80,26 @@ const Order = ({ listOrders, user, orders, loading }) => {
                         </ListGroup>
                       ))}
                     </div>
+                    <div className='holder-pagination'>
+                      <PaginationOrder
+                        orderperpage={orderperpage}
+                        totalorders={orders.length}
+                        paginate={paginate}
+                        currentpage={currentpage}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className='holder-pagination'>
-                  <PaginationOrder
-                    orderperpage={orderperpage}
-                    totalorders={orders.length}
-                    paginate={paginate}
-                    currentpage={currentpage}
-                  />
-                </div>
+                  <div className='go-back'>
+                    <Button
+                      variant='success'
+                      className='button-goback shadow-none'
+                      type='submit'
+                      onClick={handleOnclick}
+                    >
+                      Back
+                    </Button>
+                  </div>
+                </section>
               </Col>
             </Row>
           </Animated>

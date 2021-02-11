@@ -9,6 +9,7 @@ import {
   GET_PRODUCTS,
   GET_SINGLE_PRODUCT,
   ADD_PRODUCT_CART,
+  DECREASE_PRODUCT_CART,
   DELETE_PRODUCT_CART,
   CREATE_ORDER,
   LIST_ORDERS,
@@ -158,10 +159,10 @@ export const addProductCart = (product) => async (dispatch, getState) => {
   try {
     const cartProducts = getState().product.cartProducts.slice();
     let alreadyExists = false;
-    cartProducts.forEach((x) => {
-      if (x._id === product._id) {
+    cartProducts.forEach((cartProduct) => {
+      if (cartProduct._id === product._id) {
         alreadyExists = true;
-        x.count++;
+        cartProduct.count++;
       }
     });
     if (!alreadyExists) {
@@ -172,6 +173,28 @@ export const addProductCart = (product) => async (dispatch, getState) => {
       payload: { cartProducts },
     });
     localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const decreaseProductCart = (product) => async (dispatch, getState) => {
+  try {
+    const cartProducts = getState().product.cartProducts.slice();
+    let alreadyExists = false;
+    cartProducts.forEach((cartProduct) => {
+      if (cartProduct._id === product._id) {
+        alreadyExists = true;
+        cartProduct.count--;
+      }
+    });
+    if (!alreadyExists) {
+      cartProducts.push({ ...product, count: 1 });
+    }
+    dispatch({
+      type: DECREASE_PRODUCT_CART,
+      payload: { cartProducts },
+    });
   } catch (error) {
     console.log(error);
   }

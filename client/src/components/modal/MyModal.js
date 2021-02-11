@@ -1,28 +1,28 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
-import MyVerticallyCenteredModal from './modaltypes/CenteredModal';
+import { Button, Modal } from 'react-bootstrap';
 
-const MyModal = (props) => {
-  const { heading, body, text, title } = props;
-  const [modalShow, setModalShow] = React.useState(false);
-
+const MyModal = ({ product, show, handleClose, handleDeleteProduct }) => {
   return (
     <>
-      <Button
-        variant={props.variant}
-        style={{ borderRadius: '0' }}
-        onClick={() => setModalShow(true)}
-      >
-        {text}
-      </Button>
-
-      <MyVerticallyCenteredModal
-        title={title}
-        heading={heading}
-        body={body}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+      <Modal centered show={show} onHide={handleClose}>
+        {/* <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header> */}
+        <Modal.Body>
+          Are you sure you want to delete {product && product.name}?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant='danger' onClick={handleClose}>
+            No
+          </Button>
+          <Button
+            variant='success'
+            onClick={() => handleDeleteProduct(product._id)}
+          >
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

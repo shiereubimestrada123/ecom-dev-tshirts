@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Row, Col, Badge, Button } from 'react-bootstrap';
+import { Row, Col, Badge, Button, Jumbotron, ListGroup } from 'react-bootstrap';
 import LoadingSpinner from '../../components/loadingspinner/LoadingSpinner';
 import FormInput from '../../components/forms/forminput/FormInput';
 import { getSingleProduct, addProductCart } from '../../store/actions/product';
@@ -27,8 +28,11 @@ const Product = ({
     window.scrollTo(0, 0);
   }, []);
 
+  let history = useHistory();
+
   const addToCart = () => {
     addProductCart(product);
+    history.push('/cart');
   };
 
   return (
@@ -37,35 +41,49 @@ const Product = ({
         <LoadingSpinner />
       ) : (
         <Animated animationIn='fadeIn' animationOut='fadeOut' isVisible={true}>
+          <Row>
+            <Col md={12}>
+              <Jumbotron className='add-cart-jumbotron'>
+                <h1>Add To Cart Page</h1>
+              </Jumbotron>
+            </Col>
+          </Row>
+
           <Row className='parent-single-product'>
             <Col md={8}>{product && <SingleCard product={product} />}</Col>
-            <Col md={4} className='mt-3'>
+            <Col md={4}>
               <Fragment>
-                <p>Name: {product && product.name}</p>
-                <p>Description: {product && product.description}</p>
-                <p>Price: ${product && product.price}</p>
-                {product && product.quantity > 0 ? (
-                  <Badge variant='secondary'>In Stock</Badge>
-                ) : (
-                  <Badge variant='warning'>Out of stock</Badge>
-                )}
+                <div className='holder-add-cart'>
+                  <ListGroup as='ul'>
+                    <ListGroup.Item as='li'>
+                      <span>Name:</span> {product && product.name}
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                      <span>Description:</span> {product && product.description}
+                    </ListGroup.Item>
+                    <ListGroup.Item as='li'>
+                      <span>Price:</span> ${product && product.price}
+                    </ListGroup.Item>
+                    {/* <ListGroup.Item>
+                      {product && product.quantity > 0 ? (
+                        <Badge variant='secondary'>In Stock</Badge>
+                      ) : (
+                        <Badge variant='warning'>Out of stock</Badge>
+                      )}
+                    </ListGroup.Item> */}
+                  </ListGroup>
 
-                {/* <div className='holder-add-to-cart-button'>
-                <FormInput
-                  className='btn btn-block add-cart-btn'
-                  type='submit'
-                  value='Add to Cart'
-                  onClick={addToCart}
-                />
-              </div> */}
-                <br />
-                <Button
-                  className='add-cart-btn shadow-none'
-                  type='submit'
-                  onClick={addToCart}
-                >
-                  Add to Cart
-                </Button>
+                  <div className='parent-add-btn'>
+                    <Button
+                      // variant='success'
+                      className='add-cart-btn shadow-none'
+                      type='submit'
+                      onClick={addToCart}
+                    >
+                      Add To Cart
+                    </Button>
+                  </div>
+                </div>
               </Fragment>
             </Col>
           </Row>

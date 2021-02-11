@@ -1,11 +1,30 @@
 .shopping-cart {
-  margin-top: 100px;
+  margin-top: 120px;
   text-align: center;
   background-color: #88bdbc!important;
 }
 
 .table {
   border-collapse: collapse;
+  table-layout: fixed;
+
+  .tbody-cart {
+    .decrease-quantity {
+      cursor: pointer;
+    }
+
+    .decrease-quantity:hover {
+      color: #5076A0;
+    }
+
+    .increase-quantity {
+      cursor: pointer;
+    }
+
+    .increase-quantity:hover {
+      color: #5076A0;
+    }
+  }
 
   .tr-header {
     background-color: #eaeaea;
@@ -41,6 +60,17 @@
 
   .empty-cart {
     text-align: center;
+
+    a {
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-decoration: none;
+      color: #5076A0;
+    }
+
+    a:hover {
+      color: #334B66;
+    }
   }
 
   .no-border-right-td {

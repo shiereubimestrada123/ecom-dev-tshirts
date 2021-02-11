@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Row, Col, Table } from 'react-bootstrap';
+import { Row, Col, Table, Button, Modal } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
 import { getProducts, deleteProduct } from '../../../../store/actions/product';
 import { selectAllProducts } from '../../../../store/selectors/product';
@@ -14,6 +14,8 @@ import {
 import AlertPrompt from '../../../../components/alertprompt/AlertPrompt';
 import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 import PaginationProduct from '../../../../components/pagination/PaginationProduct';
+import MyModal from '../../../../components/modal/MyModal';
+import ProductList from './productlist/ProductList';
 
 const ManageProducts = ({
   loading,
@@ -36,12 +38,27 @@ const ManageProducts = ({
     window.scrollTo(0, 0);
   }, []);
 
+  const [product, setProduct] = useState();
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = (product) => {
+    setShow(true);
+    setProduct(product);
+  };
+
   const handleDeleteProduct = (productId) => {
     const userId = user && user._id;
     deleteProduct(productId, userId);
+    setShow(false);
   };
 
   let history = useHistory();
+
+  const handleGoBack = () => {
+    history.push('/admin/dashboard');
+  };
 
   const handleRedirect = async (productId) => {
     history.push(`/admin/product/update/${productId}`);
@@ -78,20 +95,19 @@ const ManageProducts = ({
                         <tbody>
                           {allProducts.length > 0 &&
                             allProducts.map((product, index) => (
-                              <tr key={index}>
-                                <td>{product.name}</td>
-                                <td onClick={() => handleRedirect(product._id)}>
-                                  <i className='fas fa-edit'></i>
-                                </td>
-                                <td
-                                  onClick={() =>
-                                    handleDeleteProduct(product._id)
-                                  }
-                                >
-                                  <i className='fas fa-trash-alt'></i>
-                                </td>
-                              </tr>
+                              <ProductList
+                                key={index}
+                                product={product}
+                                handleShow={handleShow}
+                                handleRedirect={handleRedirect}
+                              />
                             ))}
+                          <MyModal
+                            product={product}
+                            handleClose={handleClose}
+                            handleDeleteProduct={handleDeleteProduct}
+                            show={show}
+                          />
                         </tbody>
                       </Table>
                       <div>
@@ -103,6 +119,16 @@ const ManageProducts = ({
                         />
                       </div>
                     </div>
+                  </div>
+                  <div className='go-back'>
+                    <Button
+                      variant='success'
+                      className='button-goback shadow-none'
+                      type='submit'
+                      onClick={handleGoBack}
+                    >
+                      Back
+                    </Button>
                   </div>
                 </section>
               </Col>
