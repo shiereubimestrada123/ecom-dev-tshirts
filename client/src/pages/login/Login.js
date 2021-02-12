@@ -48,7 +48,7 @@ const Login = ({ login, loading, isAuthenticated }) => {
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <Row className='parent-row'>
+        <Row className='parent-row-login'>
           <Col md={12}>
             <Animated
               animationIn='fadeIn'
