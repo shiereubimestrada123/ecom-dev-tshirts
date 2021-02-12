@@ -1,23 +1,23 @@
-.parent-row {
-  padding: 150px 0;
-  // border: 3px solid green;
+.parent-row-login {
   text-align: center;
+  padding: 100px 0 50px 0;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
   .login-wrapper {
-    width: 300px;
+    background-color: #EAEAEA;
+    width: 500px;
     max-width: 100%;
-    // padding: 50px 0;
-    padding-top: 48px;
-    padding-bottom: 24px;
+    padding: 50px;
     margin: 0 auto;
-    // position: absolute;
-    // top: 45%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
+    border-radius: 10px;
 
     .login-title {
       font-size: 30px;
-      color: #000;
+      color: 	#606060;
       font-weight: bold;
       margin-bottom: 25px;
     }
@@ -25,7 +25,6 @@
     .form-group {
       .form-control {
         border: none;
-        border-bottom: 1px solid #e7e7e7;
         border-radius: 0;
         padding: 9px 5px;
         min-height: 40px;
@@ -36,7 +35,6 @@
       .form-control:focus {
         outline: none;
         box-shadow: none;
-        border-bottom: 1px solid #5076a0;
       }
 
       .form-control::placeholder {
@@ -46,7 +44,7 @@
       .form-label {
         font-size: 14px;
         font-weight: bold;
-        color: #b0adad;
+        color:	#606060;
       }
     }
 
@@ -75,21 +73,19 @@
       color: #5076a0;
       font-weight: bold;
     }
+
+    p {
+      font-weight: bold;
+      color: #606060;
+
+      a {
+        text-decoration: none;
+        color: #5076a0;
+      }
+
+      a:hover {
+        color: #446488;
+      }
+    }
   }
 }
-
-@media screen and (max-width: 768px) {
-
-  .hide-mobile {
-    display: none;
-  }
-
-}
-
-// .login-parent {
-//   margin-top: 50px;
-
-//   .signin-text {
-//     color: #5076a0;
-//   }
-// }

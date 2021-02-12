@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
-@import 'parts/navigationbar/NavigationBar';
 @import 'parts/footer/footer.scss';
 @import 'parts/card/shopcard.scss';
 @import 'parts/card/singlecard.scss';
@@ -28,9 +27,15 @@
 @import 'pages/dashboard/user/userpurchase/userPurchase.scss';
 @import 'pages/checkout/checkout.scss';
 @import 'pages/cart/cart.scss';
+@import 'pages/notfound/notFound.scss';
 
 @import 'components/cartDropdown/CartDropdown.scss';
 @import 'components/alertprompt/alertprompt.scss';
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
 
 html, body {
   font-family: 'Lora', serif!important;

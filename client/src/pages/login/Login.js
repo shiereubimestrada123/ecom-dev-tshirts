@@ -48,20 +48,18 @@ const Login = ({ login, loading, isAuthenticated }) => {
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <Row className='parent-row'>
-          <Col md={6}>
+        <Row className='parent-row-login'>
+          <Col md={12}>
             <Animated
               animationIn='fadeIn'
               animationOut='fadeOut'
               isVisible={true}
             >
               <div className='login-wrapper'>
-                <h1 className='login-title'>Log in</h1>
+                <h1 className='login-title'>Login</h1>
                 <Form className='login-parent' onSubmit={(e) => onSubmit(e)}>
                   <Form.Group controlId='formBasicEmail' className='form-group'>
-                    <Form.Label className='form-label'>
-                      Email address
-                    </Form.Label>
+                    <Form.Label className='form-label'>Email</Form.Label>
 
                     <FormInput
                       type='email'
@@ -81,7 +79,7 @@ const Login = ({ login, loading, isAuthenticated }) => {
 
                     <FormInput
                       type='password'
-                      placeholder='Password'
+                      placeholder='Enter password'
                       name='password'
                       value={password}
                       onChange={(e) => onChange(e)}
@@ -94,30 +92,17 @@ const Login = ({ login, loading, isAuthenticated }) => {
                     id='login'
                     className='btn btn-block login-btn'
                     type='submit'
-                    value='Login'
+                    value='Submit'
                   />
 
                   <p className='my-1'>
                     Don't have an account yet?{' '}
                     <Link to='/register' variant='info' className='signin-text'>
-                      Sign up
+                      Register
                     </Link>
                   </p>
                 </Form>
               </div>
-            </Animated>
-          </Col>
-          <Col md={6}>
-            <Animated
-              animationIn='fadeInRight'
-              animationOut='fadeOut'
-              isVisible={true}
-            >
-              <img
-                src={register}
-                alt='register'
-                className='hide-mobile login-image'
-              />
             </Animated>
           </Col>
         </Row>

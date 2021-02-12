@@ -1,18 +1,23 @@
-.parent-row {
-  padding: 150px 0;
-  // border: 3px solid green;
+.parent-row-register {
   text-align: center;
+  padding: 100px 0 50px 0;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
   .register-wrapper {
-    width: 300px;
+    background-color: #EAEAEA;
+    width: 500px;
     max-width: 100%;
-    // padding-top: 24px;
-    // padding-bottom: 24px;
+    padding: 50px;
     margin: 0 auto;
+    border-radius: 10px;
 
     .register-title {
       font-size: 30px;
-      color: #000;
+      color: 	#606060;
       font-weight: bold;
       margin-bottom: 25px;
     }
@@ -41,7 +46,7 @@
       .form-label {
         font-size: 14px;
         font-weight: bold;
-        color: #b0adad;
+        color: 	#606060;
       }
     }
 
@@ -70,18 +75,19 @@
       color: #5076a0;
       font-weight: bold;
     }
+
+    p {
+      font-weight: bold;
+      color: #606060;
+
+      a {
+        text-decoration: none;
+        color: #5076a0;
+      }
+
+      a:hover {
+        color: #446488;
+      }
+    }
   }
-
-  img {
-    padding: 60px 0;
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 768px) {
-
-  .hide-mobile {
-    display: none;
-  }
-
 }
