@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-// import NavigationBar from './parts/navigationbar/NavigationBar';
 import NavBar from './parts/navbar/NavBar';
 import Footer from './parts/footer/Footer';
 import Register from './pages/register/Register';
@@ -22,10 +21,9 @@ import ManageProducts from './pages/dashboard/admin/manageproducts/ManageProduct
 import ProductUpdate from './pages/dashboard/admin/productupdate/ProductUpdate';
 import Orders from './pages/dashboard/admin/orders/Orders';
 import Checkout from './pages/checkout/Checkout';
-import NotFound from './pages/dashboard/notfound/NotFound';
+import NotFound from './pages/notfound/NotFound';
 
 import './App.scss';
-// import './index.scss';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -42,7 +40,6 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        {/* <NavigationBar /> */}
         <NavBar />
         <Container style={{ minHeight: '90vh' }}>
           <Switch>

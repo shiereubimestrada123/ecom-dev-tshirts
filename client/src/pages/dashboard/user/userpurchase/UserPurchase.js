@@ -58,9 +58,6 @@ const UserPurchase = ({ loading, user }) => {
                             key={index}
                             className='purchase-history'
                           >
-                            {/* <ListGroup.Item as='li'>
-                              {history._id}
-                            </ListGroup.Item> */}
                             <ListGroup.Item as='li'>
                               Name: {history.name}
                             </ListGroup.Item>
@@ -87,12 +84,12 @@ const UserPurchase = ({ loading, user }) => {
                     </div>
                     <div className='go-back'>
                       <Button
-                        variant='success'
+                        variant='secondary'
                         className='button-goback shadow-none'
                         type='submit'
                         onClick={handleOnclick}
                       >
-                        Back
+                        Go Back
                       </Button>
                     </div>
                   </section>
