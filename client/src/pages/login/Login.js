@@ -79,7 +79,7 @@ const Login = ({ login, loading, isAuthenticated }) => {
 
                     <FormInput
                       type='password'
-                      placeholder='Enter Password'
+                      placeholder='Enter password'
                       name='password'
                       value={password}
                       onChange={(e) => onChange(e)}
@@ -92,7 +92,7 @@ const Login = ({ login, loading, isAuthenticated }) => {
                     id='login'
                     className='btn btn-block login-btn'
                     type='submit'
-                    value='Login'
+                    value='Submit'
                   />
 
                   <p className='my-1'>

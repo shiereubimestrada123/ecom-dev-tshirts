@@ -55,35 +55,22 @@ const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <Row className='parent-row'>
-          <Col md={6}>
-            <Animated
-              animationIn='fadeInLeft'
-              animationOut='fadeOut'
-              isVisible={true}
-            >
-              <img
-                src={signup}
-                alt='signup'
-                className='hide-mobile register-image'
-              />
-            </Animated>
-          </Col>
-          <Col md={6}>
+        <Row className='parent-row-register'>
+          <Col md={12}>
             <Animated
               animationIn='fadeIn'
               animationOut='fadeOut'
               isVisible={true}
             >
               <div className='register-wrapper'>
-                <h1 className='register-title'>Sign up</h1>
+                <h1 className='register-title'>Register</h1>
                 <Form className='register-parent' onSubmit={(e) => onSubmit(e)}>
                   <Form.Group controlId='formBasicName' className='form-group'>
                     <Form.Label>Name</Form.Label>
 
                     <FormInput
                       type='name'
-                      placeholder='Name'
+                      placeholder='Enter name'
                       name='name'
                       value={name}
                       onChange={(e) => onChange(e)}
@@ -92,7 +79,7 @@ const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
                   </Form.Group>
 
                   <Form.Group controlId='formBasicEmail' className='form-group'>
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <FormInput
                       type='email'
                       placeholder='Enter email'
@@ -110,7 +97,7 @@ const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
                     <Form.Label>Password</Form.Label>
                     <FormInput
                       type='password'
-                      placeholder='Password'
+                      placeholder='Enter password'
                       name='password'
                       value={password}
                       onChange={(e) => onChange(e)}
@@ -122,10 +109,10 @@ const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
                     controlId='formBasicPassword2'
                     className='form-group'
                   >
-                    <Form.Label>Re-enter Password</Form.Label>
+                    <Form.Label>Confirm Password</Form.Label>
                     <FormInput
                       type='password'
-                      placeholder='Password'
+                      placeholder='Confirm password'
                       name='password2'
                       value={password2}
                       onChange={(e) => onChange(e)}
@@ -138,13 +125,13 @@ const Register = ({ register, setAlertPrompt, loading, isAuthenticated }) => {
                     id='register'
                     className='btn btn-block register-btn'
                     type='submit'
-                    value='Sign up'
+                    value='Submit'
                   />
 
                   <p className='my-1 register-text'>
                     Already have an account?{' '}
                     <Link to='/login' variant='info' className='signup-text'>
-                      Log in
+                      Login
                     </Link>
                   </p>
                 </Form>

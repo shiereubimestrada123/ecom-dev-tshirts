@@ -1,6 +1,5 @@
 .parent-row-login {
-  // text-align: center;
-  // background-color:#EAEAEA;
+  text-align: center;
   padding: 100px 0 50px 0;
   min-height: 90vh;
   display: flex;
@@ -26,7 +25,6 @@
     .form-group {
       .form-control {
         border: none;
-        // border-bottom: 1px solid #e7e7e7;
         border-radius: 0;
         padding: 9px 5px;
         min-height: 40px;
@@ -37,7 +35,6 @@
       .form-control:focus {
         outline: none;
         box-shadow: none;
-        // border-bottom: 1px solid #5076a0;
       }
 
       .form-control::placeholder {
