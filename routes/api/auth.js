@@ -92,7 +92,7 @@ router.post(
 
       jwt.sign(
         payload,
-        process.env.jwtSecret,
+        process.env.JWT_SECRET,
         { expiresIn: 360000 },
         (err, token) => {
           const { _id, name, email, role } = user;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Row, Col, ListGroup, Button } from 'react-bootstrap';
 import { Animated } from 'react-animated-css';
-import PaginationHistory from '../../../../components/pagination/PaginationHistory';
+import PaginationHistory from '../../../../components/pagination/paginationhistory/PaginationHistory';
 import {
   selectAuthLoading,
   selectAuthUser,
