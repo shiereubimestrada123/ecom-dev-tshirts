@@ -13,7 +13,6 @@ import {
   DELETE_PRODUCT_CART,
   CREATE_ORDER,
   LIST_ORDERS,
-  // CAROUSEL_PRODUCTS,
   SOLD_PRODUCTS,
   DELETE_PRODUCT,
   UPDATE_PRODUCT,
@@ -87,26 +86,13 @@ export const deleteProduct = (productId, userId) => async (
       payload: { productId, cartProducts },
     });
 
-    dispatch(setAlertPrompt('Deleted product Successfully', 'success'));
+    dispatch(setAlertPrompt('Deleted product successfully', 'success'));
 
     localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
   } catch (error) {
     console.log(error);
   }
 };
-
-// export const showCarouselProducts = () => async (dispatch) => {
-//   try {
-//     const res = await axios.get('/api/product/carousel');
-
-//     dispatch({
-//       type: CAROUSEL_PRODUCTS,
-//       payload: res.data,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 export const listOrders = (userId) => async (dispatch) => {
   if (localStorage.token) {
@@ -147,7 +133,6 @@ export const createOrder = (userId, createOrderData) => async (dispatch) => {
     localStorage.removeItem('cartProducts');
   } catch (error) {
     const errors = error.response.data.errors;
-    console.log(errors);
 
     if (errors) {
       errors.forEach((error) => dispatch(setAlertPrompt(error.msg, 'danger')));
@@ -278,7 +263,6 @@ export const getFilteredProducts = (skip, limit, selectedCategoryId) => async (
       payload: res.data.products,
     });
   } catch (error) {
-    console.log('123');
     console.log(error);
   }
 };

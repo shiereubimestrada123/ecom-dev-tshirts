@@ -91,7 +91,7 @@ const Order = ({ listOrders, user, orders, loading }) => {
                   </div>
                   <div className='go-back'>
                     <Button
-                      variant='success'
+                      variant='secondary'
                       className='button-goback shadow-none'
                       type='submit'
                       onClick={handleOnclick}
