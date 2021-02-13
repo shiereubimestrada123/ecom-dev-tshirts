@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
     "moment": "^2.26.0",
+    "node-sass": "^5.0.0",
     "react": "^16.13.1",
     "react-animated-css": "^1.2.1",
     "react-bootstrap": "^1.0.1",
@@ -45,7 +46,5 @@
     ]
   },
   "proxy": "http://localhost:5000",
-  "devDependencies": {
-    "node-sass": "^4.14.1"
-  }
+  "devDependencies": {}
 }
