@@ -64,9 +64,7 @@ const CreateCategory = ({ createCategory, user, loading }) => {
                         <Form.Group controlId='formCategoryName'>
                           <InputGroup className='mb-3'>
                             <InputGroup.Prepend>
-                              <InputGroup.Text id='basic-addon1'>
-                                Name
-                              </InputGroup.Text>
+                              <InputGroup.Text>Name</InputGroup.Text>
                             </InputGroup.Prepend>
                             <Form.Control
                               type='name'
