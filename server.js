@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const dotenv = require('dotenv');
 
-require('dotenv').config();
+// require('dotenv').config();
+dotenv.config();
 
 // Connect Database
 try {
