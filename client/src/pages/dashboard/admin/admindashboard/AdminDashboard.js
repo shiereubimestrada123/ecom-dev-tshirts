@@ -58,7 +58,7 @@ const AdminDashboard = ({ listOrders, loading, user, orders }) => {
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
-              <Col md={6} className='user-information-parent'>
+              <Col md={6} className='admin-information-parent'>
                 <ListGroup as='ul'>
                   <ListGroup.Item as='li' active>
                     Admin Information
