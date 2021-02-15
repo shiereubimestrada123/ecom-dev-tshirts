@@ -59,23 +59,24 @@ const Order = ({ listOrders, user, orders, loading }) => {
                       {allOrders.map((order, orderIndex) => (
                         <ListGroup as='ul' key={orderIndex} className='my-3'>
                           <ListGroup.Item as='li' active>
-                            Transaction Id: {order.transactionId}
+                            <strong>Transaction Id:</strong>{' '}
+                            {order.transactionId}
                           </ListGroup.Item>
                           <ListGroup.Item as='li'>
-                            Ordered by: {order.name}
+                            <strong>Ordered by:</strong> {order.name}
                           </ListGroup.Item>
                           <ListGroup.Item as='li'>
-                            Ordered date:{' '}
+                            <strong> Ordered date:</strong>{' '}
                             {moment(order.createdAt).format('MM/DD/YYYY')}
                           </ListGroup.Item>
                           <ListGroup.Item as='li'>
-                            Status: {order.status}
+                            <strong>Status:</strong> {order.status}
                           </ListGroup.Item>
                           <ListGroup.Item as='li'>
-                            Delivery Address: {order.address}
+                            <strong>Delivery Address:</strong> {order.address}
                           </ListGroup.Item>
                           <ListGroup.Item as='li'>
-                            Total: &#8369;{order.total}
+                            <strong>Total:</strong> &#8369;{order.total}
                           </ListGroup.Item>
                         </ListGroup>
                       ))}

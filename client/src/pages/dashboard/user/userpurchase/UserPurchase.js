@@ -59,16 +59,17 @@ const UserPurchase = ({ loading, user }) => {
                             className='purchase-history'
                           >
                             <ListGroup.Item as='li'>
-                              Name: {history.name}
+                              <strong>Name:</strong> {history.name}
                             </ListGroup.Item>
                             <ListGroup.Item as='li'>
-                              Description: {history.description}
+                              <strong>Description:</strong>{' '}
+                              {history.description}
                             </ListGroup.Item>
                             <ListGroup.Item as='li'>
-                              Quantity: {history.quantity}
+                              <strong>Quantity:</strong> {history.quantity}
                             </ListGroup.Item>
                             <ListGroup.Item as='li'>
-                              Amount: {history.amount}
+                              <strong>Amount:</strong> {history.amount}
                             </ListGroup.Item>
                           </ListGroup>
                         ))}
