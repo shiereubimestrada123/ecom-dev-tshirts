@@ -30,7 +30,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
 
   const isHome = (
     <Fragment>
-      <Nav.Link className='home' onClick={() => history.push('/')}>
+      <Nav.Link eventKey='1' className='home' onClick={() => history.push('/')}>
         <i className='fas fa-home'></i>
         <span>Home</span>
       </Nav.Link>
@@ -39,7 +39,11 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
 
   const isShop = (
     <Fragment>
-      <Nav.Link className='shop' onClick={() => history.push('/shop')}>
+      <Nav.Link
+        eventKey='2'
+        className='shop'
+        onClick={() => history.push('/shop')}
+      >
         <i className='fas fa-store'></i>
         <span>Shop</span>
       </Nav.Link>
@@ -48,7 +52,11 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
 
   const isCart = (
     <Fragment>
-      <Nav.Link className='cart' onClick={() => history.push('/cart')}>
+      <Nav.Link
+        eventKey='3'
+        className='cart'
+        onClick={() => history.push('/cart')}
+      >
         <i className='fas fa-shopping-cart'></i>
         <span>Cart</span>
         <Badge variant='light' className='total-badge'>
@@ -61,6 +69,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
   const isLogin = (
     <Fragment>
       <Nav.Link
+        eventKey='4'
         className='login'
         onClick={() =>
           history.push(user.role === 0 ? '/user/dashboard' : '/admin/dashboard')
@@ -69,7 +78,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
         <i className='fas fa-id-card'></i>
         <span> {user && user.name}</span>
       </Nav.Link>
-      <Nav.Link className='login' onClick={logout}>
+      <Nav.Link eventKey='5' className='login' onClick={logout}>
         <i className='fas fa-sign-out-alt'></i>
         <span>Logout</span>
       </Nav.Link>
@@ -78,7 +87,11 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
 
   const isLogout = (
     <Fragment>
-      <Nav.Link className='login' onClick={() => history.push('/login')}>
+      <Nav.Link
+        eventKey='6'
+        className='login'
+        onClick={() => history.push('/login')}
+      >
         <i className='fas fa-sign-in-alt'></i>
         <span>Login</span>
       </Nav.Link>
@@ -88,6 +101,7 @@ const NavBar = ({ logout, isAuthenticated, user, productCount }) => {
   return (
     <Fragment>
       <Navbar
+        collapseOnSelect
         fixed='top'
         expand='lg'
         className={scrollnav ? 'nav2-parent active' : 'nav2-parent'}
