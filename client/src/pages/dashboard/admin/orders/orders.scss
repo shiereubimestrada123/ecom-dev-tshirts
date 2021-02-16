@@ -28,6 +28,16 @@
 
     .orders-body {
       padding: 0 25px;
+      min-height: 300px;
+      position: relative;
+
+      .no-orders {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
 
       li.active {
         background-color: #eaeaea;

@@ -56,30 +56,34 @@ const Order = ({ listOrders, user, orders, loading }) => {
                       <h2>Orders</h2>
                     </div>
                     <div className='orders-body'>
-                      {allOrders.map((order, orderIndex) => (
-                        <ListGroup as='ul' key={orderIndex} className='my-3'>
-                          <ListGroup.Item as='li' active>
-                            <strong>Transaction Id:</strong>{' '}
-                            {order.transactionId}
-                          </ListGroup.Item>
-                          <ListGroup.Item as='li'>
-                            <strong>Ordered by:</strong> {order.name}
-                          </ListGroup.Item>
-                          <ListGroup.Item as='li'>
-                            <strong> Ordered date:</strong>{' '}
-                            {moment(order.createdAt).format('MM/DD/YYYY')}
-                          </ListGroup.Item>
-                          <ListGroup.Item as='li'>
-                            <strong>Status:</strong> {order.status}
-                          </ListGroup.Item>
-                          <ListGroup.Item as='li'>
-                            <strong>Delivery Address:</strong> {order.address}
-                          </ListGroup.Item>
-                          <ListGroup.Item as='li'>
-                            <strong>Total:</strong> &#8369;{order.total}
-                          </ListGroup.Item>
-                        </ListGroup>
-                      ))}
+                      {allOrders.length > 0 ? (
+                        allOrders.map((order, orderIndex) => (
+                          <ListGroup as='ul' key={orderIndex} className='my-3'>
+                            <ListGroup.Item as='li' active>
+                              <strong>Transaction Id:</strong>{' '}
+                              {order.transactionId}
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li'>
+                              <strong>Ordered by:</strong> {order.name}
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li'>
+                              <strong> Ordered date:</strong>{' '}
+                              {moment(order.createdAt).format('MM/DD/YYYY')}
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li'>
+                              <strong>Status:</strong> {order.status}
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li'>
+                              <strong>Delivery Address:</strong> {order.address}
+                            </ListGroup.Item>
+                            <ListGroup.Item as='li'>
+                              <strong>Total:</strong> &#8369;{order.total}
+                            </ListGroup.Item>
+                          </ListGroup>
+                        ))
+                      ) : (
+                        <p className='no-orders'>No orders to show yet</p>
+                      )}
                     </div>
                     <div className='holder-pagination'>
                       <PaginationOrder
