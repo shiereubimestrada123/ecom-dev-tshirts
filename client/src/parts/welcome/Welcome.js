@@ -9,28 +9,22 @@ const Welcome = (props) => {
         <Col md={4}>
           <div className='child-home-icon'>
             <i className='fas fa-undo-alt'></i>
-            <h3>return title</h3>
-            <p>
-              Curabitur arcu erat accumsan id imperdiet et porttitor at sem.
-            </p>
+            <h3>Return</h3>
+            <p>Shop with certainty with a 7 day return policy.</p>
           </div>
         </Col>
         <Col md={4}>
           <div className='child-home-icon'>
             <i className='fas fa-check-double'></i>
-            <h3>authentic title</h3>
-            <p>
-              Curabitur arcu erat accumsan id imperdiet et porttitor at sem.
-            </p>
+            <h3>Authentic</h3>
+            <p>Guaranteed all items are authentic.</p>
           </div>
         </Col>
         <Col md={4}>
           <div className='child-home-icon'>
             <i className='fas fa-shipping-fast'></i>
-            <h3>shipping title</h3>
-            <p>
-              Curabitur arcu erat accumsan id imperdiet et porttitor at sem.
-            </p>
+            <h3>Shipping</h3>
+            <p>Worldwide shipping on all orders</p>
           </div>
         </Col>
       </Row>
