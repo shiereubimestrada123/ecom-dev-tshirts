@@ -52,27 +52,33 @@ const UserPurchase = ({ loading, user }) => {
                         <h2>Purchase History</h2>
                       </div>
                       <div className='purchase-body'>
-                        {purchase.map((history, index) => (
-                          <ListGroup
-                            as='ul'
-                            key={index}
-                            className='purchase-history'
-                          >
-                            <ListGroup.Item as='li'>
-                              <strong>Name:</strong> {history.name}
-                            </ListGroup.Item>
-                            <ListGroup.Item as='li'>
-                              <strong>Description:</strong>{' '}
-                              {history.description}
-                            </ListGroup.Item>
-                            <ListGroup.Item as='li'>
-                              <strong>Quantity:</strong> {history.quantity}
-                            </ListGroup.Item>
-                            <ListGroup.Item as='li'>
-                              <strong>Amount:</strong> {history.amount}
-                            </ListGroup.Item>
-                          </ListGroup>
-                        ))}
+                        {purchase.length > 0 ? (
+                          purchase.map((history, index) => (
+                            <ListGroup
+                              as='ul'
+                              key={index}
+                              className='purchase-history'
+                            >
+                              <ListGroup.Item as='li'>
+                                <strong>Name:</strong> {history.name}
+                              </ListGroup.Item>
+                              <ListGroup.Item as='li'>
+                                <strong>Description:</strong>{' '}
+                                {history.description}
+                              </ListGroup.Item>
+                              <ListGroup.Item as='li'>
+                                <strong>Quantity:</strong> {history.quantity}
+                              </ListGroup.Item>
+                              <ListGroup.Item as='li'>
+                                <strong>Amount:</strong> {history.amount}
+                              </ListGroup.Item>
+                            </ListGroup>
+                          ))
+                        ) : (
+                          <p className='no-purchase'>
+                            No user purchase to show yet
+                          </p>
+                        )}
                         <div className='pagination-purchase-history'>
                           <PaginationHistory
                             purchaseperpage={purchaseperpage}
