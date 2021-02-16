@@ -84,17 +84,17 @@ const ManageProducts = ({
                       <h2>Manage Products</h2>
                     </div>
                     <div className='manage-body'>
-                      <Table responsive='sm md lg xl'>
-                        <thead>
-                          <tr className='tr-header'>
-                            <th className='product-name'>Product Name</th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {allProducts.length > 0 &&
-                            allProducts.map((product, index) => (
+                      {allProducts.length > 0 ? (
+                        <Table responsive='sm md lg xl'>
+                          <thead>
+                            <tr className='tr-header'>
+                              <th className='product-name'>Product Name</th>
+                              <th></th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {allProducts.map((product, index) => (
                               <ProductList
                                 key={index}
                                 product={product}
@@ -102,14 +102,18 @@ const ManageProducts = ({
                                 handleRedirect={handleRedirect}
                               />
                             ))}
-                          <MyModal
-                            product={product}
-                            handleClose={handleClose}
-                            handleDeleteProduct={handleDeleteProduct}
-                            show={show}
-                          />
-                        </tbody>
-                      </Table>
+                            <MyModal
+                              product={product}
+                              handleClose={handleClose}
+                              handleDeleteProduct={handleDeleteProduct}
+                              show={show}
+                            />
+                          </tbody>
+                        </Table>
+                      ) : (
+                        <p className='no-products'>No products to show yet</p>
+                      )}
+
                       <div>
                         <PaginationProduct
                           productperpage={productperpage}

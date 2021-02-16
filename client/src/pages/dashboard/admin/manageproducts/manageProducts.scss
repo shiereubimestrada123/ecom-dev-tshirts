@@ -28,6 +28,16 @@
 
     .manage-body {
       padding: 40px 25px;
+      position: relative;
+      // min-height: 300px;
+
+      .no-products {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
 
       tr {
         td {
