@@ -30,10 +30,12 @@ const Footer = (props) => {
             </li>
 
             <li className='footer-list'>
-              <i className='fas fa-envelope-square'></i> <span>asdasdasds</span>
+              <i className='fas fa-envelope-square'></i>{' '}
+              <span>ecomdev@gmail.com</span>
             </li>
             <li className='footer-list'>
-              <i className='fas fa-map-marker-alt'></i> <span>1231231312</span>
+              <i className='fas fa-map-marker-alt'></i>{' '}
+              <span>3511 Anthony Avenue San Angelo Texas</span>
             </li>
           </ul>
         </Col>

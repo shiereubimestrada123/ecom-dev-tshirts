@@ -33,21 +33,18 @@ router.post(
           .json({ errors: [{ msg: 'User already exists' }] });
       }
 
-      // Return jsonwebtoken
       user = new User({
         name,
         email,
         password,
       });
 
-      // Encrypt password
       const salt = await bcrypt.genSalt(10);
 
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
 
-      // Return jsonwebtoken
       const payload = {
         user: {
           id: user.id,
