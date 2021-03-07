@@ -9,10 +9,12 @@ import {
   selectAuthLoading,
   selectAuthUser,
 } from '../../../../store/selectors/auth';
+import { loadUser } from '../../../../store/actions/auth';
 import LoadingSpinner from '../../../../components/loadingspinner/LoadingSpinner';
 
-const UserPurchase = ({ loading, user }) => {
+const UserPurchase = ({ loading, user, loadUser }) => {
   useEffect(() => {
+    loadUser();
     window.scrollTo(0, 0);
   }, []);
 
@@ -115,4 +117,4 @@ const mapStateToProps = createStructuredSelector({
   user: selectAuthUser,
 });
 
-export default connect(mapStateToProps)(UserPurchase);
+export default connect(mapStateToProps, { loadUser })(UserPurchase);

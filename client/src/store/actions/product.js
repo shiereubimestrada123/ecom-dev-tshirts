@@ -226,6 +226,7 @@ export const getProducts = () => async (dispatch) => {
     console.log(error);
   }
 };
+
 export const getSoldProducts = () => async (dispatch) => {
   try {
     const res = await axios.get(`/api/product?sortBy=sold&order=desc&limit=6`);
